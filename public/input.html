@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Form</title>
+    <script src="script.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a1a, #660000);
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Homemade Apple', cursive;
+            font-size: 50px;
+            text-shadow: 2px 2px 5px red;
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px red;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            flex: 1;
+            text-align: left;
+        }
+
+        input, select {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid red;
+            background: #222;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: darkred;
+            box-shadow: 0px 0px 10px red;
+        }
+
+        /* Existing styles remain unchanged */
+
+        #qrcode {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            background: white; /* White background for visibility */
+            padding: 10px; /* Space between QR and border */
+            border: 10px solid white; /* White border */
+            border-radius: 10px; /* Optional: rounded corners */
+            display: inline-block; /* Prevents it from stretching */
+        }
+
+
+        #qrcode canvas {
+            width: 256px !important;
+            height: 256px !important;
+            background: white; /* Ensures the QR code has a white background */
+            padding: 10px; /* Adds space around the QR code */
+            border: 10px solid white; /* Creates a white border */
+            border-radius: 10px; /* Optional: Adds rounded corners */
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script> 
+</head>
+<body>
+
+    <h1>1058 Spyglass</h1>
+    <div class="form-container">
+        <form id="myForm">
+            <div class="form-group">
+                <label for="MatchNumber">Match Number</label>
+                <input type="text" id="MatchNumber" name="MatchNumber">
+            </div>
+            <div class="form-group">
+                <label for="TeamNumber">Team Number</label>
+                <input type="text" id="TeamNumber" name="TeamNumber">
+            </div>
+            <div class="form-group">
+                <label for="AutoMove">Auto Move</label>
+                <select id="AutoMove" name="AutoMove">
+                    <option value="false">Did Not Move</option>
+                    <option value="true">Moved</option>
+                </select>
+            </div>
+
+            <h2>Auto Phase</h2>
+            <div class="grid-container">
+                <div class="form-group"><label for="L1Auto">L1 Auto</label><input type="text" id="L1Auto"></div>
+                <div class="form-group"><label for="L2Auto">L2 Auto</label><input type="text" id="L2Auto"></div>
+                <div class="form-group"><label for="L3Auto">L3 Auto</label><input type="text" id="L3Auto"></div>
+                <div class="form-group"><label for="L4Auto">L4 Auto</label><input type="text" id="L4Auto"></div>
+                <div class="form-group"><label for="ProcesserAuto">Processor Auto</label><input type="text" id="ProcesserAuto"></div>
+                <div class="form-group"><label for="NetAuto">Net Auto</label><input type="text" id="NetAuto"></div>
+            </div>
+
+            <h2>Tele Phase</h2>
+            <div class="grid-container">
+                <div class="form-group"><label for="L1Tele">L1 Tele</label><input type="text" id="L1Tele"></div>
+                <div class="form-group"><label for="L2Tele">L2 Tele</label><input type="text" id="L2Tele"></div>
+                <div class="form-group"><label for="L3Tele">L3 Tele</label><input type="text" id="L3Tele"></div>
+                <div class="form-group"><label for="L4Tele">L4 Tele</label><input type="text" id="L4Tele"></div>
+                <div class="form-group"><label for="ProcesserTele">Processor Tele</label><input type="text" id="ProcesserTele"></div>
+                <div class="form-group"><label for="NetTele">Net Tele</label><input type="text" id="NetTele"></div>
+            </div>
+
+            <h2>Endgame</h2>
+            <div class="form-group">
+                <label for="ParkEnd">Park</label>
+                <select id="ParkEnd" name="ParkEnd">
+                    <option value="false">Not Parked</option>
+                    <option value="true">Parked</option> 
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ShallowCageEnd">Shallow Cage</label>
+                <select id="ShallowCageEnd" name="ShallowCageEnd">
+                    <option value="false">Did Not Climb</option>
+                    <option value="true">Climbed</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="DeepCageEnd">Deep Cage</label>
+                <select id="DeepCageEnd" name="DeepCageEnd">
+                    <option value="false">Did Not Climb</option>
+                    <option value="true">Climbed</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Comments">Comments</label>
+                <input type="text" id="Comments" name="Comments">
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <h2>Result:</h2>
+    <p id="result"></p>
+
+    <h2>QR Code:</h2>
+    <div id="qrcode"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("myForm").addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent form submission
+                
+                let formData = new FormData(this);
+                let resultArray = [];
+
+                formData.forEach((value, key) => {
+                    if (value === "true") {
+                        resultArray.push("1");
+                    } else if (value === "false") {
+                        resultArray.push("0");
+                    } else {
+                        resultArray.push(value);
+                    }
+                });
+
+                let finalResult = resultArray.join(",");
+                let finalResult2 = finalResult + "/"; 
+                document.getElementById("result").textContent = finalResult2;
+                console.log(finalResult2);
+
+                generateQRCode(finalResult2);
+            });
+
+            function generateQRCode(text) {
+                let qrContainer = document.getElementById("qrcode");
+                qrContainer.innerHTML = ""; // Clear previous QR code
+                let qrCodeElement = document.createElement("div"); // New div for QR
+                qrContainer.appendChild(qrCodeElement); // Append inside the wrapper
+    
+                new QRCode(qrCodeElement, {
+                    text: text,
+                    width: 256,
+                    height: 256
+                });
+            }
+        });
+    </script>    
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+everything is looking good, except the pyhton script does not seem to be running. probably just copy all the code into chatgpt and have it debug why it wouldn't work. 
+error seems to originate from input data: 
+also somewhere else, unknown, writing correctly to scoutin, not pushing to sheets or csv
+uncomment line 18
