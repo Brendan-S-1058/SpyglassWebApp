@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <a href="index.html">Index</a>
+    <title>QR Code Scanner</title>
+</head>
+<body>
+    <button id="filePickerBtn">Select ScoutIn.txt</button>
+    <button id="runWithoutFileBtn">Run Without File</button>
+    <button id="runPY" disabled>Run Python Process</button>
+    <p id="fileStatus">No file selected.</p>
+    
+    <video id="video" autoplay playsinline style="width: 100%; display: none;"></video>
+    <canvas id="canvas" style="display: none;"></canvas>
+    
+    <p id="qrDataDisplay"></p>
+    
+    <button id="saveBtn" style="display: none;">Save QR Code</button>
+    <button id="rescanBtn" style="display: none;">Rescan QR Code</button>
+    <button id="viewStoredBtn">View Stored QR Codes</button>
+    <button id="downloadBtn">Download as .txt</button>
+    <button id="clearBtn">Clear Stored QR Codes</button>
+    
+    <textarea id="qrList" rows="10" cols="40" readonly style="display: none;"></textarea>
+    <button id="copyBtn" style="display: none;">Copy to Clipboard</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+    <script>
+        let fileHandle = null;
+        let scanningWithoutFile = false;
+        let hasScannedQR = false;
+
+        document.getElementById("filePickerBtn").addEventListener("click", async () => {
+            try {
+                [fileHandle] = await window.showOpenFilePicker({
+                    types: [{ description: 'Text Files', accept: { 'text/plain': ['.txt'] } }],
+                    multiple: false
+                });
+
+                document.getElementById("fileStatus").innerText = "Selected file: ScoutIn.txt";
+                alert("File selected! Now scanning QR codes...");
+                startQRScanner();
+            } catch (err) {
+                alert("File access denied or not supported.");
+            }
+        });
+
+        document.getElementById("runWithoutFileBtn").addEventListener("click", () => {
+            scanningWithoutFile = true;
+            alert("Running in scan-only mode. QR codes will be stored locally but not written to a file.");
+            startQRScanner();
+        });
+
+        async function appendToFile(qrData) {
+            if (!fileHandle || !qrData) {
+                alert("No file selected or no QR data detected.");
+                return;
+            }
+
+            try {
+                const file = await fileHandle.getFile();
+                let existingContent = await file.text();
+                const updatedContent = existingContent + "\n" + qrData;
+
+                const writable = await fileHandle.createWritable();
+                await writable.write(updatedContent);
+                await writable.close();
+
+                alert("QR Code saved to ScoutIn.txt!");
+            } catch (error) {
+                console.error("File write error:", error);
+                alert("Failed to save the QR Code. Ensure permissions are granted.");
+            }
+        }
+
+        function startQRScanner() {
+            const video = document.getElementById("video");
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+                .then((stream) => {
+                    video.srcObject = stream;
+                    video.style.display = "block";
+
+                    function scanQRCode() {
+                        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                            canvas.width = video.videoWidth;
+                            canvas.height = video.videoHeight;
+                            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                            const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+                            if (code) {
+                                let qrData = code.data;
+
+                                let storedQRs = JSON.parse(localStorage.getItem("qrCodes")) || [];
+                                if (!storedQRs.includes(qrData)) {
+                                    storedQRs.push(qrData);
+                                    localStorage.setItem("qrCodes", JSON.stringify(storedQRs));
+                                }
+
+                                document.getElementById("qrDataDisplay").innerText = "QR Code: " + qrData;
+                                document.getElementById("saveBtn").style.display = scanningWithoutFile ? "none" : "block";
+                                document.getElementById("rescanBtn").style.display = "block";
+
+                                stream.getTracks().forEach(track => track.stop());
+
+                                if (!scanningWithoutFile) appendToFile(qrData);
+
+                                hasScannedQR = true;
+                                document.getElementById("runPY").disabled = false;
+                            } else {
+                                requestAnimationFrame(scanQRCode);
+                            }
+                        } else {
+                            requestAnimationFrame(scanQRCode);
+                        }
+                    }
+
+                    video.onloadedmetadata = () => requestAnimationFrame(scanQRCode);
+                })
+                .catch((err) => alert("Camera access denied or not supported."));
+        }
+
+        document.getElementById("saveBtn").addEventListener("click", () => {
+            let lastQRData = document.getElementById("qrDataDisplay").innerText.replace("QR Code: ", "");
+            appendToFile(lastQRData);
+        });
+
+        document.getElementById("rescanBtn").addEventListener("click", () => {
+            document.getElementById("qrDataDisplay").innerText = "";
+            startQRScanner();
+        });
+
+        // New function to run the Python script with error handling and retry logic
+        function runPythonScript(data, attempt) {
+            fetch("http://localhost:3000/run-python", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            })
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error("HTTP error " + res.status);
+                }
+                return res.json();
+            })
+            .then((response) => {
+                console.log("Response from Python:", response);
+                localStorage.removeItem("qrCodes"); // Clear stored QR codes after running
+                document.getElementById("runPY").disabled = true;
+                hasScannedQR = false;
+            })
+            .catch((err) => {
+                console.error("Error on attempt " + attempt + ":", err);
+                if (attempt < 3) {
+                    console.log("Retrying... attempt " + (attempt + 1));
+                    runPythonScript(data, attempt + 1);
+                } else {
+                    // After two retries (three total attempts), prompt the user:
+                    if (confirm("Python script encountered an error after 3 attempts. Press OK to retry the script or Cancel to copy the data to clipboard.")) {
+                        runPythonScript(data, 1);
+                    } else {
+                        navigator.clipboard.writeText(JSON.stringify(data));
+                        alert("Data copied to clipboard!");
+                    }
+                }
+            });
+        }
+
+        document.getElementById("runPY").addEventListener("click", () => {
+            let storedQRs = JSON.parse(localStorage.getItem("qrCodes")) || [];
+
+            if (storedQRs.length === 0) {
+                alert("No new QR codes to process.");
+                return;
+            }
+
+            runPythonScript(storedQRs, 1);
+        });
+
+        document.getElementById("viewStoredBtn").addEventListener("click", () => {
+            let storedQRs = JSON.parse(localStorage.getItem("qrCodes")) || [];
+            if (storedQRs.length === 0) {
+                alert("No QR codes stored.");
+                return;
+            }
+
+            document.getElementById("qrList").value = storedQRs.join("\n");
+            document.getElementById("qrList").style.display = "block";
+            document.getElementById("copyBtn").style.display = "block";
+        });
+
+        document.getElementById("copyBtn").addEventListener("click", () => {
+            let qrText = document.getElementById("qrList");
+            qrText.select();
+            navigator.clipboard.writeText(qrText.value);
+            alert("QR Codes copied to clipboard!");
+        });
+
+        document.getElementById("downloadBtn").addEventListener("click", () => {
+            let storedQRs = JSON.parse(localStorage.getItem("qrCodes")) || [];
+            if (storedQRs.length === 0) {
+                alert("No QR codes stored.");
+                return;
+            }
+
+            let blob = new Blob([storedQRs.join("\n")], { type: "text/plain" });
+            let a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "scanned_qr_codes.txt";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+
+        document.getElementById("clearBtn").addEventListener("click", () => {
+            if (confirm("Are you sure you want to clear all stored QR codes? This action cannot be undone.")) {
+                localStorage.removeItem("qrCodes");
+                alert("Stored QR codes cleared!");
+            }
+        });
+    </script>
+</body>
+</html>
