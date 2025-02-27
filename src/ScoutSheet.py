@@ -32,9 +32,9 @@ def update ():
             countd = 1
         if DOUBLE == False:
             export_import_data = export_import_data + char
-    with open('public/ScoutIn.txt', 'r') as file:
+    with open('data/ScoutIn.txt', 'r') as file:
         holdInput = file.read ()
-    with open('public/ScoutIn.txt', 'w') as f:
+    with open('data/ScoutIn.txt', 'w') as f:
         f.write(holdInput)
         f.write('\n')
         f.write(export_import_data)
@@ -51,7 +51,7 @@ def Main ():
     print(json.dumps(result))## Could this placement be a problem?
 
     # Path to your service account key file
-    SERVICE_ACCOUNT_FILE = 'C:/Users/enpas/BenImpersonationProjects/Spyglass/reefscape-1058-scoutsheet-c50d49ce1b90.json'
+    SERVICE_ACCOUNT_FILE = '.env'
 
     # Spreadsheet ID and range to update
     SPREADSHEET_ID = '1d8qs861mw2UMLWdYiq7hEsPWqjKB9y8Hv8IcM-GhqmE'  # Replace with your sheet's ID
@@ -69,7 +69,7 @@ def Main ():
     service = build('sheets', 'v4', credentials=credentials)
 
     # Read the CSV file
-    df = pd.read_csv('public/Reefscape 2025 base - Sheet1.csv')  # Replace with your CSV file path
+    df = pd.read_csv('data/Reefscape 2025 base - Sheet1.csv')  # Replace with your CSV file path
 
     # Replace NaN values with empty strings or a placeholder like 'N/A'
     df = df.fillna('')  # Replace NaN with an empty string
@@ -187,7 +187,7 @@ def Graph ():
      #   print (y)
 
         # Specify the folder path
-        folder_path = "public/ScouterGraphs"
+        folder_path = "data/ScouterGraphs"
 
         #Ensure the folder exists
         os.makedirs(folder_path, exist_ok=True)
@@ -215,7 +215,7 @@ def Graph ():
   #  print ("Done graphing")
 
 def NewSheet (passval):
-    with open('public/ScoutIn.txt', 'r') as file:
+    with open('data/ScoutIn.txt', 'r') as file:
         datain = file.read()
     global TeamList
     global Vault
@@ -316,11 +316,11 @@ def NewSheet (passval):
            
         #DataList.append("UNCOMMENT EPA")
         if passval == True:
-            with open('public/Reefscape 2025 base - Sheet1.csv', 'r') as file:
+            with open('data/Reefscape 2025 base - Sheet1.csv', 'r') as file:
                 hold = file.read ()
         else:
             hold = "What in the heck,placeholders,in,this,line,seem,to,get,ignored,as,long,as,they,are,the,first,line,and,no,longer,than,the,list,of,values,that,will,be,added,mustbeequal\nMatch Number,Team Number,Auto Move,L1 auto,L2 auto,L3 auto,L4 auto,processor auto, net auto,L1 tele,L2 tele,L3 tele,L4 tele,processor tele,net tele,park end,shallow cage end,deep cage end,auto total,tele total,total,coral score,algae score,location score,coral score %,algae score %,location score %,average score at event,natural epa,comments\n"
-        with open('public/Reefscape 2025 base - Sheet1.csv', 'w') as f:
+        with open('data/Reefscape 2025 base - Sheet1.csv', 'w') as f:
             f.write(hold)
             f.write(str(DataList[0])+',')
             f.write(str(DataList[1])+",")
@@ -435,10 +435,10 @@ def NewTab ():
                     countf = 0
                 else:            
                     pureTabData = pureTabData + char
-        with open ("Public/TabData.csv", 'w') as file:
+        with open ("data/TabData.csv", 'w') as file:
             file.write ("What in the heck,placeholders,in,this,line,seem,to,get,ignored,as,long,as,they,are,the,first,line,and,no,longer,than,the,list,of,values,that,will,be,added,mustbeequal\nMatch Number,Team Number,Auto Move,L1 auto,L2 auto,L3 auto,L4 auto,processor auto, net auto,L1 tele,L2 tele,L3 tele,L4 tele,processor tele,net tele,park end,shallow cage end,deep cage end,auto total,tele total,total,coral score,algae score,location score,coral score %,algae score %,location score %,average score at event,natural epa,comments\n")
             file.write (str(pureTabData))
-        tab = pd.read_csv('public/TabData.csv')
+        tab = pd.read_csv('data/TabData.csv')
         tab = tab.fillna('')
         values = tab.values.tolist()
 
@@ -481,7 +481,7 @@ def NewTab ():
         plt.legend()
 
         # Define the full path to save the image
-        graph_path = os.path.join("public/ScouterGraphs", str(PureTeamList[i2]) + ".png")
+        graph_path = os.path.join("data/ScouterGraphs", str(PureTeamList[i2]) + ".png")
 
         # Save the graph
         plt.savefig(graph_path, dpi=300)
