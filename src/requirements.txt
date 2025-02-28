@@ -1,0 +1,1 @@
+pandas google-auth matplotlib google-api-python-client statbotics gspread
