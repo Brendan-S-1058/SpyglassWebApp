@@ -24,11 +24,6 @@ try {
     console.error("Failed to set up Python:", error);
 }
 
-pythonProcess.stdout.on("data", (data) => {
-    console.log("Python stdout:", data.toString());
-    output += data.toString();
-});
-
 // API route to execute Python script
 app.post("/run-python", (req, res) => {
     const input = String(req.body); // Convert input data to JSON string
@@ -60,6 +55,12 @@ app.post("/run-python", (req, res) => {
     pythonProcess.stderr.on("data", (data) => {
         console.error(`Error: ${data}`);
     });
+
+    pythonProcess.stdout.on("data", (data) => {
+        console.log("Python stdout:", data.toString());
+        output += data.toString();
+    });
+    
 });
 
 // Serve static files from the "public" folder
