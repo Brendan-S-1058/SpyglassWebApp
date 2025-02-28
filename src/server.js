@@ -64,11 +64,11 @@ app.post("/run-python", (req, res) => {
 });
 
 // Serve static files from the "public" folder
-app.use(express.static(path.join(__dirname, "data")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Catch-all route for SPA (if using React/Vue/Angular frontend)
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "data", "index.html"));
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // Start the server (Only call app.listen ONCE!)
