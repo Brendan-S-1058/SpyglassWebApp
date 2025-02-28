@@ -550,11 +550,11 @@ def NewTab ():
         Jay2[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]] = str(pieceAverage)
         keyList = sorted(Jay1, key=Jay1.get, reverse=True)
         keyList.sort(reverse=True)
-        with open ("Public/TabData.csv", 'w') as file:
+        with open ("data/TabData.csv", 'w') as file:
             file.write ("epic,equal,placeholder\nteam #,avg pieces scored,avg points scored\n")
             for j1 in range (len(keyList)):
                 file.write(str(Jay1[keyList[j1]])+","+str(Jay2[keyList[j1]])+","+str(keyList[j1])+"\n")
-    tab = pd.read_csv('public/TabData.csv')
+    tab = pd.read_csv('data/TabData.csv')
     tab = tab.fillna('')
     values = tab.values.tolist()
 
@@ -600,7 +600,7 @@ def NewTab ():
         plt.text(x[i], y[i], Jay1[keyList[i]])
     
     # Define the full path to save the image
-    graph_path = os.path.join("public/ScouterGraphs", str(PureTeamList[i2]) + ".png")
+    graph_path = os.path.join("data/ScouterGraphs", str(PureTeamList[i2]) + ".png")
 
     # Save the graph
     plt.savefig(graph_path, dpi=300)
