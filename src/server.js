@@ -7,6 +7,15 @@ const app = express();
 app.use(express.json());
 app.use(cors()); // Enables CORS for frontend requests
 
+const { execSync } = require("child_process");
+
+try {
+    console.log("Installing Python dependencies...");
+    execSync("pip install -r requirements.txt", { stdio: "inherit" });
+} catch (error) {
+    console.error("Failed to install Python dependencies:", error);
+}
+
 // API route to execute Python script
 app.post("/run-python", (req, res) => {
     const input = String(req.body); // Convert input data to JSON string
