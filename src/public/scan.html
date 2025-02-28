@@ -157,7 +157,7 @@
             })
             .catch((err) => {
                 console.error("Error on attempt " + attempt + ":", err);
-                if (attempt < 3) {
+                if (attempt < 1) {
                     console.log("Retrying... attempt " + (attempt + 1));
                     runPythonScript(data, attempt + 1);
                 } else {
