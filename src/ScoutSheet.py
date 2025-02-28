@@ -17,7 +17,7 @@ with open("data/ScoutIn.txt", "w") as f:
 print("File written. Now reading it back...")
 
 # Reading data back
-with open("data/datafile.txt", "r") as f:
+with open("data/ScoutIn.txt", "r") as f:
     content = f.read()
 print("File content:", content)
 
