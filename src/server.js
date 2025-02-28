@@ -8,18 +8,29 @@ app.use(express.json());
 app.use(cors()); // Enables CORS for frontend requests
 
 const { execSync } = require("child_process");
+const path = require("path");
 
 try {
-    console.log("Installing Python dependencies...");
-    execSync("pip install -r requirements.txt", { stdio: "inherit" });
+    console.log("Setting up Python environment...");
+    const venvPath = path.join(__dirname, "venv");
+
+    // Create virtual environment if it doesn't exist
+    execSync(`python3 -m venv ${venvPath}`, { stdio: "inherit" });
+
+    // Install dependencies in the virtual environment
+    execSync(`${venvPath}/bin/pip install -r requirements.txt`, { stdio: "inherit" });
+
+    console.log("Python dependencies installed successfully!");
 } catch (error) {
-    console.error("Failed to install Python dependencies:", error);
+    console.error("Failed to set up Python:", error);
 }
+
 
 // API route to execute Python script
 app.post("/run-python", (req, res) => {
     const input = String(req.body); // Convert input data to JSON string
-    const pythonProcess = spawn("python3", ["ScoutSheet.py"]); // Use "python3" if needed
+    const venvPath = path.join(__dirname, "venv/bin/python");
+    const pythonProcess = spawn(venvPath, ["ScoutSheet.py"]);
 
     let output = "";
 
