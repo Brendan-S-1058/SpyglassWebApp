@@ -10,7 +10,7 @@ app.use(cors()); // Enables CORS for frontend requests
 // API route to execute Python script
 app.post("/run-python", (req, res) => {
     const input = String(req.body); // Convert input data to JSON string
-    const pythonProcess = spawn("python3", ["src/ScoutSheet.py"]); // Use "python3" if needed
+    const pythonProcess = spawn("python3", ["ScoutSheet.py"]); // Use "python3" if needed
 
     let output = "";
 
