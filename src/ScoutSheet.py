@@ -51,7 +51,7 @@ def Main ():
     print(json.dumps(result))## Could this placement be a problem?
 
     # Path to your service account key file
-    SERVICE_ACCOUNT_FILE = '.env'
+    SERVICE_ACCOUNT_FILE = '/etc/secrets/GOOGLE_CREDENTIALS'
 
     # Spreadsheet ID and range to update
     SPREADSHEET_ID = '1d8qs861mw2UMLWdYiq7hEsPWqjKB9y8Hv8IcM-GhqmE'  # Replace with your sheet's ID
