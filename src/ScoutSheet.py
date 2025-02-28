@@ -11,7 +11,20 @@ import json
 import gspread
 from googleapiclient.http import MediaFileUpload
 
-def update ():
+# Writing data
+with open("ScoutIn.txt", "w") as f:
+    f.write("Updated content")
+print("File written. Now reading it back...")
+
+# Reading data back
+with open("datafile.txt", "r") as f:
+    content = f.read()
+print("File content:", content)
+
+print("Current working directory:", os.getcwd())
+print("Files present:", os.listdir(os.getcwd()))
+
+'''def update ():
     global Vault
     global TeamList
     global countb
@@ -649,4 +662,4 @@ def NewTab ():
         values=[[f'=IMAGE("{image_url}", 4, {height}, {width})']],
         value_input_option="USER_ENTERED"
     )       
-update ()
+update ()'''

@@ -24,6 +24,10 @@ try {
     console.error("Failed to set up Python:", error);
 }
 
+pythonProcess.stdout.on("data", (data) => {
+    console.log("Python stdout:", data.toString());
+    output += data.toString();
+});
 
 // API route to execute Python script
 app.post("/run-python", (req, res) => {
