@@ -577,7 +577,7 @@ def NewTab ():
     x = []
     y = []
 
-    SERVICE_ACCOUNT_FILE = 'C:/Users/enpas/BenImpersonationProjects/Spyglass/reefscape-1058-scoutsheet-c50d49ce1b90.json'
+    SERVICE_ACCOUNT_FILE = '/etc/secrets/GOOGLE_CREDENTIALS'
     credentials = Credentials.from_service_account_file(
         SERVICE_ACCOUNT_FILE,
         scopes = ["https://www.googleapis.com/auth/drive","https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/spreadsheets"]       
