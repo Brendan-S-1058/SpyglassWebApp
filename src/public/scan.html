@@ -141,7 +141,7 @@
             fetch("/run-python", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({data: qrData}) // TRY REMOVING ": qrData"
+                body: JSON.stringify(data) // TRY REMOVING ": qrData"
             })
             .then((res) => {
                 if (!res.ok) {
