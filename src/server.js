@@ -26,7 +26,7 @@ try {
 
 // API route to execute Python script
 app.post("/run-python", (req, res) => {
-    const input = String(req.body); // Convert input data to JSON string
+    const input = JSON.stringify(req.body);
     const venvPath = path.join(__dirname, "venv/bin/python");
     const pythonProcess = spawn(venvPath, ["ScoutSheet.py"]);
 
@@ -64,11 +64,11 @@ app.post("/run-python", (req, res) => {
 });
 
 // Serve static files from the "public" folder
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "data")));
 
 // Catch-all route for SPA (if using React/Vue/Angular frontend)
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    res.sendFile(path.join(__dirname, "data", "index.html"));
 });
 
 // Start the server (Only call app.listen ONCE!)
