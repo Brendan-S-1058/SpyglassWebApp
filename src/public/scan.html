@@ -138,10 +138,10 @@
 
         // New function to run the Python script with error handling and retry logic
         function runPythonScript(data, attempt) {
-            fetch("http://localhost:3000/run-python", {
+            fetch("/run-python", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
+                body: JSON.stringify({ data: "your-input-data" }) // Modify as needed
             })
             .then((res) => {
                 if (!res.ok) {
