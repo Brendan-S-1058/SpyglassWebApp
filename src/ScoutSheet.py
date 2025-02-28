@@ -34,6 +34,7 @@ def update ():
     DOUBLE = True
     #input_data = "30,1690,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Nothing/,,20,1690,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Nothing/"
     input_data = sys.stdin.read()
+    input_data = json.loads(input_data)
     print (input_data)
     for char in input_data:
         if char != "," and DOUBLE == True:
