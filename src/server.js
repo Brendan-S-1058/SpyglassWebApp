@@ -8,7 +8,6 @@ app.use(express.json());
 app.use(cors()); // Enables CORS for frontend requests
 
 const { execSync } = require("child_process");
-const path = require("path");
 
 try {
     console.log("Setting up Python environment...");
