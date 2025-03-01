@@ -55,11 +55,6 @@ app.post("/run-python", (req, res) => {
     pythonProcess.stderr.on("data", (data) => {
         console.error(`Error: ${data}`);
     });
-
-    pythonProcess.stdout.on("data", (data) => {
-        console.log("Python stdout:", data.toString());
-        output += data.toString();
-    });
     
 });
 

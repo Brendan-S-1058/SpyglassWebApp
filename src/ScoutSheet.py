@@ -664,5 +664,5 @@ def NewTab ():
         range_name='E2',
         values=[[f'=IMAGE("{image_url}", 4, {height}, {width})']],
         value_input_option="USER_ENTERED"
-    )       
+    )      
 update ()
