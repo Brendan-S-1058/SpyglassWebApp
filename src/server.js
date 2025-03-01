@@ -26,7 +26,7 @@ try {
 
 // API route to execute Python script
 app.post("/run-python", (req, res) => {
-    const input = JSON.stringify(req.body);
+    const input = String(req.body); // Convert input data to JSON string
     const venvPath = path.join(__dirname, "venv/bin/python");
     const pythonProcess = spawn(venvPath, ["ScoutSheet.py"]);
 
