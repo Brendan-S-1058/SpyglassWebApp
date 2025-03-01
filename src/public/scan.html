@@ -163,7 +163,7 @@
                 } else {
                     // After two retries (three total attempts), prompt the user:
                     if (confirm("Python script encountered an error after 3 attempts. Press OK to retry the script or Cancel to copy the data to clipboard.")) {
-                        runPythonScript(data, 1);
+                        navigator.clipboard.writeText(JSON.stringify(data));//overwrote this code -->//runPythonScript(data, 1);
                     } else {
                         navigator.clipboard.writeText(JSON.stringify(data));
                         alert("Data copied to clipboard!");

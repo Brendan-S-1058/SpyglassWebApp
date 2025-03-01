@@ -35,7 +35,6 @@ def update ():
     #input_data = "30,1690,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Nothing/,,20,1690,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Nothing/"
     input_data = sys.stdin.read()
     input_data = json.loads(input_data)
-    print (input_data)
     for char in input_data:
         if char != "," and DOUBLE == True:
             DOUBLE = False
@@ -62,9 +61,6 @@ def Main ():
 
     global client
     global SPREADSHEET_ID
-
-    result = {"message": f"Main"}
-    print(json.dumps(result))## Could this placement be a problem?
 
     # Path to your service account key file
     SERVICE_ACCOUNT_FILE = '/etc/secrets/GOOGLE_CREDENTIALS'
@@ -664,5 +660,7 @@ def NewTab ():
         range_name='E2',
         values=[[f'=IMAGE("{image_url}", 4, {height}, {width})']],
         value_input_option="USER_ENTERED"
-    )      
+    )
+    result = {"message": "Success"}  # your actual response data
+    print(json.dumps(result))      
 update ()
