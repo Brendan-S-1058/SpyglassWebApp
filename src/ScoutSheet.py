@@ -53,7 +53,7 @@ def Main ():
 
     # Spreadsheet ID and range to update
     SPREADSHEET_ID = '1js3i_A4MGj8RY3AIyMJ9Oxmc68hbqt8u8l_TjY-5IpU'  # Replace with your sheet's ID
-    RANGE_NAME = 'Reefscape UVM 2025 base - Sheet1!A1'  # Replace with your desired sheet and range
+    RANGE_NAME = 'Reefscape 2025 base - Sheet1!A1'  # Replace with your desired sheet and range
 
     # Authenticate using the service account
     credentials = Credentials.from_service_account_file(
@@ -517,7 +517,7 @@ def NewTab ():
 
         image_url = f"https://drive.google.com/uc?id={file_id}"
 
-        spreadsheet = client.open("Reefscape 2025 base - Sheet1")  # Open the existing spreadsheet
+        spreadsheet = client.open("UVM - Reefscape")  # Open the existing spreadsheet
         worksheet = spreadsheet.worksheet(PureTeamList[i2])  # Select the sheet
 
         height = 300  # Adjust height as needed
@@ -633,7 +633,7 @@ def NewTab ():
 
     image_url = f"https://drive.google.com/uc?id={file_id}"
 
-    spreadsheet = client.open("Reefscape 2025 base - Sheet1")  # Open the existing spreadsheet
+    spreadsheet = client.open("UVM - Reefscape")  # Open the existing spreadsheet
     worksheet = spreadsheet.worksheet('Pick List')  # Select the sheet
 
     height = 300  # Adjust height as needed
