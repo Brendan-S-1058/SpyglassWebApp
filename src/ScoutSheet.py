@@ -159,6 +159,7 @@ def Graph ():
 
         if teamInstanceFind == 0:
             PureTeamList.append (TeamList[i1])
+            PureTeamList.sort ()
 
 
 
@@ -516,7 +517,7 @@ def NewTab ():
 
         image_url = f"https://drive.google.com/uc?id={file_id}"
 
-        spreadsheet = client.open("Reefscape UVM 2025 base - Sheet1")  # Open the existing spreadsheet
+        spreadsheet = client.open("Reefscape 2025 base - Sheet1")  # Open the existing spreadsheet
         worksheet = spreadsheet.worksheet(PureTeamList[i2])  # Select the sheet
 
         height = 300  # Adjust height as needed
@@ -632,7 +633,7 @@ def NewTab ():
 
     image_url = f"https://drive.google.com/uc?id={file_id}"
 
-    spreadsheet = client.open("Reefscape UVM 2025 base - Sheet1")  # Open the existing spreadsheet
+    spreadsheet = client.open("Reefscape 2025 base - Sheet1")  # Open the existing spreadsheet
     worksheet = spreadsheet.worksheet('Pick List')  # Select the sheet
 
     height = 300  # Adjust height as needed
