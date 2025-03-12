@@ -11,20 +11,7 @@ import json
 import gspread
 from googleapiclient.http import MediaFileUpload
 
-'''
-# Writing data
-with open("data/ScoutIn.txt", "w") as f:
-    f.write("Updated content")
-print("File written. Now reading it back...")
 
-# Reading data back
-with open("data/ScoutIn.txt", "r") as f:
-    content = f.read()
-print("File content:", content)
-
-print("Current working directory:", os.getcwd())
-print("Files present:", os.listdir(os.getcwd()))
-'''
 def update ():
     global Vault
     global TeamList
@@ -65,8 +52,8 @@ def Main ():
     SERVICE_ACCOUNT_FILE = '/etc/secrets/GOOGLE_CREDENTIALS'
 
     # Spreadsheet ID and range to update
-    SPREADSHEET_ID = '1d8qs861mw2UMLWdYiq7hEsPWqjKB9y8Hv8IcM-GhqmE'  # Replace with your sheet's ID
-    RANGE_NAME = 'Reefscape 2025 base - Sheet1!A1'  # Replace with your desired sheet and range
+    SPREADSHEET_ID = '1js3i_A4MGj8RY3AIyMJ9Oxmc68hbqt8u8l_TjY-5IpU'  # Replace with your sheet's ID
+    RANGE_NAME = 'Reefscape UVM 2025 base - Sheet1!A1'  # Replace with your desired sheet and range
 
     # Authenticate using the service account
     credentials = Credentials.from_service_account_file(
@@ -97,7 +84,7 @@ def Main ():
     result = service.spreadsheets().values().update(
         spreadsheetId=SPREADSHEET_ID,
         range=RANGE_NAME,
-        valueInputOption="RAW",
+        valueInputOption="USER_ENTERED",
         body=body
     ).execute()
 
@@ -451,7 +438,8 @@ def NewTab ():
                     pureTabData = pureTabData + char
         with open ("data/TabData.csv", 'w') as file:
             file.write ("What in the heck,placeholders,in,this,line,seem,to,get,ignored,as,long,as,they,are,the,first,line,and,no,longer,than,the,list,of,values,that,will,be,added,mustbeequal\nMatch Number,Team Number,Auto Move,L1 auto,L2 auto,L3 auto,L4 auto,processor auto, net auto,L1 tele,L2 tele,L3 tele,L4 tele,processor tele,net tele,park end,shallow cage end,deep cage end,auto total,tele total,total,coral score,algae score,location score,coral score %,algae score %,location score %,average score at event,natural epa,comments\n")
-            file.write (str(pureTabData))
+            file.write (str(pureTabData)+"\n")
+            file.write ("max score:,=MAX(U2:U"+str(TeamInstanceCount[PureTeamList[i2]]+1)+")")
         tab = pd.read_csv('data/TabData.csv')
         tab = tab.fillna('')
         values = tab.values.tolist()
@@ -468,7 +456,7 @@ def NewTab ():
         result = service.spreadsheets().values().update(
             spreadsheetId=SPREADSHEET_ID,
             range=RANGE_NAME,
-            valueInputOption="RAW",
+            valueInputOption="USER_ENTERED",
             body=body
         ).execute()
 
@@ -528,7 +516,7 @@ def NewTab ():
 
         image_url = f"https://drive.google.com/uc?id={file_id}"
 
-        spreadsheet = client.open("Reefscape 2025 base - Sheet1")  # Open the existing spreadsheet
+        spreadsheet = client.open("Reefscape UVM 2025 base - Sheet1")  # Open the existing spreadsheet
         worksheet = spreadsheet.worksheet(PureTeamList[i2])  # Select the sheet
 
         height = 300  # Adjust height as needed
@@ -581,7 +569,7 @@ def NewTab ():
     result = service.spreadsheets().values().update(
         spreadsheetId=SPREADSHEET_ID,
         range=RANGE_NAME,
-        valueInputOption="RAW",
+        valueInputOption="USER_ENTERED",
         body=body
     ).execute()
 
@@ -644,7 +632,7 @@ def NewTab ():
 
     image_url = f"https://drive.google.com/uc?id={file_id}"
 
-    spreadsheet = client.open("Reefscape 2025 base - Sheet1")  # Open the existing spreadsheet
+    spreadsheet = client.open("Reefscape UVM 2025 base - Sheet1")  # Open the existing spreadsheet
     worksheet = spreadsheet.worksheet('Pick List')  # Select the sheet
 
     height = 300  # Adjust height as needed
