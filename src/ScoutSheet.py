@@ -536,6 +536,7 @@ def NewTab ():
     #The Jay Special:
     Jay1 = {}
     Jay2 = {}
+    Jay3 = {}
     for i3 in range (len(PureTeamList)):
         teamFind = int(PureTeamList[i3])
         teamInstanceFind = 0
