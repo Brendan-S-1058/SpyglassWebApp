@@ -543,17 +543,24 @@ def NewTab ():
             if str(teamFind) == str(TeamList[i]):
                 teamInstanceFind = teamInstanceFind + 1
         totalPieces = 0
+        climbCount = 0 
         for j in range (teamInstanceFind):
             totalPieces = totalPieces+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(3)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(4)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(5)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(6)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(7)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(8)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(9)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(10)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(11)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(12)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(13)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(14)]))
+            #this section is called exactly once for every team and every match that is logged for that team
+            if (Vault[str(teamFind)+"a"+str(j)+"a"+str(17)] == "1") or (Vault[str(teamFind)+"a"+str(j)+"a"+str(16)] == "1"): 
+                climbCount = climbCount + 1
         pieceAverage = totalPieces/teamInstanceFind
+        climbConsistency = ((int(climbCount)/int(teamInstanceFind)))*100//1
         Jay1[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]] = str(teamFind)
         Jay2[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]] = str(pieceAverage)
+        Jay3[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]] = str(climbConsistency)
         keyList = sorted(Jay1, key=Jay1.get, reverse=True)
         keyList.sort(reverse=True)
-        with open ("data/TabData.csv", 'w') as file:
-            file.write ("epic,equal,placeholder\nteam #,avg pieces scored,avg points scored\n")
+        with open ("Public/TabData.csv", 'w') as file:
+            file.write ("epic,equal,placeholder,climb\nteam #,avg pieces scored,avg points scored,climb consistency %\n")
             for j1 in range (len(keyList)):
-                file.write(str(Jay1[keyList[j1]])+","+str(Jay2[keyList[j1]])+","+str(keyList[j1])+"\n")
+                file.write(str(Jay1[keyList[j1]])+","+str(Jay2[keyList[j1]])+","+str(keyList[j1])+","+str(Jay3[keyList[j1]])+"\n")
+        #this section is called exactly once for every individual team.
     tab = pd.read_csv('data/TabData.csv')
     tab = tab.fillna('')
     values = tab.values.tolist()
@@ -595,7 +602,7 @@ def NewTab ():
     plt.scatter(x, y, marker='o')
     plt.xlabel('avg pieces scored')
     plt.ylabel('Total Points Scored')
-    plt.title(str("pick list"))
+    plt.title(str("Pick List"))
     for i in range (len(x)):
         plt.text(x[i], y[i], Jay1[keyList[i]])
     
