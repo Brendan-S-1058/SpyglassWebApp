@@ -557,7 +557,7 @@ def NewTab ():
         Jay3[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]] = str(climbConsistency)
         keyList = sorted(Jay1, key=Jay1.get, reverse=True)
         keyList.sort(reverse=True)
-        with open ("Public/TabData.csv", 'w') as file:
+        with open ("data/TabData.csv", 'w') as file:
             file.write ("epic,equal,placeholder,climb\nteam #,avg pieces scored,avg points scored,climb consistency %\n")
             for j1 in range (len(keyList)):
                 file.write(str(Jay1[keyList[j1]])+","+str(Jay2[keyList[j1]])+","+str(keyList[j1])+","+str(Jay3[keyList[j1]])+"\n")
