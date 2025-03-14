@@ -552,9 +552,9 @@ def NewTab ():
             #this section is called exactly once for every team and every match that is logged for that team
             if (Vault[str(teamFind)+"a"+str(j)+"a"+str(17)] == "1") or (Vault[str(teamFind)+"a"+str(j)+"a"+str(16)] == "1"): 
                 climbCount = climbCount + 1
-            if (Vault[str(teamFind)+"a"+str(j)+"a"+str(13)] > 0):
+            if (int(Vault[str(teamFind)+"a"+str(j)+"a"+str(13)]) > 0):
                 processor = True
-            if (Vault[str(teamFind)+"a"+str(j)+"a"+str(14)] > 0):
+            if (int(Vault[str(teamFind)+"a"+str(j)+"a"+str(14)]) > 0):
                 net = True
         pieceAverage = totalPieces/teamInstanceFind
         climbConsistency = ((int(climbCount)/int(teamInstanceFind)))*100//1
