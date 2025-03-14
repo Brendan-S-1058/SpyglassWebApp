@@ -545,11 +545,17 @@ def NewTab ():
                 teamInstanceFind = teamInstanceFind + 1
         totalPieces = 0
         climbCount = 0 
+        processor = False
+        net = False
         for j in range (teamInstanceFind):
             totalPieces = totalPieces+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(3)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(4)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(5)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(6)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(7)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(8)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(9)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(10)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(11)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(12)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(13)]))+int((Vault[str(teamFind)+"a"+str(j)+"a"+str(14)]))
             #this section is called exactly once for every team and every match that is logged for that team
             if (Vault[str(teamFind)+"a"+str(j)+"a"+str(17)] == "1") or (Vault[str(teamFind)+"a"+str(j)+"a"+str(16)] == "1"): 
                 climbCount = climbCount + 1
+            if (Vault[str(teamFind)+"a"+str(j)+"a"+str(13)] > 0):
+                processor = True
+            if (Vault[str(teamFind)+"a"+str(j)+"a"+str(14)] > 0):
+                net = True
         pieceAverage = totalPieces/teamInstanceFind
         climbConsistency = ((int(climbCount)/int(teamInstanceFind)))*100//1
         Jay1[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]] = str(teamFind)
@@ -558,9 +564,18 @@ def NewTab ():
         keyList = sorted(Jay1, key=Jay1.get, reverse=True)
         keyList.sort(reverse=True)
         with open ("data/TabData.csv", 'w') as file:
-            file.write ("epic,equal,placeholder,climb\nteam #,avg pieces scored,avg points scored,climb consistency %\n")
+            file.write ("epic,equal,placeholder,climb,processor,net\nteam #,avg pieces scored,avg points scored,climb consistency %,can process?,can net?\n")
             for j1 in range (len(keyList)):
-                file.write(str(Jay1[keyList[j1]])+","+str(Jay2[keyList[j1]])+","+str(keyList[j1])+","+str(Jay3[keyList[j1]])+"\n")
+                file.write(str(Jay1[keyList[j1]])+","+str(Jay2[keyList[j1]])+","+str(keyList[j1])+","+str(Jay3[keyList[j1]]))
+                if processor == True:
+                    file.write (",y,")
+                else:
+                    file.write (",n,")
+                if net == True:
+                    file.write ("y")
+                else:
+                    file.write ("n")
+                file.write("\n")
         #this section is called exactly once for every individual team.
     tab = pd.read_csv('data/TabData.csv')
     tab = tab.fillna('')
@@ -646,14 +661,14 @@ def NewTab ():
 
     height = 300  # Adjust height as needed
     width = 500   # Adjust width as needed
-    cell_range = "E2:I15"  # Define the range to merge (adjust as needed)
+    cell_range = "G2:K15"  # Define the range to merge (adjust as needed)
 
     # Merge the cells before inserting the image
     worksheet.merge_cells(cell_range)
 
     # Now insert the image formula
     worksheet.update(
-        range_name='E2',
+        range_name='G2',
         values=[[f'=IMAGE("{image_url}", 4, {height}, {width})']],
         value_input_option="USER_ENTERED"
     )
