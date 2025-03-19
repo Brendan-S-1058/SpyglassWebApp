@@ -11,7 +11,6 @@ import json
 import gspread
 from googleapiclient.http import MediaFileUpload
 
-
 def update ():
     global Vault
     global TeamList
@@ -19,6 +18,7 @@ def update ():
     export_import_data = ""
     countd = 0
     DOUBLE = True
+    #input_data = ""
     #input_data = "30,1690,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Nothing/,,20,1690,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Nothing/"
     input_data = sys.stdin.read()
     for char in input_data:
@@ -48,11 +48,16 @@ def Main ():
     global client
     global SPREADSHEET_ID
 
+    result = {"message": f"Main"}
+    print(json.dumps(result))## Could this placement be a problem?
+
     # Path to your service account key file
     SERVICE_ACCOUNT_FILE = '/etc/secrets/GOOGLE_CREDENTIALS'
 
     # Spreadsheet ID and range to update
-    SPREADSHEET_ID = '1js3i_A4MGj8RY3AIyMJ9Oxmc68hbqt8u8l_TjY-5IpU'  # Replace with your sheet's ID
+    #GSD Sheet
+    #SPREADSHEET_ID = '1d8qs861mw2UMLWdYiq7hEsPWqjKB9y8Hv8IcM-GhqmE'  # Replace with your sheet's ID
+    SPREADSHEET_ID = '1js3i_A4MGj8RY3AIyMJ9Oxmc68hbqt8u8l_TjY-5IpU'
     RANGE_NAME = 'Reefscape 2025 base - Sheet1!A1'  # Replace with your desired sheet and range
 
     # Authenticate using the service account
@@ -159,7 +164,13 @@ def Graph ():
 
         if teamInstanceFind == 0:
             PureTeamList.append (TeamList[i1])
-            PureTeamList.sort ()
+            HoldingList = []
+            for i7 in range (len(PureTeamList)):
+                HoldingList.append(int(PureTeamList[i7]))
+            HoldingList.sort ()
+            PureTeamList = []
+            for i8 in range (len(HoldingList)):
+                PureTeamList.append(str(HoldingList[i8]))
 
 
 
@@ -311,7 +322,7 @@ def NewSheet (passval):
         norm_epa = (epaList['norm_epa'])
         norm_epa = (norm_epa['current'])
         DataList.append(norm_epa)
-           
+
         #DataList.append("UNCOMMENT EPA")
         if passval == True:
             with open('data/Reefscape 2025 base - Sheet1.csv', 'r') as file:
@@ -411,7 +422,6 @@ def NewTab ():
     for i in range (len(PureTeamList)):
         if PureTeamList[i] not in sheet_names:
             spreadsheet.add_worksheet (title=PureTeamList[i], rows="100", cols="40")
-    
     if "Pick List" not in sheet_names:
         spreadsheet.add_worksheet (title="Pick List", rows="100", cols="40")
 
@@ -441,6 +451,7 @@ def NewTab ():
             file.write ("What in the heck,placeholders,in,this,line,seem,to,get,ignored,as,long,as,they,are,the,first,line,and,no,longer,than,the,list,of,values,that,will,be,added,mustbeequal\nMatch Number,Team Number,Auto Move,L1 auto,L2 auto,L3 auto,L4 auto,processor auto, net auto,L1 tele,L2 tele,L3 tele,L4 tele,processor tele,net tele,park end,shallow cage end,deep cage end,auto total,tele total,total,coral score,algae score,location score,coral score %,algae score %,location score %,average score at event,natural epa,comments\n")
             file.write (str(pureTabData)+"\n")
             file.write ("max score:,=MAX(U2:U"+str(TeamInstanceCount[PureTeamList[i2]]+1)+")")
+
         tab = pd.read_csv('data/TabData.csv')
         tab = tab.fillna('')
         values = tab.values.tolist()
@@ -474,7 +485,7 @@ def NewTab ():
 
         for i in range (TeamInstanceCount[PureTeamList[i2]]):
             x.append(Vault[PureTeamList[i2]+"a"+str(i)+"a"+str(0)])
-            y.append(Vault[PureTeamList[i2]+"a"+str(i)+"a"+str(20)])
+            y.append(Vault[PureTeamList[i2]+"a"+str(i)+"a"+str(21)])
 
         plt.figure(figsize=(6, 4))
         plt.plot(x, y, marker='o', linestyle='-', color='b', label='Sample Line')
@@ -522,21 +533,24 @@ def NewTab ():
 
         height = 300  # Adjust height as needed
         width = 500   # Adjust width as needed
-        cell_range = "A11:E24"  # Define the range to merge (adjust as needed)
+        cell_range = "A13:E26"  # Define the range to merge (adjust as needed)
 
         # Merge the cells before inserting the image
         worksheet.merge_cells(cell_range)
 
         # Now insert the image formula
         worksheet.update(
-            range_name='A11',
+            range_name='A13',
             values=[[f'=IMAGE("{image_url}", 4, {height}, {width})']],
             value_input_option="USER_ENTERED"
         )
     #The Jay Special:
+    Jay0 = {}
     Jay1 = {}
     Jay2 = {}
     Jay3 = {}
+    Jay4 = {}
+    Jay5 = {}
     for i3 in range (len(PureTeamList)):
         teamFind = int(PureTeamList[i3])
         teamInstanceFind = 0
@@ -556,22 +570,32 @@ def NewTab ():
                 processor = True
             if (int(Vault[str(teamFind)+"a"+str(j)+"a"+str(14)]) > 0):
                 net = True
+
         pieceAverage = totalPieces/teamInstanceFind
         climbConsistency = ((int(climbCount)/int(teamInstanceFind)))*100//1
-        Jay1[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]] = str(teamFind)
-        Jay2[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]] = str(pieceAverage)
-        Jay3[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]] = str(climbConsistency)
+        Jay0[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]+teamFind/1000000] = Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]
+        Jay1[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]+teamFind/1000000] = str(teamFind)
+        Jay2[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]+teamFind/1000000] = str(pieceAverage)
+        Jay3[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]+teamFind/1000000] = str(climbConsistency)
+        Jay4[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]+teamFind/1000000] = processor
+        Jay5[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]+teamFind/1000000] = net
+        ###Set the key to something directly related both to team number and epa: epa.team? What about 23.333?? 23.333.1058???????
+        ###Then add EPA as a separate value to be written
+        ###Jay1[Vault[str(teamFind)+"a"+str(teamInstanceFind-1)+"a"+str(29)]+teamFind/1000000]
+
         keyList = sorted(Jay1, key=Jay1.get, reverse=True)
         keyList.sort(reverse=True)
         with open ("data/TabData.csv", 'w') as file:
+            #print (teamFind)
             file.write ("epic,equal,placeholder,climb,processor,net\nteam #,avg pieces scored,avg points scored,climb consistency %,can process?,can net?\n")
             for j1 in range (len(keyList)):
-                file.write(str(Jay1[keyList[j1]])+","+str(Jay2[keyList[j1]])+","+str(keyList[j1])+","+str(Jay3[keyList[j1]]))
-                if processor == True:
+                #print(str(Jay1[keyList[j1]])+","+str(Jay2[keyList[j1]])+","+str(Jay0[keyList[j1]])+","+str(Jay3[keyList[j1]]))
+                file.write(str(Jay1[keyList[j1]])+","+str(Jay2[keyList[j1]])+","+str(Jay0[keyList[j1]])+","+str(Jay3[keyList[j1]]))
+                if Jay4[keyList[j1]] == True:
                     file.write (",y,")
                 else:
                     file.write (",n,")
-                if net == True:
+                if Jay5[keyList[j1]] == True:
                     file.write ("y")
                 else:
                     file.write ("n")
@@ -618,12 +642,12 @@ def NewTab ():
     plt.scatter(x, y, marker='o')
     plt.xlabel('avg pieces scored')
     plt.ylabel('Total Points Scored')
-    plt.title(str("Pick List"))
+    plt.title(str("pick list"))
     for i in range (len(x)):
         plt.text(x[i], y[i], Jay1[keyList[i]])
     
     # Define the full path to save the image
-    graph_path = os.path.join("data/ScouterGraphs", str(PureTeamList[i2]) + ".png")
+    graph_path = os.path.join("data/ScouterGraphs", "pickList" + ".png")
 
     # Save the graph
     plt.savefig(graph_path, dpi=300)
@@ -632,7 +656,7 @@ def NewTab ():
     drive_service = build("drive", "v3", credentials=credentials)
 
         # Search for an existing file with the same name
-    query = f"name='{PureTeamList[i2]}' and mimeType='image/png' and '{'1_NGr0tLE9MJOWvjjHJo_U7-07iJfuhTj'}' in parents"
+    query = f"name='pickList.png' and mimeType='image/png' and '{'1_NGr0tLE9MJOWvjjHJo_U7-07iJfuhTj'}' in parents"
     results = drive_service.files().list(q=query, fields="files(id)").execute()
     files = results.get("files", [])
         
@@ -672,6 +696,49 @@ def NewTab ():
         values=[[f'=IMAGE("{image_url}", 4, {height}, {width})']],
         value_input_option="USER_ENTERED"
     )
-    result = {"message": "Success"}  # your actual response data
-    print(json.dumps(result))      
+
+    ####Start of Auto V. Tele import
+
+    graph_path = "data/ScouterGraphs/AutoVTele.png"
+        # Search for an existing file with the same name
+    query = f"name='AutoVTele.png' and mimeType='image/png' and '{'1_NGr0tLE9MJOWvjjHJo_U7-07iJfuhTj'}' in parents"
+    results = drive_service.files().list(q=query, fields="files(id)").execute()
+    files = results.get("files", [])
+        
+    if files:
+        # If file exists, update it
+        file_id = files[0]['id']
+        media = MediaFileUpload(graph_path, mimetype="image/png", resumable=True)
+        drive_service.files().update(fileId=file_id, body={}, media_body=media).execute()
+        print(f"Updated existing image: {PureTeamList[i2]}")
+    else:
+        # Otherwise, upload a new file
+        file_metadata = {"name": PureTeamList[i2], "mimeType": "image/png"}
+        media = MediaFileUpload(graph_path, mimetype="image/png")
+        file = drive_service.files().create(body=file_metadata, media_body=media, fields="id, webContentLink").execute()
+        file_id = file.get("id")
+    
+        # Make the file publicly accessible
+        drive_service.permissions().create(
+            fileId=file_id, body={"role": "reader", "type": "anyone"}
+        ).execute()
+
+    image_url = f"https://drive.google.com/uc?id={file_id}"
+
+    spreadsheet = client.open("UVM - Reefscape")  # Open the existing spreadsheet
+    worksheet = spreadsheet.worksheet('Pick List')  # Select the sheet
+
+    height = 300  # Adjust height as needed
+    width = 500   # Adjust width as needed
+    cell_range = "G17:K30"  # Define the range to merge (adjust as needed)
+
+    # Merge the cells before inserting the image
+    worksheet.merge_cells(cell_range)
+
+    # Now insert the image formula
+    worksheet.update(
+        range_name='G17',
+        values=[[f'=IMAGE("{image_url}", 4, {height}, {width})']],
+        value_input_option="USER_ENTERED"
+    )       
 update ()
