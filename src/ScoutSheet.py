@@ -590,7 +590,7 @@ def NewTab ():
             file.write ("epic,equal,placeholder,climb,processor,net\nteam #,avg pieces scored,avg points scored,climb consistency %,can process?,can net?\n")
             for j1 in range (len(keyList)):
                 #print(str(Jay1[keyList[j1]])+","+str(Jay2[keyList[j1]])+","+str(Jay0[keyList[j1]])+","+str(Jay3[keyList[j1]]))
-                file.write(str(Jay1[keyList[j1]])+","+str(Jay2[keyList[j1]])+","+str(Jay0[keyList[j1]])+","+str(Jay3[keyList[j1]]))
+                file.write(str(Jay1[keyList[j1]])+","+str(Jay2[keyList[j1]])+","+str(Jay0[keyList[j1]])+","+str(Jay3[keyList[j1]])+"%")
                 if Jay4[keyList[j1]] == True:
                     file.write (",y,")
                 else:
