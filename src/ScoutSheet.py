@@ -434,10 +434,17 @@ def NewTab ():
     for i2 in range (len(PureTeamList)):
         tabData = ""
         pureTabData = ""
-        nn = 0
+        totalScores = []
         countf = 0
+        Match = ""
         for i3 in range (TeamInstanceCount[PureTeamList[i2]]):
             tabData = tabData + str(Vault[PureTeamList[i2]+"a"+str(i3)]) + ','
+            totalScores.append(int(Vault[PureTeamList[i2]+"a"+str(i3)+"a"+str(20)]))
+        maxscore = max(totalScores)
+        for i3 in range (TeamInstanceCount[PureTeamList[i2]]):
+            if (int(Vault[PureTeamList[i2]+"a"+str(i3)+"a"+str(20)]) == maxscore):
+                match = str(i3)
+
         for char in tabData:
             if char != ',':
                 pureTabData = pureTabData + char
@@ -447,15 +454,16 @@ def NewTab ():
                     countf = 0
                 else:            
                     pureTabData = pureTabData + char
-        with open ("data/TabData.csv", 'w') as file:
+        with open ("Public/TabData.csv", 'w') as file:
             file.write ("What in the heck,placeholders,in,this,line,seem,to,get,ignored,as,long,as,they,are,the,first,line,and,no,longer,than,the,list,of,values,that,will,be,added,mustbeequal\nMatch Number,Team Number,Auto Move,L1 auto,L2 auto,L3 auto,L4 auto,processor auto, net auto,L1 tele,L2 tele,L3 tele,L4 tele,processor tele,net tele,park end,shallow cage end,deep cage end,auto total,tele total,total,coral score,algae score,location score,coral score %,algae score %,location score %,average score at event,natural epa,comments\n")
             file.write (str(pureTabData)+"\n")
             file.write ("max score:,=MAX(U2:U"+str(TeamInstanceCount[PureTeamList[i2]]+1)+")")
+            file.write (",max score delta processor:,=MAX(U2:U"+str(TeamInstanceCount[PureTeamList[i2]]+1)+")-4*("+(str(Vault[str(PureTeamList[i2])+"a"+str(match)+"a"+str(13)]))+"+"+str(Vault[str(PureTeamList[i2])+"a"+str(match)+"a"+str(7)])+")")
 
-        tab = pd.read_csv('data/TabData.csv')
+        tab = pd.read_csv('public/TabData.csv')
         tab = tab.fillna('')
         values = tab.values.tolist()
-
+        
         RANGE_NAME = PureTeamList[i2]+"!A1"
 
         service = build('sheets', 'v4', credentials=credentials)
