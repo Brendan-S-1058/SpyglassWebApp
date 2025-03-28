@@ -18,8 +18,6 @@ def update ():
     export_import_data = ""
     countd = 0
     DOUBLE = True
-    result = "Script Instantiated"
-    print(json.dumps(result))## Could this placement be a problem?
     #input_data = ""
     #input_data = "30,1690,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Nothing/,,20,1690,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Nothing/"
     input_data = sys.stdin.read()

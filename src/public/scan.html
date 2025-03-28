@@ -22,7 +22,10 @@
     <button id="viewStoredBtn">View Stored QR Codes</button>
     <button id="downloadBtn">Download as .txt</button>
     <button id="clearBtn">Clear Stored QR Codes</button>
-    
+    <button id="editStoredBtn">Edit Data</button>
+    <button id="saveChangesBtn">Save Changes</button>
+    <div id="editableQRList" style="display: none;"></div>
+
     <textarea id="qrList" rows="10" cols="40" readonly style="display: none;"></textarea>
     <button id="copyBtn" style="display: none;">Copy to Clipboard</button>
 
@@ -46,6 +49,35 @@
                 alert("File access denied or not supported.");
             }
         });
+
+        document.getElementById("editStoredBtn").addEventListener("click", () => {
+            let storedQRs = JSON.parse(localStorage.getItem("qrCodes")) || [];
+            if (storedQRs.length === 0) {
+                alert ("No QRs to edit");
+                return;
+            }
+
+            let editableList = document.getElementById("editableQRList");
+            editableList.innerHTML = "";
+            storedQRs.forEach((qr, index) => {
+                let input = document.createElement("input");
+                input.type = "text";
+                input.value = qr;
+                input.dataset.index = index;
+                editableList.appendChild(input);
+                editableList.appendChild(document.createElement("br"));
+            });
+            editableList.style.display = "block";
+            document.getElementById("saveChangesBtn").style.display = "block";
+        });
+
+        document.getElementById("saveChangesBtn").addEventListener("click", () => {
+            let inputs = document.querySelectorAll("#editableQRList input");
+            let updatedQRs = Array.from(inputs).map(input => input.value.trim()).filter(qr => qr !== "");
+            localStorage.setItem("qrCodes", JSON.stringify(updatedQRs));
+            alert ("QR codes UPDATED!!")
+        });
+
 
         document.getElementById("runWithoutFileBtn").addEventListener("click", () => {
             scanningWithoutFile = true;
