@@ -22,7 +22,6 @@
     <button id="viewStoredBtn">View Stored QR Codes</button>
     <button id="downloadBtn">Download as .txt</button>
     <button id="clearBtn">Clear Stored QR Codes</button>
-    <button id="addNewQRBtn" style="display: none;">Add New QR Code</button>
     <button id="editStoredBtn">Edit Data</button>
     <button id="saveChangesBtn">Save Changes</button>
     <div id="editableQRList" style="display: none;"></div>
@@ -198,6 +197,7 @@
         });
 
         document.getElementById("rescanBtn").addEventListener("click", () => {
+            stopVideoStream();
             document.getElementById("qrDataDisplay").innerText = "";
             startQRScanner();
         });
@@ -248,6 +248,13 @@
 
             runPythonScript(storedQRs, 1);
         });
+
+        function stopVideoStream() {
+            let video = document.getElementById("video");
+            if (video.srcObject) {
+                video.srcObject.getTracks().forEach(track => track.stop());
+            }
+        }
 
         document.getElementById("viewStoredBtn").addEventListener("click", () => {
             let storedQRs = JSON.parse(localStorage.getItem("qrCodes")) || [];
