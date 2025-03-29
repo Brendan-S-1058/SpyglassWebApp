@@ -25,7 +25,7 @@
     <button id="editStoredBtn">Edit Data</button>
     <button id="saveChangesBtn">Save Changes</button>
     <div id="editableQRList" style="display: none;"></div>
-
+    
     <textarea id="qrList" rows="10" cols="40" readonly style="display: none;"></textarea>
     <button id="copyBtn" style="display: none;">Copy to Clipboard</button>
 
@@ -60,24 +60,57 @@
             let editableList = document.getElementById("editableQRList");
             editableList.innerHTML = "";
             storedQRs.forEach((qr, index) => {
+                let div = document.createElement("div");
+
                 let input = document.createElement("input");
                 input.type = "text";
                 input.value = qr;
                 input.dataset.index = index;
-                editableList.appendChild(input);
-                editableList.appendChild(document.createElement("br"));
+
+                let removeBtn = document.createElement("button");
+                removeBtn.textContent = "❌";
+                removeBtn.onclick = () => {
+                    div.remove();
+                };
+
+                div.appendChild(input);
+                div.appendChild(removeBtn);
+                editableList.appendChild(div);
             });
             editableList.style.display = "block";
             document.getElementById("saveChangesBtn").style.display = "block";
+            document.getElementById("addNewQRBtn").style.display = "block";
+        });
+
+        document.getElementById("addNewQRBtn").addEventListener("click", () => {
+            let editableList = document.getElementById("editableQRList");
+
+            let div = document.createElement("div");
+
+            let input = document.createElement("input");
+            input.type = "text";
+            input.placeholder = "Enter new QR data";
+
+            let removeBtn = document.createElement("button");
+            removeBtn.textContent = "❌";
+            removeBtn.onclick = () => {
+                div.remove();
+            };
+
+            div.appendChild(input);
+            div.appendChild(removeBtn);
+            editableList.appendChild(div);
         });
 
         document.getElementById("saveChangesBtn").addEventListener("click", () => {
+            let div = document.createElement("div");
+
             let inputs = document.querySelectorAll("#editableQRList input");
             let updatedQRs = Array.from(inputs).map(input => input.value.trim()).filter(qr => qr !== "");
             localStorage.setItem("qrCodes", JSON.stringify(updatedQRs));
             alert ("QR codes UPDATED!!")
-        });
 
+        });
 
         document.getElementById("runWithoutFileBtn").addEventListener("click", () => {
             scanningWithoutFile = true;
@@ -173,7 +206,7 @@
             fetch("/run-python", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data) // TRY REMOVING ": qrData"
+                body: JSON.stringify(data),
             })
             .then((res) => {
                 if (!res.ok) {
@@ -189,13 +222,13 @@
             })
             .catch((err) => {
                 console.error("Error on attempt " + attempt + ":", err);
-                if (attempt < 1) {
+                if (attempt < 3) {
                     console.log("Retrying... attempt " + (attempt + 1));
                     runPythonScript(data, attempt + 1);
                 } else {
                     // After two retries (three total attempts), prompt the user:
                     if (confirm("Python script encountered an error after 3 attempts. Press OK to retry the script or Cancel to copy the data to clipboard.")) {
-                        navigator.clipboard.writeText(JSON.stringify(data));//overwrote this code -->//runPythonScript(data, 1);
+                        runPythonScript(data, 1);
                     } else {
                         navigator.clipboard.writeText(JSON.stringify(data));
                         alert("Data copied to clipboard!");
