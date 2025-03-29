@@ -7,7 +7,6 @@ const app = express();
 app.use(express.json());
 app.use(cors()); // Enables CORS for frontend requests
 
-const express = require("express");
 const PORT = process.env.PORT || 10000; // Use Render's assigned port or default to 10000
 
 app.listen(PORT, "0.0.0.0", () => {
