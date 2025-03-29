@@ -7,6 +7,14 @@ const app = express();
 app.use(express.json());
 app.use(cors()); // Enables CORS for frontend requests
 
+const express = require("express");
+const PORT = process.env.PORT || 10000; // Use Render's assigned port or default to 10000
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+
 const { execSync } = require("child_process");
 
 try {
@@ -64,10 +72,4 @@ app.use(express.static(path.join(__dirname, "public")));
 // Catch-all route for SPA (if using React/Vue/Angular frontend)
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
-// Start the server (Only call app.listen ONCE!)
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
 });
