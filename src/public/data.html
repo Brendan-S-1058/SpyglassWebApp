@@ -89,7 +89,7 @@
       rowStrings.forEach(csv => createRow(csv));
     }
     function createRow(csv){
-        const fields = csv.split(",").map(s => s.trim());
+        const fields = csv.split(",").map(s => s.trim().replace(/"\[]/, ""));
         if (fields.length !== 19) {
           console.error("createRow: expected 20 comma‑separated values, got", fields.length);
           return;
