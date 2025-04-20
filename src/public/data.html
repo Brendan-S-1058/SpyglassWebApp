@@ -12,7 +12,8 @@
       <h1 class="text-3xl font-bold mb-4">Raw Data Dashboard</h1>
     </div>
     <div class="mb-4 flex justify-between items-center">
-      <t><button id="AddRow" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Row</button>
+      <t><button id="AddRows" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Import</button>
+        <button id="AddEmpty" class="button">Add Empty Row</button>
         <button id="Submit" class="button bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">Submit</button>
         <button id="SubmitPublic" class="button">Submit To Public</button>
     </div>
@@ -75,11 +76,20 @@
   </div>
 </body>
 <script>
+    const qrs = localStorage.getItem("qrCodes");
     const tableBody = document.getElementById("data-table-body");
-    document.getElementById('AddRow').addEventListener('click', () => {
-        const sampleData = "1058,1,118.9,1,0,0,0,5,0,0,3,6,5,9,4,3,0,0,1,No Comment";
-        createRow(sampleData);
+    document.getElementById("AddEmpty").addEventListener('click', () => {
+      const empty = ",,,,,,,,,,,,,,,,,,,";
+      createRow(empty);
+    })
+    document.getElementById('AddRows').addEventListener('click', () => {
+        <!--const sampleData = "1058,1,118.9,1,0,0,0,5,0,0,3,6,5,9,4,3,0,0,1,No Comment";-->
+        createRows(qrs);
     });
+    function createRows(multiCsv) {
+      const rowStrings = multiCsv.split("/").map(s => s.trim());
+      rowStrings.forEach(csv => createRow(csv));
+    }
     function createRow(csv){
         const fields = csv.split(",").map(s => s.trim());
         if (fields.length !== 20) {
