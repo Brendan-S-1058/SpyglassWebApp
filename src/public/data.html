@@ -23,7 +23,6 @@
           <tr>
             <th class="p-2 border">team #</th>
             <th class="p-2 border">match #</th>
-            <th class="p-2 border">EPA??</th>
             <th class="p-2 border">auto move</th>
             <th class="p-2 border">auto L1</th>
             <th class="p-2 border">auto L2</th>
@@ -48,7 +47,6 @@
           <tr id="row" contenteditable="true">
             <td class="p-2 border">1058</td>
             <td class="p-2 border">1</td>
-            <td class="p-2 border">108.9</td>
             <td class="p-2 border">1</td>
             <td class="p-2 border">0</td>
             <td class="p-2 border">0</td>
@@ -79,11 +77,11 @@
     const qrs = localStorage.getItem("qrCodes");
     const tableBody = document.getElementById("data-table-body");
     document.getElementById("AddEmpty").addEventListener('click', () => {
-      const empty = ",,,,,,,,,,,,,,,,,,,";
+      const empty = ",,,,,,,,,,,,,,,,,,";
       createRow(empty);
     })
     document.getElementById('AddRows').addEventListener('click', () => {
-        <!--const sampleData = "1058,1,118.9,1,0,0,0,5,0,0,3,6,5,9,4,3,0,0,1,No Comment";-->
+        <!--const sampleData = "1058,1,1,0,0,0,5,0,0,3,6,5,9,4,3,0,0,1,No Comment";-->
         createRows(qrs);
     });
     function createRows(multiCsv) {
@@ -92,12 +90,12 @@
     }
     function createRow(csv){
         const fields = csv.split(",").map(s => s.trim());
-        if (fields.length !== 20) {
+        if (fields.length !== 19) {
           console.error("createRow: expected 20 comma‑separated values, got", fields.length);
           return;
         }
         const [
-          team, match, epa,
+          team, match,
           autoMove, autoL1, autoL2, autoL3, autoL4, autoProc, autoNet,
           teleL1, teleL2, teleL3, teleL4, teleProc, teleNet,
           endPark, shallowCage, deepCage, comments
@@ -109,7 +107,6 @@
         newRow.innerHTML = `
             <td class="p-2 border">`+team+`</td>
             <td class="p-2 border">`+match+`</td>
-            <td class="p-2 border">`+epa+`</td>
             <td class="p-2 border">`+autoMove+`</td>
             <td class="p-2 border">`+autoL1+`</td>
             <td class="p-2 border">`+autoL2+`</td>
