@@ -1,0 +1,68 @@
+.crimson-text-regular {
+    font-family: "Crimson Text", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .crimson-text-semibold {
+    font-family: "Crimson Text", serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .crimson-text-bold {
+    font-family: "Crimson Text", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .crimson-text-regular-italic {
+    font-family: "Crimson Text", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .crimson-text-semibold-italic {
+    font-family: "Crimson Text", serif;
+    font-weight: 600;
+    font-style: italic;
+  }
+  
+  .crimson-text-bold-italic {
+    font-family: "Crimson Text", serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+body {
+    background: #000;
+    color: rgb(180, 0, 0);
+    padding: 20px; 
+    font-family: "Crimson Text", serif;
+
+  }
+#title {
+    font-size: 20px;
+    box-shadow: 0px 2px 15px red;
+    text-align:center;
+}
+
+#table {
+    box-shadow: 0px -2px 15px red;
+}
+
+th, tr, td {
+    border: 1px solid red;
+    border-collapse: collapse;
+    padding: 3px;
+}
+.button {
+    background-color: #000000;
+    border: none;
+    color: rgb(255, 0, 0);
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: "Crimson Text", serif;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crow's Nest</title>
+  <link href="datastyle.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto p-4" id="table">
+    <div id="title">
+      <h1 class="text-3xl font-bold mb-4">Raw Data Dashboard</h1>
+    </div>
+    <div class="mb-4 flex justify-between items-center">
+      <t><button id="AddRow" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Row</button>
+        <button id="Submit" class="button bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">Submit</button>
+        <button id="SubmitPublic" class="button">Submit To Public</button>
+    </div>
+    <div class="overflow-auto border rounded-lg shadow bg-white">
+      <table class="min-w-full table-fixed">
+        <thead class="bg-gray-200 text-left">
+          <tr>
+            <th class="p-2 border">team #</th>
+            <th class="p-2 border">match #</th>
+            <th class="p-2 border">EPA??</th>
+            <th class="p-2 border">auto move</th>
+            <th class="p-2 border">auto L1</th>
+            <th class="p-2 border">auto L2</th>
+            <th class="p-2 border">auto L3</th>
+            <th class="p-2 border">auto L4</th>
+            <th class="p-2 border">auto Processor</th>
+            <th class="p-2 border">auto Net</th>
+            <th class="p-2 border">tele L1</th>
+            <th class="p-2 border">tele L2</th>
+            <th class="p-2 border">tele L3</th>
+            <th class="p-2 border">tele L4</th>
+            <th class="p-2 border">tele processor</th>
+            <th class="p-2 border">tele net</th>
+            <th class="p-2 border">end park</th>
+            <th class="p-2 border">end shallow cage</th>
+            <th class="p-2 border w-32">end deep cage</th>
+            <th class="p-2 border">comments</th>
+            <th class="p-2 border">actions</th>
+          </tr>
+        </thead>
+        <tbody id="data-table-body">
+          <tr id="row" contenteditable="true">
+            <td class="p-2 border">1058</td>
+            <td class="p-2 border">1</td>
+            <td class="p-2 border">108.9</td>
+            <td class="p-2 border">1</td>
+            <td class="p-2 border">0</td>
+            <td class="p-2 border">0</td>
+            <td class="p-2 border">0</td>
+            <td class="p-2 border">4</td>
+            <td class="p-2 border">0</td>
+            <td class="p-2 border">0</td>
+            <td class="p-2 border">3</td>
+            <td class="p-2 border">6</td>
+            <td class="p-2 border">5</td>
+            <td class="p-2 border">9</td>
+            <td class="p-2 border">3</td>
+            <td class="p-2 border">4</td>
+            <td class="p-2 border">0</td>
+            <td class="p-2 border">0</td>
+            <td class="p-2 border">1</td>
+            <td class="p-2 border">No Comment</td>
+            <td class="p-2 border">
+              <button class="button text-red-500 hover:underline ml-2 delete-btn" id="Delete" contenteditable="false">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+<script>
+    const tableBody = document.getElementById("data-table-body");
+    document.getElementById('AddRow').addEventListener('click', () => {
+        const sampleData = "1058,1,118.9,1,0,0,0,5,0,0,3,6,5,9,4,3,0,0,1,No Comment";
+        createRow(sampleData);
+    });
+    function createRow(csv){
+        const fields = csv.split(",").map(s => s.trim());
+        if (fields.length !== 20) {
+          console.error("createRow: expected 20 comma‑separated values, got", fields.length);
+          return;
+        }
+        const [
+          team, match, epa,
+          autoMove, autoL1, autoL2, autoL3, autoL4, autoProc, autoNet,
+          teleL1, teleL2, teleL3, teleL4, teleProc, teleNet,
+          endPark, shallowCage, deepCage, comments
+        ] = fields;
+
+        const table = document.getElementById("data-table-body");
+        const newRow = document.createElement('tr');
+        newRow.contentEditable = "true";
+        newRow.innerHTML = `
+            <td class="p-2 border">`+team+`</td>
+            <td class="p-2 border">`+match+`</td>
+            <td class="p-2 border">`+epa+`</td>
+            <td class="p-2 border">`+autoMove+`</td>
+            <td class="p-2 border">`+autoL1+`</td>
+            <td class="p-2 border">`+autoL2+`</td>
+            <td class="p-2 border">`+autoL3+`</td>
+            <td class="p-2 border">`+autoL4+`</td>
+            <td class="p-2 border">`+autoProc+`</td>
+            <td class="p-2 border">`+autoNet+`</td>
+            <td class="p-2 border">`+teleL1+`</td>
+            <td class="p-2 border">`+teleL2+`</td>
+            <td class="p-2 border">`+teleL3+`</td>
+            <td class="p-2 border">`+teleL4+`</td>
+            <td class="p-2 border">`+teleProc+`</td>
+            <td class="p-2 border">`+teleNet+`</td>
+            <td class="p-2 border">`+endPark+`</td>
+            <td class="p-2 border">`+shallowCage+`</td>
+            <td class="p-2 border">`+deepCage+`</td>
+            <td class="p-2 border">`+comments+`</td">
+            <td class="p-2 border">
+              <button class="button text-red-500 hover:underline ml-2 delete-btn" id="Delete">Delete</button>
+            </td>`
+            table.appendChild(newRow);
+            };
+            // Initial row delete setup (for static row)
+    tableBody.addEventListener("click", function (e) {
+    if (e.target && e.target.classList.contains("delete-btn")) {
+        const row = e.target.closest("tr");
+        row.remove();
+        }
+    });
+        
+
+</script>
+</html>
