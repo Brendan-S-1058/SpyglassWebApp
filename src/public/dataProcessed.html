@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crow's Nest</title>
+  <link href="datastyle.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto p-4" id="table">
+    <div id="title">
+      <h1 class="text-3xl font-bold mb-4">Processed Data Dashboard</h1>
+    </div>
+    <div class="mb-4 flex justify-between items-center">
+      <t><input id="Search" type="text" placeholder="Search..." class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
+          <button id="searchButton" class="button">Search</button>
+      </div>
+  </div>
+  <div class="overflow-auto border rounded-lg shadow bg-white">
+    <table class="min-w-full table-fixed">
+      <thead class="bg-gray-200 text-left">
+        <tr>
+          <th class="p-2 border">team #</th>
+          <th class="p-2 border">match #</th>
+          <th class="p-2 border">auto move</th>
+          <th class="p-2 border">auto L1</th>
+          <th class="p-2 border">auto L2</th>
+          <th class="p-2 border">auto L3</th>
+          <th class="p-2 border">auto L4</th>
+          <th class="p-2 border">auto Processor</th>
+          <th class="p-2 border">auto Net</th>
+          <th class="p-2 border">tele L1</th>
+          <th class="p-2 border">tele L2</th>
+          <th class="p-2 border">tele L3</th>
+          <th class="p-2 border">tele L4</th>
+          <th class="p-2 border">tele processor</th>
+          <th class="p-2 border">tele net</th>
+          <th class="p-2 border">end park</th>
+          <th class="p-2 border">end shallow cage</th>
+          <th class="p-2 border w-32">end deep cage</th>
+          <th class="p-2 border">comments</th>
+          <th class="p-2 border">actions</th>
+        </tr>
+      </thead>
+      <tbody id="data-table-body">
+      </tbody>
+    </table>
+  </div>
+</body>
+<script>
+    const qrs = JSON.parse(localStorage.getItem("qrCodes"));
+    const tableBody = document.getElementById("data-table-body");
+    function createRows(multiCsv) {
+      qrs.forEach(csv => createRow(csv));
+    }
+    document.getElementById("searchButton").addEventListener("click", () => {
+      const searchTerm = document.getElementById("Search").value.toLowerCase();
+      qrs.forEach(qr=> {
+        if (qr.includes(searchTerm)) {
+            createRow(qr);
+        } else {
+            console.log("nope");
+        }
+        });
+      });
+      console.log(qrs)
+    function createRow(csv){
+        const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
+        if (fields.length !== 19) {
+          console.error("createRow: expected 20 comma‑separated values, got", fields.length);
+          return;
+        }
+        const [
+          team, match,
+          autoMove, autoL1, autoL2, autoL3, autoL4, autoProc, autoNet,
+          teleL1, teleL2, teleL3, teleL4, teleProc, teleNet,
+          endPark, shallowCage, deepCage, comments
+        ] = fields;
+
+        const table = document.getElementById("data-table-body");
+        const newRow = document.createElement('tr');
+        newRow.contentEditable = "true";
+        newRow.innerHTML = `
+            <td class="p-2 border">`+match+`</td>
+            <td class="p-2 border">`+team+`</td>
+            <td class="p-2 border">`+autoMove+`</td>
+            <td class="p-2 border">`+autoL1+`</td>
+            <td class="p-2 border">`+autoL2+`</td>
+            <td class="p-2 border">`+autoL3+`</td>
+            <td class="p-2 border">`+autoL4+`</td>
+            <td class="p-2 border">`+autoProc+`</td>
+            <td class="p-2 border">`+autoNet+`</td>
+            <td class="p-2 border">`+teleL1+`</td>
+            <td class="p-2 border">`+teleL2+`</td>
+            <td class="p-2 border">`+teleL3+`</td>
+            <td class="p-2 border">`+teleL4+`</td>
+            <td class="p-2 border">`+teleProc+`</td>
+            <td class="p-2 border">`+teleNet+`</td>
+            <td class="p-2 border">`+endPark+`</td>
+            <td class="p-2 border">`+shallowCage+`</td>
+            <td class="p-2 border">`+deepCage+`</td>
+            <td class="p-2 border">`+comments+`</td>
+            <td class="p-2 border">
+              <button class="button text-red-500 hover:underline ml-2 delete-btn" id="Delete">Delete</button>
+            </td>`
+            table.appendChild(newRow);
+            };
+            // Initial row delete setup (for static row)
+        
+</script>
+</html>
