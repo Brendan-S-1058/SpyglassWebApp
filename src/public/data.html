@@ -65,7 +65,7 @@
     }
     document.getElementById("SaveChanges").addEventListener("click", () => {
       const rows = Array.from(tableBody.rows).slice(1);
-      const currentData = rowes.map(row => Array.from(row.cells).map(cell => cell.textContent.trim()).join(",")).join("/\n");
+      const currentData = rows.map(row => Array.from(row.cells).map(cell => cell.textContent.trim()).join(",")).join("/\n");
       localStorage.setItem("qrCodes", currentData);
     })
     function createRow(csv, qrs){
