@@ -12,10 +12,11 @@
       <h1 class="text-3xl font-bold mb-4">Raw Data Dashboard</h1>
     </div>
     <div class="mb-4 flex justify-between items-center">
-      <t><button id="AddRows" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Import</button>
-        <button id="AddEmpty" class="button">Add Empty Row</button>
-        <button id="Submit" class="button bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">Submit</button>
-        <button id="SubmitPublic" class="button">Submit To Public</button>
+      <button id="AddRows" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Import</button>
+      <button id="AddEmpty" class="button">Add Empty Row</button>
+      <button id="Submit" class="button bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">Submit</button>
+      <button id="SaveChanges" class="button">Save Changes</button>
+      <button id="SubmitPublic" class="button">Submit To Public</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
       <table class="min-w-full table-fixed">
@@ -57,16 +58,20 @@
       createRow(empty);
     })
     document.getElementById('AddRows').addEventListener('click', () => {
-        <!--const sampleData = "1058,1,1,0,0,0,5,0,0,3,6,5,9,4,3,0,0,1,No Comment";-->
-        createRows(qrs);
+        createRows();
     });
-    function createRows(multiCsv) {
+    function createRows() {
       qrs.forEach(csv => createRow(csv, qrs));
     }
+    document.getElementById("SaveChanges").addEventListener("click", () => {
+      const rows = Array.from(tableBody.rows);
+      const currentData = rows.map(row => Array.from(t.cells).map(cell => cell.textContent.trim()).join(",")).join("/\n");
+      localStorage.setItem("qrCodes", currentData);
+    })
     function createRow(csv, qrs){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
         if (fields.length !== 19) {
-          console.error("createRow: expected 20 comma‑separated values, got", fields.length);
+          console.error("createRow: expected 19 comma‑separated values, got", fields.length);
           return;
         }
         const [
@@ -111,7 +116,5 @@
         row.remove();
         }
     });
-        
-
 </script>
 </html>
