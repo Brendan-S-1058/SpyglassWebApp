@@ -64,9 +64,9 @@
       qrs.forEach(csv => createRow(csv, qrs));
     }
     document.getElementById("SaveChanges").addEventListener("click", () => {
-      const rows = Array.from(tableBody.rows).slice(1);
+      const rows = Array.from(tableBody.rows);
       const currentData = rows.map(row => Array.from(row.cells).map(cell => cell.textContent.trim()).join(",")).join("/\n");
-      localStorage.setItem("qrCodes", JSON.stringify(currentData));
+      localStorage.setItem("qrCodes", JSON.stringify(currentData.split('/n')));
     })
     function createRow(csv, qrs){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
