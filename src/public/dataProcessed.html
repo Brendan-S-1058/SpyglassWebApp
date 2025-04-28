@@ -111,26 +111,26 @@
     fetch("/individual", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(data), // only stringify once
     })
     .then((res) => {
       if (!res.ok) {
-      throw new Error("HTTP error " + res.status);
+        throw new Error("HTTP error " + res.status);
       }
-    return res.json();
+      return res.json();
     })
     .then((response) => {
       console.log("Response from Python:", response);
-      localStorage.removeItem("qrCodes"); // Clear stored QR codes after running
+      localStorage.removeItem("qrCodes");
       document.getElementById("runPY").disabled = true;
-      hasScannedQR = false;
     })
-  }
-
+    .catch((error) => {
+      console.error("Fetch error:", error);
+    });
+    }
   document.getElementById("test").addEventListener("click", () => {
-    const Json = JSON.stringify("null")
-    runPythonScript (Json);
-  });
+    runPythonScript({ input: "null" }); // pass an object, NOT a JSON string
+    });
         
 </script>
 </html>
