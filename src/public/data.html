@@ -68,10 +68,12 @@
     }
     document.getElementById("SaveChanges").addEventListener("click", () => {
       const rows = Array.from(tableBody.rows);
-      const currentData = rows.map(row => Array.from(row.cells).map(cell => cell.textContent.trim()).join(",")).join("/\n");
+      const currentData = rows.map(row => (Array.from(row.cells).map(cell => cell.textContent.trim()).join(",")).join("/"));
       localStorage.setItem("qrCodes", JSON.stringify(currentData.split('/n')));
+      window.location.reload();
     })
     function createRow(csv, qrs){
+        rows.map(row => row.remove);
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
         if (fields.length !== 19) {
           console.error("createRow: expected 19 comma‑separated values, got", fields.length);
