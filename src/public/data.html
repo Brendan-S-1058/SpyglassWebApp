@@ -73,6 +73,7 @@
       window.location.reload();
     })
     function createRow(csv, qrs){
+        const rows = Array.from(tableBody.rows);
         rows.map(row => row.remove);
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
         if (fields.length !== 19) {
