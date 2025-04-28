@@ -14,6 +14,7 @@
     <div class="mb-4 flex justify-between items-center">
       <t><input id="Search" type="text" placeholder="Search..." class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
           <button id="searchButton" class="button">Search</button>
+          <button id="test" class="button">test</button>
       </div>
   </div>
   <div class="overflow-auto border rounded-lg shadow bg-white">
@@ -106,6 +107,29 @@
             table.appendChild(newRow);
             };
             // Initial row delete setup (for static row)
+  function runPythonScript(data) {
+    fetch("/individual", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+    .then((res) => {
+      if (!res.ok) {
+      throw new Error("HTTP error " + res.status);
+      }
+    return res.json();
+    })
+    .then((response) => {
+      console.log("Response from Python:", response);
+      localStorage.removeItem("qrCodes"); // Clear stored QR codes after running
+      document.getElementById("runPY").disabled = true;
+      hasScannedQR = false;
+    })
+  }
+
+  document.getElementById("test").addEventListener("click", () => {
+    runPythonScript (null);
+  });
         
 </script>
 </html>

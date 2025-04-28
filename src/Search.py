@@ -7,6 +7,6 @@ import json
 import gspread
 
 def Main ():
-    sys.stdout.write("testing testing, 1, 2, 3, 4, 5, 6, 7, 8, 9, wait was I supposed to stop?")
+    print("testing testing, 1, 2, 3, 4, 5, 6, 7, 8, 9, wait was I supposed to stop?")
 
 Main ()
