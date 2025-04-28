@@ -75,7 +75,7 @@
         .map(cell => cell.textContent.trim())
         .join(",") + "/"
       );
-      localStorage.setItem("qrCodes", JSON.stringify(currentData.split('/')));
+      localStorage.setItem("qrCodes", JSON.stringify(currentData));
       window.location.reload();
 });
     function createRow(csv, qrs){
