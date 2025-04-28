@@ -128,7 +128,8 @@
   }
 
   document.getElementById("test").addEventListener("click", () => {
-    runPythonScript ("null");
+    const Json = Json.stringify("null")
+    runPythonScript (Json);
   });
         
 </script>
