@@ -63,7 +63,7 @@
       })
       let parsedData;
       try {
-        parsedData = await runPythonScript(values);
+        parsedData = await runPythonScript(JSON.stringify(values));
       } catch (e) {
         console.error(e);
         return;
