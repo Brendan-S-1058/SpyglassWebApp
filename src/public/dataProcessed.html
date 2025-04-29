@@ -54,16 +54,16 @@
 
     document.getElementById("searchButton").addEventListener("click", async () => {
       const searchTerm = document.getElementById("Search").value.toLowerCase();
-      let values = "";
+      let values = [];
       tableBody.innerHTML = '';
       qrs.forEach(qr => {
         if (qr.includes(searchTerm)) {
-          values = values + qr;
+          values.push(qr);
         }
       })
       let parsedData;
       try {
-        parsedData = await runPythonScript(JSON.stringify(values));
+        parsedData = await runPythonScript(values);
       } catch (e) {
         console.error(e);
         return;
@@ -140,7 +140,7 @@
   }
 
   document.getElementById("test").addEventListener("click", () => {
-    runPythonScript("1,1058,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,no comment"); // pass an object, NOT a JSON string
+    runPythonScript(JSON.stringify("1,1058,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,no comment"));
     });
         
 </script>
