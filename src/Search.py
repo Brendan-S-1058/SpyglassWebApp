@@ -27,12 +27,9 @@ def Main ():
             countd = 1
         if DOUBLE == False:
             export_import_data = export_import_data + char
-    
-    state = False
-    NewSheet (state)
 
-
-    result = {export_import_data}
-    print(json.dumps(result))
+    array = []
+    array.append(export_import_data)
+    print(json.dumps(array))
 
 Main ()
