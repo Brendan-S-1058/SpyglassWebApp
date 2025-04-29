@@ -44,7 +44,7 @@ app.post("/individual", (req, res) => {
 
     individualProcess.stdout.on("data", (data) => {
         output += data.toString();
-        res.status (1).json({ error: "prankd " + output});
+        res.status (300).json({ error: "prankd " + output});
     });
 
     individualProcess.on("close", (code) => {
