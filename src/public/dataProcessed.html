@@ -51,11 +51,10 @@
 <script>
     const qrs = JSON.parse(localStorage.getItem("qrCodes"));
     const tableBody = document.getElementById("data-table-body");
-    function createRows(multiCsv) {
-      qrs.forEach(csv => createRow(csv));
-    }
+
     document.getElementById("searchButton").addEventListener("click", () => {
       const searchTerm = document.getElementById("Search").value.toLowerCase();
+      tableBody.innerHTML = '';
       qrs.forEach(qr=> {
         if (qr.includes(searchTerm)) {
             createRow(qr);
@@ -65,6 +64,7 @@
         });
       });
       console.log(qrs)
+
     function createRow(csv){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
         if (fields.length !== 19) {
@@ -105,8 +105,14 @@
               <button class="button text-red-500 hover:underline ml-2 delete-btn" id="Delete">Delete</button>
             </td>`
             table.appendChild(newRow);
-            };
+          };
             // Initial row delete setup (for static row)
+            tableBody.addEventListener("click", function (e) {
+    if (e.target && e.target.classList.contains("delete-btn")) {
+        const row = e.target.closest("tr");
+        row.remove();
+        }
+      });
   function runPythonScript(data) {
     fetch("/individual", {
       method: "POST",
