@@ -7,6 +7,7 @@ import json
 import gspread
 
 def Main ():
-    print("testing testing, 1, 2, 3, 4, 5, 6, 7, 8, 9, wait was I supposed to stop?")
+    result = {"message": f"Main"}
+    print(json.dumps(result))
 
 Main ()
