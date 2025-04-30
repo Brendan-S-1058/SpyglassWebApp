@@ -106,7 +106,6 @@ def NewSheet (datain):
                 matchS += str(matchL[ix]) + ","
             array.append(matchS)
             
-            print (array)
-            #print (json.dumps(array))
+            print (json.dumps(array))
 
 Main ()
