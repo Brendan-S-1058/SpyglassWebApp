@@ -14,8 +14,8 @@ def Main ():
     export_import_data = ""
     countd = 0
     DOUBLE = True
-    input = "1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/2,1058,1,2,1,0,4,1,1,4,4,7,4,0,1,0,0,1,No comment/"
-    #input = sys.stdin.read()
+    #input = "1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/2,1058,1,2,1,0,4,1,1,4,4,7,4,0,1,0,0,1,No comment/"
+    input = sys.stdin.read()
 
     for char in input:
         if char != "," and DOUBLE == True:
