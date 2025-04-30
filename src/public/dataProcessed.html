@@ -78,23 +78,26 @@
 
     function createRow(csv){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-        if (fields.length !== 19) {
-          console.error("createRow: expected 20 comma‑separated values, got", fields.length);
+        if (fields.length !== 28) {
+          console.error("createRow: expected 28 comma‑separated values, got", fields.length);
           return;
         }
         const [
-          team, match,
+          match, team,
           autoMove, autoL1, autoL2, autoL3, autoL4, autoProc, autoNet,
           teleL1, teleL2, teleL3, teleL4, teleProc, teleNet,
-          endPark, shallowCage, deepCage, comments
+          endPark, shallowCage, deepCage, 
+          autoTotal, teleTotal, Total, 
+          coralTotal, algaeTotal, locTotal, coralP, algaeP, locP,
+          comments
         ] = fields;
 
         const table = document.getElementById("data-table-body");
         const newRow = document.createElement('tr');
         newRow.contentEditable = "true";
         newRow.innerHTML = `
-            <td class="p-2 border">`+match+`</td>
             <td class="p-2 border">`+team+`</td>
+            <td class="p-2 border">`+match+`</td>
             <td class="p-2 border">`+autoMove+`</td>
             <td class="p-2 border">`+autoL1+`</td>
             <td class="p-2 border">`+autoL2+`</td>
@@ -111,6 +114,15 @@
             <td class="p-2 border">`+endPark+`</td>
             <td class="p-2 border">`+shallowCage+`</td>
             <td class="p-2 border">`+deepCage+`</td>
+            <td class="p-2 border">`+autoTotal+`</td>
+            <td class="p-2 border">`+teleTotal+`</td>
+            <td class="p-2 border">`+Total+`</td>
+            <td class="p-2 border">`+coralTotal+`</td>
+            <td class="p-2 border">`+algaeTotal+`</td>
+            <td class="p-2 border">`+locTotal+`</td>
+            <td class="p-2 border">`+coralP+`%</td>
+            <td class="p-2 border">`+algaeP+`%</td>
+            <td class="p-2 border">`+locP+`%</td>
             <td class="p-2 border">`+comments+`</td>
             <td class="p-2 border">
               <button class="button text-red-500 hover:underline ml-2 delete-btn" id="Delete">Delete</button>
