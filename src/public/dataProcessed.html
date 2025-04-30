@@ -87,8 +87,8 @@
 
     function createRow(csv){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-        if (fields.length !== 28) {
-          console.error("createRow: expected 28 comma‑separated values, got", fields.length);
+        if (fields.length !== 29) {
+          console.error("createRow: expected 29 comma‑separated values, got", fields.length);
           return;
         }
         const [
