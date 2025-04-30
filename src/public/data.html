@@ -15,6 +15,8 @@
       <h1 class="text-3xl font-bold mb-4">Raw Data Dashboard</h1>
     </div>
     <div class="mb-4 flex justify-between items-center">
+      <input id="Search" type="text" placeholder="Search..." class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
+      <button id="searchButton" class="button">Search</button>
       <button id="AddRows" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Import</button>
       <button id="AddEmpty" class="button">Add Empty Row</button>
       <button id="Submit" class="button bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">Submit</button>
@@ -60,6 +62,22 @@
       const empty = ",,,,,,,,,,,,,,,,,,";
       createRow(empty);
     })
+
+    document.getElementById("searchButton").addEventListener("click", async () => {
+      const searchTerm = document.getElementById("Search").value.toLowerCase();
+      let values = [];
+      tableBody.innerHTML = '';
+      qrs.forEach(qr => {
+        if (qr.includes(searchTerm)) {
+          values.push(qr);
+        }
+      })
+      values.forEach(line => {
+            createRow(line);
+        });
+      });
+      console.log(qrs)
+
     document.getElementById('AddRows').addEventListener('click', () => {
         tableBody.innerHTML = '';
         createRows();
