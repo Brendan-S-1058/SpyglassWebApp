@@ -21,6 +21,7 @@ def Main ():
     #for i in range (len(inputL)):
     #    inputS += inputL[i]
     inputS = sys.stdin.read()
+    inputS = (f"{inputS!r}")
 
     print(f"RAW_INPUT_REPR: {inputS!r}", file=sys.stderr)
 
