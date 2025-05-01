@@ -152,7 +152,7 @@
     const res = await fetch("/individual", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: data,
     });
 
     if (!res.ok){

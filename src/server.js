@@ -33,7 +33,7 @@ try {
 
 //Api route pointing to nothing (right now)
 app.post("/individual", (req, res) => {
-    const input = req.body;
+    const input = String(req.body);
     const venvPath = path.join(__dirname, "venv/bin/python");
     const individualProcess = spawn(venvPath, ["Search.py"]);
 
