@@ -16,10 +16,13 @@ def Main ():
     countd = 0
     DOUBLE = True
     #input = "1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/2,1058,1,2,1,0,4,1,1,4,4,7,4,0,1,0,0,1,No comment/"
-    inputR = sys.stdin.read()
-    inputL = json.loads(inputR)
-    for i in range (len(inputL)):
-        inputS += inputL[i]
+    #inputR = sys.stdin.read()
+    #inputL = json.loads(inputR)
+    #for i in range (len(inputL)):
+    #    inputS += inputL[i]
+    inputS = sys.stdin.read()
+
+    print(f"RAW_INPUT_REPR: {inputS!r}", file=sys.stderr)
 
     ##TODO: multiple lines are not working correctly. data passage problem?? presumably the input was not ok
 
