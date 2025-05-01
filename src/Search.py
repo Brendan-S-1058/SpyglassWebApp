@@ -17,6 +17,15 @@ def Main ():
     DOUBLE = True
     #input = "1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/2,1058,1,2,1,0,4,1,1,4,4,7,4,0,1,0,0,1,No comment/"
     inputR = sys.stdin.read()
+
+    print(f"RAW_INPUT_REPR: {inputR!r}", file=sys.stderr)
+
+    try:
+        data = json.loads(inputR)
+    except json.JSONDecodeError as e:
+        print(f"JSON error: {e}", file=sys.stderr)
+        sys.exit(1)
+
     inputL = json.loads(inputR)
     for i in range (len(inputL)):
         inputS += inputL[i]
