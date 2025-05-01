@@ -20,8 +20,8 @@ def Main ():
     #inputL = json.loads(inputR)
     #for i in range (len(inputL)):
     #    inputS += inputL[i]
-    #inputR = sys.stdin.read()
-    inputS = str(sys.stdin.read())
+    inputR = sys.stdin.read()
+    inputS = str(json.loads(inputR))
     print("inputS: " + inputS, file=sys.stderr)
 
 
