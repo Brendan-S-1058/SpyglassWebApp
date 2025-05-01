@@ -113,11 +113,13 @@ def NewSheet (datain):
             matchS = ""
             matchL = allData[i]
             for ix in range (len(matchL)):
-                matchS += str(matchL[ix]) + ","
+                matchS += str(matchL[ix])
+                if ix != len(matchL):
+                    matchS += ","
             array.append(matchS)
             print ("array: " + str(array), file=sys.stderr)
 
 
 Main()
-variable_name = ['1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,63,78,141,106,20,15,75,14,11,', '100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool,23,96,119,64,40,15,54,34,13,'] 
+variable_name = ['1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,63,78,141,106,20,15,75,14,11', '100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool,23,96,119,64,40,15,54,34,13'] 
 print (variable_name, file=sys.stdout)
