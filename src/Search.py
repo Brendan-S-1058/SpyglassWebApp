@@ -6,7 +6,7 @@ import sys
 import json
 import gspread
 
-allData = []
+'''allData = []
 
 def Main ():
     global Vault
@@ -114,6 +114,8 @@ def NewSheet (datain):
                 matchS += str(matchL[ix]) + ","
             array.append(matchS)
             
-            print (json.dumps(array))
+            print (json.dumps(array))'''
+array = ['1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,63,78,141,106,20,15,75,14,11,', '2,1058,1,2,1,0,4,1,1,4,4,7,4,0,1,0,0,1,No comment,51,84,135,106,14,15,79,10,11,']
+print (json.dumps(aray))
 
-Main()
+#Main()
