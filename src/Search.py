@@ -20,10 +20,8 @@ def Main ():
     #inputL = json.loads(inputR)
     #for i in range (len(inputL)):
     #    inputS += inputL[i]
-    inputS = sys.stdin.read()
-    inputS = (f"{inputS!r}")
-
-    print(f"RAW_INPUT_REPR: {inputS!r}", file=sys.stderr)
+    inputR = sys.stdin.read()
+    inputS = JSON.loads(inputR)
 
     ##TODO: multiple lines are not working correctly. data passage problem?? presumably the input was not ok
 
@@ -118,8 +116,4 @@ def NewSheet (datain):
             
             print (json.dumps(array))
 
-try:
-    Main()
-except json.JSONDecodeError as e:
-    print(f"JSON error: {e}", file=sys.stderr)
-    sys.exit(1)
+Main()

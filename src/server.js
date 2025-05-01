@@ -39,7 +39,7 @@ app.post("/individual", (req, res) => {
 
     let output = "";
 
-    individualProcess.stdin.write(input);
+    individualProcess.stdin.write(JSON.stringify(input));
     individualProcess.stdin.end();
 
     individualProcess.stdout.on("data", (data) => {
