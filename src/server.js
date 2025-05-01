@@ -64,34 +64,38 @@ app.post("/individual", (req, res) => {
 });
 
 // API route to execute Python script
-app.post("/individual", (req, res) => {
-    const input = JSON.stringify(req.body); // Correct: stringify the incoming body
+app.post("/run-python", (req, res) => {
+    const input = String(req.body); // Convert input data to JSON string
     const venvPath = path.join(__dirname, "venv/bin/python");
-    const individualProcess = spawn(venvPath, ["Search.py"]);
+    const pythonProcess = spawn(venvPath, ["ScoutSheet.py"]);
 
     let output = "";
 
-    individualProcess.stdin.write(input);
-    individualProcess.stdin.end();
+    // Send input to Python script
+    pythonProcess.stdin.write(input);
+    pythonProcess.stdin.end();
 
-    individualProcess.stdout.on("data", (data) => {
+    // Capture Python script output
+    pythonProcess.stdout.on("data", (data) => {
         output += data.toString();
     });
 
-    individualProcess.on("close", (code) => {
+    // Handle process completion
+    pythonProcess.on("close", (code) => {
         try {
             const jsonResponse = JSON.parse(output);
-            res.json(jsonResponse); // respond ONCE here
+            res.json(jsonResponse);
         } catch (error) {
-            res.status(400).json({ error: "Invalid response from Python script", details: error.message });
+            res.status(500).json({ error: "Invalid response from Python script" });
         }
     });
 
-    individualProcess.stderr.on("data", (data) => {
+    // Handle errors
+    pythonProcess.stderr.on("data", (data) => {
         console.error(`Error: ${data}`);
     });
+    
 });
-
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, "public")));
 
