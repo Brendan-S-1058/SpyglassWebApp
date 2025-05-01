@@ -6,7 +6,7 @@ import sys
 import json
 import gspread
 
-'''allData = []
+allData = []
 
 def Main ():
     global Vault
@@ -20,8 +20,10 @@ def Main ():
     #inputL = json.loads(inputR)
     #for i in range (len(inputL)):
     #    inputS += inputL[i]
-    inputR = sys.stdin.read()
-    inputS = json.loads(inputR)
+    #inputR = sys.stdin.read()
+    inputS = str(sys.stdin.read())
+    print("inputS: " + inputS, file=sys.stderr)
+
 
     ##TODO: multiple lines are not working correctly. data passage problem?? presumably the input was not ok
 
@@ -37,6 +39,7 @@ def Main ():
             countd = 1
         if DOUBLE == False:
             export_import_data = export_import_data + char
+    print("export_import_data: " + str(export_import_data), file=sys.stderr)
     NewSheet(export_import_data)
 
 def NewSheet (datain):
@@ -113,11 +116,8 @@ def NewSheet (datain):
             for ix in range (len(matchL)):
                 matchS += str(matchL[ix]) + ","
             array.append(matchS)
-            
-            print (json.dumps(array))'''
-variable_name = sys.stdin.read ()
-print("raw input data: " + str(variable_name), file=sys.stderr)
-array = ['1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,63,78,141,106,20,15,75,14,11,', '2,1058,1,2,1,0,4,1,1,4,4,7,4,0,1,0,0,1,No comment,51,84,135,106,14,15,79,10,11,']
-print (json.dumps(array))
+            print ("array: " + str(array), file=sys.stderr)
+            print (json.dumps(array))
 
-#Main()
+
+Main()
