@@ -21,7 +21,7 @@ def Main ():
     #for i in range (len(inputL)):
     #    inputS += inputL[i]
     inputR = sys.stdin.read()
-    inputS = JSON.loads(inputR)
+    inputS = json.loads(inputR)
 
     ##TODO: multiple lines are not working correctly. data passage problem?? presumably the input was not ok
 
