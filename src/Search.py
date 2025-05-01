@@ -21,7 +21,6 @@ def Main ():
     for i in range (len(inputL)):
         inputS += inputL[i]
 
-
     ##TODO: multiple lines are not working correctly. data passage problem?? presumably the input was not ok
 
     for char in inputS:
