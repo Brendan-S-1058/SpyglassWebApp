@@ -117,4 +117,8 @@ def NewSheet (datain):
             
             print (json.dumps(array))
 
-Main ()
+try:
+    Main()
+except json.JSONDecodeError as e:
+    print(f"JSON error: {e}", file=sys.stderr)
+    sys.exit(1)
