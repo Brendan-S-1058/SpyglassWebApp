@@ -121,5 +121,5 @@ def NewSheet (datain):
 
 
 Main()'''
-variable_name = ['1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,63,78,141,106,20,15,75,14,11'] 
-print (variable_name, file=sys.stdout)
+variable_name = ['1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,63,78,141,106,20,15,75,14,11']
+print (json.dumps(variable_name))
