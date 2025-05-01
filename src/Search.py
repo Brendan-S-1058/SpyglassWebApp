@@ -116,7 +116,7 @@ def NewSheet (datain):
             
             print (json.dumps(array))'''
 variable_name = sys.stdin.read ()
-print("raw input data: " + str(return), file=sys.stderr)
+print("raw input data: " + str(variable_name), file=sys.stderr)
 array = ['1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,63,78,141,106,20,15,75,14,11,', '2,1058,1,2,1,0,4,1,1,4,4,7,4,0,1,0,0,1,No comment,51,84,135,106,14,15,79,10,11,']
 print (json.dumps(array))
 
