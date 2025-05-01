@@ -12,12 +12,18 @@ def Main ():
     global Vault
     global TeamList
     export_import_data = ""
+    inputS = ""
     countd = 0
     DOUBLE = True
     #input = "1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/2,1058,1,2,1,0,4,1,1,4,4,7,4,0,1,0,0,1,No comment/"
-    input = sys.stdin.read()
+    inputL = sys.stdin.read()
+    for i in range (len(inputL)):
+        inputS += inputL[i]
 
-    for char in input:
+
+    ##TODO: multiple lines are not working correctly. data passage problem?? presumably the input was not ok
+
+    for char in inputS:
         if char != "," and DOUBLE == True:
             DOUBLE = False
         if countd == 1:
