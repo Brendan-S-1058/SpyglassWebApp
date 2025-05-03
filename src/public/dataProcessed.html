@@ -152,17 +152,29 @@
     const autoPR = document.getElementById('auto%');
     const telePR = document.getElementById('tele%');
 
-    const newMax = document.createElement('td').innerHTML = Maxscore;
-    const newMed = document.createElement('td').innerHTML = Medianscore;
-    const newAvg = document.createElement('td').innerHTML = Averagescore;
-    const newCC = document.createElement('td').innerHTML = Climbconsistency;
-    const newLocAvg = document.createElement('td').innerHTML = locationavg;
-    const newAlgAvg = document.createElement('td').innerHTML = algaeavg;
-    const newCorAvg = document.createElement('td').innerHTML = coralavg;
-    const newTeleTotAvg = document.createElement('td').innerHTML = teleTavg;
-    const newAutoTotAvg = document.createElement('td').innerHTML = autoTavg;
-    const newAutoAvgP = document.createElement('td').innerHTML = teleavg;
-    const newTeleAvgP = document.createElement('td').innerHTML = autoavg;
+    const newMax = document.createElement('td');
+    const newMed = document.createElement('td');
+    const newAvg = document.createElement('td');
+    const newCC = document.createElement('td');
+    const newLocAvg = document.createElement('td');
+    const newAlgAvg = document.createElement('td');
+    const newCorAvg = document.createElement('td');
+    const newTeleTotAvg = document.createElement('td');
+    const newAutoTotAvg = document.createElement('td');
+    const newAutoAvgP = document.createElement('td');
+    const newTeleAvgP = document.createElement('td');
+
+    newMax.innerHTML = Maxscore;
+    newMed.innerHTML = Medianscore;
+    newAvg.innerHTML = Averagescore;
+    newCC.innerHTML = Climbconsistency;
+    newLocAvg.innerHTML = locationavg;
+    newAlgAvg.innerHTML = algaeavg;
+    newCorAvg.innerHTML = coralavg;
+    newTeleAvgP.innerHTML = teleTavg;
+    newAutoAvgP.innerHTML = autoTavg;
+    newAutoAvgP.innerHTML = teleavg;
+    newTeleAvgP.innerHTML = autoavg;
 
     maxR.appendChild(newMax);
     medR.appendChild(newMed);
