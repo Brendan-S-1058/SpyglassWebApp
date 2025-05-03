@@ -132,7 +132,7 @@
 
   function createCol(csv){
     const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-    if (fields.length !== 11) {
+    if (fields.length !== 12) {
       console.error("OOOH SOMEBODY doesn't know how to count (it's me)");
       return;
     }
