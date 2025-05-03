@@ -58,7 +58,7 @@ def Main ():
         holdMedL.append(int(dataLists[i][21]))
         if (int(dataLists[i][21]) > holdMax):
             holdMax = int(dataLists[i][21])
-        if dataLists[i][16] == 1 or dataLists[i][17] == 1:
+        if dataLists[i][16] == '1' or dataLists[i][17] == '1':
             holdClimb += 1
         holdTotal += int(dataLists[i][21])
         holdAlgae += int(dataLists[i][23])
