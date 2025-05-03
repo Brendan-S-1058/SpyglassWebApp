@@ -61,7 +61,7 @@ def Main ():
         holdCoral += int(dataLists[i][22])
         holdAuto += int(dataLists[i][19])
         holdTele += int(dataLists[i][20])
-        holdloc += int(dataLists[i][24])
+        holdLoc += int(dataLists[i][24])
     holdMedL.sort()
     while len(holdMedL)>2:
         holdMedL.pop(0)
@@ -77,11 +77,11 @@ def Main ():
     finArray.append(holdTotal/len(dataLists))
     finArray.append(holdAlgae/len(dataLists))
     finArray.append(holdCoral/len(dataLists))
-    finArray.append(holdloc/len(dataLists))
+    finArray.append(holdLoc/len(dataLists))
     finArray.append(holdAuto/len(dataLists))
     finArray.append(holdTele/len(dataLists))
-    finArray.append(holdAuto/holdTele)
-    finArray.append(holdTele/holdTele)
+    finArray.append(((holdAuto/holdTotal)*1000)//10)
+    finArray.append(((holdTele/holdTotal)*1000)//10)
 
 Main ()
 print (json.dumps(finArray))
