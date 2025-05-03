@@ -125,9 +125,7 @@
         console.error(e);
         return;
       }
-      overallData.forEach(col => {
-        createCol(col);
-      });
+      createCol(overallData)
       
       });
   console.log(qrs);
