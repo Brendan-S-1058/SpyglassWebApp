@@ -53,10 +53,13 @@ def Main ():
     holdAuto = 0
     holdTele = 0
     holdLoc = 0 
+    holdClimb = 0
     for i in range (len(dataLists)):
         holdMedL.append(int(dataLists[i][21]))
         if (int(dataLists[i][21]) > holdMax):
             holdMax = int(dataLists[i][21])
+        if dataLists[i][16] == 1 or dataLists[i][17] == 1:
+            holdClimb += 1
         holdTotal += int(dataLists[i][21])
         holdAlgae += int(dataLists[i][23])
         holdCoral += int(dataLists[i][22])
@@ -71,14 +74,15 @@ def Main ():
         holdMedI = (holdMedL[0]+holdMedL[1])/2
     else:
         holdMedI = holdMedL[0]
-
-    ##//Max score, median score, average score, avg algae score, avg coral score, avg loc score, avg auto score, avg tele score, avg auto % total score, avg tele % total score
+    ##Maxscore, Medianscore, Averagescore, Climbconsistency, algaeavg, coralavg,locationavg, teleTavg, autoTavg, autoavg, teleavg
+    ##//Max score, median score, average score,climb, avg algae score, avg coral score, avg loc score, avg auto score, avg tele score, avg auto % total score, avg tele % total score
     finArray+=(str(holdMax)) + ','
     finArray+=(str(holdMedI)) + ','
     finArray+=(str(holdTotal/len(dataLists))) + ','
+    finArray+=(str((holdClimb/len(dataLists))*100))
+    finArray+=(str(holdLoc/len(dataLists))) + ','
     finArray+=(str(holdAlgae/len(dataLists))) + ','
     finArray+=(str(holdCoral/len(dataLists))) + ','
-    finArray+=(str(holdLoc/len(dataLists))) + ','
     finArray+=(str(holdAuto/len(dataLists))) + ','
     finArray+=(str(holdTele/len(dataLists))) + ','
     finArray+=(str(((holdAuto/holdTotal)*1000)//10)) + ','
