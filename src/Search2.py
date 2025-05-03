@@ -82,6 +82,5 @@ def Main ():
     finArray.append(str(holdTele/len(dataLists)))
     finArray.append(str(((holdAuto/holdTotal)*1000)//10))
     finArray.append(str(((holdTele/holdTotal)*1000)//10))
-)
 Main ()
 print (json.dumps(finArray))
