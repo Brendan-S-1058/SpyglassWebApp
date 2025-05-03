@@ -72,16 +72,16 @@ def Main ():
         holdMedI = holdMedL[0]
 
     ##//Max score, median score, average score, avg algae score, avg coral score, avg loc score, avg auto score, avg tele score, avg auto % total score, avg tele % total score
-    finArray.append(holdMax)
-    finArray.append(holdMedI)
-    finArray.append(holdTotal/len(dataLists))
-    finArray.append(holdAlgae/len(dataLists))
-    finArray.append(holdCoral/len(dataLists))
-    finArray.append(holdLoc/len(dataLists))
-    finArray.append(holdAuto/len(dataLists))
-    finArray.append(holdTele/len(dataLists))
-    finArray.append(((holdAuto/holdTotal)*1000)//10)
-    finArray.append(((holdTele/holdTotal)*1000)//10)
-
+    finArray.append(str(holdMax))
+    finArray.append(str(holdMedI))
+    finArray.append(str(holdTotal/len(dataLists)))
+    finArray.append(str(holdAlgae/len(dataLists)))
+    finArray.append(str(holdCoral/len(dataLists)))
+    finArray.append(str(holdLoc/len(dataLists)))
+    finArray.append(str(holdAuto/len(dataLists)))
+    finArray.append(str(holdTele/len(dataLists)))
+    finArray.append(str(((holdAuto/holdTotal)*1000)//10))
+    finArray.append(str(((holdTele/holdTotal)*1000)//10)
+)
 Main ()
 print (json.dumps(finArray))
