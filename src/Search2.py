@@ -79,7 +79,7 @@ def Main ():
     finArray+=(str(holdMax)) + ','
     finArray+=(str(holdMedI)) + ','
     finArray+=(str(holdTotal/len(dataLists))) + ','
-    finArray+=(str((holdClimb/len(dataLists))*100))
+    finArray+=(str((holdClimb/len(dataLists))*100)) + ','
     finArray+=(str(holdLoc/len(dataLists))) + ','
     finArray+=(str(holdAlgae/len(dataLists))) + ','
     finArray+=(str(holdCoral/len(dataLists))) + ','
