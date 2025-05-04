@@ -88,6 +88,7 @@
     }
     document.getElementById("Submit").addEventListener('click', () => {
       // add a save to permanent .txt file??
+      const rows = Array.from(tableBody.rows);
       overallProcess(rows.map(row =>
       Array.from(row.cells)
         .slice(0, 19)
