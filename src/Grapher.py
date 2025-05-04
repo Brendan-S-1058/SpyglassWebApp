@@ -90,7 +90,5 @@ def Main ():
             plt.savefig(filepath, dpi=300)
             plt.close()
 
-
-
 Main ()
-print (("NO ERRORS YAY"))
+print (json.dumps("NO ERRORS YAY"))
