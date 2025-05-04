@@ -74,8 +74,8 @@ def Main ():
         holdMedI = (holdMedL[0]+holdMedL[1])/2
     else:
         holdMedI = holdMedL[0]
-    ##Maxscore, Medianscore, Averagescore, Climbconsistency, algaeavg, coralavg,locationavg, teleTavg, autoTavg, autoavg, teleavg
-    ##//Max score, median score, average score,climb, avg algae score, avg coral score, avg loc score, avg auto score, avg tele score, avg auto % total score, avg tele % total score
+    ##Maxscore, Medianscore, Averagescore, Climbconsistency, algaeavg, coralavg,locationavg, autoavg, teleavg, teleTavg, autoTavg
+    ##//Max score, median score, average score, climb, avg algae score, avg coral score, avg loc score, avg auto score, avg tele score, avg auto % total score, avg tele % total score
     finArray+=(str(holdMax)) + ','
     finArray+=(str(holdMedI)) + ','
     finArray+=(str(holdTotal/len(dataLists))) + ','
@@ -83,8 +83,8 @@ def Main ():
     finArray+=(str((1000*holdLoc/holdTotal)//10)) + ','
     finArray+=(str((1000*holdAlgae/holdTotal)//10)) + ','
     finArray+=(str((1000*holdCoral/holdTotal)//10)) + ','
-    finArray+=(str((1000*holdAuto/holdTotal)//10)) + ','
-    finArray+=(str((1000*holdTele/holdTotal)//10)) + ','
+    finArray+=(str((1000*holdAuto/len(dataLists))//10)) + ','
+    finArray+=(str((1000*holdTele/len(dataLists))//10)) + ','
     finArray+=(str(((1000*holdAuto/holdTotal))//10)) + ','
     finArray+=(str(((1000*holdTele/holdTotal))//10))
 Main ()
