@@ -43,7 +43,7 @@ def Main ():
             dataLists.append(holdList)
             holdList = []
             commaCount = 0
-    
+
     holdMax = 0
     holdMedL = []
     holdMedI = 0
