@@ -12,33 +12,26 @@ def Main ():
     inputR = sys.stdin.read()
     inputS = str(json.loads(inputR))
 
-    print (inputS, file=sys.stderr)
-
     #team #	match #	auto move	auto L1	auto L2	auto L3	auto L4	auto Processor	auto Net	tele L1	tele L2	tele L3	tele L4	tele processor	tele net	end park	end shallow cage	end deep cage	comments	actions
     #1058	1	1	2	1	2	4	1	1	4	4	4	4	1	1	0	0	1	No comment	Delete
 
-    #inputS = '1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,69,3467,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,nc,100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool,67,3467,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,nc,68,3467,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,nc'
+    #inputS = '1058,1,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,,1058,100,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool,,3467,100,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool,'
     holdList = []
     hold = ""
+    one = True
     commaCount = 0
-    DOUBLE = True
-    countd = 0
     export_import_data = ""
+    inputS += ','
 
     for char in inputS:
-        if char != "," and DOUBLE == True:
-            DOUBLE = False
-        if countd == 1:
-            export_import_data = export_import_data + "\n"
-            if char == ",":
-                DOUBLE = True
-        countd = 0
-        if char == "/":
-            countd = 1
-        if DOUBLE == False:
-            export_import_data = export_import_data + char
-    
-    export_import_data += ','
+        if char != ',':
+            export_import_data += char
+            one = False
+        elif (one == False):
+            export_import_data += char
+            one = True
+        
+    print(export_import_data)
     
     for char in export_import_data:
         if char != "," and char != "\n" and char != "\"":
@@ -55,13 +48,13 @@ def Main ():
     
     for i in range (len(dataLists)):
         if dataLists[i] not in teamCount:
-            teamCount.append(dataLists[i][1])
+            teamCount.append(dataLists[i][0])
 
     for i in range (len(teamCount)):
         hold2list = []
         if teamCount[i] not in (alreadyRun):
             for i2 in range (len(dataLists)):
-                if teamCount[i] in dataLists[i2][1]:
+                if teamCount[i] in dataLists[i2][0]:
                     hold2list.append(dataLists[i2])
             major.append (hold2list)
         alreadyRun.append (teamCount[i])
@@ -73,13 +66,13 @@ def Main ():
             autoTotalYAxis2 = []
             teleTotalXAxis2 = []
             for match in major[i]:
-                currentTeam = match[1]
+                currentTeam = match[0]
                 autoTotal = ((int(match[2])*3)+(int(match[3])*3)+(int(match[4])*4)+(int(match[5])*6)+(int(match[6])*7)+(int(match[7])*6)+(int(match[8])*4))
                 teleTotal = ((int(match[9])*2)+(int(match[10])*3)+(int(match[11])*4)+(int(match[12])*5)+(int(match[13])*6)+(int(match[14])*4)+(int(match[15])*2)+(int(match[16])*6)+(int(match[17])*12))
                 autoTotalYAxis2.append(autoTotal)
                 teleTotalXAxis2.append(teleTotal)                
                 pointsTotalYAxis1.append(autoTotal + teleTotal)
-                matchNumberXAxis1.append(match[0])
+                matchNumberXAxis1.append(match[1])
 
             plt.plot(matchNumberXAxis1, pointsTotalYAxis1, marker='o', linestyle='-', color='b')
             plt.xlabel('Match #')
@@ -102,4 +95,4 @@ def Main ():
 
 
 Main ()
-print (json.dumps(["NO ERRORS YAY"]))
+print (("NO ERRORS YAY"))
