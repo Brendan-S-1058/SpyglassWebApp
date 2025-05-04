@@ -85,7 +85,7 @@ def Main ():
     finArray+=(str((1000*holdCoral/holdTotal)//10)) + ','
     finArray+=(str((1000*holdAuto/holdTotal)//10)) + ','
     finArray+=(str((1000*holdTele/holdTotal)//10)) + ','
-    finArray+=(str(((holdAuto/holdTotal)*1000)//10)) + ','
-    finArray+=(str(((holdTele/holdTotal)*1000)//10)) + ','
+    finArray+=(str(((1000*holdAuto/holdTotal))//10)) + ','
+    finArray+=(str(((1000*holdTele/holdTotal))//10))
 Main ()
 print (json.dumps(finArray))
