@@ -79,13 +79,6 @@ def Main ():
                 pointsTotalYAxis1.append(autoTotal + teleTotal)
                 matchNumberXAxis1.append(match[0])
 
-            print (matchNumberXAxis1)
-            print(teleTotalXAxis2)
-            print (pointsTotalYAxis1)
-            print (autoTotalYAxis2)
-
-
-
             plt.plot(matchNumberXAxis1, pointsTotalYAxis1, marker='o', linestyle='-', color='b')
             plt.xlabel('Match #')
             plt.ylabel('Total Points Scores')
