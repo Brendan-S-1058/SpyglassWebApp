@@ -30,8 +30,6 @@ def Main ():
         elif (one == False):
             export_import_data += char
             one = True
-        
-    print(export_import_data)
     
     for char in export_import_data:
         if char != "," and char != "\n" and char != "\"":
