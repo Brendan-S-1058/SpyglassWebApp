@@ -197,7 +197,7 @@ def Graph ():
      #   print (y)
 
         # Specify the folder path
-        folder_path = "data/ScouterGraphs"
+        folder_path = "public/data/ScouterGraphs"
 
         #Ensure the folder exists
         os.makedirs(folder_path, exist_ok=True)
@@ -503,7 +503,7 @@ def NewTab ():
         plt.legend()
 
         # Define the full path to save the image
-        graph_path = os.path.join("data/ScouterGraphs", str(PureTeamList[i2]) + ".png")
+        graph_path = os.path.join("public/data/ScouterGraphs", str(PureTeamList[i2]) + ".png")
 
         # Save the graph
         plt.savefig(graph_path, dpi=300)
@@ -655,7 +655,7 @@ def NewTab ():
         plt.text(x[i], y[i], Jay1[keyList[i]])
     
     # Define the full path to save the image
-    graph_path = os.path.join("data/ScouterGraphs", "pickList" + ".png")
+    graph_path = os.path.join("public/data/ScouterGraphs", "pickList" + ".png")
 
     # Save the graph
     plt.savefig(graph_path, dpi=300)
@@ -707,7 +707,7 @@ def NewTab ():
 
     ####Start of Auto V. Tele import
 
-    graph_path = "data/ScouterGraphs/AutoVTele.png"
+    graph_path = "public/data/ScouterGraphs/AutoVTele.png"
         # Search for an existing file with the same name
     query = f"name='AutoVTele.png' and mimeType='image/png' and '{'1_NGr0tLE9MJOWvjjHJo_U7-07iJfuhTj'}' in parents"
     results = drive_service.files().list(q=query, fields="files(id)").execute()
