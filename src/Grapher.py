@@ -107,4 +107,4 @@ def Main ():
 
 
 Main ()
-print (json.dumps("NO ERRORS YAY"))
+print (json.dumps(["NO ERRORS YAY"]))
