@@ -12,6 +12,8 @@ def Main ():
     inputR = sys.stdin.read()
     inputS = str(json.loads(inputR))
 
+    print (inputS, file=sys.stderr)
+
     #team #	match #	auto move	auto L1	auto L2	auto L3	auto L4	auto Processor	auto Net	tele L1	tele L2	tele L3	tele L4	tele processor	tele net	end park	end shallow cage	end deep cage	comments	actions
     #1058	1	1	2	1	2	4	1	1	4	4	4	4	1	1	0	0	1	No comment	Delete
 
