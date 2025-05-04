@@ -83,8 +83,8 @@ def Main ():
     finArray+=(str((1000*holdLoc/holdTotal)//10)) + ','
     finArray+=(str((1000*holdAlgae/holdTotal)//10)) + ','
     finArray+=(str((1000*holdCoral/holdTotal)//10)) + ','
-    finArray+=(str((1000*holdAuto/len(dataLists))//10)) + ','
-    finArray+=(str((1000*holdTele/len(dataLists))//10)) + ','
+    finArray+=(str((holdAuto/len(dataLists)))) + ','
+    finArray+=(str((holdTele/len(dataLists)))) + ','
     finArray+=(str(((1000*holdAuto/holdTotal))//10)) + ','
     finArray+=(str(((1000*holdTele/holdTotal))//10))
 Main ()
