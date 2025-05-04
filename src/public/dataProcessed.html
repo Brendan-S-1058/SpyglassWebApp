@@ -157,21 +157,24 @@
         return;
       }
       createCol(overallData);
+
       try {
-      const g1 = document.createElement('img', src="data/ScouterGraphs/"+ searchTerm +".png");
-      const space = document.createElement('p');
-      const g2 = document.createElement('img', src="data/ScouterGraphs/"+ searchTerm +"avt.png" );
-      const division = document.getElementById("images");
+        const g1 = document.createElement('img');
+        g1.src = "data/ScouterGraphs/" + searchTerm + ".png";
 
-      space.innerHTML=`
-      
-      `
+        const space = document.createElement('p');
+        space.innerHTML = '&nbsp;'; // optional: creates a visible space
 
-      division.appendChild(g1);
-      division.appendChild(space);
-      division.appendChild(g2);
+        const g2 = document.createElement('img');
+        g2.src = "data/ScouterGraphs/" + searchTerm + "avt.png";
+
+        const division = document.getElementById("images");
+
+        division.appendChild(g1);
+        division.appendChild(space);
+        division.appendChild(g2);
       } catch (e) {
-        console.error("graphs not loaded, check search term and make sure you submitted data on raw page");
+        console.error("Graphs not loaded. Check search term and make sure you submitted data on the raw page.");
         console.error(e);
         return;
       }
