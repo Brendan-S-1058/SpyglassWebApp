@@ -101,8 +101,8 @@
 
 
     </p>
-    <img src="data/ScouterGraphs/1058.png" alt="Essentially best team ever" width="600" height="400">
     </div>
+    <div id="images"></div>
 </body>
 <script>
     const qrs = JSON.parse(localStorage.getItem("qrCodes"));
@@ -156,7 +156,24 @@
         console.error(e);
         return;
       }
-      createCol(overallData)
+      createCol(overallData);
+      try {
+      const g1 = document.createElement('img', src="data/ScouterGraphs/"+ searchTerm +".png");
+      const space = document.createElement('p');
+      const g2 = document.createElement('img', src="data/ScouterGraphs/"+ searchTerm +"avt.png" );
+      const division = document.getElementById("images");
+
+      space.innerHTML=`
+      
+      `
+
+      division.appendChild(g1);
+      division.appendChild(space);
+      division.appendChild(g2);
+      } catch (e) {
+        console.error("graphs not loaded, check search term and make sure you submitted data on raw page");
+        return;
+      }
       
       });
   console.log(qrs);

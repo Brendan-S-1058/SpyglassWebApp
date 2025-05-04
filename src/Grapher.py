@@ -1,0 +1,110 @@
+import sys
+import json
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+
+dataLists = []
+teamCount = []
+major = []
+alreadyRun = []
+def Main ():
+    inputR = sys.stdin.read()
+    inputS = str(json.loads(inputR))
+
+    #team #	match #	auto move	auto L1	auto L2	auto L3	auto L4	auto Processor	auto Net	tele L1	tele L2	tele L3	tele L4	tele processor	tele net	end park	end shallow cage	end deep cage	comments	actions
+    #1058	1	1	2	1	2	4	1	1	4	4	4	4	1	1	0	0	1	No comment	Delete
+
+    #inputS = '1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,69,3467,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,nc,100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool,67,3467,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,nc,68,3467,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,nc'
+    holdList = []
+    hold = ""
+    commaCount = 0
+    DOUBLE = True
+    countd = 0
+    export_import_data = ""
+
+    for char in inputS:
+        if char != "," and DOUBLE == True:
+            DOUBLE = False
+        if countd == 1:
+            export_import_data = export_import_data + "\n"
+            if char == ",":
+                DOUBLE = True
+        countd = 0
+        if char == "/":
+            countd = 1
+        if DOUBLE == False:
+            export_import_data = export_import_data + char
+    
+    export_import_data += ','
+    
+    for char in export_import_data:
+        if char != "," and char != "\n" and char != "\"":
+            hold += char 
+            #print (hold)
+        if char == "," and commaCount != 28:
+            holdList.append(hold)
+            hold = ""
+            commaCount += 1
+        if commaCount == 19:
+            dataLists.append(holdList)
+            holdList = []
+            commaCount = 0
+    
+    for i in range (len(dataLists)):
+        if dataLists[i] not in teamCount:
+            teamCount.append(dataLists[i][1])
+
+    for i in range (len(teamCount)):
+        hold2list = []
+        if teamCount[i] not in (alreadyRun):
+            for i2 in range (len(dataLists)):
+                if teamCount[i] in dataLists[i2][1]:
+                    hold2list.append(dataLists[i2])
+            major.append (hold2list)
+        alreadyRun.append (teamCount[i])
+    
+    for i in range (len(teamCount)):
+        if i < len(major):
+            pointsTotalYAxis1 = []
+            matchNumberXAxis1 = []
+            autoTotalYAxis2 = []
+            teleTotalXAxis2 = []
+            for match in major[i]:
+                currentTeam = match[1]
+                autoTotal = ((int(match[2])*3)+(int(match[3])*3)+(int(match[4])*4)+(int(match[5])*6)+(int(match[6])*7)+(int(match[7])*6)+(int(match[8])*4))
+                teleTotal = ((int(match[9])*2)+(int(match[10])*3)+(int(match[11])*4)+(int(match[12])*5)+(int(match[13])*6)+(int(match[14])*4)+(int(match[15])*2)+(int(match[16])*6)+(int(match[17])*12))
+                autoTotalYAxis2.append(autoTotal)
+                teleTotalXAxis2.append(teleTotal)                
+                pointsTotalYAxis1.append(autoTotal + teleTotal)
+                matchNumberXAxis1.append(match[0])
+
+            print (matchNumberXAxis1)
+            print(teleTotalXAxis2)
+            print (pointsTotalYAxis1)
+            print (autoTotalYAxis2)
+
+
+
+            plt.plot(matchNumberXAxis1, pointsTotalYAxis1, marker='o', linestyle='-', color='b')
+            plt.xlabel('Match #')
+            plt.ylabel('Total Points Scores')
+            plt.title(str(currentTeam))
+            #filepath=os.path.join(str(currentTeam) + ".png")
+            filepath=os.path.join("public/data/ScouterGraphs", str(currentTeam) + ".png")
+            plt.savefig(filepath, dpi=300)
+            plt.close()
+
+            plt.plot(teleTotalXAxis2, autoTotalYAxis2, marker='o', color='b')
+            plt.xlabel('Tele Total')
+            plt.ylabel('Auto Total')
+            plt.title(str(currentTeam) + "auto V. tele")
+            #filepath=os.path.join(str(currentTeam) + "avt.png")
+            filepath=os.path.join("public/data/ScouterGraphs", str(currentTeam) + "avt.png")
+            plt.savefig(filepath, dpi=300)
+            plt.close()
+
+
+
+Main ()
+print (json.dumps("NO ERRORS YAY"))
