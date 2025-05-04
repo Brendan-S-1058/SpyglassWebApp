@@ -98,11 +98,34 @@
 <script>
     const qrs = JSON.parse(localStorage.getItem("qrCodes"));
     const tableBody = document.getElementById("data-table-body");
+    const maxR = document.getElementById('maxS');
+    const medR = document.getElementById('medS');
+    const avgR = document.getElementById('avgS');
+    const climbPR = document.getElementById('Climb%');
+    const locPR = document.getElementById('loc%');
+    const algPR = document.getElementById('algae%');
+    const autoR = document.getElementById('avgAuto');
+    const teleR = document.getElementById('avgTele');
+    const corPR = document.getElementById('coral%');
+    const autoPR = document.getElementById('auto%');
+    const telePR = document.getElementById('tele%');
 
     document.getElementById("searchButton").addEventListener("click", async () => {
       const searchTerm = document.getElementById("Search").value.toLowerCase();
       let values = [];
       tableBody.innerHTML = '';
+      maxR.innerHTML = '';
+      medR.innerHTML = '';
+      avgR.innerHTML = '';
+      maxR.innerHTML = '';
+      climbPR.innerHTML = '';
+      locPR.innerHTML = '';
+      algPR.innerHTML = '';
+      autoR.innerHTML = '';
+      teleR.innerHTML = '';
+      corPR.innerHTML = '';
+      autoPR.innerHTML = '';
+      telePR.innerHTML = '';
       qrs.forEach(qr => {
         if (qr.includes(searchTerm)) {
           values.push(qr);
@@ -139,18 +162,6 @@
     const [
     Maxscore, Medianscore, Averagescore, Climbconsistency, locationavg, algaeavg, coralavg, autoavg, teleavg, autoTavg, teleTavg
     ] = fields;
-
-    const maxR = document.getElementById('maxS');
-    const medR = document.getElementById('medS');
-    const avgR = document.getElementById('avgS');
-    const climbPR = document.getElementById('Climb%');
-    const locPR = document.getElementById('loc%');
-    const algPR = document.getElementById('algae%');
-    const autoR = document.getElementById('avgAuto');
-    const teleR = document.getElementById('avgTele');
-    const corPR = document.getElementById('coral%');
-    const autoPR = document.getElementById('auto%');
-    const telePR = document.getElementById('tele%');
 
     const newMax = document.createElement('td');
     const newMed = document.createElement('td');
