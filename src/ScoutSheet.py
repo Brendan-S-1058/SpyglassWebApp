@@ -33,9 +33,9 @@ def update ():
             countd = 1
         if DOUBLE == False:
             export_import_data = export_import_data + char
-    with open('data/ScoutIn.txt', 'r') as file:
+    with open('public/data/ScoutIn.txt', 'r') as file:
         holdInput = file.read ()
-    with open('data/ScoutIn.txt', 'w') as f:
+    with open('public/data/ScoutIn.txt', 'w') as f:
         f.write(holdInput)
         f.write('\n')
         f.write(export_import_data)
@@ -72,7 +72,7 @@ def Main ():
     service = build('sheets', 'v4', credentials=credentials)
 
     # Read the CSV file
-    df = pd.read_csv('data/Reefscape 2025 base - Sheet1.csv')  # Replace with your CSV file path
+    df = pd.read_csv('public/data/Reefscape 2025 base - Sheet1.csv')  # Replace with your CSV file path
 
     # Replace NaN values with empty strings or a placeholder like 'N/A'
     df = df.fillna('')  # Replace NaN with an empty string
@@ -225,7 +225,7 @@ def Graph ():
   #  print ("Done graphing")
 
 def NewSheet (passval):
-    with open('data/ScoutIn.txt', 'r') as file:
+    with open('public/data/ScoutIn.txt', 'r') as file:
         datain = file.read()
     global TeamList
     global Vault
@@ -325,11 +325,11 @@ def NewSheet (passval):
 
         #DataList.append("UNCOMMENT EPA")
         if passval == True:
-            with open('data/Reefscape 2025 base - Sheet1.csv', 'r') as file:
+            with open('public/data/Reefscape 2025 base - Sheet1.csv', 'r') as file:
                 hold = file.read ()
         else:
             hold = "What in the heck,placeholders,in,this,line,seem,to,get,ignored,as,long,as,they,are,the,first,line,and,no,longer,than,the,list,of,values,that,will,be,added,mustbeequal\nMatch Number,Team Number,Auto Move,L1 auto,L2 auto,L3 auto,L4 auto,processor auto, net auto,L1 tele,L2 tele,L3 tele,L4 tele,processor tele,net tele,park end,shallow cage end,deep cage end,auto total,tele total,total,coral score,algae score,location score,coral score %,algae score %,location score %,average score at event,natural epa,comments\n"
-        with open('data/Reefscape 2025 base - Sheet1.csv', 'w') as f:
+        with open('public/data/Reefscape 2025 base - Sheet1.csv', 'w') as f:
             f.write(hold)
             f.write(str(DataList[0])+',')
             f.write(str(DataList[1])+",")
@@ -454,13 +454,13 @@ def NewTab ():
                     countf = 0
                 else:            
                     pureTabData = pureTabData + char
-        with open ("data/TabData.csv", 'w') as file:
+        with open ("public/data/TabData.csv", 'w') as file:
             file.write ("What in the heck,placeholders,in,this,line,seem,to,get,ignored,as,long,as,they,are,the,first,line,and,no,longer,than,the,list,of,values,that,will,be,added,mustbeequal\nMatch Number,Team Number,Auto Move,L1 auto,L2 auto,L3 auto,L4 auto,processor auto, net auto,L1 tele,L2 tele,L3 tele,L4 tele,processor tele,net tele,park end,shallow cage end,deep cage end,auto total,tele total,total,coral score,algae score,location score,coral score %,algae score %,location score %,average score at event,natural epa,comments\n")
             file.write (str(pureTabData)+"\n")
             file.write ("max score:,=MAX(U2:U"+str(TeamInstanceCount[PureTeamList[i2]]+1)+")")
             file.write (",max score delta processor:,=MAX(U2:U"+str(TeamInstanceCount[PureTeamList[i2]]+1)+")-4*("+(str(Vault[str(PureTeamList[i2])+"a"+str(match)+"a"+str(13)]))+"+"+str(Vault[str(PureTeamList[i2])+"a"+str(match)+"a"+str(7)])+")")
 
-        tab = pd.read_csv('data/TabData.csv')
+        tab = pd.read_csv('public/data/TabData.csv')
         tab = tab.fillna('')
         values = tab.values.tolist()
 
@@ -593,7 +593,7 @@ def NewTab ():
 
         keyList = sorted(Jay1, key=Jay1.get, reverse=True)
         keyList.sort(reverse=True)
-        with open ("data/TabData.csv", 'w') as file:
+        with open ("public/data/TabData.csv", 'w') as file:
             #print (teamFind)
             file.write ("epic,equal,placeholder,climb,processor,net\nteam #,avg pieces scored,avg points scored,climb consistency %,can process?,can net?\n")
             for j1 in range (len(keyList)):
@@ -609,7 +609,7 @@ def NewTab ():
                     file.write ("n")
                 file.write("\n")
         #this section is called exactly once for every individual team.
-    tab = pd.read_csv('data/TabData.csv')
+    tab = pd.read_csv('public/data/TabData.csv')
     tab = tab.fillna('')
     values = tab.values.tolist()
 
