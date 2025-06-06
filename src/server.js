@@ -93,6 +93,36 @@ app.post("/grapher", (req, res) => {
     
 });
 
+app.post("/publicStorage", (req, res) => {
+    const input = String(req.body);
+    const venvPath = path.join(__dirname, "venv/bin/python");
+    const individualProcess = spawn(venvPath, ["writePublic.py"]);
+
+    let output = "";
+
+    individualProcess.stdin.write(JSON.stringify(input));
+    individualProcess.stdin.end();
+
+    individualProcess.stdout.on("data", (data) => {
+        output += data.toString();
+    });
+
+    individualProcess.on("close", (code) => {
+        try {
+            const jsonResponse = JSON.parse(output);
+            res.json(jsonResponse);
+        } catch (error) {
+            res.status(500).json({ error: "Invalid response from Python script" });
+        }
+    });
+
+    // Handle errors
+    individualProcess.stderr.on("data", (data) => {
+        console.error(`Error: ${data}`);
+    });
+    
+});
+
 app.post("/overall", (req, res) => {
     const input = String(req.body);
     const venvPath = path.join(__dirname, "venv/bin/python");
