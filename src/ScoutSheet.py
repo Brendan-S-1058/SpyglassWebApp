@@ -57,8 +57,9 @@ def Main ():
     # Spreadsheet ID and range to update
     #GSD Sheet
     #SPREADSHEET_ID = '1d8qs861mw2UMLWdYiq7hEsPWqjKB9y8Hv8IcM-GhqmE'  # Replace with your sheet's ID
-    SPREADSHEET_ID = '1js3i_A4MGj8RY3AIyMJ9Oxmc68hbqt8u8l_TjY-5IpU'
-    RANGE_NAME = 'Reefscape 2025 base - Sheet1!A1'  # Replace with your desired sheet and range
+    #SPREADSHEET_ID = '1js3i_A4MGj8RY3AIyMJ9Oxmc68hbqt8u8l_TjY-5IpU'
+    SPREADSHEET_ID = '1qaikUbJbw4dKaAzEX8JDI16yrgazJW8jCHsNGCB9j4Q'
+    RANGE_NAME = '!A1'  # Replace with your desired sheet and range
 
     # Authenticate using the service account
     credentials = Credentials.from_service_account_file(
@@ -536,7 +537,7 @@ def NewTab ():
 
         image_url = f"https://drive.google.com/uc?id={file_id}"
 
-        spreadsheet = client.open("UVM - Reefscape")  # Open the existing spreadsheet
+        spreadsheet = client.open("Battlecry")  # Open the existing spreadsheet
         worksheet = spreadsheet.worksheet(PureTeamList[i2])  # Select the sheet
 
         height = 300  # Adjust height as needed
@@ -688,7 +689,7 @@ def NewTab ():
 
     image_url = f"https://drive.google.com/uc?id={file_id}"
 
-    spreadsheet = client.open("UVM - Reefscape")  # Open the existing spreadsheet
+    spreadsheet = client.open("Battlecry")  # Open the existing spreadsheet
     worksheet = spreadsheet.worksheet('Pick List')  # Select the sheet
 
     height = 300  # Adjust height as needed
@@ -733,7 +734,7 @@ def NewTab ():
 
     image_url = f"https://drive.google.com/uc?id={file_id}"
 
-    spreadsheet = client.open("UVM - Reefscape")  # Open the existing spreadsheet
+    spreadsheet = client.open("Battlecry")  # Open the existing spreadsheet
     worksheet = spreadsheet.worksheet('Pick List')  # Select the sheet
 
     height = 300  # Adjust height as needed
