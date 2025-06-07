@@ -4,4 +4,3 @@ matplotlib
 google-api-python-client
 statbotics
 gspread
-time
