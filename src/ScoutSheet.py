@@ -13,10 +13,10 @@ import json
 import gspread
 from googleapiclient.http import MediaFileUpload
 
-print(json.dumps("start"))
+print ("start", file=sys.stderr)
 time.sleep(10)
 if (resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024 > 400):
-    print (json.dumps("That was quick"))
+    print ("That was quick", file=sys.stderr)
 
 def update ():
     global Vault
@@ -442,7 +442,7 @@ def NewTab ():
     for i2 in range (len(PureTeamList)):
         if resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024 > 400:
             time.sleep(10)
-            print(json.dumps("WAITING -- WAITING"))
+            print("WAITING -- WAITING", file = sys.stderr)
         tabData = ""
         pureTabData = ""
         totalScores = []
@@ -532,7 +532,7 @@ def NewTab ():
             file_id = files[0]['id']
             media = MediaFileUpload(graph_path, mimetype="image/png", resumable=True)
             drive_service.files().update(fileId=file_id, body={}, media_body=media).execute()
-            print(f"Updated existing image: {PureTeamList[i2]}")
+            print(f"Updated existing image: {PureTeamList[i2]}", file=sys.stderr)
         else:
             # Otherwise, upload a new file
             file_metadata = {"name": PureTeamList[i2], "mimeType": "image/png"}
@@ -684,7 +684,7 @@ def NewTab ():
         file_id = files[0]['id']
         media = MediaFileUpload(graph_path, mimetype="image/png", resumable=True)
         drive_service.files().update(fileId=file_id, body={}, media_body=media).execute()
-        print(f"Updated existing image: {PureTeamList[i2]}")
+        print(f"Updated existing image: {PureTeamList[i2]}", file=sys.stderr)
     else:
         # Otherwise, upload a new file
         file_metadata = {"name": PureTeamList[i2], "mimeType": "image/png"}
@@ -729,7 +729,7 @@ def NewTab ():
         file_id = files[0]['id']
         media = MediaFileUpload(graph_path, mimetype="image/png", resumable=True)
         drive_service.files().update(fileId=file_id, body={}, media_body=media).execute()
-        print(f"Updated existing image: {PureTeamList[i2]}")
+        print(f"Updated existing image: {PureTeamList[i2]}", file=sys.stderr)
     else:
         # Otherwise, upload a new file
         file_metadata = {"name": PureTeamList[i2], "mimeType": "image/png"}
