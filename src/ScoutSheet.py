@@ -13,7 +13,7 @@ import json
 import gspread
 from googleapiclient.http import MediaFileUpload
 
-print ("start", file=sys.stderr)
+print (resource.getrusage(resource.RUSAGE_SELF).ru_maxrss, file=sys.stderr)
 time.sleep(10)
 if (resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024 > 400):
     print ("That was quick", file=sys.stderr)
