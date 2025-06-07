@@ -1,4 +1,20 @@
-ChatGPT said in terms of storage management:
+get server in stands??
+
+make individual team pages inside event pages - connect to API??
+add pit scouting section to team page
+allow scheduling of calls -- what does this even mean?? if multiple people send a call don't different
+scrunch team page (very long right now)
+
+allow access to a public sheet that is constant and run by the server? or maybe independant - google service
+accout connecting to a doc? Perhaps as a long periodic?? txt usually - saved overnight?
+
+add quartile analysis - 1073 does it and it looks really cool
+
+add a picklist page or mode on processed?
+
+
+
+ChatGPT said in terms of storage management (for sheets passing(which is probably not worth saving)):
 It seems like you're working with some data processing code that collects and manipulates robot performance data, updates Google Sheets, and generates charts for analysis. Let's break this down a bit and go over the main parts that might need attention.
 
 Key Points in Your Code:
