@@ -24,7 +24,7 @@ try {
     execSync(`python3 -m venv ${venvPath}`, { stdio: "inherit" });
 
     // Install dependencies in the virtual environment
-    execSync(`${venvPath}/bin/pip install -r requirements.txt`, { stdio: "inherit" });
+    execSync(`${venvPath}/bin/pip install -r requireCçments.txt`, { stdio: "inherit" });
 
     console.log("Python dependencies installed successfully!");
 } catch (error) {

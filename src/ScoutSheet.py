@@ -14,6 +14,8 @@ import gspread
 from googleapiclient.http import MediaFileUpload
 
 print(json.dumps("start"))
+if (resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024 > 400):
+    print (json.dumps("That was quick"))
 
 def update ():
     global Vault
