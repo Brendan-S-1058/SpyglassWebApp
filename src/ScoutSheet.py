@@ -507,7 +507,7 @@ def NewTab ():
         graph_path = os.path.join("public/data/ScouterGraphs", str(PureTeamList[i2]) + ".png")
 
         # Save the graph
-        plt.savefig(graph_path, dpi=300)
+        plt.savefig(graph_path, dpi=300, loc="lower right")
         plt.close()  # Close the plot to free memory
 
         drive_service = build("drive", "v3", credentials=credentials)
