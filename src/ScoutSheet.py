@@ -501,13 +501,13 @@ def NewTab ():
         plt.xlabel('Match #')
         plt.ylabel('Total Points Scored')
         plt.title(str(PureTeamList[i2]))
-        plt.legend()
+        plt.legend(loc="lower right")
 
         # Define the full path to save the image
         graph_path = os.path.join("public/data/ScouterGraphs", str(PureTeamList[i2]) + ".png")
 
         # Save the graph
-        plt.savefig(graph_path, dpi=300, loc="lower right")
+        plt.savefig(graph_path, dpi=300)
         plt.close()  # Close the plot to free memory
 
         drive_service = build("drive", "v3", credentials=credentials)
