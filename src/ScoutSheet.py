@@ -442,7 +442,8 @@ def NewTab ():
     for i2 in range (len(PureTeamList)):
         if resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024 > 400:
             time.sleep(10)
-            print("WAITING -- WAITING", file = sys.stderr)
+        print(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss, file = sys.stderr)
+        
         tabData = ""
         pureTabData = ""
         totalScores = []
