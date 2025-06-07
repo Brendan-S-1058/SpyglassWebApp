@@ -1,4 +1,73 @@
-everything is looking good, except the pyhton script does not seem to be running. probably just copy all the code into chatgpt and have it debug why it wouldn't work. 
-error seems to originate from input data: 
-also somewhere else, unknown, writing correctly to scoutin, not pushing to sheets or csv
-uncomment line 18
+ChatGPT said in terms of storage management:
+It seems like you're working with some data processing code that collects and manipulates robot performance data, updates Google Sheets, and generates charts for analysis. Let's break this down a bit and go over the main parts that might need attention.
+
+Key Points in Your Code:
+Data Handling:
+
+Your input data consists of performance metrics for different teams (e.g., Auto Move, Processor, Climb Count, etc.).
+
+Each team’s performance data is recorded in a list (DataList), and various aspects (e.g., scores, total points, comments) are written to a CSV file (TabData.csv).
+
+Writing Data to Sheets:
+
+You're creating and updating worksheets in Google Sheets. If a new sheet for a team doesn't already exist, it's created.
+
+The data is being written to a sheet using service.spreadsheets().values().update to store the metrics like auto scores, climb consistency, etc.
+
+Graph Generation:
+
+After processing the data, you're generating scatter plots and line charts (e.g., for Pick List, Auto vs Tele), saving these graphs as PNGs, and then uploading them to Google Drive.
+
+The images are then linked into the Google Sheets using the =IMAGE() function.
+
+Complex Data Aggregation:
+
+Inside NewTab(), you aggregate data for each team (e.g., totalPieces, climbCount, etc.), then create a sorted list of teams for a “Pick List” based on their performance.
+
+Additional statistics like climbConsistency and whether a team can process or net are calculated.
+
+Issues and Overflow
+Overflow:
+The main issue you’re mentioning is the overflow in the NewTab function as it loops through each team’s data. Specifically, the calculations for Vault[PureTeamList[i2] + "a" + str(i3)] and its use of memory can get heavy as the number of teams increases.
+
+If the data grows too large, it may overwhelm the system, particularly if you're tracking a lot of matches for each team. Given that the system checks the memory usage and pauses when it exceeds a certain threshold (if resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024 > 400:), this suggests you’re already aware of the memory limitations, but might need further optimization to avoid running into issues when the dataset expands.
+
+Suggestions for Improvement:
+Memory Management:
+
+Consider batch processing the data to avoid holding large datasets in memory at once. This could involve breaking down the data by smaller chunks (e.g., per team or per match) and processing them sequentially.
+
+Try optimizing your data structure to avoid repeated calculations. For example, you might store intermediate results (e.g., totalPieces, climbCount) in a separate array to reduce the complexity of accessing Vault multiple times.
+
+If you expect more teams and data, implement a more aggressive memory-saving strategy. One idea could be to streamline the file writing process instead of writing it all at once, or generate intermediate CSVs for each team and aggregate them in a final step.
+
+Refactor the Loops:
+
+Instead of processing each team in a nested loop, you might want to split it into smaller functions (e.g., one function for reading, another for calculations, and another for writing to Sheets). This will make it easier to debug and optimize the code for specific sections.
+
+Optimize the Graph Generation:
+
+Your graph generation (plt.plot) is being called inside a loop for each team. If you have many teams, this can be time-consuming. Consider generating graphs asynchronously or in batches, then upload them in a single operation.
+
+Google Sheets API Calls:
+
+Minimize API Calls: Each time you call the service.spreadsheets().values().update() function, it makes a request to the Google Sheets API. If you're dealing with a large number of updates, this can be slow. Instead, aggregate all the changes you need into a single update operation for each team or set of teams.
+
+Performance Considerations
+Use of Lists and Dictionaries:
+You're using Vault, Jay0, Jay1, etc., to store team data. These are large data structures that can take up a lot of memory. Consider using pandas DataFrames or NumPy arrays for numerical calculations, as they are more memory-efficient when handling large datasets.
+
+Graph Generation and File Upload:
+The graph generation and uploading to Google Drive might be taking significant time. If you can generate graphs for multiple teams at once (or periodically, not all at once), it will help with performance. You can also consider using batch uploads for these files.
+
+Next Steps:
+Break Down Functions:
+Try breaking down the code into smaller, more manageable functions. For example, one function for updating the spreadsheet, one for graph generation, and one for data aggregation.
+
+Optimize Loops and Memory:
+Ensure you're processing data in chunks and not loading everything into memory at once. If the dataset grows, this will help avoid running into memory-related issues.
+
+Test with a Smaller Dataset:
+Run the code with a small dataset to debug the logic and memory usage, then gradually scale it up.
+
+If you'd like, I can help refactor specific sections of your code to make it more efficient or easier to debug.
