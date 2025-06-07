@@ -10,7 +10,7 @@
 <body>
   <button id="filePickerBtn">Select ScoutIn.txt</button>
   <button id="runWithoutFileBtn">Run Without File</button>
-  <button id="runPY" disabled>Run Python Process</button>
+  <button id="runPY">Run Python Process</button>
   <button id="pass">pass</button>
   <p id="fileStatus">No file selected.</p>
   
@@ -171,7 +171,6 @@
                 stream.getTracks().forEach(track => track.stop());
                 if (!scanningWithoutFile) appendToFile(qrData);
                 hasScannedQR = true;
-                document.getElementById("runPY").disabled = false;
               } else {
                 requestAnimationFrame(scanQRCode);
               }
@@ -211,7 +210,6 @@
       .then((response) => {
         console.log("Response from Python:", response);
         localStorage.removeItem("qrCodes"); // Clear stored QR codes after running
-        document.getElementById("runPY").disabled = true;
         hasScannedQR = false;
       })
       .catch((err) => {
