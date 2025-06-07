@@ -7,9 +7,13 @@ from googleapiclient.discovery import build
 from google.oauth2.service_account import Credentials
 import statbotics
 import sys
+import time 
+import resource
 import json
 import gspread
 from googleapiclient.http import MediaFileUpload
+
+print(json.dumps("start"))
 
 def update ():
     global Vault
@@ -433,6 +437,9 @@ def NewTab ():
     #information location in list (1-30)
     sheet_names = [sheet.title for sheet in spreadsheet.worksheets()]
     for i2 in range (len(PureTeamList)):
+        if resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024 > 400:
+            time.sleep(10)
+            print(json.dumps("WAITING -- WAITING"))
         tabData = ""
         pureTabData = ""
         totalScores = []
