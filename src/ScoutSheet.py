@@ -7,16 +7,9 @@ from googleapiclient.discovery import build
 from google.oauth2.service_account import Credentials
 import statbotics
 import sys
-import time 
-import resource
 import json
 import gspread
 from googleapiclient.http import MediaFileUpload
-
-print (resource.getrusage(resource.RUSAGE_SELF).ru_maxrss, file=sys.stderr)
-time.sleep(10)
-if (resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024 > 400):
-    print ("That was quick", file=sys.stderr)
 
 def update ():
     global Vault
@@ -439,11 +432,7 @@ def NewTab ():
     #said team's number of matches: TeamInstancecount[PureTeamList[i]]
     #information location in list (1-30)
     sheet_names = [sheet.title for sheet in spreadsheet.worksheets()]
-    for i2 in range (len(PureTeamList)):
-        if resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024 > 400:
-            time.sleep(100)
-        print(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss, file = sys.stderr)
-        
+    for i2 in range (len(PureTeamList)):        
         tabData = ""
         pureTabData = ""
         totalScores = []
