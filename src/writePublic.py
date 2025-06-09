@@ -7,10 +7,15 @@ inputS = str(json.loads(inputR)) + ','
 def Main():
     with open ("public/data/Public.txt", 'r') as file:
         currentData = file.read()
-    processedCurrentData = makeStringList(currentData)
     processedInputData = makeStringList(inputS)
+    with open ("public/data/Public.txt", 'w') as f:
+        f.write(currentData)
+        f.write(processedInputData)
+        f.close ()
 
-def makeStringList (String):
+def processString (String):
+    commaCount = 0
+
     for char in String:
         if char != ',':
             export_import_data += char
@@ -18,8 +23,9 @@ def makeStringList (String):
         elif (one == False):
             export_import_data += char
             one = True
+    return export_import_data
     
-    for char in export_import_data:
+    '''for char in export_import_data:
         if char != "," and char != "\n" and char != "\"":
             hold += char 
             #print (hold)
@@ -31,9 +37,20 @@ def makeStringList (String):
             dataLists.append(holdList)
             holdList = []
             commaCount = 0
+    
+    returnString = ''
+    commas = 0
+    FIRST = True
+    
+    for outerI in range (len(holdList)):
+        for innerI in range (holdList[0]):
+            returnString += holdList[0][innerI]
+            if FIRST == False and commas < 28:
+                returnString += ','
+                commas += 1
+            if 
+            FIRST = False
+      '''      
 
-    return dataLists
-
-    print (processedCurrentData)
-    print (processedInputData)
+    #return dataLists
 Main()
