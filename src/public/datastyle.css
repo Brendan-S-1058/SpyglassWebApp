@@ -66,3 +66,23 @@ th, tr, td {
     font-size: 14px;
     font-family: "Crimson Text", serif;
 }
+.On {
+  background-color: #000;
+  border: none;
+  color: rgb(0, 255, 0);
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: "Crimson Text", serif;
+}
+.Off {
+  background-color: #000;
+  border: none;
+  color: rgb(255, 0, 0);
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: "Crimson Text", serif;
+}

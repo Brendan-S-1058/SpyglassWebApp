@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="subject" content="Education">
+  <meta name="keywords" content="education, learning, dashboard, data">
+  <meta name="description" content="A raw data dashboard for educational use.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crow's Nest</title>
+  <link rel="icon" type="image/x-icon" href="favico/favicon.ico">
+  <link href="datastyle.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto p-4" id="table">
+    <div id="title">
+      <h1 class="text-3xl font-bold mb-4">Pick List Generator</h1>
+    </div>
+    <div class="mb-4 flex justify-between items-center">
+      <button id="modePublic" class="On">Pull From Public</button>
+      <button id="sort" class="button">Sorting Method</button>
+      <button id="generate" class="button">Generate List</button>
+    </div>
+    <div class="overflow-auto border rounded-lg shadow bg-white">
+      <table class="min-w-full table-fixed">
+        <thead class="bg-gray-200 text-left">
+          <tr>
+          </tr>
+        </thead>
+        <tbody id="data-table-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+<script>
+  let modeState = 1;
+  document.getElementById('modePublic').addEventListener("click", () => {
+    modeState *= -1;
+    if (modeState == 1) {
+      document.getElementById('modePublic').className.replace("Off", "On");
+    } else if (modeState == -1) {
+      document.getElementById('modePublic').className.replace("On", "Off");
+    } 
+  });
+
+  document.getElementById('sort').addEventListener("click", () => {
+    if (modeState == -1) {
+      Sort ()
+    }
+    
+    Sort(modeState);
+  });
+
+  async function Sort(State) {
+    const res = await fetch ("/PLSort", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(State),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+    }
+
+    const json = await res.json();
+    return(json);
+    
+  }
+</script>
+</html>

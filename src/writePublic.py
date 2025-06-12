@@ -7,6 +7,7 @@ inputS = str(json.loads(inputR)) + ','
 def Main():
     with open ("public/data/Public.txt", 'r') as file:
         currentData = file.read()
+        file.close ()
     processedInputData = makeStringList(inputS)
     with open ("public/data/Public.txt", 'w') as f:
         f.write(currentData)
@@ -14,16 +15,12 @@ def Main():
         f.close ()
 
 def processString (String):
-    commaCount = 0
-
-    for char in String:
-        if char != ',':
-            export_import_data += char
-            one = False
-        elif (one == False):
-            export_import_data += char
-            one = True
-    return export_import_data
+    '''
+    What Do I need to do for this:
+    find key information
+    sort it
+    return it
+    '''
     
     '''for char in export_import_data:
         if char != "," and char != "\n" and char != "\"":
