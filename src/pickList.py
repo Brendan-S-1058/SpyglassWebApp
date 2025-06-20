@@ -21,6 +21,5 @@ def Local ():
 
 def SortAndReturn ():
     return null 
-    
 
 Main ()

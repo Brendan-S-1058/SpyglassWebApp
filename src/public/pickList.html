@@ -34,9 +34,9 @@
   document.getElementById('modePublic').addEventListener("click", () => {
     modeState *= -1;
     if (modeState == 1) {
-      document.getElementById('modePublic').className.replace("Off", "On");
+      document.getElementById('modePublic').style.color = rgb(0, 255, 0);
     } else if (modeState == -1) {
-      document.getElementById('modePublic').className.replace("On", "Off");
+      document.getElementById('modePublic').style.color = rgb(255, 0, 0);
     } 
   });
 
