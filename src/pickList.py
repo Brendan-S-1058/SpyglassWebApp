@@ -4,7 +4,7 @@ import json
 def Main ():
     inputR = sys.stdin.read()
     inputI = int(json.loads(inputR))
-    if inputI = '1':
+    if inputI == '1':
         Public ()
     else:
         Local ()
@@ -20,6 +20,7 @@ def Local ():
     print ("Local mode does not exist yet", file=sys.stderr)
 
 def SortAndReturn ():
+    return null 
     
 
 Main ()
