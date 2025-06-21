@@ -6,7 +6,7 @@ def Main ():
     inputI = json.loads(inputR)
 
     print ("picklist input: " + str(inputI), file=sys.stderr)
-
+'''
     if inputI[0] == 1:
         Public ()
     else:
@@ -24,7 +24,7 @@ def Local ():
 
 def SortAndReturn ():
     return null 
-
+'''
 '''
 1: figure out input
 2: figure out intended output
@@ -32,3 +32,5 @@ def SortAndReturn ():
 '''
 
 Main ()
+
+print (json.dumps("NOT DONE YET"))
