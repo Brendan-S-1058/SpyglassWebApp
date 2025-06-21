@@ -31,6 +31,7 @@
 </body>
 <script>
   let modeState = 1;
+  let send = null;
   document.getElementById('modePublic').addEventListener("click", () => {
     modeState *= -1;
     if (modeState == -1) {
