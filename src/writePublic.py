@@ -8,13 +8,13 @@ def Main():
     with open ("public/data/Public.txt", 'r') as file:
         currentData = file.read()
         file.close ()
-    processedInputData = makeStringList(inputS)
+    #processedInputData = makeStringList(inputS)
     with open ("public/data/Public.txt", 'w') as f:
         f.write(currentData)
-        f.write(processedInputData)
+        f.write(inputS)
         f.close ()
 
-def processString (String):
+"""def processString (String):
     '''
     What Do I need to do for this:
     find key information
@@ -50,4 +50,5 @@ def processString (String):
       '''      
 
     #return dataLists
+"""
 Main()
