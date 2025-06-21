@@ -13,7 +13,7 @@ def Main ():
         Local (inputI)
 
 def Public ():
-    with open("Public.txt","r") as f:
+    with open("public/data/Public.txt","r") as f:
         rawData = f.read()
         f.close()
     print ("public input: " + str(rawData), file=sys.stderr)
