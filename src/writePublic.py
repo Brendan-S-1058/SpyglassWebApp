@@ -55,3 +55,4 @@ def Main():
     #return dataLists
 """
 Main()
+print (json.dumps("consider that public written"))
