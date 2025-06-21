@@ -5,6 +5,9 @@ inputR = sys.stdin.read()
 inputS = str(json.loads(inputR)) + ','
 
 def Main():
+
+    #TODO: make it check for doubles
+
     with open ("public/data/Public.txt", 'r') as file:
         currentData = file.read()
         file.close ()
