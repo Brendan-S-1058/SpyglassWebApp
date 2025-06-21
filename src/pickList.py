@@ -18,8 +18,8 @@ def Public ():
     qqq = SortAndReturn (rawData)
     
 
-def Local ():
-    print ("inputI: " + str(inputI), file=sys.stderr)
+def Local (string):
+    print ("inputI: " + str(string), file=sys.stderr)
 
 def SortAndReturn ():
     return null 
