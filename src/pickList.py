@@ -12,7 +12,7 @@ def Main ():
 
 def Public ():
     with open("Public.txt","r") as f:
-        rawData = file.read()
+        rawData = f.read()
         f.close()
     print ("public input: " + str(rawData), file=sys.stderr)
     qqq = SortAndReturn (rawData)
