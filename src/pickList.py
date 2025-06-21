@@ -5,6 +5,8 @@ def Main ():
     inputR = sys.stdin.read()
     inputI = json.loads(inputR)
 
+    print ('inputR: ' + str(inputR), file=sys.stderr)
+
     if inputI[0] == 1:
         Public ()
     else:
