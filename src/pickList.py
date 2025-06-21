@@ -7,7 +7,7 @@ def Main ():
 
     print ('inputR: ' + str(inputR), file=sys.stderr)
 
-    if inputI[0] == 1:
+    if inputI == 1:
         Public ()
     else:
         Local (inputI)
