@@ -5,7 +5,7 @@ def Main ():
     inputR = sys.stdin.read()
     inputI = json.loads(inputR)
 
-    print (inputI, file=sys.stderr)
+    print ("picklist input: " + str(inputI), file=sys.stderr)
 
     if inputI[0] == 1:
         Public ()
