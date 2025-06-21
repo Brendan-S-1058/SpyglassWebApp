@@ -33,19 +33,19 @@
   let modeState = 1;
   document.getElementById('modePublic').addEventListener("click", () => {
     modeState *= -1;
-    if (modeState == 1) {
+    if (modeState == -1) {
       document.getElementById('modePublic').style.color = "#ff0000";
-    } else if (modeState == -1) {
+    } else if (modeState == 1) {
       document.getElementById('modePublic').style.color = "#00ff00";
     } 
   });
 
   document.getElementById('sort').addEventListener("click", () => {
     if (modeState == -1) {
-      Sort ()
+      let send = [-1, JSON.parse(localStorage.getItem("qrCodes"))];
+    } else {
+      let send = [1];
     }
-    
-    Sort(modeState);
   });
 
   async function Sort(State) {

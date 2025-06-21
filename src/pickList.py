@@ -3,8 +3,11 @@ import json
 
 def Main ():
     inputR = sys.stdin.read()
-    inputI = int(json.loads(inputR))
-    if inputI == '1':
+    inputI = json.loads(inputR)
+
+    print (inputI, file=sys.stderr)
+
+    if inputI[0] == 1:
         Public ()
     else:
         Local ()
@@ -13,7 +16,7 @@ def Public ():
     with open("Public.txt","r") as f:
         rawData = file.read()
         f.close()
-    SortAndReturn (rawData)
+    qqq = SortAndReturn (rawData)
     
 
 def Local ():
@@ -21,5 +24,11 @@ def Local ():
 
 def SortAndReturn ():
     return null 
+
+'''
+1: figure out input
+2: figure out intended output
+3: make a structure to convert input to output in both cases
+'''
 
 Main ()
