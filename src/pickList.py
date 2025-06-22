@@ -31,6 +31,8 @@ def Local (datain):
     
     #should remove leading mode value and first comma
 
+    print ("inputI: " + str(dataout), file=sys.stderr)
+
 
 
 
@@ -61,7 +63,6 @@ def Local (datain):
             DataValue = ""
             if char == '/':
                 linebreak = True'''
-    print ("inputI: " + str(dataout), file=sys.stderr)
 
 
 def SortAndReturn (rawData):
