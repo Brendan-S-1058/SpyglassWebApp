@@ -99,7 +99,7 @@
       Array.from(row.cells)
         .slice(0, 19)
         .map(cell => cell.textContent.trim())
-        .join(",")+','
+        .join(",")+'/'
       ))
     })
     document.getElementById("SaveChanges").addEventListener("click", () => {
