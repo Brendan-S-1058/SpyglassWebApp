@@ -8,16 +8,18 @@ def Main ():
     print ('inputR: ' + str(inputR), file=sys.stderr)
 
     if inputI == "1":
-        Public ()
+        congData = Public ()
     else:
-        Local (inputI)
+        congData = Local (inputI)
+    
+    Process (congData)
 
 def Public ():
     with open("public/data/Public.txt","r") as f:
         rawData = f.read()
         f.close()
+    return rawData
     print ("public input: " + str(rawData), file=sys.stderr)
-    qqq = SortAndReturn (rawData)
     
 
 def Local (datain):
@@ -33,6 +35,7 @@ def Local (datain):
 
     print ("inputI: " + str(dataout), file=sys.stderr)
 
+    return dataout
 
 
 
@@ -65,8 +68,10 @@ def Local (datain):
                 linebreak = True'''
 
 
-def SortAndReturn (rawData):
-    return rawData 
+def Process (inputData):
+    print ("inputData: " + str(inputData), file=sys.stderr)
+    return inputData 
+
 '''
 1: figure out input - (-1,,1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/,100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool/,100,3467,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool/) or (1  1058,1,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,,1058,100,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool,,3467,100,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool,,)
 2: figure out intended output - (start at avg points scored per team)
