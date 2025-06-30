@@ -18,8 +18,10 @@ def Public ():
     with open("public/data/Public.txt","r") as f:
         rawData = f.read()
         f.close()
-    return rawData
+    
     print ("public input: " + str(rawData), file=sys.stderr)
+
+    return rawData
     
 
 def Local (datain):
@@ -70,6 +72,15 @@ def Local (datain):
 
 def Process (inputData):
     print ("inputData: " + str(inputData), file=sys.stderr)
+
+    for char in (inputData):
+        if char
+
+    teams = []
+    listOfTeamMatches = []
+    for i in range (len(teams))
+
+
     return inputData 
 
 '''
