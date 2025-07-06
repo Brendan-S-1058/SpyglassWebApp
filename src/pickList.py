@@ -34,7 +34,7 @@ def Local (datain):
         elif start == True and char != ',' and endStart == True:
             start = False
             dataout += char
-            endStart == True
+            endStart = True
         elif start == False and char != ',':
             dataout += char
             endStart = True
