@@ -12,10 +12,36 @@ def Main():
         currentData = file.read()
         file.close ()
     #processedInputData = makeStringList(inputS)
+
+    allData = Local (currentData + inputS)
+
     with open ("public/data/Public.txt", 'w') as f:
-        f.write(currentData)
-        f.write(inputS)
+        f.write(allData)
         f.close ()
+
+def Local (datain):
+    start = True
+    endStart = False
+    dataout = ''
+    for char in  datain:
+        if char == ',' and start == True:
+            start = False
+        elif start == True and char != ',':
+            start = False
+            dataout += char
+            endstart == True
+        elif start == False and char != ',':
+            dataout += char
+            endStart = True
+        elif char == ',' and endStart == True:
+            dataout += char
+        if char == '/':
+            start = True
+            endStart = False
+    
+    #should remove leading mode value and all leading commas
+
+    return dataout
 
 """def processString (String):
     '''
