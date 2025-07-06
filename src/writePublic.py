@@ -39,7 +39,7 @@ def Local (datain):
         if char == '/':
             start = True
             endStart = False
-    print ("WP PRINTS: output:" + str (datain), file=sys.stderr)
+    print ("WP PRINTS: output:" + str (dataout), file=sys.stderr)
     
     #should remove leading mode value and all leading commas
 
