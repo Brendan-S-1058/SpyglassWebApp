@@ -112,7 +112,7 @@ def Process (inputData):
                 startTeam = False
                 placeHTeamValue = ''
                 good = True
-                dataLines += startValue
+                dataLines += startValue + teamValue
             elif good == True:
                 dataLines += char
                 if dataLines == '/':
@@ -129,6 +129,7 @@ def Process (inputData):
         matchesByTeam.append (dataLines)
         if rollover == '':
             isRollover == False
+        inputData = rollover
         print ('dataLines for this cycle: ' + str(dataLines), file = sys.stderr)
         print ('rollover for this cycle: ' + str(rollover), file = sys.stderr)
         print ('matchesByTeam: ' + str(matchesByTeam), file=sys.stderr)
