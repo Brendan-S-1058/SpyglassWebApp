@@ -128,7 +128,7 @@ def Process (inputData):
                 bad == True
         matchesByTeam.append (dataLines)
         if rollover == '':
-            isRollover == False
+            isRollover = False
         inputData = rollover
         print ('dataLines for this cycle: ' + str(dataLines), file = sys.stderr)
         print ('rollover for this cycle: ' + str(rollover), file = sys.stderr)
