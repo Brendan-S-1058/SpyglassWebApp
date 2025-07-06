@@ -81,9 +81,61 @@ def Local (datain):
 def Process (inputData):
     print ("inputData: " + str(inputData), file=sys.stderr)
 
-    for char in (inputData):
-        if char:
-            DELETE = 1
+    isRollover = True
+    matchesByTeam = []
+    while isRollover == True:
+        start = True
+        startTeam = True
+        teamValueB = False
+        teamValue = ''
+        placeHTeamValue = ''
+        startValue = ''
+        dataLines = ''
+        rollover = ''
+        good = False
+        for char in (inputData):
+            if start == True:
+                if char != ',':
+                    startValue += char
+                else:
+                    teamValueB = True
+                    start = False
+            elif teamValueB == True:
+                if char != ',':
+                    if startTeam == True:
+                        teamValue += char
+                    else:
+                        placeHTeamValue += char
+                else:
+                    teamValueB = False
+            elif startTeam == True or teamValue == placeHTeamValue:
+                startTeam = False
+                placeHTeamValue = ''
+                good = True
+                dataLines += startValue
+            elif good == True:
+                dataLines += char
+                if dataLines == '/':
+                    good = False
+                    start = True
+            elif bad == True:
+                rollover += char
+                if char == '/':
+                    bad = False
+                    start = True
+            else: 
+                rollover += startValue
+                bad == True
+        matchesByTeam.append (dataLines)
+        if rollover == '':
+            isRollover == False
+        print ('dataLines for this cycle: ' + str(dataLines), file = sys.stderr)
+        print ('rollover for this cycle: ' + str(rollover), file = sys.stderr)
+        print ('matchesByTeam: ' + str(matchesByTeam), file=sys.stderr)
+    
+
+
+            
 
     teams = []
     listOfTeamMatches = []
