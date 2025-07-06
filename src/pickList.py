@@ -68,14 +68,16 @@ def Local (datain):
                 nteam = DataValue
             DataValue = ""
             if char == '/':
-                linebreak = True'''
+                linebreak = True
+'''
 
 
 def Process (inputData):
     print ("inputData: " + str(inputData), file=sys.stderr)
 
     for char in (inputData):
-        if char
+        if char:
+            DELETE = 1
 
     teams = []
     listOfTeamMatches = []
