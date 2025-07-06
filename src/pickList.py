@@ -81,7 +81,8 @@ def Process (inputData):
 
     teams = []
     listOfTeamMatches = []
-    for i in range (len(teams))
+    for i in range (len(teams)):
+        DELETE2 = 2
 
 
     return inputData 
