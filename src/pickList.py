@@ -34,7 +34,7 @@ def Local (datain):
         elif start == True and char != ',' and endStart == True:
             start = False
             dataout += char
-            endstart == True
+            endStart == True
         elif start == False and char != ',':
             dataout += char
             endStart = True
@@ -42,7 +42,7 @@ def Local (datain):
             dataout += char
         if char == '/':
             start = True
-                
+
     #should remove leading mode value and all leading commas
 
     print ("dataout: " + str(dataout), file=sys.stderr)
