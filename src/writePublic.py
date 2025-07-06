@@ -23,7 +23,7 @@ def Local (datain):
     start = True
     endStart = False
     dataout = ''
-    print ("WP PRINTS: input: " + str (datain), sys=json.stderr)
+    print ("WP PRINTS: input: " + str (datain), file=sys.stderr)
     for char in  datain:
         if char == ',' and start == True:
             start = False
@@ -39,7 +39,7 @@ def Local (datain):
         if char == '/':
             start = True
             endStart = False
-    print ("WP PRINTS: output:" + str (datain), sys=json.stderr)
+    print ("WP PRINTS: output:" + str (datain), file=sys.stderr)
     
     #should remove leading mode value and all leading commas
 
