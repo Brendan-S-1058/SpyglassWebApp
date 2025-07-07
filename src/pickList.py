@@ -2,24 +2,26 @@ import sys
 import json
 
 def Main ():
-    inputR = sys.stdin.read()
-    inputI = json.loads(inputR)
+    #inputR = sys.stdin.read()
+    #inputI = json.loads(inputR)
 
-    print ('inputR: ' + str(inputR), file=sys.stderr)
+    #print ('inputR: ' + str(inputR))
 
-    if inputI == "1":
-        congData = Public ()
-    else:
-        congData = Local (inputI)
+    #if inputI == "1":
+        #congData = Public ()
+    #else:
+        #congData = Local (inputI)
     
-    Process (congData)
+    congData = '1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool/100,3467,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool/'
+    
+    Sort (congData)
 
 def Public ():
     with open("public/data/Public.txt","r") as f:
         rawData = f.read()
         f.close()
     
-    print ("public input: " + str(rawData), file=sys.stderr)
+    #print ("public input: " + str(rawData))
 
     return rawData
     
@@ -45,7 +47,7 @@ def Local (datain):
 
     #should remove leading mode value and all leading commas
 
-    print ("dataout: " + str(dataout), file=sys.stderr)
+    #print ("dataout: " + str(dataout))
 
     return dataout
 
@@ -78,73 +80,64 @@ def Local (datain):
 '''
 
 
-def Process (inputData):
-    print ("inputData: " + str(inputData), file=sys.stderr)
+def Sort (inputData):
+    #print ("inputData: " + str(inputData))
 
     isRollover = True
     matchesByTeam = []
     while isRollover == True:
-        start = True
+        function = 1
         startTeam = True
-        teamValueB = False
         teamValue = ''
         placeHTeamValue = ''
         startValue = ''
         dataLines = ''
         rollover = ''
         good = False
+        bad = False
+        reset = False
         for char in (inputData):
-            if start == True:
+            if function == 1:
                 if char != ',':
                     startValue += char
                 else:
-                    teamValueB = True
-                    start = False
-            elif teamValueB == True:
+                    function = 2
+            elif function == 2:
                 if char != ',':
                     if startTeam == True:
                         teamValue += char
-                    else:
-                        placeHTeamValue += char
+                    placeHTeamValue += char
                 else:
-                    teamValueB = False
-            elif startTeam == True or teamValue == placeHTeamValue:
-                startTeam = False
-                placeHTeamValue = ''
-                good = True
-                dataLines += startValue + teamValue
-            elif good == True:
+                    function = 3
+            elif function == 3:
+                if startTeam == True or teamValue == placeHTeamValue:
+                    startTeam = False
+                    function = 4
+                    dataLines += startValue + ',' + placeHTeamValue
+                    placeHTeamValue = ''
+
+                else:
+                    rollover += startValue + ',' + placeHTeamValue
+                    placeHTeamValue = ''
+                    #print ('rollover: ' + str(rollover))
+                    function = 5
+            elif function == 4:
                 dataLines += char
-                if dataLines == '/':
-                    good = False
-                    start = True
-            elif bad == True:
+                if char == '/':
+                    function = 1
+                    startValue = ''
+            elif function == 5:
                 rollover += char
                 if char == '/':
-                    bad = False
-                    start = True
-            else: 
-                rollover += startValue
-                bad == True
+                    function = 1
+                    startValue = ''
+            else:
         matchesByTeam.append (dataLines)
         if rollover == '':
             isRollover = False
-        inputData = rollover
-        print ('dataLines for this cycle: ' + str(dataLines), file = sys.stderr)
-        print ('rollover for this cycle: ' + str(rollover), file = sys.stderr)
-        print ('matchesByTeam: ' + str(matchesByTeam), file=sys.stderr)
-    
+        inputData = rollover            
 
-
-            
-
-    teams = []
-    listOfTeamMatches = []
-    for i in range (len(teams)):
-        DELETE2 = 2
-
-
-    return inputData 
+    return matchesByTeam 
 
 '''
 1: figure out input - public input: 1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/,100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool/,100,3467,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool/, or  inputR: "-1,1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/,100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool/,100,3467,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool/"
@@ -159,5 +152,3 @@ inputData: 11058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/100,1058,1,0,0,0,2,1
 '''
 
 Main ()
-
-print (json.dumps("NOT DONE YET"))
