@@ -131,7 +131,6 @@ def Sort (inputData):
                 if char == '/':
                     function = 1
                     startValue = ''
-            else:
         matchesByTeam.append (dataLines)
         if rollover == '':
             isRollover = False
