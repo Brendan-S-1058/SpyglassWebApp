@@ -2,25 +2,27 @@ import sys
 import json
 
 def Main ():
-    #inputR = sys.stdin.read()
-    #inputI = json.loads(inputR)
+    inputR = sys.stdin.read()
+    inputI = json.loads(inputR)
 
-    #print ('inputR: ' + str(inputR))
+    print ('inputR: ' + str(inputR))
 
-    #if inputI == "1":
-        #congData = Public ()
-    #else:
-        #congData = Local (inputI)
+    if inputI == "1":
+        congData = Public ()
+    else:
+        congData = Local (inputI)
     
-    congData = '1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool/100,3467,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool/'
+    #congData = '1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool/100,3467,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool/'
     
     sortedList = Sort (congData)
 
-    brokenList = []
+    finalDataDict = {}
     for i in range (len(sortedList)):
-        brokenList.append(Break (sortedList[i]))
+        Break(sortedList[i], finalDataDict)
+    
+    
 
-    print ("brokenList: " + str(brokenList), file = sys.stderr)
+    print ("finalDataDict: " + str(finalDataDict), file = stdout)
 
 def Public ():
     with open("public/data/Public.txt","r") as f:
@@ -102,7 +104,7 @@ def Sort (inputData):
         good = False
         bad = False
         reset = False
-        for char in (inputData):
+        for char in (inputData): 
             if function == 1:
                 if char != ',':
                     startValue += char
@@ -119,11 +121,11 @@ def Sort (inputData):
                 if startTeam == True or teamValue == placeHTeamValue:
                     startTeam = False
                     function = 4
-                    dataLines += startValue + ',' + placeHTeamValue
+                    dataLines += startValue + ',' + placeHTeamValue + ',' + char
                     placeHTeamValue = ''
 
                 else:
-                    rollover += startValue + ',' + placeHTeamValue
+                    rollover += startValue + ',' + placeHTeamValue + ',' + char
                     placeHTeamValue = ''
                     #print ('rollover: ' + str(rollover))
                     function = 5
@@ -140,11 +142,11 @@ def Sort (inputData):
         matchesByTeam.append (dataLines)
         if rollover == '':
             isRollover = False
-        inputData = rollover            
+        inputData = rollover         
 
     return matchesByTeam 
 
-def Break (inputString):
+def Break (inputString, bigDict):
     hold = ''
     holdList = []
     dataLists = []
@@ -163,9 +165,23 @@ def Break (inputString):
             holdList.append(hold)
             hold = ""
             commaCount += 1
+    
+    print (dataLists)
+    autoTotal = 0
+    teleTotal = 0
+    for match in dataLists:
+        autoTotal += ((int(match[2])*3)+(int(match[3])*3)+(int(match[4])*4)+(int(match[5])*6)+(int(match[6])*7)+(int(match[7])*6)+(int(match[8])*4))
+        teleTotal += ((int(match[9])*2)+(int(match[10])*3)+(int(match[11])*4)+(int(match[12])*5)+(int(match[13])*6)+(int(match[14])*4)+(int(match[15])*2)+(int(match[16])*6)+(int(match[17])*12))
+    autoAverage = autoTotal/len(dataLists)
+    teleAverage = teleTotal/len(dataLists)
+    totalPointsScored = autoTotal + teleTotal
+    averagePointsScored = autoAverage + teleAverage
+
+    bigDict[str(dataLists[0][1])] = [averagePointsScored, autoAverage, teleAverage]
 
 
-    return dataLists
+    
+
 '''
 1: figure out input - public input: 1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/,100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool/,100,3467,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool/, or  inputR: "-1,1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/,100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool/,100,3467,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool/"
 (
