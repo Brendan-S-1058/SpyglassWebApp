@@ -16,7 +16,11 @@ def Main ():
     
     sortedList = Sort (congData)
 
-    print ("sortedList: " + str(sortedList))
+    brokenList = []
+    for i in range (len(sortedList)):
+        brokenList.append(Break (sortedList[i]))
+
+    print ("brokenList: " + str(brokenList), file = sys.stderr)
 
 def Public ():
     with open("public/data/Public.txt","r") as f:
@@ -140,6 +144,28 @@ def Sort (inputData):
 
     return matchesByTeam 
 
+def Break (inputString):
+    hold = ''
+    holdList = []
+    dataLists = []
+    commaCount = 0
+    for char in inputString:
+        if char != "," and char != "\n" and char != "\"" and char != '/':
+            hold += char 
+            #print (hold)
+        elif char == '/':
+            holdList.append(hold)
+            hold = ""
+            dataLists.append(holdList)
+            holdList = []
+            commaCount = 0
+        if char == "," and commaCount != 28:
+            holdList.append(hold)
+            hold = ""
+            commaCount += 1
+
+
+    return dataLists
 '''
 1: figure out input - public input: 1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/,100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool/,100,3467,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool/, or  inputR: "-1,1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/,100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool/,100,3467,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool/"
 (
