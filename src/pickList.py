@@ -1,6 +1,8 @@
 import sys
 import json
 
+finalDataDict = {}
+
 def Main ():
     inputR = sys.stdin.read()
     inputI = json.loads(inputR)
@@ -16,12 +18,9 @@ def Main ():
     
     sortedList = Sort (congData)
 
-    finalDataDict = {}
     for i in range (len(sortedList)):
         Break(sortedList[i], finalDataDict)
-
-    print (json.dumps(finalDataDict))
-
+    
 def Public ():
     with open("public/data/Public.txt","r") as f:
         rawData = f.read()
@@ -193,3 +192,4 @@ inputData: 11058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/100,1058,1,0,0,0,2,1
 '''
 
 Main ()
+print (json.dumps(finalDataDict))
