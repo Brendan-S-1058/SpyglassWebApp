@@ -49,6 +49,7 @@ app.post("/individual", (req, res) => {
     individualProcess.on("close", (code) => {
         try {
             const jsonResponse = JSON.parse(output);
+            console.log(jsonResponse);
             res.json(jsonResponse);
         } catch (error) {
             res.status(500).json({ error: "Invalid response from Python script" });

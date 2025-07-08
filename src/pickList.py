@@ -20,9 +20,7 @@ def Main ():
     for i in range (len(sortedList)):
         Break(sortedList[i], finalDataDict)
     
-    
-
-    print ("finalDataDict: " + str(finalDataDict), file = sys.stdout)
+    print (json.dumps(finalDataDict))
 
 def Public ():
     with open("public/data/Public.txt","r") as f:
