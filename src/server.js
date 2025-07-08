@@ -108,6 +108,8 @@ app.post("/PLSort", (req, res) => {
         output += data.toString();
     });
 
+    console.log(output)
+
     individualProcess.on("close", (code) => {
         try {
             const jsonResponse = JSON.parse(output);

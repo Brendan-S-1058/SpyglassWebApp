@@ -19,7 +19,7 @@ def Main ():
     finalDataDict = {}
     for i in range (len(sortedList)):
         Break(sortedList[i], finalDataDict)
-    
+
     print (json.dumps(finalDataDict))
 
 def Public ():
