@@ -22,7 +22,7 @@ def Main ():
     
     
 
-    print ("finalDataDict: " + str(finalDataDict), file = stdout)
+    print ("finalDataDict: " + str(finalDataDict), file = sys.stdout)
 
 def Public ():
     with open("public/data/Public.txt","r") as f:
