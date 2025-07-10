@@ -1,11 +1,11 @@
 import sys
 import json
 
-finalDataDict = {}
-
 def Main ():
     inputR = sys.stdin.read()
     inputI = json.loads(inputR)
+
+    finalDataDict = {}
 
     print ('inputR: ' + str(inputR))
 
@@ -20,6 +20,10 @@ def Main ():
 
     for i in range (len(sortedList)):
         Break(sortedList[i], finalDataDict)
+
+    finalList = Order (finalDataDict)
+
+    print (json.dumps(finalList))
     
 def Public ():
     with open("public/data/Public.txt","r") as f:
@@ -176,6 +180,35 @@ def Break (inputString, bigDict):
 
     bigDict[str(dataLists[0][1])] = [averagePointsScored, autoAverage, teleAverage]
 
+def Order (inputDict):
+    outerHoldList = []
+    values2 = []
+    outputList = []
+    for i in inputDict:
+        #this gives keys as i
+        newHoldList = [i]
+        for i2 in  (inputDict[i]):
+            newHoldList.append(i2)
+        outerHoldList.append(newHoldList)
+    for i in outerHoldList:
+        values2.append(i[1])
+    values2.sort (reverse=True)
+    
+    while len(outerHoldList) > 0:
+        cycleLength = len(outerHoldList)
+        pops = 0
+        for i in range (len(outerHoldList)):
+            if i < cycleLength - pops:
+                if outerHoldList[i][1] == values2[0]:
+                    outputList.append(outerHoldList[i])
+                    outerHoldList.pop(i)
+                    values2.pop(0)
+                    pops += 1
+                    
+    return (outputList)
+        
+
+
 
     
 
@@ -192,4 +225,3 @@ inputData: 11058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/100,1058,1,0,0,0,2,1
 '''
 
 Main ()
-print (json.dumps('finalDataDict'), file=sys.stdout)

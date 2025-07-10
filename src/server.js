@@ -108,7 +108,7 @@ app.post("/PLSort", (req, res) => {
         output += data.toString();
     });
 
-    console.log(output)
+    console.log("output: " + output)
 
     individualProcess.on("close", (code) => {
         try {
