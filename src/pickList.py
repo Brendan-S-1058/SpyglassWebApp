@@ -192,4 +192,4 @@ inputData: 11058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/100,1058,1,0,0,0,2,1
 '''
 
 Main ()
-print (json.dumps(finalDataDict))
+print (json.dumps('finalDataDict'))
