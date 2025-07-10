@@ -7,8 +7,6 @@ def Main ():
 
     finalDataDict = {}
 
-    print ('inputR: ' + str(inputR))
-
     if inputI == "1":
         congData = Public ()
     else:
@@ -30,8 +28,6 @@ def Public ():
         rawData = f.read()
         f.close()
     
-    #print ("public input: " + str(rawData))
-
     return rawData
     
 
@@ -55,8 +51,6 @@ def Local (datain):
             start = True
 
     #should remove leading mode value and all leading commas
-
-    #print ("dataout: " + str(dataout))
 
     return dataout
 
@@ -90,7 +84,6 @@ def Local (datain):
 
 
 def Sort (inputData):
-    #print ("inputData: " + str(inputData))
 
     isRollover = True
     matchesByTeam = []
@@ -128,7 +121,6 @@ def Sort (inputData):
                 else:
                     rollover += startValue + ',' + placeHTeamValue + ',' + char
                     placeHTeamValue = ''
-                    #print ('rollover: ' + str(rollover))
                     function = 5
             elif function == 4:
                 dataLines += char
@@ -155,7 +147,6 @@ def Break (inputString, bigDict):
     for char in inputString:
         if char != "," and char != "\n" and char != "\"" and char != '/':
             hold += char 
-            #print (hold)
         elif char == '/':
             holdList.append(hold)
             hold = ""
@@ -167,7 +158,6 @@ def Break (inputString, bigDict):
             hold = ""
             commaCount += 1
     
-    print (dataLists)
     autoTotal = 0
     teleTotal = 0
     for match in dataLists:
