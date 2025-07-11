@@ -75,7 +75,7 @@
 
         const table = document.getElementById("data-table-body");
         const newRow = document.createElement('tr');
-        newRow.contentEditable = "true";
+        newRow.contentEditable = "false";
         newRow.innerHTML = `
             <td class="p-2 border">`+team+`</td>
             <td class="p-2 border">`+allAvg+`</td>
@@ -87,7 +87,7 @@
             table.appendChild(newRow);
             };
             // Initial row delete setup (for static row)
-    tableBody.addEventListener("click", function (e) {
+            table.addEventListener("click", function (e) {
     if (e.target && e.target.classList.contains("delete-btn")) {
         const row = e.target.closest("tr");
         row.remove();
