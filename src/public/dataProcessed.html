@@ -142,6 +142,7 @@
       let parsedData;
       try {
         parsedData = await runPythonScript(values);
+        console.log ('parsedData: ' + parsedData)
       } catch (e) {
         console.error(e);
         return;
