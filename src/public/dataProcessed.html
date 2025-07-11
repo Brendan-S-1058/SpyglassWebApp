@@ -50,7 +50,6 @@
           <th class="p-2 border">algae %</td>
           <th class="p-2 border">location %</td>
           <th class="p-2 border">comments</th>
-          <th class="p-2 border">actions</th>
         </tr>
       </thead>
       <tbody id="data-table-body">
@@ -285,19 +284,10 @@
             <td class="p-2 border">`+coralP+`%</td>
             <td class="p-2 border">`+algaeP+`%</td>
             <td class="p-2 border">`+locP+`%</td>
-            <td class="p-2 border">`+comments+`</td>
-            <td class="p-2 border">
-              <button class="button text-red-500 hover:underline ml-2 delete-btn" id="Delete">Delete</button>
-            </td>`
+            <td class="p-2 border">`+comments+`</td>`
             table.appendChild(newRow);
           };
             // Initial row delete setup (for static row)
-            tableBody.addEventListener("click", function (e) {
-    if (e.target && e.target.classList.contains("delete-btn")) {
-        const row = e.target.closest("tr");
-        row.remove();
-        }
-      });
 
   async function overallProcess(dataStage2) {
     const res = await fetch ("/overall", {
