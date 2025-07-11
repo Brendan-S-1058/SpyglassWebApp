@@ -53,6 +53,8 @@
     }
     data = Sort(send);
 
+    console.log ("data: " + data)
+
     data.array.forEach(element => {
       createRow(element)
     });
@@ -97,7 +99,6 @@
     }
 
     const json = await res.json();
-    console.log ("json: " + json)
     return json;
     
   }
