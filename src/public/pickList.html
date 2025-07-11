@@ -56,7 +56,11 @@
 
     data = await Sort(send);
 
-    
+    console.log ('Data: ' + data)
+
+    data.array.forEach(element => {
+      createRow(element)
+    });
   });
   
   function createRow(csv){
