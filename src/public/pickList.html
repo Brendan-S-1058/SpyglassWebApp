@@ -94,7 +94,9 @@
 
     const json = await res.json();
 
-    const allValues = json.split ('/') 
+    const allValues = json.split('/').map(s => s.trim().replace(/[\["\/]/g, ""));
+
+    console.log (allValues)
 
     allValues.array.forEach(element => {
       createRow(element)
