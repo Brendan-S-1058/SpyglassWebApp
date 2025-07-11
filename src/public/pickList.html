@@ -21,6 +21,10 @@
       <table class="min-w-full table-fixed">
         <thead class="bg-gray-200 text-left">
           <tr>
+            <th>Team</th>
+            <th>Average Score</th>
+            <th>Average Auto Score</th>
+            <th>Average Teleop Score</th>
           </tr>
         </thead>
         <tbody id="data-table-body">
@@ -48,8 +52,36 @@
       send = [1];
     }
     data = Sort(send);
-    console.log('data: ' + JSON.parse(data))
+
+    data.array.forEach(element => {
+      createRow(element)
+    });
   });
+  
+  function createRow(csv){
+        const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
+        if (fields.length !== 4) {
+          console.error("createRow: expected 4 comma‑separated values, got", fields.length);
+          return;
+        }
+        const [
+          team, allAvg, autoAvg, teleAvg
+        ] = fields;
+
+        const table = document.getElementById("data-table-body");
+        const newRow = document.createElement('tr');
+        newRow.contentEditable = "true";
+        newRow.innerHTML = `
+            <td class="p-2 border">`+team+`</td>
+            <td class="p-2 border">`+allAvg+`</td>
+            <td class="p-2 border">`+autoAvg+`</td>
+            <td class="p-2 border">`+teleAvg+`</td>
+            <td class="p-2 border">
+              <button class="button text-red-500 hover:underline ml-2 delete-btn" id="Delete">Delete</button>
+            </td>`
+            table.appendChild(newRow);
+            };
+            // Initial row delete setup (for static row)
 
   async function Sort(State) {
     const res = await fetch ("/PLSort", {
