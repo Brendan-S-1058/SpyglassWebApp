@@ -93,8 +93,10 @@
     }
 
     const json = await res.json();
-    
-    json.array.forEach(element => {
+
+    const allValues = json.split ('/') 
+
+    allValues.array.forEach(element => {
       createRow(element)
     });
     
