@@ -199,9 +199,7 @@ def Order (inputDict):
     outputString = ''
     for i in (outputList):
         for i2 in i:
-            outputString += str(i2)
-            if i2 != '\n':
-                outputString += ','
+            outputString += str(i2) + ','
 
     return (outputString)
         
