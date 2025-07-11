@@ -197,7 +197,7 @@ def Order (inputDict):
                     pops += 1
     
     for i in outputList:
-        str(i[len(i)]) += '\n'
+        str(i[len(i-1)]) += '\n'
 
     return (outputList)
         
