@@ -51,13 +51,7 @@
     } else if (modeState == 1) {
       send = [1];
     }
-    data = Sort(send);
-
-    console.log ("data: " + data)
-
-    data.array.forEach(element => {
-      createRow(element)
-    });
+    Sort(send);
   });
   
   function createRow(csv){
@@ -99,7 +93,10 @@
     }
 
     const json = await res.json();
-    return json;
+    
+    json.array.forEach(element => {
+      createRow(element)
+    });
     
   }
 </script>
