@@ -14,8 +14,7 @@
     </div>
     <div class="mb-4 flex justify-between items-center">
       <button id="modePublic" class="On">Pull From Public</button>
-      <button id="sort" class="button">Sorting Method</button>
-      <button id="generate" class="button">Generate List</button>
+      <button id="sort" class="button">Generate List</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
       <table class="min-w-full table-fixed">
@@ -81,18 +80,8 @@
             <td class="p-2 border">`+allAvg+`</td>
             <td class="p-2 border">`+autoAvg+`</td>
             <td class="p-2 border">`+teleAvg+`</td>
-            <td class="p-2 border">
-              <button class="button text-red-500 hover:underline ml-2 delete-btn" id="Delete">Delete</button>
-            </td>`
             table.appendChild(newRow);
             };
-            // Initial row delete setup (for static row)
-            table.addEventListener("click", function (e) {
-    if (e.target && e.target.classList.contains("delete-btn")) {
-        const row = e.target.closest("tr");
-        row.remove();
-        }
-      });
 
   async function Sort(State) {
     const res = await fetch ("/PLSort", {
