@@ -197,6 +197,7 @@ def Order (inputDict):
                     pops += 1
     
     for i in range(len(outputList)):
+        print ('outputlist: ' + str(outputList), file = sys.stderr)
         outputList[i][3] = str(outputList[i][3])
         outputList[i][3] += '\n'
 
