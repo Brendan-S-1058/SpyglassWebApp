@@ -195,7 +195,10 @@ def Order (inputDict):
                     outerHoldList.pop(i)
                     values2.pop(0)
                     pops += 1
-                    
+    
+    for i in outputList:
+        str(i[len(i)]) += '\n'
+
     return (outputList)
         
 
