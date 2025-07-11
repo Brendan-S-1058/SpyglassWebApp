@@ -87,6 +87,12 @@
             table.appendChild(newRow);
             };
             // Initial row delete setup (for static row)
+    tableBody.addEventListener("click", function (e) {
+    if (e.target && e.target.classList.contains("delete-btn")) {
+        const row = e.target.closest("tr");
+        row.remove();
+        }
+      });
 
   async function Sort(State) {
     const res = await fetch ("/PLSort", {
