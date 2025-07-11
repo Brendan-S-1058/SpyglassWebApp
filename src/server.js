@@ -15,6 +15,7 @@ app.listen(PORT, "0.0.0.0", () => {
 
 
 const { execSync } = require("child_process");
+const { json } = require("stream/consumers");
 
 try {
     console.log("Setting up Python environment...");
@@ -112,7 +113,7 @@ app.post("/PLSort", (req, res) => {
 
     individualProcess.on("close", (code) => {
         try {
-            const jsonResponse = (output);
+            const jsonResponse = JSON.parse(output);
             res.json(jsonResponse);
         } catch (error) {
             res.status(500).json({ error: "Invalid response from Python script" });

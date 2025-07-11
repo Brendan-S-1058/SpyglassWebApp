@@ -191,6 +191,7 @@ def Order (inputDict):
             if i < cycleLength - pops:
                 if outerHoldList[i][1] == values2[0]:
                     outputList.append(outerHoldList[i])
+                    outputList.append('\n')
                     outerHoldList.pop(i)
                     values2.pop(0)
                     pops += 1
