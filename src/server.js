@@ -112,7 +112,7 @@ app.post("/PLSort", (req, res) => {
 
     individualProcess.on("close", (code) => {
         try {
-            const jsonResponse = JSON.parse(output);
+            const jsonResponse = (output);
             res.json(jsonResponse);
         } catch (error) {
             res.status(500).json({ error: "Invalid response from Python script" });
