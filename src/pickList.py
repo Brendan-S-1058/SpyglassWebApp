@@ -196,12 +196,19 @@ def Order (inputDict):
                     values2.pop(0)
                     pops += 1
     
-    outputString = ''
-    for i in (outputList):
-        for i2 in i:
-            outputString += str(i2) + ','
+    finalOutputList = []
+    for i in range (len(outputList)):
+        holdString = ''
+        for i2 in range (len(outputList[i])):
+            if i2 + 1 != len(outputList[i]):
+                holdString += str(outputList[i][i2]) + ','
+            else:
+                holdString += str(outputList[i][i2])
+        finalOutputList.append(holdString)
 
-    return (outputString)
+    print ('finalOutputList: ' + str(finalOutputList), file=sys.stderr)
+
+    return (finalOutputList)
         
 
 
