@@ -86,7 +86,7 @@ def Main ():
             plt.ylabel('Auto Total')
             plt.title(str(currentTeam) + "auto V. tele")
             #filepath=os.path.join(str(currentTeam) + "avt.png")
-            filepath=os.path.join("public/data/ScouterGraphs", str(currentTeam) + ".png")
+            filepath=os.path.join("public/data/ScouterGraphs", str(currentTeam) + "avt.png")
             plt.savefig(filepath, dpi=300)
             plt.close()
 
