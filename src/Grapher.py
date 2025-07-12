@@ -64,7 +64,7 @@ def Main ():
             autoTotalYAxis2 = []
             teleTotalXAxis2 = []
             for match in major[i]:
-                currentTeam = match[0]
+                currentTeam = match[1]
                 autoTotal = ((int(match[2])*3)+(int(match[3])*3)+(int(match[4])*4)+(int(match[5])*6)+(int(match[6])*7)+(int(match[7])*6)+(int(match[8])*4))
                 teleTotal = ((int(match[9])*2)+(int(match[10])*3)+(int(match[11])*4)+(int(match[12])*5)+(int(match[13])*6)+(int(match[14])*4)+(int(match[15])*2)+(int(match[16])*6)+(int(match[17])*12))
                 autoTotalYAxis2.append(autoTotal)
@@ -86,7 +86,7 @@ def Main ():
             plt.ylabel('Auto Total')
             plt.title(str(currentTeam) + "auto V. tele")
             #filepath=os.path.join(str(currentTeam) + "avt.png")
-            filepath=("public/data/ScouterGraphs/6328avt.png")
+            filepath=("public/data/ScouterGraphs/" + str(currentTeam) + "avt.png")
             plt.savefig(filepath, dpi=300)
             plt.close()
 
