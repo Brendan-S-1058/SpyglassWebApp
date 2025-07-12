@@ -46,13 +46,13 @@ def Main ():
     
     for i in range (len(dataLists)):
         if dataLists[i] not in teamCount:
-            teamCount.append(dataLists[i][0])
+            teamCount.append(dataLists[i][1])
 
     for i in range (len(teamCount)):
         hold2list = []
         if teamCount[i] not in (alreadyRun):
             for i2 in range (len(dataLists)):
-                if teamCount[i] in dataLists[i2][0]:
+                if teamCount[i] in dataLists[i2][1]:
                     hold2list.append(dataLists[i2])
             major.append (hold2list)
         alreadyRun.append (teamCount[i])
@@ -70,7 +70,7 @@ def Main ():
                 autoTotalYAxis2.append(autoTotal)
                 teleTotalXAxis2.append(teleTotal)                
                 pointsTotalYAxis1.append(autoTotal + teleTotal)
-                matchNumberXAxis1.append(match[1])
+                matchNumberXAxis1.append(match[0])
 
             plt.plot(matchNumberXAxis1, pointsTotalYAxis1, marker='o', linestyle='-', color='b')
             plt.xlabel('Match #')
@@ -84,7 +84,7 @@ def Main ():
             plt.plot(teleTotalXAxis2, autoTotalYAxis2, marker='o', color='b')
             plt.xlabel('Tele Total')
             plt.ylabel('Auto Total')
-            plt.title(str(currentTeam) + "auto V. tele")
+            plt.title(str(currentTeam) + " Auto V. Tele")
             #filepath=os.path.join(str(currentTeam) + "avt.png")
             filepath=("public/data/ScouterGraphs/" + str(currentTeam) + "avt.png")
             plt.savefig(filepath, dpi=300)
