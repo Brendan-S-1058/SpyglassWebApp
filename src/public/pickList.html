@@ -73,6 +73,7 @@
         ] = fields;
 
         const table = document.getElementById("data-table-body");
+        table.innerHTML = '';
         const newRow = document.createElement('tr');
         newRow.contentEditable = "false";
         newRow.innerHTML = `
