@@ -57,6 +57,9 @@
 
     console.log ('Data: ' + data)
 
+    const table = document.getElementById("data-table-body");
+    table.innerHTML = '';
+    
     data.forEach(line => {
       createRow(line);
     });
@@ -73,7 +76,6 @@
         ] = fields;
 
         const table = document.getElementById("data-table-body");
-        table.innerHTML = '';
         const newRow = document.createElement('tr');
         newRow.contentEditable = "false";
         newRow.innerHTML = `
