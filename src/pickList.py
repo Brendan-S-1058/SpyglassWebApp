@@ -169,6 +169,7 @@ def Break (inputString, bigDict):
     teleAverage = ((teleAverage*100)//1)/100
     totalPointsScored = autoTotal + teleTotal
     averagePointsScored = autoAverage + teleAverage
+    averagePointsScored = ((averagePointsScored*100)//1)/100
 
     bigDict[str(dataLists[0][1])] = [averagePointsScored, autoAverage, teleAverage]
 
