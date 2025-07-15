@@ -13,13 +13,14 @@
       <h1 class="text-3xl font-bold mb-4">Raw Data Dashboard</h1>
     </div>
     <div class="mb-4 flex justify-between items-center">
-      <input id="Search" type="text" placeholder="Search..." class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
+      <input id="Search" type="text" placeholder="Search By Team #" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
       <button id="searchButton" class="button">Search</button>
       <button id="AddRows" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Import</button>
       <button id="AddEmpty" class="button">Add Empty Row</button>
       <button id="Submit" class="button bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">Submit</button>
       <button id="SaveChanges" class="button">Save Changes</button>
       <button id="SubmitPublic" class="button">Submit To Public</button>
+      <button id="inputPaste" class="button">multi-line paste</button>
       <button id="explain" class="button">Explain</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
@@ -114,6 +115,13 @@
       localStorage.setItem("qrCodes", JSON.stringify(currentData));
       window.location.reload();
 });
+  document.getElementById('inputPaste').addEventListener('click', ()=>{
+    let pastedLines = prompt("~~--DANGER--~~ pasting in data is dangerous, be sure this data is valid by checking the raw table for problems before saving pasted data ~~--DANGER--~~")
+    let pastedArray = pastedLines.split('/')
+    pastedArray.forEach(element => {
+      createRow(element)
+    });
+  })
 
 async function saveAll(dataArray) {
     const res = await fetch ("/publicStorage", {
@@ -200,7 +208,7 @@ async function overallProcess(dataArray) {
         }
     });
   document.getElementById('explain').addEventListener('click', ()=>{
-    alert("Search: input the team you would like to search for, and only those teams will be sorted into the table\n\nImport: imports all local data to the page for review, edits, and all other use\n\nAdd Empty Row: adds an empty row, intended for manual data entry by line\n\nSubmit: deceptively only graphs the teams's data for processed data\n\nSave Changes: saves all edits to your personal data storage on site\n\nSubmit To Public: submits ONLY the data currently in the table to the public file - make sure to import and revise BEFORE submitting the data")
+    alert("Search: input the team you would like to search for, and only those teams will be sorted into the table\n\nImport: imports all local data to the page for review, edits, and all other use\n\nAdd Empty Row: adds an empty row, intended for manual data entry by line\n\nSubmit: deceptively only graphs the teams's data for processed data\n\nSave Changes: saves all edits to your personal data storage on site\n\nSubmit To Public: submits ONLY the data currently in the table to the public file - make sure to import and revise BEFORE submitting the data\n\nPaste Data: Dangerous method of inputting data, though very efficient if importing a backup file - does NOT automatically save, merely adds rows for all pasted data. check if data is valid before saving")
   });
 </script>
 </html>
