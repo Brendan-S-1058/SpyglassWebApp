@@ -165,6 +165,8 @@ def Break (inputString, bigDict):
         teleTotal += ((int(match[9])*2)+(int(match[10])*3)+(int(match[11])*4)+(int(match[12])*5)+(int(match[13])*6)+(int(match[14])*4)+(int(match[15])*2)+(int(match[16])*6)+(int(match[17])*12))
     autoAverage = autoTotal/len(dataLists)
     teleAverage = teleTotal/len(dataLists)
+    autoAverage = ((autoAverage*100)//1)/100
+    teleAverage = ((teleAverage*100)//1)/100
     totalPointsScored = autoTotal + teleTotal
     averagePointsScored = autoAverage + teleAverage
 
