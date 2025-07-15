@@ -15,6 +15,7 @@
     <div class="mb-4 flex justify-between items-center">
           <input id="Search" type="text" placeholder="Search..." class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
           <button id="searchButton" class="button">Search</button>
+          <button id="explain" class="button">Explain</button>
       </div>
   </div>
   <div class="overflow-auto border rounded-lg shadow bg-white">
@@ -322,6 +323,10 @@
     console.log("Response from Python:", json);
     return json;
   }
+
+  document.getElementById('explain').addEventListener('click', ()=>{
+    alert ("Search: searches and processes the team's data which you input including graphs generated on the raw data page")
+  });
         
 </script>
 </html>

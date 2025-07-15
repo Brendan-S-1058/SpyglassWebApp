@@ -20,6 +20,7 @@
       <button id="Submit" class="button bg-green-500 text-black px-4 py-2 rounded hover:bg-green-600">Submit</button>
       <button id="SaveChanges" class="button">Save Changes</button>
       <button id="SubmitPublic" class="button">Submit To Public</button>
+      <button id="explain" class="button">Explain</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
       <table class="min-w-full table-fixed">
@@ -86,18 +87,15 @@
     document.getElementById("Submit").addEventListener('click', () => {
       // add a save to permanent .txt file??
       const rows = Array.from(tableBody.rows);
-      alert('loading graphs, this may take up to a few minutes');
       overallProcess(rows.map(row =>
       Array.from(row.cells)
         .slice(0, 19)
         .map(cell => cell.textContent.trim())
         .join(",")+','
       ))
-      alert('finished graphing')
     })
     document.getElementById("SubmitPublic").addEventListener("click", () => {
       const rows = Array.from(tableBody.rows);
-      alert ('submits data CURRENTLY IN TABLE - make sure you import data first');
       saveAll(rows.map(row =>
       Array.from(row.cells)
         .slice(0, 19)
@@ -201,5 +199,8 @@ async function overallProcess(dataArray) {
         row.remove();
         }
     });
+  document.getElementById('explain').addEventListener('click', ()=>{
+    alert("Search: input the team you would like to search for, and only those teams will be sorted into the table\nImport: imports all local data to the page for review, edits, and all other use\nAdd Empty Row: adds an empty row, intended for manual data entry by line\nSubmit: deceptively only graphs the teams's data for processed data\nSave Changes: saves all edits to your personal data storage on site\nSubmit To Public: submits ONLY the data currently in the table to the public file - make sure to import and revise BEFORE submitting the data")
+  });
 </script>
 </html>

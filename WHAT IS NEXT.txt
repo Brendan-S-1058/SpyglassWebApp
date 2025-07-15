@@ -17,6 +17,7 @@ add login and separate team folders for data like graphs and all
 make data processed map qr codes to check if the first value specifically matches the search term
 add pop-ups for progress and confirmation on actions that can't be seen otherwise - grapher
 make submit to public check for duplicate rows, just python manipulation in wrightPublic.python
+alternative paste data entry in raw data
 |||||||----important----|||||||
 
 overhaul scan.html
