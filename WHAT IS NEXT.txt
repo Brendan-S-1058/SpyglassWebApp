@@ -10,10 +10,15 @@ accout connecting to a doc? Perhaps as a long periodic?? txt usually - saved ove
 
 add quartile analysis - 1073 does it and it looks really cool
 
-make submit to public check for duplicate rows, just python manipulation in wrightPublic.python
-
-add pop-ups for progress and confirmation on actions that can't be seen otherwise - grapher
 check if grapher works across pages -- I think this actually did -- FIRE
 add login and separate team folders for data like graphs and all
 
+|||||||----important----|||||||
 make data processed map qr codes to check if the first value specifically matches the search term
+add pop-ups for progress and confirmation on actions that can't be seen otherwise - grapher
+make submit to public check for duplicate rows, just python manipulation in wrightPublic.python
+|||||||----important----|||||||
+
+overhaul scan.html
+
+send to john to spaarrrrrrrrrrrrrrruuucce it up

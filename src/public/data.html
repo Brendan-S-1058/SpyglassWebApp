@@ -86,15 +86,18 @@
     document.getElementById("Submit").addEventListener('click', () => {
       // add a save to permanent .txt file??
       const rows = Array.from(tableBody.rows);
+      alert('loading graphs, this may take up to a few minutes');
       overallProcess(rows.map(row =>
       Array.from(row.cells)
         .slice(0, 19)
         .map(cell => cell.textContent.trim())
         .join(",")+','
       ))
+      alert('finished graphing')
     })
     document.getElementById("SubmitPublic").addEventListener("click", () => {
       const rows = Array.from(tableBody.rows);
+      alert ('submits data CURRENTLY IN TABLE - make sure you import data first');
       saveAll(rows.map(row =>
       Array.from(row.cells)
         .slice(0, 19)

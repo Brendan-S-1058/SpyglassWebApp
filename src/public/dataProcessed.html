@@ -15,7 +15,6 @@
     <div class="mb-4 flex justify-between items-center">
           <input id="Search" type="text" placeholder="Search..." class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
           <button id="searchButton" class="button">Search</button>
-          <button id="test" class="button">test</button>
       </div>
   </div>
   <div class="overflow-auto border rounded-lg shadow bg-white">
@@ -323,10 +322,6 @@
     console.log("Response from Python:", json);
     return json;
   }
-
-  document.getElementById("test").addEventListener("click", () => {
-    runPythonScript(JSON.stringify("1,1058,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,no comment"));
-    });
         
 </script>
 </html>
