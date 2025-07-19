@@ -56,7 +56,7 @@
 
     data = await Sort(send);
 
-    console.log ('Data: ' + data)
+    Graph(data)
 
     const table = document.getElementById("data-table-body");
     table.innerHTML = '';
@@ -102,11 +102,29 @@
 
     const json = await res.json();
 
-    return (json);
-
-    //TODO: find a way to sort the json returned string into different rows, consult search 2
-    
+    return (json);    
   }
+
+  async function Graph(input) {
+    const res = await fetch ("/PLGraph", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(input),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+    }
+    else {
+        const graph = document.createElement('img');
+        graph.src = "data/ScouterGraphs/AVT.png";
+        graph.width = 600;
+        graph.height = 400;
+    }
+  }
+
   document.getElementById('explain').addEventListener('click', ()=>{
     alert ("Pull From Public: a toggleable mode which dictates where the data is coming from - green means from the communal public file, red means from your TEAM's personal data, not just your local (this has not been implemented yet, still your local data)\n\nGenerate List: generates a list of teams sorted by average points scored using the selected data method")
 });

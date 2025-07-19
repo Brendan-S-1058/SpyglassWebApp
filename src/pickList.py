@@ -209,8 +209,6 @@ def Order (inputDict):
                 holdString += str(outputList[i][i2])
         finalOutputList.append(holdString)
 
-    print ('finalOutputList: ' + str(finalOutputList), file=sys.stderr)
-
     return (finalOutputList)
         
 
