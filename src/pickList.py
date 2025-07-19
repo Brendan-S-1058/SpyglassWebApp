@@ -1,5 +1,8 @@
 import sys
 import json
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
 
 def Main ():
     inputR = sys.stdin.read()
@@ -198,6 +201,24 @@ def Order (inputDict):
                     outerHoldList.pop(i)
                     values2.pop(0)
                     pops += 1
+
+    graphTeams = []
+    graphAutoTotals = []
+    graphTeleTotals = []
+    for i in (outputList):
+        graphTeams.append(i[0])
+        graphAutoTotals.append(i[2])
+        graphTeleTotals.append(i[3])
+
+    plt.plot(graphAutoTotals, graphTeleTotals, marker='o', linestyle='-', color='b')
+    plt.xlabel('Auto Average Points')
+    plt.ylabel('Tele Average Points')
+    for i in range (len(graphTeams)):
+        plt.text(graphAutoTotals[i], graphTeleTotals[i], graphTeams[i])
+    plt.title(Auto V. Tele)
+    filepath=("public/data/ScouterGraphs/AVT.png")
+    plt.savefig(filepath, dpi=300)
+    plt.close()
     
     finalOutputList = []
     for i in range (len(outputList)):
