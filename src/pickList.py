@@ -219,7 +219,7 @@ def Order (inputDict):
     plt.savefig(filepath, dpi=300)
     plt.close()
 
-    for i in range len(outputList):
+    for i in range (len(outputList)):
         outputList.append(outputList[0])
         outputList.append('\n')
         outputList.pop(0)
