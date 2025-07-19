@@ -13,10 +13,75 @@ def Main():
         file.close ()
     #processedInputData = makeStringList(inputS)
 
-    allData = Local (currentData + inputS)
+
+    compareSets = []
+    matchStringHold = ''
+    for i in currentData:
+        matchStringHold += char
+        if char == '/':
+            compareSets.append(matchStringHold)
+            matchStringHold = ''
+
+    '''compareSets = []
+    holdS = ''
+    commaCount = 0
+    for char in currentData:
+        if commaCount < 2:
+            if char != ',':
+                holdS += char
+            else:
+                commaCount += 1
+                holdS += char
+        elif char == '/':
+            compareSets.append(holdS)
+            holdS = ''
+            commaCount = 0 
+            
+            NoTE - These commented out bits are for removing duplicates of the match based on match# and team# - NOT APPLICABLE HERE - COULD BE USED with API import to check validity - or for individual team data storage 
+            SHOULD BE USED IN PICKLIST FOR FINDING AVERAGES OF MATCHES SUBMITTED MULTIPLE TIMES
+            '''
+
+    newData = Local (inputS)
+
+    secondSetForComparision = []
+    matchStringHold = ''
+    for i in newData:
+        matchStringHold += char
+        if char == '/':
+            secondSetForComparision.append(matchStringHold)
+            matchStringHold = ''
+
+    for i in secondSetForComparision:
+        if i not in compareSets:
+            currentData += str(i)
+
+
+    '''newDict = {}
+    dictKeys = []
+    holdS = ''
+    matchStringHold = ''
+    commaCount = 0
+    for char in currentData:
+        matchStringHold += char
+        if commaCount < 2:
+            if char != ',':
+                holdS += char
+            else:
+                commaCount += 1
+                holdS += char
+        elif char == '/':
+            dictKeys.append(holdS)
+            holdS = ''
+            commaCount = 0
+            newDict[holdS] = matchStringHold
+
+    for i in dictKeys:
+        if '''
+    
+    print ("TRUE OUTPUT: " + currentData, file=sys.stderr)
 
     with open ("public/data/Public.txt", 'w') as f:
-        f.write(allData)
+        f.write(currentData)
         f.close ()
 
 def Local (datain):
@@ -45,42 +110,5 @@ def Local (datain):
 
     return dataout
 
-"""def processString (String):
-    '''
-    What Do I need to do for this:
-    find key information
-    sort it
-    return it
-    '''
-    
-    '''for char in export_import_data:
-        if char != "," and char != "\n" and char != "\"":
-            hold += char 
-            #print (hold)
-        if char == "," and commaCount != 28:
-            holdList.append(hold)
-            hold = ""
-            commaCount += 1
-        if commaCount == 19:
-            dataLists.append(holdList)
-            holdList = []
-            commaCount = 0
-    
-    returnString = ''
-    commas = 0
-    FIRST = True
-    
-    for outerI in range (len(holdList)):
-        for innerI in range (holdList[0]):
-            returnString += holdList[0][innerI]
-            if FIRST == False and commas < 28:
-                returnString += ','
-                commas += 1
-            if 
-            FIRST = False
-      '''      
-
-    #return dataLists
-"""
 Main()
 print (json.dumps("consider that public written"))
