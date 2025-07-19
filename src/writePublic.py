@@ -16,7 +16,7 @@ def Main():
 
     compareSets = []
     matchStringHold = ''
-    for i in currentData:
+    for char in currentData:
         matchStringHold += char
         if char == '/':
             compareSets.append(matchStringHold)
@@ -45,7 +45,7 @@ def Main():
 
     secondSetForComparision = []
     matchStringHold = ''
-    for i in newData:
+    for char in newData:
         matchStringHold += char
         if char == '/':
             secondSetForComparision.append(matchStringHold)
