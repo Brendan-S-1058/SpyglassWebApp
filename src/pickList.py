@@ -197,7 +197,6 @@ def Order (inputDict):
             if i < cycleLength - pops:
                 if outerHoldList[i][1] == values2[0]:
                     outputList.append(outerHoldList[i])
-                    outputList.append('\n')
                     outerHoldList.pop(i)
                     values2.pop(0)
                     pops += 1
@@ -205,7 +204,7 @@ def Order (inputDict):
     graphTeams = []
     graphAutoTotals = []
     graphTeleTotals = []
-    for i in (outputList):
+    for i in outputList:
         graphTeams.append(i[0])
         graphAutoTotals.append(i[2])
         graphTeleTotals.append(i[3])
@@ -219,6 +218,11 @@ def Order (inputDict):
     filepath=("public/data/ScouterGraphs/AVT.png")
     plt.savefig(filepath, dpi=300)
     plt.close()
+
+    for i in range len(outputList):
+        outputList.append(outputList[0])
+        outputList.append('\n')
+        outputList.pop(0)
     
     finalOutputList = []
     for i in range (len(outputList)):
