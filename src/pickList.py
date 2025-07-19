@@ -215,7 +215,7 @@ def Order (inputDict):
     plt.ylabel('Tele Average Points')
     for i in range (len(graphTeams)):
         plt.text(graphAutoTotals[i], graphTeleTotals[i], graphTeams[i])
-    plt.title(Auto V. Tele)
+    plt.title('Auto V. Tele')
     filepath=("public/data/ScouterGraphs/AVT.png")
     plt.savefig(filepath, dpi=300)
     plt.close()
