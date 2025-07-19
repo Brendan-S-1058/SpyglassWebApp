@@ -78,6 +78,7 @@
       editableList.innerHTML = "";
       storedQRs.forEach((qr, index) => {
         let div = document.createElement("div");
+        div.classname = "button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         let input = document.createElement("input");
         input.type = "text";
         input.value = qr;
