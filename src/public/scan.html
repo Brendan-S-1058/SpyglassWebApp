@@ -9,10 +9,11 @@
   <link href="datastyle.css" rel="stylesheet">
 </head>
 <body>
-  <button id="filePickerBtn">Select ScoutIn.txt</button>
-  <button id="runWithoutFileBtn">Run Without File</button>
-  <button id="runPY">Run Python Process</button>
-  <button id="pass">pass</button>
+  <h1 class="text-3xl font-bold mb-4">Scanner Input</h1>
+  <button id="filePickerBtn" class="button">Select ScoutIn.txt</button>
+  <button id="runWithoutFileBtn" class="button">Run Without File</button>
+  <button id="runPY" class="button">Run Python Process</button>
+  <button id="pass" class="button">pass</button>
   <p id="fileStatus">No file selected.</p>
   
   <video id="video" autoplay playsinline style="width: 100%; display: none;"></video>
@@ -20,20 +21,20 @@
   
   <p id="qrDataDisplay"></p>
   
-  <button id="saveBtn" style="display: none;">Save QR Code</button>
-  <button id="rescanBtn" style="display: none;">Rescan QR Code</button>
-  <button id="viewStoredBtn">View Stored QR Codes</button>
-  <button id="downloadBtn">Download as .txt</button>
-  <button id="clearBtn">Clear Stored QR Codes</button>
-  <button id="editStoredBtn">Edit Data</button>
+  <button id="saveBtn" style="display: none;" class="button">Save QR Code</button>
+  <button id="rescanBtn" style="display: none;" class="button">Rescan QR Code</button>
+  <button id="viewStoredBtn" class="button">View Stored QR Codes</button>
+  <button id="downloadBtn" class="button">Download as .txt</button>
+  <button id="clearBtn" class="button">Clear Stored QR Codes</button>
+  <button id="editStoredBtn" class="button">Edit Data</button>
   <!-- Add the missing button below -->
-  <button id="addNewQRBtn" style="display: none;">Add New QR Code</button>
+  <button id="addNewQRBtn" class="button">Add New QR Code</button>
   <button id="saveChangesBtn" style="display: none;">Save Changes</button>
   
   <div id="editableQRList" style="display: none;"></div>
   
   <textarea id="qrList" rows="10" cols="40" readonly style="display: none;"></textarea>
-  <button id="copyBtn" style="display: none;">Copy to Clipboard</button>
+  <button id="copyBtn" class="button">Copy to Clipboard</button>
   
   <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
   <script>
