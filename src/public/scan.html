@@ -36,7 +36,7 @@
     
     <div id="editableQRList" style="display: none;"></div>
     
-    <textarea id="qrList" rows="10" cols="40" readonly style="display: none;" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></textarea>
+    <textarea id="qrList" rows="10" cols="40" readonly style="display: none;" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></textarea>
     <button id="copyBtn" class="button">Copy to Clipboard</button>
 
   </div>
@@ -78,13 +78,14 @@
       editableList.innerHTML = "";
       storedQRs.forEach((qr, index) => {
         let div = document.createElement("div");
-        div.classname = "button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        div.className = "button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         let input = document.createElement("input");
         input.type = "text";
         input.value = qr;
         // Create a remove button for each QR entry
         let removeBtn = document.createElement("button");
         removeBtn.textContent = "❌";
+        removeBtn.className = 'button'
         removeBtn.onclick = () => {
           div.remove();
         };
