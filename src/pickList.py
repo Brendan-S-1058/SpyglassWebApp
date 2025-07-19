@@ -209,7 +209,7 @@ def Order (inputDict):
         graphAutoTotals.append(i[2])
         graphTeleTotals.append(i[3])
 
-    plt.plot(graphAutoTotals, graphTeleTotals, marker='o',)
+    plt.plot(graphAutoTotals, graphTeleTotals, marker='o', linestyle='None')
     plt.xlabel('Auto Average Points')
     plt.ylabel('Tele Average Points')
     for i in range (len(graphTeams)):
