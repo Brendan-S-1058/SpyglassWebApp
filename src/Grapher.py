@@ -72,6 +72,12 @@ def Main ():
                 pointsTotalYAxis1.append(autoTotal + teleTotal)
                 matchNumberXAxis1.append(match[0])
 
+            print ('matchNumberXAxis1: ' + str(matchNumberXAxis1), file=sys.stderr)
+            print ('pointsTotalYAxis1: ' + str(pointsTotalYAxis1), file=sys.stderr)
+
+            print ('teleTotalXAxis2: ' + str(teleTotalXAxis2), file=sys.stderr)
+            print ('autoTotalYAxis2: ' + str(autoTotalYAxis2), file=sys.stderr)
+
             plt.plot(matchNumberXAxis1, pointsTotalYAxis1, marker='o', linestyle='-', color='b')
             plt.xlabel('Match #')
             plt.ylabel('Total Points Scores')
