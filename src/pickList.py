@@ -14,10 +14,12 @@ def Main ():
         congData = Public ()
     else:
         congData = Local (inputI)
+
+    avgData = Average(congData)
     
     #congData = '1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool/100,3467,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool/'
     
-    sortedList = Sort (congData)
+    sortedList = Sort (avgData)
 
     for i in range (len(sortedList)):
         Break(sortedList[i], finalDataDict)
@@ -33,6 +35,103 @@ def Public ():
     
     return rawData
     
+def Average (newData):
+   
+    newDict = {}
+    doublesDict = {}
+    doublesKeys = []
+    dictKeys = []
+    holdS = ''
+    matchStringHold = ''
+    commaCount = 0
+    for char in newData:
+        matchStringHold += char
+        if commaCount < 2:
+            if char != ',':
+                holdS += char
+            else:
+                commaCount += 1
+                holdS += char
+        elif char == '/':
+            if holdS in dictKeys:
+                if holdS not in doublesKeys:
+
+                    string1 = ''
+                    list1 = []
+
+                    for char in matchStringHold:
+                        if char not in 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,/':
+                            string1 += char
+                        else:
+                            if char == ',':
+                                list1.append(string1)
+                                string1 = ''
+
+                    string2 = ''
+                    list2 = []
+                    for char in newDict[holdS]:
+                        if char not in 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,/':
+                            string2 += char
+                        else:
+                            if char == ',':
+                                list2.append(string2)
+                                string1 = ''
+                    list3 = [2]
+                    for i in range(len(list1)):
+                        list3.append(list1[i] + list2[i])
+                    
+                    del list1
+                    del list2
+                    
+                    doublesKeys.append(holdS)
+                    doublesDict[holdS] = list3
+
+                else:
+                    holdStringDoubles = ''
+                    holdListDoubles = []
+
+                    for char in matchStringHold:
+                        if char not in 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,/':
+                            holdStringDoubles += char
+                        else:
+                            if char == ',':
+                                holdListDoubles.append(holdStringDoubles)
+                                holdStringDoubles = ''
+
+                    for i in range (len(doublesDict)-1):
+                        doublesDict[holdS][i+1] += holdListDoubles[i]
+                    doublesDict[holdS][0] += 1
+
+                    del holdStringDoubles
+                    del holdListDoubles
+
+            else:
+                dictKeys.append(holdS)
+                newDict[holdS] = matchStringHold
+            holdS = ''
+            commaCount = 0
+
+    for i in doublesKeys:
+
+        for i2 in range(len(doublesDict[i]) - 1):
+            doublesDict[i][i2+1] /= doublesDict[i][0]
+
+        doublesDict[i].pop(0)
+        
+        avgString = ''
+        for i2 in range(len(doublesDict[i])):
+            avgString += doublesDict[i][i2] + ','
+
+        avgString += '/'
+
+        dictKeys.append(doublesKeys[i])
+        newDict[doublesKeys[i]] = avgString
+    
+    finalString = ''
+    for i in dictKeys:
+        finalString += newDict[dictKeys[i]]
+
+    return (finalString)
 
 def Local (datain):
     start = True
