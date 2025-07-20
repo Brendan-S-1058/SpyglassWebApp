@@ -301,7 +301,7 @@ def Order (inputDict):
         graphTeleTotals.append(i[3])
     
     for i in range (len(outputList)):
-        outputList[i][0] = outputlist[i][0]//1
+        outputList[i][0] = outputList[i][0]//1
         for i2 in range(3):
             outputList[i][i2+1] = ((outputList[i][i2+1]*100)//1)/100
 
