@@ -34,98 +34,6 @@ def Public ():
         f.close()
     
     return rawData
-    
-def Average (newData):
-   
-    newDict = {}
-    doublesDict = {}
-    doublesKeys = []
-    dictKeys = []
-    holdS = ''
-    matchStringHold = ''
-    commaCount = 0
-    for char in newData:
-        matchStringHold += char
-        if commaCount < 2:
-            if char != ',':
-                holdS += char
-            else:
-                commaCount += 1
-                holdS += char
-        elif char == '/':
-            if holdS in dictKeys:
-                if holdS not in doublesKeys:
-
-                    string1 = ''
-                    list1 = []
-
-                    for char in matchStringHold:
-                        if char not in 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,/':
-                            string1 += char
-                        else:
-                            if char == ',':
-                                list1.append(string1)
-                                string1 = ''
-
-                    string2 = ''
-                    list2 = []
-                    for char in newDict[holdS]:
-                        if char not in 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,/':
-                            string2 += char
-                        else:
-                            if char == ',':
-                                list2.append(string2)
-                                string1 = ''
-                    list3 = [2]
-                    for i in range(len(list1)):
-                        list3.append(list1[i] + list2[i])
-                    
-                    doublesKeys.append(holdS)
-                    doublesDict[holdS] = list3
-
-                else:
-                    holdStringDoubles = ''
-                    holdListDoubles = []
-
-                    for char in matchStringHold:
-                        if char not in 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,/':
-                            holdStringDoubles += char
-                        else:
-                            if char == ',':
-                                holdListDoubles.append(holdStringDoubles)
-                                holdStringDoubles = ''
-
-                    for i in range (len(doublesDict)-1):
-                        doublesDict[holdS][i+1] += holdListDoubles[i]
-                    doublesDict[holdS][0] += 1
-
-            else:
-                dictKeys.append(holdS)
-                newDict[holdS] = matchStringHold
-            holdS = ''
-            commaCount = 0
-
-    for i in doublesKeys:
-
-        for i2 in range(len(doublesDict[i]) - 1):
-            doublesDict[i][i2+1] /= doublesDict[i][0]
-
-        doublesDict[i].pop(0)
-        
-        avgString = ''
-        for i2 in range(len(doublesDict[i])):
-            avgString += doublesDict[i][i2] + ','
-
-        avgString += '/'
-
-        dictKeys.append(doublesKeys[i])
-        newDict[doublesKeys[i]] = avgString
-    
-    finalString = ''
-    for i in dictKeys:
-        finalString += newDict[dictKeys[i]]
-
-    return (finalString)
 
 def Local (datain):
     start = True
@@ -179,8 +87,101 @@ def Local (datain):
 '''
 
 
-def Sort (inputData):
+def Average (newData):
+   
+    newDict = {}
+    doublesDict = {}
+    doublesKeys = []
+    dictKeys = []
+    holdS = ''
+    matchStringHold = ''
+    commaCount = 0
+    for char in newData:
+        matchStringHold += char
+        if commaCount < 2:
+            if char != ',':
+                holdS += char
+            else:
+                commaCount += 1
+                holdS += char
+        elif char == '/':
+            if holdS in dictKeys:
+                if holdS not in doublesKeys:
 
+                    string1 = ''
+                    list1 = []
+
+                    for char in matchStringHold:
+                        if char not in 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,/':
+                            string1 += char
+                        else:
+                            if char == ',':
+                                list1.append(int(string1))
+                                string1 = ''
+
+                    string2 = ''
+                    list2 = []
+                    for char in newDict[holdS]:
+                        if char not in 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,/':
+                            string2 += char
+                        else:
+                            if char == ',':
+                                list2.append(int(string2))
+                                string2 = ''
+
+                    list3 = [2]
+                    for i in range(len(list1)):
+                        list3.append(list1[i] + list2[i])
+                    
+                    doublesKeys.append(holdS)
+                    doublesDict[holdS] = list3
+
+                else:
+                    holdStringDoubles = ''
+                    holdListDoubles = []
+
+                    for char in matchStringHold:
+                        if char not in 'QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm,/':
+                            holdStringDoubles += char
+                        else:
+                            if char == ',':
+                                holdListDoubles.append(holdStringDoubles)
+                                holdStringDoubles = ''
+
+                    for i in range (len(doublesDict)-1):
+                        doublesDict[holdS][i+1] += int(holdListDoubles[i])
+                    doublesDict[holdS][0] += 1
+
+            else:
+                dictKeys.append(holdS)
+                newDict[holdS] = matchStringHold
+            holdS = ''
+            commaCount = 0
+            matchStringHold = ''
+
+    for i in doublesKeys:
+
+        for i2 in range(len(doublesDict[i]) - 1):
+            doublesDict[i][i2+1] /= doublesDict[i][0]
+
+        doublesDict[i].pop(0)
+        
+        avgString = ''
+        for i2 in range(len(doublesDict[i])):
+            avgString += str(doublesDict[i][i2]) + ','
+
+        avgString += '/'
+
+        dictKeys.append(i)
+        newDict[i] = avgString
+    
+    finalString = ''
+    for i in dictKeys:
+        finalString += newDict[i]
+
+    return (finalString)
+
+def Sort (inputData):
     isRollover = True
     matchesByTeam = []
     while isRollover == True:
@@ -257,15 +258,12 @@ def Break (inputString, bigDict):
     autoTotal = 0
     teleTotal = 0
     for match in dataLists:
-        autoTotal += ((int(match[2])*3)+(int(match[3])*3)+(int(match[4])*4)+(int(match[5])*6)+(int(match[6])*7)+(int(match[7])*6)+(int(match[8])*4))
-        teleTotal += ((int(match[9])*2)+(int(match[10])*3)+(int(match[11])*4)+(int(match[12])*5)+(int(match[13])*6)+(int(match[14])*4)+(int(match[15])*2)+(int(match[16])*6)+(int(match[17])*12))
+        autoTotal += ((int(float(match[2]))*3)+(int(float(match[3]))*3)+(int(float(match[4]))*4)+(int(float(match[5]))*6)+(int(float(match[6]))*7)+(int(float(match[7]))*6)+(int(float(match[8]))*4))
+        teleTotal += ((int(float(match[9]))*2)+(int(float(match[10]))*3)+(int(float(match[11]))*4)+(int(float(match[12]))*5)+(int(float(match[13]))*6)+(int(float(match[14]))*4)+(int(float(match[15]))*2)+(int(float(match[16]))*6)+(int(float(match[17]))*12))
     autoAverage = autoTotal/len(dataLists)
     teleAverage = teleTotal/len(dataLists)
-    autoAverage = ((autoAverage*100)//1)/100
-    teleAverage = ((teleAverage*100)//1)/100
     totalPointsScored = autoTotal + teleTotal
     averagePointsScored = autoAverage + teleAverage
-    averagePointsScored = ((averagePointsScored*100)//1)/100
 
     bigDict[str(dataLists[0][1])] = [averagePointsScored, autoAverage, teleAverage]
 
