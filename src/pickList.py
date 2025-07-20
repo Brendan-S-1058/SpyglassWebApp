@@ -150,8 +150,8 @@ def Average (newData):
                             if char == ',':
                                 holdListDoubles.append(holdStringDoubles)
                                 holdStringDoubles = ''
-
-                    for i in range (len(doublesDict)-1):
+                    
+                    for i in range (len(holdListDoubles)-1):
                         doublesDict[holdS][i+1] += int(holdListDoubles[i])
                     doublesDict[holdS][0] += 1
 
