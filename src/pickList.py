@@ -105,7 +105,7 @@ def Average (newData):
                 commaCount += 1
                 holdS += char
         elif char == '/':
-            if holdS in dictKeys:
+            if holdS in dictKeys or holdS in doublesKeys:
                 if holdS not in doublesKeys:
 
                     string1 = ''
@@ -135,6 +135,8 @@ def Average (newData):
                     
                     doublesKeys.append(holdS)
                     doublesDict[holdS] = list3
+
+                    del newDict [holdS]
 
                 else:
                     holdStringDoubles = ''
