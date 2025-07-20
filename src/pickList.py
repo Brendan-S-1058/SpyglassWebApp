@@ -80,9 +80,6 @@ def Average (newData):
                     for i in range(len(list1)):
                         list3.append(list1[i] + list2[i])
                     
-                    del list1
-                    del list2
-                    
                     doublesKeys.append(holdS)
                     doublesDict[holdS] = list3
 
@@ -101,9 +98,6 @@ def Average (newData):
                     for i in range (len(doublesDict)-1):
                         doublesDict[holdS][i+1] += holdListDoubles[i]
                     doublesDict[holdS][0] += 1
-
-                    del holdStringDoubles
-                    del holdListDoubles
 
             else:
                 dictKeys.append(holdS)
