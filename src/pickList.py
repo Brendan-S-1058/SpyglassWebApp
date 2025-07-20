@@ -165,7 +165,10 @@ def Average (newData):
     for i in doublesKeys:
 
         for i2 in range(len(doublesDict[i]) - 1):
-            doublesDict[i][i2+1] /= doublesDict[i][0]
+            if i2 > 1:
+                doublesDict[i][i2+1] /= doublesDict[i][0]
+            else:
+                doublesDict[i][i2+1] //= doublesDict[i][0]
 
         doublesDict[i].pop(0)
         
