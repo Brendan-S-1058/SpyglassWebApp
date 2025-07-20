@@ -137,6 +137,7 @@ def Average (newData):
                     doublesDict[holdS] = list3
 
                     del newDict [holdS]
+                    dictKeys.remove(holdS)
 
                 else:
                     holdStringDoubles = ''
