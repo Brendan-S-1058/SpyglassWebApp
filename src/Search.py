@@ -48,10 +48,10 @@ def Main ():
                 commaCount = 0
                 newDict[holdS] = matchStringHold
 
-        outputString = ''
+        congData = ''
         for i in dictKeys:
             if inputS in i:
-                outputString += newDict[i]
+                congData += newDict[i]
         
 
     else:
