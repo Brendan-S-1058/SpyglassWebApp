@@ -133,6 +133,9 @@
     document.getElementById("searchButton").addEventListener("click", async () => {
       const searchTerm = document.getElementById("Search").value.toLowerCase();
       let values = [];
+      let sendList = [];
+      sendList.push (searchTerm);
+      console.log (sendList);
       tableBody.innerHTML = '';
       newMax.innerHTML = '';
       newMed.innerHTML = '';
@@ -145,22 +148,20 @@
       newAutoTotAvg.innerHTML = '';
       newAutoAvgP.innerHTML = '';
       newTeleAvgP.innerHTML = '';
-      qrs.forEach(qr => {
-        if (qr.includes(searchTerm)) {
-          values.push(qr);
-        }
-      })
+      if (public == -1) {
+        qrs.forEach(qr => {
+          if (qr.includes(searchTerm)) {
+            values.push(qr);
+          }
+        })
+      } else {
+        values.push(searchTerm);
+      }
+      console.log(values)
       let parsedData;
       try {
-        if (public == 1) {
-          let sendList = [];
-          sendList.push (searchTerm);
-          console.log (sendList);
-          parsedData = await runPythonScript(sendList);
-        } else {
-          parsedData = await runPythonScript(values);
-        }
-        console.log ('parsedData: ' + parsedData)
+        parsedData = await runPythonScript(values);
+        console.log ('parsedData: ' + parsedData);
       } catch (e) {
         console.error(e);
         return;
