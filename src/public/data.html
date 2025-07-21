@@ -56,6 +56,8 @@
   </div>
 </body>
 <script>
+    let Searched = true;
+
     const qrs = JSON.parse(localStorage.getItem("qrCodes"));
     const tableBody = document.getElementById("data-table-body");
     document.getElementById("AddEmpty").addEventListener('click', () => {
@@ -65,6 +67,7 @@
 
     document.getElementById("searchButton").addEventListener("click", async () => {
       const searchTerm = document.getElementById("Search").value.toLowerCase();
+      let Searched = true;
       let values = [];
       tableBody.innerHTML = '';
       qrs.forEach(qr => {
@@ -72,13 +75,16 @@
           values.push(qr);
         }
       })
+      values.forEach(value => {
+        qrs.filter(qr => qr != value)
+      });
       values.forEach(line => {
             createRow(line);
         });
       });
-      console.log(qrs)
-
+      
     document.getElementById('AddRows').addEventListener('click', () => {
+        let Searched = false;
         tableBody.innerHTML = '';
         createRows();
     });
@@ -105,14 +111,28 @@
       ))
     })
     document.getElementById("SaveChanges").addEventListener("click", () => {
-      const rows = Array.from(tableBody.rows);
-      const currentData = rows.map(row =>
-      Array.from(row.cells)
-        .slice(0, 19)
-        .map(cell => cell.textContent.trim())
-        .join(",") + "/"
-      );
-      localStorage.setItem("qrCodes", JSON.stringify(currentData));
+      if (Searched == false) {
+        const rows = Array.from(tableBody.rows);
+        const currentData = rows.map(row => {
+          Array.from(row.cells)
+            .slice(0, 19)
+            .map(cell => cell.textContent.trim())
+            .join(",") + "/"
+        });
+        localStorage.setItem("qrCodes", JSON.stringify(currentData));
+      } else if (Searched == true) {
+        const rows = Array.from(tableBody.rows);
+        const currentData = rows.map(row => {
+          Array.from(row.cells)
+            .slice(0, 19)
+            .map(cell => cell.textContent.trim())
+            .join(",") + "/"
+        });
+        currentData.forEach(row => {
+          qrs.push(row)
+        });
+        localStorage.setItem("qrCodes", JSON.stringify(qrs));
+      }
       window.location.reload();
 });
   document.getElementById('inputPaste').addEventListener('click', ()=>{
