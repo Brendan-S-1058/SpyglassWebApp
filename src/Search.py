@@ -55,6 +55,9 @@ def Main ():
                 congData += newDict[i]
         
 
+        print ('congData: ' + str(congData), file = sys.stderr)
+        
+
     else:
         congData = inputS
 
