@@ -153,7 +153,9 @@
       let parsedData;
       try {
         if (public == 1) {
-          parsedData = await runPythonScript([searchTerm]);
+          let sendList = [searchTerm]
+          console.log (sendList)
+          parsedData = await runPythonScript(sendList);
         } else {
           parsedData = await runPythonScript(values);
         }
