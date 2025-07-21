@@ -74,15 +74,15 @@
         if (qr.includes(searchTerm)) {
           values.push(qr);
         }
-      })
+      });
+      console.log(values)
+      values.forEach(line => {
+            createRow(line);
+      });
       values.forEach(value => {
         qrs.filter(qr => qr != value)
       });
-        console.log(values)
-      values.forEach(line => {
-            createRow(line);
-        });
-      });
+    });
       
     document.getElementById('AddRows').addEventListener('click', () => {
         let Searched = false;
