@@ -15,6 +15,7 @@
     <div class="mb-4 flex justify-between items-center">
       <button id="modePublic" class="On">Pull From Public</button>
       <button id="sort" class="button">Generate List</button>
+      <button id="graph?" class="On">SPEED</button>
       <button id="explain" class="button">Explain</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
@@ -35,6 +36,7 @@
   </div>
 </body>
 <script>
+  let graphState = 1;
   let modeState = 1;
   let send = null;
   document.getElementById('modePublic').addEventListener("click", () => {
@@ -43,6 +45,15 @@
       document.getElementById('modePublic').style.color = "#ff0000";
     } else if (modeState == 1) {
       document.getElementById('modePublic').style.color = "#00ff00";
+    } 
+  });
+
+  document.getElementById('graph?').addEventListener("click", ()=> {
+    graphState *= -1;
+    if (graphState == -1) {
+      document.getElementById('graph?').style.color = "#ff0000";
+    } else if (graphState == 1) {
+      document.getElementById('graph?').style.color = "#00ff00";
     } 
   });
 
@@ -55,7 +66,11 @@
 
     let data;
 
-    data = await Sort(send);
+    if (graphState == 1) {
+      data = await Graph(send);
+    } else if (graphState == -1) {
+      data = await Sort(send)
+    }
 
     const table = document.getElementById("data-table-body");
     table.innerHTML = '';
@@ -86,7 +101,7 @@
             table.appendChild(newRow);
             };
 
-  async function Sort(State) {
+  async function Graph(State) {
     const res = await fetch ("/PLSort", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -120,6 +135,25 @@
 
     return (json);
   }
+
+  async function Sort(State) {
+    const res = await fetch ("/PLSort2", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(State),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+    }
+
+    const json = await res.json();
+
+    return (json);
+  }
+
   document.getElementById('explain').addEventListener('click', ()=>{
     alert ("Pull From Public: a toggleable mode which dictates where the data is coming from - green means from the communal public file, red means from your TEAM's personal data, not just your local (this has not been implemented yet, still your local data)\n\nGenerate List: generates a list of teams sorted by average points scored using the selected data method")
 });
