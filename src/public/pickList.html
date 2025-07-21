@@ -51,10 +51,10 @@
   });
 
   document.getElementById('oldGraphs').addEventListener("click", () => {
-        modeState *= -1;
-    if (modeState == -1) {
+        oldGraphs *= -1;
+    if (oldGraphs == -1) {
       document.getElementById('oldGraphs').style.color = "#ff0000";
-    } else if (modeState == 1) {
+    } else if (oldGraphs == 1) {
       document.getElementById('oldGraphs').style.color = "#00ff00";
     } 
   });
@@ -181,6 +181,9 @@
     }
 
     const json = await res.json();
+
+    console.log('Sorted')
+    console.log('oldG: ' + oldGraphs)
 
     if (oldGraphs == 1){
       try {
