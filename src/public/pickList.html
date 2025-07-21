@@ -14,8 +14,9 @@
     </div>
     <div class="mb-4 flex justify-between items-center">
       <button id="modePublic" class="On">Pull From Public</button>
-      <button id="sort" class="button">Generate List</button>
       <button id="graph?" class="On">SPEED</button>
+      <button id="oldGraphs" class="On">Old Graphs</button>
+      <button id="sort" class="button">Generate List</button>
       <button id="explain" class="button">Explain</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
@@ -36,6 +37,7 @@
   </div>
 </body>
 <script>
+  let oldGraphs = 1;
   let graphState = 1;
   let modeState = 1;
   let send = null;
@@ -45,6 +47,15 @@
       document.getElementById('modePublic').style.color = "#ff0000";
     } else if (modeState == 1) {
       document.getElementById('modePublic').style.color = "#00ff00";
+    } 
+  });
+
+  document.getElementById('oldGraphs').addEventListener("click", () => {
+        modeState *= -1;
+    if (modeState == -1) {
+      document.getElementById('oldGraphs').style.color = "#ff0000";
+    } else if (modeState == 1) {
+      document.getElementById('oldGraphs').style.color = "#00ff00";
     } 
   });
 
@@ -102,6 +113,26 @@
             };
 
   async function Graph(State) {
+
+    if (oldGraphs == 1){
+      try {
+        const graph = document.createElement('img');
+        graph.src = "data/ScouterGraphs/AVT.png";
+        graph.width = 600;
+        graph.height = 400;
+
+        const division = document.getElementById("images");
+        division.innerHTML='';
+
+        division.appendChild(graph);
+
+      } catch (e) {
+        console.error("Yikes (The graph didn't work).");
+        console.error(e);
+        return;
+      }
+    }
+
     const res = await fetch ("/PLSort", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -151,11 +182,30 @@
 
     const json = await res.json();
 
+    if (oldGraphs == 1){
+      try {
+        const graph = document.createElement('img');
+        graph.src = "data/ScouterGraphs/AVT.png";
+        graph.width = 600;
+        graph.height = 400;
+
+        const division = document.getElementById("images");
+        division.innerHTML='';
+
+        division.appendChild(graph);
+
+      } catch (e) {
+        console.error("Yikes (The graph didn't work).");
+        console.error(e);
+        return;
+      }
+    }
+
     return (json);
   }
 
   document.getElementById('explain').addEventListener('click', ()=>{
-    alert ("Pull From Public: a toggleable mode which dictates where the data is coming from - green means from the communal public file, red means from your TEAM's personal data, not just your local (this has not been implemented yet, still your local data)\n\nGenerate List: generates a list of teams sorted by average points scored using the selected data method\n\nSPEED: Behaves very similarly to the aforementioned Pull From Public, except instead of changing where the data comes from, it makes the process faster if it is green (on) by not generating a graph, and slower if it is red (off) by taking the time to make a graph")
+    alert ("Pull From Public: a toggleable mode which dictates where the data is coming from - green means from the communal public file, red means from your TEAM's personal data, not just your local (this has not been implemented yet, still your local data)\n\nSPEED: Behaves very similarly to the aforementioned Pull From Public, except instead of changing where the data comes from, it makes the process faster if it is green (on) by not generating a graph, and slower if it is red (off) by taking the time to make a graph\n\nOld Graphs: Old Grpahs will, if enabled (green), import the most recent graph generated either before making a new one, or, if SPEED is enabled, just import the last graph. This can be dangerous because the graph could not represent recent data, especially if SPEED is on.\n\nGenerate List: generates a list of teams sorted by average points scored using the selected data method")
 });
 </script>
 </html>
