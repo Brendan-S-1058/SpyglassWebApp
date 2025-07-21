@@ -18,12 +18,15 @@ def Main ():
     #    inputS += inputL[i]
     inputR = sys.stdin.read()
     inputS = str(json.loads(inputR))
-    print("inputS: " + inputS, file=sys.stderr)
+    rawData = ''
+    if inputS == '1':
+        with open("public/data/Public.txt","r") as f:
+            rawData = f.read()
+            f.close()
+    else:
+        rawData = inputS
 
-
-    ##TODO: multiple lines are not working correctly. data passage problem?? presumably the input was not ok
-
-    for char in inputS:
+    for char in rawData:
         if char != "," and DOUBLE == True:
             DOUBLE = False
         if countd == 1:
@@ -35,7 +38,7 @@ def Main ():
             countd = 1
         if DOUBLE == False:
             export_import_data = export_import_data + char
-    print("export_import_data: " + str(export_import_data), file=sys.stderr)
+    #print("export_import_data: " + str(export_import_data), file=sys.stderr)
     NewSheet(export_import_data)
 
 def NewSheet (datain):

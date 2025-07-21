@@ -15,6 +15,7 @@
     <div class="mb-4 flex justify-between items-center">
           <input id="Search" type="text" placeholder="Search..." class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
           <button id="searchButton" class="button">Search</button>
+          <button id="Public" class="On">Pull From Public</button>
           <button id="explain" class="button">Explain</button>
       </div>
   </div>
@@ -104,6 +105,8 @@
     <div id="images"></div>
 </body>
 <script>
+    let public = 1;
+
     const qrs = JSON.parse(localStorage.getItem("qrCodes"));
     const tableBody = document.getElementById("data-table-body");
     const newMax = document.createElement('td');
@@ -117,6 +120,15 @@
     const newAutoTotAvg = document.createElement('td');
     const newAutoAvgP = document.createElement('td');
     const newTeleAvgP = document.createElement('td');
+
+    document.getElementById('Public').addEventListener("click", () => {
+      public *= -1;
+      if (public == -1){
+        document.getElementById('Public').style.color = "#ff0000";
+      } else if (public == 1) {
+        document.getElementById('Public').style.color = "#00ff00";
+      } 
+    });
 
     document.getElementById("searchButton").addEventListener("click", async () => {
       const searchTerm = document.getElementById("Search").value.toLowerCase();
@@ -140,7 +152,11 @@
       })
       let parsedData;
       try {
-        parsedData = await runPythonScript(values);
+        if (public == 1) {
+          parsedData = await runPythonScript('1');
+        } else {
+          parsedData = await runPythonScript(values);
+        }
         console.log ('parsedData: ' + parsedData)
       } catch (e) {
         console.error(e);
@@ -325,7 +341,7 @@
   }
 
   document.getElementById('explain').addEventListener('click', ()=>{
-    alert ("Search: searches and processes the team's data which you input including graphs generated on the raw data page")
+    alert ("Search: searches and processes the team's data which you input including graphs generated on the raw data page\n\nPull From Public: pulls input data from the communal public file rather than from your personal data when green (on), vice versa when red (off)")
   });
         
 </script>
