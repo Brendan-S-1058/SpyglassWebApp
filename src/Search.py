@@ -19,12 +19,38 @@ def Main ():
     inputR = sys.stdin.read()
     inputS = str(json.loads(inputR))
     rawData = ''
-    if inputS == '1':
+    if len(inputS) < 15 :
         with open("public/data/Public.txt","r") as f:
             rawData = f.read()
             f.close()
+
+        newDict = {}
+        dictKeys = []
+        holdS = ''
+        matchStringHold = ''
+        commaCount = 0
+        for char in rawData:
+            matchStringHold += char
+            if commaCount < 2 & commaCount > 0:
+                if char != ',':
+                    holdS += char
+                else:
+                    commaCount += 1
+                    holdS += char
+            elif char == '/':
+                dictKeys.append(holdS)
+                holdS = ''
+                commaCount = 0
+                newDict[holdS] = matchStringHold
+
+        outputString = ''
+        for i in dictKeys:
+            if inputS in i:
+                outputString += newDict[i]
+        
+
     else:
-        rawData = inputS
+        congData = inputS
 
     for char in rawData:
         if char != "," and DOUBLE == True:
