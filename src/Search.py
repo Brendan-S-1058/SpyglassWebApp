@@ -23,6 +23,7 @@ def Main ():
     rawData = ''
 
     print ('inputS: ' + str(inputS), file=sys.stderr)
+    print ('len(inputS): ' + str(len(inputS)), file=sys.stderr)
 
     if len(inputS) < 15 :
         with open("public/data/Public.txt","r") as f:
