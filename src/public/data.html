@@ -56,7 +56,7 @@
   </div>
 </body>
 <script>
-    let Searched = true;
+    let searched = true;
 
     if (JSON.parse(localStorage.getItem("qrCodes"))){
       let qrs = JSON.parse(localStorage.getItem("qrCodes"));
@@ -71,7 +71,7 @@
 
     document.getElementById("searchButton").addEventListener("click", async () => {
       const searchTerm = document.getElementById("Search").value.toLowerCase();
-      let Searched = true;
+      let searched = true;
       let values = [];
       tableBody.innerHTML = '';
       qrs.forEach(qr => {
@@ -89,7 +89,7 @@
     });
       
     document.getElementById('AddRows').addEventListener('click', () => {
-        let Searched = false;
+        let searched = false;
         tableBody.innerHTML = '';
         createRows();
     });
@@ -116,7 +116,7 @@
       ))
     })
     document.getElementById("SaveChanges").addEventListener("click", () => {
-      if (Searched == false) {
+      if (searched == false) {
         const rows = Array.from(tableBody.rows);
         const currentData = rows.map(row => {
           Array.from(row.cells)
@@ -125,7 +125,7 @@
             .join(",") + "/"
         });
         localStorage.setItem("qrCodes", JSON.stringify(currentData));
-      } else if (Searched == true) {
+      } else if (searched == true) {
         const rows = Array.from(tableBody.rows);
         const currentData = rows.map(row => {
           Array.from(row.cells)
