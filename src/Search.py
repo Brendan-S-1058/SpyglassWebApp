@@ -57,7 +57,7 @@ def Main ():
     else:
         congData = inputS
 
-    for char in rawData:
+    for char in congData:
         if char != "," and DOUBLE == True:
             DOUBLE = False
         if countd == 1:
