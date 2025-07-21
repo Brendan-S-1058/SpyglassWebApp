@@ -56,12 +56,13 @@
   </div>
 </body>
 <script>
-    let searched = false;
+    let searched = true;
 
     if (JSON.parse(localStorage.getItem("qrCodes"))){
       let qrs = JSON.parse(localStorage.getItem("qrCodes"));
     } else {
       let qrs = [];
+      searched = null;
     }
     const tableBody = document.getElementById("data-table-body");
     document.getElementById("AddEmpty").addEventListener('click', () => {
@@ -135,6 +136,14 @@
         });
         currentData.forEach(row => {
           qrs.push(row)
+        });
+        localStorage.setItem("qrCodes", JSON.stringify(qrs));
+      } else {
+        qrs = rows.map(row => {
+          Array.from(row.cells)
+            .slice(0, 19)
+            .map(cell => cell.textContent.trim())
+            .join(",") + "/"
         });
         localStorage.setItem("qrCodes", JSON.stringify(qrs));
       }
