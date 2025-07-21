@@ -58,7 +58,11 @@
 <script>
     let Searched = true;
 
-    const qrs = JSON.parse(localStorage.getItem("qrCodes"));
+    if (JSON.parse(localStorage.getItem("qrCodes"))){
+      let qrs = JSON.parse(localStorage.getItem("qrCodes"));
+    } else {
+      let qrs = [];
+    }
     const tableBody = document.getElementById("data-table-body");
     document.getElementById("AddEmpty").addEventListener('click', () => {
       const empty = ",,,,,,,,,,,,,,,,,,";
