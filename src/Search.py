@@ -4,6 +4,8 @@ import json
 arrayR = []
 allData = []
 
+print ("SEARCH 1" , file=sys.stderr)
+
 def Main ():
     global Vault
     global TeamList

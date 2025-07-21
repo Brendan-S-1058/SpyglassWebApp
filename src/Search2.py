@@ -1,6 +1,8 @@
 import sys
 import json
 
+print ("SEARCH 2" , file=sys.stderr)
+
 dataLists = []
 finArray = ""
 
