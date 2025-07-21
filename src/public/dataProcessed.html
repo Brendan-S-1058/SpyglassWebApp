@@ -153,6 +153,7 @@
       let parsedData;
       try {
         if (public == 1) {
+          console.log (1)
           parsedData = await runPythonScript([searchTerm]);
         } else {
           parsedData = await runPythonScript(values);
