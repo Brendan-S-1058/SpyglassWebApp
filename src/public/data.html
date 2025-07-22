@@ -124,11 +124,11 @@
             .map(cell => cell.textContent.trim())
             .join(",") + "/"
         });
-        if (searched == true){
-          currentData.forEach(row => {
-            qrs.push(row);
-          });
-        }
+        //if (searched == true){
+          //currentData.forEach(row => {
+            //qrs.push(row);
+          //});
+        //}
         localStorage.setItem("qrCodes", JSON.stringify(currentData));
         window.location.reload();
 });
