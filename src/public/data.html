@@ -63,7 +63,7 @@
     if (qrs == null) {
       qrs = [];
     }
-    
+
     const tableBody = document.getElementById("data-table-body");
     document.getElementById("AddEmpty").addEventListener('click', () => {
       const empty = ",,,,,,,,,,,,,,,,,,";
@@ -119,13 +119,13 @@
     document.getElementById("SaveChanges").addEventListener("click", () => {
       if (searched == false) {
         const rows = Array.from(tableBody.rows);
-        const currentData = rows.map(row => {
+        qrs = rows.map(row => {
           Array.from(row.cells)
             .slice(0, 19)
             .map(cell => cell.textContent.trim())
             .join(",") + "/"
         });
-        localStorage.setItem("qrCodes", JSON.stringify(currentData));
+        localStorage.setItem("qrCodes", JSON.stringify(qrs));
       } else if (searched == true) {
         const rows = Array.from(tableBody.rows);
         const currentData = rows.map(row => {
@@ -136,14 +136,6 @@
         });
         currentData.forEach(row => {
           qrs.push(row)
-        });
-        localStorage.setItem("qrCodes", JSON.stringify(qrs));
-      } else {
-        qrs = rows.map(row => {
-          Array.from(row.cells)
-            .slice(0, 19)
-            .map(cell => cell.textContent.trim())
-            .join(",") + "/"
         });
         localStorage.setItem("qrCodes", JSON.stringify(qrs));
       }
