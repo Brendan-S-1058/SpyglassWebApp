@@ -57,12 +57,8 @@
 </body>
 <script>
     var searched = false;
+
     var qrs = JSON.parse(localStorage.getItem("qrCodes"));
-
-    if (qrs == null) {
-      qrs = [];
-    }
-
     const tableBody = document.getElementById("data-table-body");
     document.getElementById("AddEmpty").addEventListener('click', () => {
       const empty = ",,,,,,,,,,,,,,,,,,";
@@ -70,25 +66,21 @@
     })
 
     document.getElementById("searchButton").addEventListener("click", async () => {
-      console.log (searched);
-      const searchTerm = document.getElementById("Search").value.toLowerCase();
       searched = true;
+      const searchTerm = document.getElementById("Search").value.toLowerCase();
       let values = [];
       tableBody.innerHTML = '';
       qrs.forEach(qr => {
         if (qr.includes(searchTerm)) {
           values.push(qr);
         }
-      });
-      console.log(values)
+      })
       values.forEach(line => {
             createRow(line);
+        });
       });
-      values.forEach(value => {
-        qrs.filter(qr => qr != value)
-      });
-    });
-      
+      console.log(qrs)
+
     document.getElementById('AddRows').addEventListener('click', () => {
         searched = false;
         tableBody.innerHTML = '';
@@ -117,20 +109,30 @@
       ))
     })
     document.getElementById("SaveChanges").addEventListener("click", () => {
-        const rows = Array.from(tableBody.rows);
-        const currentData = rows.map(row => {
-          Array.from(row.cells)
-            .slice(0, 19)
-            .map(cell => cell.textContent.trim())
-            .join(",") + "/"
-        });
-        //if (searched == true){
-          //currentData.forEach(row => {
-            //qrs.push(row);
-          //});
-        //}
-        localStorage.setItem("qrCodes", JSON.stringify(currentData));
-        window.location.reload();
+      const rows = Array.from(tableBody.rows);
+      const currentData = rows.map(row =>
+      Array.from(row.cells)
+        .slice(0, 19)
+        .map(cell => cell.textContent.trim())
+        .join(",") + "/"
+      );
+
+      console.log ('qrs1: ' + qrs);
+      console.log ('currentData: ' + currentData);
+      console.log ('searched: ' + searched);
+
+      if (searched == true) {
+        currentData.forEach(row => {
+          qrs.push(row);
+        })
+      } else {
+        qrs = currentData;
+      }
+
+      console.log ('qrs2: ' + qrs);
+
+      localStorage.setItem("qrCodes", JSON.stringify(qrs));
+      window.location.reload();
 });
   document.getElementById('inputPaste').addEventListener('click', ()=>{
     let pastedLines = prompt("~~--DANGER--~~ pasting in data is dangerous, be sure this data is valid by checking the raw table for problems before saving pasted data ~~--DANGER--~~")
