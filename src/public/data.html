@@ -57,13 +57,13 @@
 </body>
 <script>
     let searched = true;
+    
+    let qrs = JSON.parse(localStorage.getItem("qrCodes"));
 
-    if (JSON.parse(localStorage.getItem("qrCodes"))){
-      let qrs = JSON.parse(localStorage.getItem("qrCodes"));
-    } else {
-      let qrs = [];
-      searched = null;
+    if (qrs == null) {
+      qrs = [];
     }
+\
     const tableBody = document.getElementById("data-table-body");
     document.getElementById("AddEmpty").addEventListener('click', () => {
       const empty = ",,,,,,,,,,,,,,,,,,";
