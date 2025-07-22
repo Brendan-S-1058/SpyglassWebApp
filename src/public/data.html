@@ -75,6 +75,9 @@
           values.push(qr);
         }
       })
+      values.forEach(row => {
+        qrs.filter(qr => qr != row);
+      });
       values.forEach(line => {
             createRow(line);
         });
