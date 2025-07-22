@@ -5,11 +5,24 @@
     <link rel="icon" type="image/x-icon" href="favico/favicon.ico">
     <title>Sypglass</title>
     <meta charset="UTF-8">
-    <a href="input.html">Input</a>
-    <a href="scan.html">Scan</a>
-    <a href="data.html">Raw Data</a>
-    <a href="dataProcessed.html">Processed Data</a>
-    <a href="pickList.html">Pick List</a>
 </head>
+<body>
+    <div class="container mx-auto p-4" id="table">
+        <div id="title">
+            <h1 class="text-3xl font-bold mb-4">Spyglass</h1>
+        </div>
+        <button id="explain" class="button">Explain</button>
+        <a href="input.html">Input</a>
+        <a href="scan.html">Scan</a>
+        <a href="data.html">Raw Data</a>
+        <a href="dataProcessed.html">Processed Data</a>
+        <a href="pickList.html">Pick List</a>
+    </div>
+</body>
+<script>
+    document.getElementById('explain').addEventListener("click", () => {
+        alert("Welcome to Spyglass - Team 1058's online scouting database! this is a fairly complicated and potentially unintuitive system, so if you're ever confused you can just read the 'explain' buttons on each page. As a brief description of each of those pages\n\ninput allows you to input data on the fly in a more simple way than other pages, allowing you to either generate a qr code for the scanner by using the static site input.brendansai.ch, or automatically saving it to your local storage on this site\n\nscan is the site which allows you to collect data from those generating qr codes and use it collectively without the use of internet\n\ndata refers to a raw data page which allows you to edit lines of data, export to the public file, or search\n\nprocessed data is a page of processed data for a single team's emtire event, and shows any graphs generated on the raw data page\n\npicklist generates a list of teams sorted by highest average score to lowest, and also includes a graph comparing teams' average auto and teleop score");
+    });
+</script>
 
 </html>
