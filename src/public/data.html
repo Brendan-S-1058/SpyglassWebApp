@@ -76,7 +76,7 @@
         }
       })
       values.forEach(row => {
-        qrs.filter(qr => qr != row);
+        qrs.filter(qr => qr !== row);
       });
       values.forEach(line => {
             createRow(line);
