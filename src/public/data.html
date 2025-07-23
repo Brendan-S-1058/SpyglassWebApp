@@ -73,9 +73,9 @@
       qrs.forEach(qr => {
         if (qr.includes(searchTerm)) {
           values.push(qr);
-          qrs.filter(qrx => qrx !== qr);
         }
       })
+      qrs.filter(qr => !(qr.includes(searchTerm)));
       console.log('qrs post filter: ' + qrs);
       values.forEach(line => {
             createRow(line);
