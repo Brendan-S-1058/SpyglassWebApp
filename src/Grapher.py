@@ -88,7 +88,7 @@ def Main ():
             plt.savefig(filepath, dpi=300)
             plt.close()
 
-            plt.plot(teleTotalXAxis2, autoTotalYAxis2, marker='o')
+            plt.plot(teleTotalXAxis2, autoTotalYAxis2, marker='o', linestyle='None')
             plt.xlabel('Tele Total')
             plt.ylabel('Auto Total')
             plt.title(str(currentTeam) + " Auto V. Tele")
