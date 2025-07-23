@@ -99,7 +99,7 @@
       Array.from(row.cells)
         .slice(0, 19)
         .map(cell => cell.textContent.trim())
-        .join(",")+','
+        .join(",")+'/'
       ))
     })
     document.getElementById("SubmitPublic").addEventListener("click", () => {
@@ -119,10 +119,6 @@
         .map(cell => cell.textContent.trim())
         .join(",") + "/"
       );
-
-      console.log ('qrs1: ' + qrs);
-      console.log ('currentData: ' + currentData);
-      console.log ('searched: ' + searched);
 
       if (searched == true) {
         currentData.forEach(row => {

@@ -15,11 +15,10 @@ def Main ():
     #team #	match #	auto move	auto L1	auto L2	auto L3	auto L4	auto Processor	auto Net	tele L1	tele L2	tele L3	tele L4	tele processor	tele net	end park	end shallow cage	end deep cage	comments	actions
     #1058	1	1	2	1	2	4	1	1	4	4	4	4	1	1	0	0	1	No comment	Delete
 
-    #inputS = '1058,1,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,,1058,100,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool,,3467,100,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool,'
+    #inputS = '1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment/100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool/100,3467,1,0,0,0,1,1,0,0,1,3,3,3,4,0,0,1,Pretty cool,'
     holdList = []
     hold = ""
     one = True
-    commaCount = 0
     export_import_data = ""
     inputS += ','
 
@@ -32,17 +31,15 @@ def Main ():
             one = True
     
     for char in export_import_data:
-        if char != "," and char != "\n" and char != "\"":
+        if char != "," and char != "\n" and char != "/":
             hold += char 
             #print (hold)
-        if char == "," and commaCount != 28:
+        if char == "," or char == '/':
             holdList.append(hold)
             hold = ""
-            commaCount += 1
-        if commaCount == 19:
+        if char == '/':
             dataLists.append(holdList)
             holdList = []
-            commaCount = 0
     
     for i in range (len(dataLists)):
         if dataLists[i] not in teamCount:
