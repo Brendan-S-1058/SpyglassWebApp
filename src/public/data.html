@@ -78,6 +78,7 @@
       values.forEach(row => {
         qrs.filter(qr => qr !== row);
       });
+      consolse.log('qrs post filter: ' + qrs);
       values.forEach(line => {
             createRow(line);
         });
