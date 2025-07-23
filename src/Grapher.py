@@ -28,6 +28,8 @@ def Main ():
         if char != ',':
             export_import_data += char
             one = False
+            if char == '/':
+                one = True
         elif (one == False):
             export_import_data += char
             one = True
