@@ -98,6 +98,7 @@
     }
     document.getElementById("Submit").addEventListener('click', () => {
       // add a save to permanent .txt file??
+      alert("The grapher is slow - if you want your graphs to generate well, please wait for the confirmation. You will not break anything by leaving early except potentially this set of graphs (sometimes it still works though, so it's just gambling)");
       const rows = Array.from(tableBody.rows);
       overallProcess(rows.map(row =>
       Array.from(row.cells)
@@ -171,9 +172,13 @@ async function overallProcess(dataArray) {
     });
 
     console.log(res);
+    
 
     if (!res.ok){
       throw new Error("HTTP error " + res.status);
+      alert("your graphs were not genereated properly, please review your data before generating again.");
+    } else {
+      alert("Your graphs finished!!");
     }
 
     const json = await res.json();
