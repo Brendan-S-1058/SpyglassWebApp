@@ -69,19 +69,24 @@
       searched = true;
       const searchTerm = document.getElementById("Search").value.toLowerCase();
       let values = [];
+      let newQrs = [];
       tableBody.innerHTML = '';
       qrs.forEach(qr => {
+        consolse.log('qr: ' + qr);
         if (qr.includes(searchTerm)) {
           values.push(qr);
+        } else {
+          newQrs.push(qr);
         }
-      })
-      qrs.filter(qr => !(qr.includes(searchTerm)));
+      });
+      qrs = newQrs;
       console.log('qrs post filter: ' + qrs);
       values.forEach(line => {
             createRow(line);
         });
       });
-      console.log(qrs)
+
+    console.log(qrs)
 
     document.getElementById('AddRows').addEventListener('click', () => {
         searched = false;
