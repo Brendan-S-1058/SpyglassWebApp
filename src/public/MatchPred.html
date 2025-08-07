@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crow's Nest</title>
+  <link rel="icon" type="image/x-icon" href="favico/favicon.ico">
+  <link href="datastyle.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto p-4" id="table">
+    <div id="title">
+      <h1 class="text-3xl font-bold mb-4">Pick List Generator</h1>
+    </div>
+    <div class="mb-4 flex justify-between items-center">
+      <button id="predict" class="button">Predict Match</button>
+      <button id="explain" class="button">Explain</button>
+    </div>
+    <div class="overflow-auto border rounded-lg shadow bg-white">
+      <table class="min-w-full table-fixed">
+        <thead class="bg-gray-200 text-left">
+          <tr>
+            <input id="team1" type="text" placeholder="Blue Team 1" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 blueteam"></input>
+            <input id="team4" type="text" placeholder="Red Team 1" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 redteam"></input>
+          </tr>
+          <tr>
+            <input id="team2" type="text" placeholder="Blue Team 2" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 blueteam"></input>
+            <input id="team5" type="text" placeholder="Red Team 2" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 redteam"></input>
+          </tr>
+          <tr>
+            <input id="team3" type="text" placeholder="Blue Team 3" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 blueteam"></input>
+            <input id="team6" type="text" placeholder="Red Team 3" class="button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 redteam"></input>
+          </tr>
+        </thead>
+        <tbody id="data-table-body">
+        </tbody>
+      </table>
+      <div id="images"></div>
+    </div>
+  </div>
+</body>
+<script>
+  document.getElementById("predict").addEventListener('click', ()=>{
+    tableBody.innerHTML = ``;
+
+    const allTeams = [
+    document.getElementById("team1").value.toLowerCase(),
+    document.getElementById("team2").value.toLowerCase(),
+    document.getElementById("team3").value.toLowerCase(),
+    document.getElementById("team4").value.toLowerCase(),
+    document.getElementById("team5").value.toLowerCase(), 
+    document.getElementById("team6").value.toLowerCase(),
+    '|||', localStorage.getItem("qrCodes")
+    ];
+
+    results = predict (allTeams);
+
+    const tableBody = document.getElementById("data-table-body");
+    const shellResults = document.createElement("tr");
+    shellResults.innerHTML = `
+        <td class="p-2 border">`+results+`</td>
+      `;
+      
+    tableBody.append(shellResults);
+  });
+
+  async function predict(dataArray) {
+    const res = await fetch ("/matchPredinput", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(dataArray),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+    }
+
+    const json = await res.json();
+    return(json);
+    
+  }
+
+
+  document.getElementById('explain').addEventListener('click', ()=>{
+    alert ("not written yet");
+});
+</script>
+</html>
