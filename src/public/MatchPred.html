@@ -60,10 +60,29 @@
     ];
 
     results = predict (allTeams);
+    
+    const [
+      didBlueWin, 
+      blueScoreRange, redScoreRange,
+      blueWinPercent, redWinPercent
+    ] = results;
+
+    if (didBlueWin == true){
+      message = "Blue Wins";
+      color = 'blueteam';
+      winPercents = blueWinPercent + '-' + redWinPercent;
+    } else {
+      message = "Red Wins";
+      color = 'redteam';
+      winPercents = redWinPercent + '-' + blueWinPercent;
+    }
 
     const shellResults = document.createElement("tr");
     shellResults.innerHTML = `
-        <td class="p-2 border">`+results+`</td>
+        <td class="p-2 border`+color+`">`+message+`</td>
+        <td class="p-2 border`+color+`">Blue score range: `+blueScoreRange+`</td>
+        <td class="p-2 border`+color+`">Red score range: `+redScoreRange+`</td>
+        <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
       `;
       
     tableBody.append(shellResults);
@@ -83,6 +102,7 @@
     }
 
     const json = await res.json();
+    console.log(json);
     return(json);
     
   }
