@@ -94,6 +94,7 @@ def search (inputS):
     hold = ''
     after = True
     for char in data:
+        print ('char: ' + str(char), file=sys.stderr)
         if char == "," and after == True:
             after = False
         elif char != '[' and char != ']' and char != '\"' and char != '/':
