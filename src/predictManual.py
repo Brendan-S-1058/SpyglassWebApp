@@ -89,6 +89,23 @@ def search (inputS):
     data = inputS[6]
 
     print ('len(data): ' + str(len(data)), file=sys.stderr)
+    
+    holdList = []
+    hold = ''
+    after = True
+    for char in data:
+        if char == "," and after == True:
+            after = False
+        elif char != "/":
+            hold += char
+        else:
+            holdList.append(hold+char)
+    
+    data = holdList
+
+    del hold
+    del holdList
+    del after
 
     sorted = {}
 
