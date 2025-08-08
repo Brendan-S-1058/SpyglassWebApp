@@ -59,8 +59,12 @@
     localStorage.getItem("qrCodes")
     ];
 
-    results = predict (allTeams);
-    
+    prediction (allTeams);
+  });
+  async function prediction(input) {
+    const tableBody = document.getElementById("data-table-body");
+    result = await predict(input);
+
     const [
       didBlueWin, 
       blueScoreRange, redScoreRange,
@@ -86,7 +90,7 @@
       `;
       
     tableBody.append(shellResults);
-  });
+  }
 
   async function predict(dataArray) {
     const res = await fetch ("/matchPredinput", {
