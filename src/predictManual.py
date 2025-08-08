@@ -88,12 +88,12 @@ def search (inputS):
     teams = [inputS[0], inputS[1], inputS[2], inputS[3], inputS[4], inputS[5]]
     data = inputS[6]
 
-    print ('len(data): ' + str(len(data)), file=sys.stderr)
+    print ('len(data[0]): ' + str(len(data[0])), file=sys.stderr)
     
     holdList = []
     hold = ''
     after = True
-    for char in data:
+    for char in data[0]:
         if char == "," and after == True:
             after = False
         elif char != "/":
