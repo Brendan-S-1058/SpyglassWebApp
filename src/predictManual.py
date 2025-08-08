@@ -96,11 +96,13 @@ def search (inputS):
     for char in data:
         if char == "," and after == True:
             after = False
-        elif char not in '/"[]':
+        elif char != '[' and char != ']' and char != '\"' and char != '/':
             hold += char
-        else:
+            after = False
+        elif char == '/':
             holdList.append(hold+char)
             hold = ''
+            after = True
     
     data = holdList
     print ('data: ' + str(data), file = sys.stderr)
