@@ -28,7 +28,7 @@ def Main ():
                     hold = ''
             allmatches.append(matchList)
         relevantDict[key] = allmatches
-    #print (relevantDict)
+    print ('relevantDict: ' + str(relevantDict), file=sys.stderr)
     for key in keyList:
         match_numbers = []
         for match in relevantDict[key]:
