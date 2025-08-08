@@ -88,6 +88,8 @@ def search (inputS):
     teams = [inputS[0], inputS[1], inputS[2], inputS[3], inputS[4], inputS[5]]
     data = inputS[6]
 
+    print ('len(data): ' + str(len(data)), file=sys.stderr)
+
     sorted = {}
 
     for team in teams:
