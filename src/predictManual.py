@@ -102,6 +102,8 @@ def Main ():
 def search (inputS):
     teams = [inputS[0], inputS[1], inputS[2], inputS[3], inputS[4], inputS[5]]
     data = inputS[6]
+
+    print ('data:' + str(data), file=sys.stderr)
     
     holdList = []
     hold = ''
@@ -118,6 +120,7 @@ def search (inputS):
             after = True
     
     data = holdList
+    print ('data: ' + str(data), file = sys.stderr)
 
     del hold
     del holdList
