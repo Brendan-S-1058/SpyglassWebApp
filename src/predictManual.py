@@ -100,7 +100,7 @@ def Main ():
 
 #searches actually by team# rather than something else (if in)
 def search (inputS):
-    teams = [inputS[0], inputS[1], inputS[2], inputS[3], inputS[4], inputS[5]]
+    teams = [int(inputS[0]), int(inputS[1]), int(inputS[2]), int(inputS[3]), int(inputS[4]), int(inputS[5])]
     data = inputS[6]
 
     print ('data:' + str(data), file=sys.stderr)
