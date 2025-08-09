@@ -132,6 +132,7 @@ def search (inputS):
         sorted[team] = []
 
     for item in data:
+        print ('item: ' + str(item), file=sys.stderr)
         ccount = 0
         allcount = 0
         team = ''
@@ -142,6 +143,7 @@ def search (inputS):
                 elif ccount == 1:
                     team += char
                 if ccount >= 2:
+                    print ('team: ' + str(team), file=sys.stderr)
                     if int(team) in teams:
                         sorted[int(team)].append(item)
                     team = ''
