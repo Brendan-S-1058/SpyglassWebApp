@@ -103,7 +103,7 @@ def search (inputS):
     teams = [int(inputS[0]), int(inputS[1]), int(inputS[2]), int(inputS[3]), int(inputS[4]), int(inputS[5])]
     data = inputS[6]
 
-    print ('data:' + str(data), file=sys.stderr)
+    #print ('data:' + str(data), file=sys.stderr)
     
     holdList = []
     hold = ''
@@ -120,7 +120,7 @@ def search (inputS):
             after = True
     
     data = holdList
-    print ('data: ' + str(data), file = sys.stderr)
+    #print ('data: ' + str(data), file = sys.stderr)
 
     del hold
     del holdList
@@ -132,7 +132,7 @@ def search (inputS):
         sorted[team] = []
 
     for item in data:
-        print ('item: ' + str(item), file=sys.stderr)
+        #print ('item: ' + str(item), file=sys.stderr)
         ccount = 0
         allcount = 0
         team = ''
@@ -143,7 +143,7 @@ def search (inputS):
                 elif ccount == 1:
                     team += char
                 if ccount >= 2:
-                    print ('team: ' + str(team), file=sys.stderr)
+                    #print ('team: ' + str(team), file=sys.stderr)
                     if int(team) in teams:
                         sorted[int(team)].append(item)
                     team = ''
