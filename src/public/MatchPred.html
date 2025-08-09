@@ -46,6 +46,8 @@
 </body>
 <script>
   document.getElementById("paste").addEventListener('click', () => {
+    const tableBody = document.getElementById("data-table-body");
+    
     tableBody.innerHTML = ``;
 
     const teams = prompt("Please paste in a csv line for your six teams (blue1,blue2,blue3,red1,red2,red3):");
