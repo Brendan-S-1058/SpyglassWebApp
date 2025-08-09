@@ -53,7 +53,7 @@
     const teams = prompt("Please paste in a csv line for your six teams (blue1,blue2,blue3,red1,red2,red3):");
 
     let allTeams = teams.split(",");
-    allTeams.push (localStorage.getElementById("qrCodes"));
+    allTeams.push (localStorage.getItem("qrCodes"));
 
     console.log (allTeams);
 
