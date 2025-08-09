@@ -89,6 +89,7 @@ def search (inputS):
     data = inputS[6]
 
     print ('len(data): ' + str(len(data)), file=sys.stderr)
+    print ('data:' + str(data), file=sys.stderr)
     
     holdList = []
     hold = ''
