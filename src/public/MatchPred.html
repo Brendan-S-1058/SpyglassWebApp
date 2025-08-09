@@ -14,6 +14,7 @@
     </div>
     <div class="mb-4 flex justify-between items-center">
       <button id="predict" class="button">Predict Match</button>
+      <button id="paste" class="button">Paste Teams (csv)</button>
       <button id="explain" class="button">Explain</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
@@ -44,6 +45,18 @@
   </div>
 </body>
 <script>
+  document.getElementById("paste").addEventListener('click', () => {
+    tableBody.innerHTML = ``;
+
+    const teams = prompt("Please paste in a csv line for your six teams (blue1,blue2,blue3,red1,red2,red3):");
+
+    const allTeams = teams.split(",");
+
+    console.log (allTeams);
+
+    prediction (allTeams);
+  });
+  
   document.getElementById("predict").addEventListener('click', ()=>{
     const tableBody = document.getElementById("data-table-body");
 
@@ -73,11 +86,11 @@
 
     if (didBlueWin == true){
       message = "Blue Wins";
-      color = 'blueteam';
+      color = ' blueteam';
       winPercents = blueWinPercent + '-' + redWinPercent;
     } else {
       message = "Red Wins";
-      color = 'redteam';
+      color = ' redteam';
       winPercents = redWinPercent + '-' + blueWinPercent;
     }
 

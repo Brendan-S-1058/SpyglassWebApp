@@ -91,7 +91,7 @@ th, tr, td {
 .redteam {
   background-color: #000000;
   border: 1px solid red;
-  color: red(0, 0, 255);
+  color: red;
   padding: 5px 10px;
   text-align: center;
   text-decoration: none;
