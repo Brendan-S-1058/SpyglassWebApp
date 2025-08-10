@@ -15,6 +15,7 @@
     <div class="mb-4 flex justify-between items-center">
       <button id="predict" class="button">Predict Match</button>
       <button id="paste" class="button">Paste Teams (csv)</button>
+      <button id="fullEvent" class="button">Predict Event</button>
       <button id="explain" class="button">Explain</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
@@ -45,6 +46,11 @@
   </div>
 </body>
 <script>
+  document.getElementById('fullEvent').addEventListener('click', () =>{
+    const eventCode = prompt("please input the event id (UVM 2025 was 2025vtbur)").toLowerCase()
+
+    FullPrediction (eventCode)
+  });
   document.getElementById("paste").addEventListener('click', () => {
     const tableBody = document.getElementById("data-table-body");
     
@@ -77,6 +83,42 @@
 
     prediction (allTeams);
   });
+
+  async function FullPrediction(Ecode) {
+    const matches = await pyFullPred (Ecode);
+
+    matches.forEach(teams => {
+      console.log (teams);
+      prediction(teams + localStorage.getItem('qrCodes'));
+    });
+    
+  }
+
+  async function pyFullPred(Ecode) {
+    const res = await fetch ("/EventPred", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(Ecode),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+      alert ("Event Code was INVALID (why would you do this??)");
+    }
+
+    const json = await res.json();
+    console.log(json);
+    return(json);
+    
+  }
+
+
+  document.getElementById('explain').addEventListener('click', ()=>{
+    alert ("not written yet");
+});
+
   async function prediction(input) {
     const tableBody = document.getElementById("data-table-body");
     results = await predict(input);
