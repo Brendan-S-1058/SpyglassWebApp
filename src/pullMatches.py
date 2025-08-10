@@ -5,7 +5,7 @@ import json
 inputR = sys.stdin.read()
 EVENT_KEY = json.loads(inputR)
 
-API_KEY = "07XH8VlaJXTjZpj2Brm1wJuiEPhCMTTYTo4QQeXzsZbbbuyqbGOBVOiaz2ZF1PcK"
+API_KEY = TBA_API_KEY['key']
 
 BASE_URL = "https://www.thebluealliance.com/api/v3"
 
