@@ -98,7 +98,7 @@
     const res = await fetch ("/EventPred", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(Ecode),
+      body: JSON.stringify([Ecode]),
     });
 
     console.log(res);
