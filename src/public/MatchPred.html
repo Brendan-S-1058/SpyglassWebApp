@@ -89,7 +89,8 @@
 
     matches.forEach(teams => {
       console.log (teams);
-      prediction(teams + localStorage.getItem('qrCodes'));
+      teams.push(localStorage.getItem('qrCodes'));
+      prediction(teams);
     });
     
   }
