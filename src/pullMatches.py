@@ -1,11 +1,12 @@
 import requests
 import sys
 import json
+import os
 
 inputR = sys.stdin.read()
 EVENT_KEY = json.loads(inputR)
 
-API_KEY = TBA_API_KEY['key']
+API_KEY = os.environ.get('TBA_API_KEY')
 
 BASE_URL = "https://www.thebluealliance.com/api/v3"
 
