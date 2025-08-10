@@ -20,6 +20,8 @@ teams_data = teams_response.json()
 
 teamList = []
 
+print ('teams_data: ' + str(teams_data), file=sys.stderr)
+
 for team in teams_data:
     teamList.append(team['team_number'])
 
