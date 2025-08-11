@@ -138,12 +138,13 @@
   }
 function build (results) {
   const tableBody = document.getElementById("data-table-body");
-  placeHolder = results;
+  middleMan = results;
+  console.log (middleMan);
     const [
       didBlueWin, 
       blueScoreRange, redScoreRange,
       blueWinPercent, redWinPercent
-    ] = placeHolder;
+    ] = middleMan;
 
     if (didBlueWin == true){
       message = "Blue Wins";
