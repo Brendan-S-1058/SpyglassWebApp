@@ -46,6 +46,7 @@
   </div>
 </body>
 <script>
+  var allResults = {}
   document.getElementById('fullEvent').addEventListener('click', () =>{
     const eventCode = prompt("please input the event id (UVM 2025 was 2025vtbur)").toLowerCase()
 
@@ -85,7 +86,7 @@
   });
 
   async function FullPrediction(Ecode) {
-    var allResults = {}
+    allResults = {}
 
     const matches = await pyFullPred (Ecode);
 
