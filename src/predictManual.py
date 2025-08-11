@@ -163,7 +163,6 @@ def cap (match):
         match[9] += 0.7
         match[10] += 0.7
     
-    #print ('start: ' + str(calc(match)))
     if match[1] > 5:
         match[1] = 5 + (match[1]-5)*0.5
     if match[2] > 5:
@@ -223,8 +222,6 @@ def cap (match):
     while match[5] + match[6] + match[11] + match[12] > 9:
         match[11] -= 0.5
         match[12] -= 0.5
-    
-    #print ('end: ' + str(calc(match)))
 
     return (match)
 

@@ -63,7 +63,7 @@
 
     console.log (allTeams);
 
-    prediction (allTeams);
+    prediction (allTeams, 'no key');
   });
   
   document.getElementById("predict").addEventListener('click', ()=>{
@@ -81,16 +81,22 @@
     localStorage.getItem("qrCodes")
     ];
 
-    prediction (allTeams);
+    prediction (allTeams, 'no key');
   });
 
   async function FullPrediction(Ecode) {
+    var allResults = {}
+
     const matches = await pyFullPred (Ecode);
 
-    matches.forEach(teams => {
+    matches.forEach((teams, key)=> {
       console.log (teams);
       teams.push(localStorage.getItem('qrCodes'));
-      prediction(teams);
+      prediction(teams, key);
+    });
+
+    matches.forEach(key => {
+      build (allResults[key]);
     });
     
   }
@@ -120,10 +126,17 @@
     alert ("not written yet");
 });
 
-  async function prediction(input) {
-    const tableBody = document.getElementById("data-table-body");
-    results = await predict(input);
+  async function prediction(input, key) {
+    if (key == 'no key') {
+      results = await predict(input);
+      build (reults)
+    } else {
+      allResults[key] = await predict(input);
+    };
 
+  }
+function build (results) {
+  const tableBody = document.getElementById("data-table-body");
     const [
       didBlueWin, 
       blueScoreRange, redScoreRange,
