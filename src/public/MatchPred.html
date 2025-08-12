@@ -46,7 +46,8 @@
   </div>
 </body>
 <script>
-  var allResults = {}
+  var allResults = {};
+  var allCount = 0;
   document.getElementById('fullEvent').addEventListener('click', () =>{
     const eventCode = prompt("please input the event id (UVM 2025 was 2025vtbur)").toLowerCase()
 
@@ -90,19 +91,32 @@
 
     const matches = await pyFullPred (Ecode);
     let count = 0;
+    allCount = 0;
 
-    await matches.forEach((teams)=> {
+    matches.forEach((teams)=> {
       console.log (teams);
       teams.push(localStorage.getItem('qrCodes'));
       prediction(teams, count);
       count++;
     });
 
+    while (count > allCount){
+      await HitEmWithAPause();
+    }
+
     console.log(allResults);
 
     for (let i = 0; i < 77; i++) {
       build (allResults[i]);
     };    
+  }
+
+  async function HitEmWithAPause() {
+    return new Promise (reolve => {
+      setTimeout (() => {
+        500;
+      });
+    });
   }
 
   async function pyFullPred(Ecode) {
@@ -181,6 +195,8 @@ function build (results) {
     if (!res.ok){
       throw new Error("HTTP error " + res.status);
     }
+
+    allCount++;
 
     const json = await res.json();
     console.log(json);
