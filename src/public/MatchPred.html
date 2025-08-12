@@ -91,18 +91,17 @@
     const matches = await pyFullPred (Ecode);
     let count = 0;
 
-    matches.forEach((teams)=> {
+    await matches.forEach((teams)=> {
       console.log (teams);
       teams.push(localStorage.getItem('qrCodes'));
       prediction(teams, count);
       count++;
     });
 
-    console.log(allResults[1]);
+    console.log(allResults);
 
     for (let i = 0; i < 77; i++) {
-      console.log (allResults[0]);
-      build (allResults[0]);
+      build (allResults[i]);
     };    
   }
 
@@ -136,7 +135,7 @@
       results = await predict(input);
       build (results)
     } else {
-      allResults[key] = await predict(input);
+      allResults[string(key)] = await predict(input);
     };
 
   }
