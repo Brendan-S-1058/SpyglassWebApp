@@ -89,21 +89,21 @@
     allResults = {}
 
     const matches = await pyFullPred (Ecode);
+    let count = 0;
 
-    matches.forEach((teams, key)=> {
+    matches.forEach((teams)=> {
       console.log (teams);
       teams.push(localStorage.getItem('qrCodes'));
-      prediction(teams, key);
+      prediction(teams, count);
+      count++;
     });
 
     console.log(allResults);
 
-    matches.forEach((unused, key) => {
-      console.log (allResults[key]);
-      console.log (key);
-      build (allResults[key]);
-    });
-    
+    for (let i = 0; i < count; i++) {
+      console.log (allResults[i]);
+      build (allResults[i]);
+    };    
   }
 
   async function pyFullPred(Ecode) {
