@@ -99,12 +99,8 @@
       prediction(teams, count);
       count++;
     });
-
-    let check = False;
-
-    while (check == False){
-      await HitEmWithAPause(count);
-    }
+    
+    await HitEmWithAPause(count);
 
     console.log(allResults);
 
