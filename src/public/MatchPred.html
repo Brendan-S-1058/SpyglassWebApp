@@ -116,8 +116,8 @@
   async function HitEmWithAPause() {
     return new Promise (reolve => {
       setTimeout (() => {
-        500;
-      });
+        resolve (1==2)
+      }, 500);
     });
   }
 
