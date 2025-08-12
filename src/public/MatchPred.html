@@ -100,7 +100,9 @@
       count++;
     });
 
-    while (count > allCount){
+    while (count-1 > allCount){
+      console.log (count);
+      console.log (allcount);
       await HitEmWithAPause();
     }
 
