@@ -135,7 +135,7 @@
       results = await predict(input);
       build (results)
     } else {
-      allResults[string(key)] = await predict(input);
+      allResults[key] = await predict(input);
     };
 
   }
