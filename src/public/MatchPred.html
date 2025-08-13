@@ -99,9 +99,9 @@
       prediction(teams, count);
       count++;
     });
-    
-    await HitEmWithAPause(count);
-
+    while (count > allCount){
+      await HitEmWithAPause(count);
+    }
     console.log(allResults);
 
     for (let i = 0; i < 77; i++) {
@@ -111,10 +111,10 @@
 
   async function HitEmWithAPause(count) {
     return new Promise (resolve => {
-      setTimeout (() => {
+      setTimeout ((resolve) => {
         console.log (count);
         console.log (allCount);
-        count <= allCount
+        (count <= allCount);
       }, 500);
     });
   }
