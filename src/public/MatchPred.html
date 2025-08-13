@@ -100,7 +100,7 @@
       count++;
     });
     while (count > allCount){
-      await HitEmWithAPause(count);
+      await sleep(10000);
     }
     console.log(allResults);
 
@@ -109,14 +109,8 @@
     };    
   }
 
-  async function HitEmWithAPause(count) {
-    return new Promise (resolve => {
-      setTimeout ((resolve) => {
-        console.log (count);
-        console.log (allCount);
-        (count <= allCount);
-      }, 500);
-    });
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   async function pyFullPred(Ecode) {
