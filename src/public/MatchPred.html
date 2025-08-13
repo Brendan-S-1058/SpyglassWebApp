@@ -105,7 +105,7 @@
     console.log(allResults);
 
     for (let i = 0; i < 77; i++) {
-      build (allResults[i]);
+      build (allResults[i], i);
     };    
   }
 
@@ -141,13 +141,13 @@
   async function prediction(input, key) {
     if (key == 'no key') {
       results = await predict(input);
-      build (results)
+      build (results, 'noMatch')
     } else {
       allResults[key] = await predict(input);
     };
 
   }
-function build (results) {
+function build (results, match) {
   const tableBody = document.getElementById("data-table-body");
   const middleMan = results;
     const [
@@ -164,6 +164,10 @@ function build (results) {
       message = "Red Wins";
       color = ' redteam';
       winPercents = redWinPercent + '-' + blueWinPercent;
+    }
+
+    if (match != 'noMatch') {
+      message += (' match ' + match);
     }
 
     const shellResults = document.createElement("tr");
