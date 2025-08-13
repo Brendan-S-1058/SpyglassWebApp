@@ -112,6 +112,8 @@
   async function HitEmWithAPause(count) {
     return new Promise (resolve => {
       setTimeout (() => {
+        console.log (count);
+        console.log (allCount);
         count <= allCount
       }, 500);
     });
