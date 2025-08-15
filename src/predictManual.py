@@ -191,22 +191,18 @@ def cap (match):
     coralavg = (match[1] + match[2] + match[3] + match[4] + match[7] + match[8] + match[9] + match[10])/4
 
     if (match[1] + match[7]) > coralavg - 1.5 and (match[1] + match[7]) < 1.5 + coralavg:
-        print ('akb')
         if match[7] > 0.05:
             match[7] += 0.4
     
     if (match[2] + match[8]) > coralavg - 1.5 and (match[2] + match[8]) < coralavg + 1.5:
-        print ('akn')
         if match[8] > 0.05:
             match[8] += 0.3
     
     if (match[3] + match[9]) > coralavg - 1.5 and (match[3] + match[9]) < 1.5 + coralavg:
-        print ('aghd')
         if match[7] > 0.05:
             match[7] += 0.4
     
     if (match[4] + match[10]) > coralavg - 1.5 and (match[4] + match[10]) < coralavg + 1.5:
-        print ('javb')
         if match[10] > 0.05:
             match[10] += 0.6
     
