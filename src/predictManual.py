@@ -24,7 +24,7 @@ def Main ():
     inputS = holdList
 
     rList = search (inputS)
-    print ('rList: ' + str(rList), file = sys.stderr)
+    #print ('rList: ' + str(rList), file = sys.stderr)
 
     relevantDict = rList[0]
     keyList = rList [1]
@@ -45,7 +45,7 @@ def Main ():
                     hold = ''
             allmatches.append(matchList)
         relevantDict[key] = allmatches
-    print ('relevantDict: ' + str(relevantDict), file=sys.stderr)
+    #print ('relevantDict: ' + str(relevantDict), file=sys.stderr)
     for key in keyList:
         match_numbers = []
         for match in relevantDict[key]:
@@ -157,7 +157,7 @@ def cap (match):
     #one can assume that the average match from which scouting data is pulled is not a particularly good composition, so one must give to good matches as one takes away from bad matches
     x = (match[1] + match[2] + match[3] + match[4] + match[7] + match[8] + match[9] + match[10])
 
-    if (match[5] + match[6] + match[11] + match[12]/(x/4+(4/x)**(x/3)-1))>0.9 or (match[5] + match[6] + match[11] + match[12]) > 9:
+    if ((match[5] + match[6] + match[11] + match[12]/(x/4+(4/x)**(x/3)-1))>0.85 and (match[5] + match[6] + match[11] + match[12]/(x/4+(4/x)**(x/3)-1))<1.1) or (match[5] + match[6] + match[11] + match[12]) > 9:
         match[7] += 0.7
         match[8] += 0.7
         match[9] += 0.7
@@ -187,26 +187,48 @@ def cap (match):
         match[11] = 9
     if match[12] > 9:
         match[12] = 9
+
+    coralavg = (match[1] + match[2] + match[3] + match[4] + match[7] + match[8] + match[9] + match[10])/4
+
+    if (match[1] + match[7]) > coralavg - 1.5 and (match[1] + match[7]) < 1.5 + coralavg:
+        print ('akb')
+        if match[7] > 0.05:
+            match[7] += 0.4
+    
+    if (match[2] + match[8]) > coralavg - 1.5 and (match[2] + match[8]) < coralavg + 1.5:
+        print ('akn')
+        if match[8] > 0.05:
+            match[8] += 0.3
+    
+    if (match[3] + match[9]) > coralavg - 1.5 and (match[3] + match[9]) < 1.5 + coralavg:
+        print ('aghd')
+        if match[7] > 0.05:
+            match[7] += 0.4
+    
+    if (match[4] + match[10]) > coralavg - 1.5 and (match[4] + match[10]) < coralavg + 1.5:
+        print ('javb')
+        if match[10] > 0.05:
+            match[10] += 0.6
     
     increment = 0
-    bar = 6 
+    bar = 9 
     while match[5] + match[6] + match[11] + match[12] + increment < (match[1] + match[2] + match[3] + match[4] + match[7] + match[8] + match[9] + match[10])/6: 
         if match[8] > bar:
             match[8] -= 0.25
             increment += 0.25
-        elif match[7] > bar + 1:
+        elif match[7] > bar:
             match[7] -= 0.25
-            increment += 0.2
+            increment += 0.3
         elif match[9] > bar:
-            match[9] -= 0.25
+            match[9] -= 0.15
             increment += 0.25
         elif match[10] > bar:
-            match[10] -= 0.5
+            match[10] -= 0.4
             increment += 0.3
         else:
-            bar -= 2
+            bar -= 1
         if match[11] > 0:
-            match[11] += 0.3
+            match[11] += 0.2
         if match[12] > 0:
             match[12] += 0.5
     
