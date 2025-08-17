@@ -201,11 +201,11 @@ def cap (match):
     
     if (match[3] + match[9]) > coralavg - 1.5 and (match[3] + match[9]) < 1.5 + coralavg:
         if match[7] > 0.05:
-            match[7] += 0.4
+            match[7] += 0.6
     
     if (match[4] + match[10]) > coralavg - 1.5 and (match[4] + match[10]) < coralavg + 1.5:
         if match[10] > 0.05:
-            match[10] += 0.55
+            match[10] += 1.95
     
     increment = 0
     bar = 6 
