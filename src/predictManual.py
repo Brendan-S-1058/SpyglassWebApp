@@ -158,10 +158,10 @@ def cap (match):
     x = (match[1] + match[2] + match[3] + match[4] + match[7] + match[8] + match[9] + match[10])
 
     if (match[5] + match[6] + match[11] + match[12]/(x/4+(4/x)**(x/3)-1))>0.9 or (match[5] + match[6] + match[11] + match[12]) > 9:
-        match[7] += 0.7
-        match[8] += 0.7
-        match[9] += 0.7
-        match[10] += 0.7
+        match[7] += 0.8
+        match[8] += 0.8
+        match[9] += 0.8
+        match[10] += 0.8
     
     #print ('start: ' + str(calc(match)))
     if match[1] > 5:
@@ -193,19 +193,19 @@ def cap (match):
 
     if (match[1] + match[7]) > coralavg - 1.5 and (match[1] + match[7]) < 1.5 + coralavg:
         if match[7] > 0.05:
-            match[7] += 0.25
+            match[7] += 0.35
     
     if (match[2] + match[8]) > coralavg - 1.5 and (match[2] + match[8]) < coralavg + 1.5:
         if match[8] > 0.05:
-            match[8] += 0.4
+            match[8] += 0.7
     
     if (match[3] + match[9]) > coralavg - 1.5 and (match[3] + match[9]) < 1.5 + coralavg:
         if match[7] > 0.05:
-            match[7] += 0.6
+            match[7] += 0.7
     
     if (match[4] + match[10]) > coralavg - 1.5 and (match[4] + match[10]) < coralavg + 1.5:
         if match[10] > 0.05:
-            match[10] += 1.95
+            match[10] += 0.95
     
     increment = 0
     bar = 6 
