@@ -23,6 +23,8 @@ def Main ():
     holdList.append(hold)
     inputS = holdList
 
+    print ('inputS: ' + str(inputS), file=sys.stderr)
+
     rList = search (inputS)
     #print ('rList: ' + str(rList), file = sys.stderr)
 
