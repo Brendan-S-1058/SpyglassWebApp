@@ -93,6 +93,8 @@ def Main ():
 
     result = analyze(blueFinal, redFinal, blueStart, redStart)
 
+    print (result, file=sys.stderr)
+
     print (json.dumps(result))
 
     #start getting every score from each match and returning it to the scores list, maybe record locations of score - cap an auto - cap algae - so on so forth
