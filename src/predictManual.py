@@ -65,8 +65,8 @@ def Main ():
             #all these comments are for trying to weight later matches more, but a: it's not working, and b: I don't think it adds accuracy
             #recent = relevantDict[str(key) + "matches"].index(match[0])/len(relevantDict[str(key) + "matches"])
             #divisor += recent
+            print (match, file=sys.stderr)
             for item in match:
-                print (match, file=sys.stderr)
                 count += 1
                 if count > 2:
                     teamHoldList[count-1] += (int(item))
