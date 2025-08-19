@@ -23,8 +23,6 @@ def Main ():
     holdList.append(hold)
     inputS = holdList
 
-    print ('inputS: ' + str(inputS), file=sys.stderr)
-
     rList = search (inputS)
     #print ('rList: ' + str(rList), file = sys.stderr)
 
@@ -68,6 +66,7 @@ def Main ():
             #recent = relevantDict[str(key) + "matches"].index(match[0])/len(relevantDict[str(key) + "matches"])
             #divisor += recent
             for item in match:
+                print (match, file=sys.stderr)
                 count += 1
                 if count > 2:
                     teamHoldList[count-1] += (int(item))
@@ -94,8 +93,6 @@ def Main ():
     redFinal = calc (redAverageMatchHalfProcessed)
 
     result = analyze(blueFinal, redFinal, blueStart, redStart)
-
-    print (result, file=sys.stderr)
 
     print (json.dumps(result))
 
