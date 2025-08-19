@@ -158,6 +158,9 @@ def cap (match):
     #one can assume that the average match from which scouting data is pulled is not a particularly good composition, so one must give to good matches as one takes away from bad matches
     x = (match[1] + match[2] + match[3] + match[4] + match[7] + match[8] + match[9] + match[10])
 
+    if x <= 0:
+        x = 0.00001
+
     if (match[5] + match[6] + match[11] + match[12]/(x/4+(4/x)**(x/3)-1))>0.9 or (match[5] + match[6] + match[11] + match[12]) > 9:
         match[7] += 0.8
         match[8] += 0.8
