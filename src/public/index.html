@@ -22,9 +22,70 @@
     </div>
 </body>
 <script>
+    document.onload(() => {
+        team = prompt("What team are you on (just the number: ex. 1058). If you only want to access public data, enter 'guest'");
+        if (team != 'guest'){
+            checkPassword = FindPasswordByTeam (team);
+            if (checkPassword != False) {
+                enteredpass = prompt ("please enter your team's password:")
+                while (enteredpass != checkPassword) {
+                    prompt ("YIKES (wrong password, make sure you're using the right password for this event, it could have changed)");
+                }
+                localStorage.setItem("team", team);
+            } else {
+                newPass = prompt ("your team has not yet set a password for this event, you can set one, but you CAN NOT RESET IT, so share it with your team in some digital way AS SOON AS YOU MAKE IT");
+                setPass (team, newPass);
+            }
+        } else {
+            localStorage.setItem("team", "guest");
+        }
+        
+        
+    });
     document.getElementById('explain').addEventListener("click", () => {
         alert("Welcome to Spyglass - Team 1058's online scouting database! this is a fairly complicated and potentially unintuitive system, so if you're ever confused you can just read the 'explain' buttons on each page. As a brief description of each of those pages\n\ninput allows you to input data on the fly in a more simple way than other pages, allowing you to either generate a qr code for the scanner by using the static site input.brendansai.ch, or automatically saving it to your local storage on this site\n\nscan is the site which allows you to collect data from those generating qr codes and use it collectively without the use of internet\n\ndata refers to a raw data page which allows you to edit lines of data, export to the public file, or search\n\nprocessed data is a page of processed data for a single team's emtire event, and shows any graphs generated on the raw data page\n\npicklist generates a list of teams sorted by highest average score to lowest, and also includes a graph comparing teams' average auto and teleop score");
     });
+
+    async function FindPasswordByTeam (teamNumber) {
+    const res = await fetch ("/FindPassword", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(teamNumber),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+      alert ("Event Code was INVALID (why would you do this??)");
+    }
+
+    const json = await res.json();
+    console.log(json);
+    return(json);
+    
+  }
+
+  async function setPass (teamNumber, newPass) {
+    const res = await fetch ("/setPassword", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify([teamNumber, newPass]),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+      alert ("Event Code was INVALID (why would you do this??)");
+    }
+
+    const json = await res.json();
+    console.log(json);
+    return(json);
+    
+  }
+
 </script>
 
 </html>
