@@ -22,7 +22,7 @@
     </div>
 </body>
 <script>
-    window.onload(() => {
+    document.addEventListener('DOMContentLoaded', () => {
         team = prompt("What team are you on (just the number: ex. 1058). If you only want to access public data, enter 'guest'");
         if (team != 'guest'){
             checkPassword = FindPasswordByTeam (team);
