@@ -37,7 +37,7 @@
             if (checkPassword != false) {
                 enteredpass = prompt ("please enter your team's password:")
                 while (enteredpass != checkPassword) {
-                    prompt ("YIKES (wrong password, make sure you're using the right password for this event, it could have changed)");
+                    enteredpass = prompt ("YIKES (wrong password, make sure you're using the right password for this event, it could have changed)");
                 }
                 localStorage.setItem("team", team);
             } else {
