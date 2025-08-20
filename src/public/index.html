@@ -25,10 +25,10 @@
     document.addEventListener('DOMContentLoaded', () => {
       team = prompt("What team are you on (just the number: ex. 1058). If you only want to access public data, enter 'guest'");
         while (team == null) {
-          team = prompt ("no wait it's kind of important, I kinda need something to organize files, even if it's just 'guest'");
+          team = prompt ("What team are you on (just the number: ex. 1058). If you only want to access public data, enter 'guest'");
         }
         
-        if (team != 'guest'){
+        if ((team.toLowerCase()) != 'guest'){
             checkPassword = FindPasswordByTeam (team);
             if (checkPassword != false) {
                 enteredpass = prompt ("please enter your team's password:")
