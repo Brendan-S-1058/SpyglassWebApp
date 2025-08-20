@@ -25,7 +25,7 @@ def Main ():
         file.write (team + '/' + passw + ',')
         file.close ()
 
-    teamFileStructure = 'public/data/Teams/' + str(team) + '/' str(team) + 'Graphs'
+    teamFileStructure = 'public/data/Teams/' + str(team) + '/' + str(team) + 'Graphs'
     os.makedirs (teamFileStructure)
     
     with open ("public/data/Teams/" + str(team) + '/' + str(team) + 'Public.txt', 'x') as file:
