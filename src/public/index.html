@@ -30,6 +30,7 @@
         
         if ((team.toLowerCase()) != 'guest'){
             checkPassword = FindPasswordByTeam (team);
+            console.log(checkPassword);
             if (checkPassword != false) {
                 enteredpass = prompt ("please enter your team's password:")
                 while (enteredpass != checkPassword) {
