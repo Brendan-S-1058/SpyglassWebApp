@@ -7,7 +7,7 @@ def Main ():
 
     print (inputS, file=sys.stderr)
 
-    with open('testData.txt', 'r') as file:
+    with open('data/testData.txt', 'r') as file:
         allData = file.read()
         file.close
     
