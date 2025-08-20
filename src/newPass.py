@@ -22,7 +22,7 @@ def Main ():
             else:
                 passw += char
 
-    with open ("data/testData.txt", 'w') as file:
+    with open ("public/data/testData.txt", 'w') as file:
         file.write (team + '/' + passw + ',')
         file.close ()
 
