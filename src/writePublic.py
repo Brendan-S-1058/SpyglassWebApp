@@ -4,7 +4,24 @@ import json
 inputR = sys.stdin.read()
 inputS = str(json.loads(inputR)) + ','
 
-def Main():
+comma = False
+inputSo = ''
+team = ''
+for char in inputS:
+    if char == ',':
+        if comma == False:
+            comma = True
+        else:
+            inputSo += char
+    else:
+        if comma == False:
+            team += char
+        else:
+            inputSo += char
+
+
+
+def Main(inputM, teamNum):
 
     #TODO: make it check for doubles
 
@@ -41,7 +58,7 @@ def Main():
             SHOULD BE USED IN PICKLIST FOR FINDING AVERAGES OF MATCHES SUBMITTED MULTIPLE TIMES
             '''
 
-    newData = Local (inputS)
+    newData = Local (inputM)
 
     secondSetForComparision = []
     matchStringHold = ''
@@ -83,6 +100,8 @@ def Main():
     with open ("public/data/Public.txt", 'w') as f:
         f.write(currentData)
         f.close ()
+    
+    with open ("public/data/Teams/" + teamNum + "/" + teamNum + "Public.txt")
 
 def Local (datain):
     start = True
@@ -110,5 +129,5 @@ def Local (datain):
 
     return dataout
 
-Main()
+Main(inputSo, team)
 print (json.dumps("consider that public written"))
