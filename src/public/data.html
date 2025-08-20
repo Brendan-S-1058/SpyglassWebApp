@@ -109,12 +109,12 @@
     })
     document.getElementById("SubmitPublic").addEventListener("click", () => {
       const rows = Array.from(tableBody.rows);
-      saveAll(localStorage.getItem("team") + ',' + rows.map(row =>
+      saveAll([localStorage.getItem("team") + ',' + rows.map(row =>
       Array.from(row.cells)
         .slice(0, 19)
         .map(cell => cell.textContent.trim())
         .join(",")+'/'
-      ))
+      )])
     })
     document.getElementById("SaveChanges").addEventListener("click", () => {
       const rows = Array.from(tableBody.rows);
