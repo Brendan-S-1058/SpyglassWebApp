@@ -18,7 +18,7 @@ def Main ():
                 passw += char
         else:
             if comma == False:
-                comma == True
+                comma = True
             else:
                 passw += char
     
@@ -28,5 +28,7 @@ def Main ():
     with open ("public/data/testData.txt", 'w') as file:
         file.write (team + '/' + passw + ',')
         file.close ()
+    
+    print (json.dumps("newpassword: " + str(passw)))
 
 Main ()
