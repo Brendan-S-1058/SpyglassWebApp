@@ -12,7 +12,22 @@ def Main ():
     inputR = sys.stdin.read()
     inputS = str(json.loads(inputR))
 
-    print ('inputS: ' + str(inputS), file=sys.stderr)
+    comma = False
+    inputSo = ''
+    team = ''
+    for char in inputS:
+        if char == ',':
+            if comma == False:
+                comma = True
+            else:
+                inputSo += char
+        else:
+            if comma == False:
+                team += char
+            else:
+                inputSo += char
+
+    print ('inputSo: ' + str(inputSo), file=sys.stderr)
 
     #team #	match #	auto move	auto L1	auto L2	auto L3	auto L4	auto Processor	auto Net	tele L1	tele L2	tele L3	tele L4	tele processor	tele net	end park	end shallow cage	end deep cage	comments	actions
     #1058	1	1	2	1	2	4	1	1	4	4	4	4	1	1	0	0	1	No comment	Delete
@@ -22,9 +37,9 @@ def Main ():
     hold = ""
     one = True
     export_import_data = ""
-    inputS += ','
+    inputSo += ','
 
-    for char in inputS:
+    for char in inputSo:
         if char != ',':
             export_import_data += char
             one = False
@@ -84,7 +99,7 @@ def Main ():
             plt.ylabel('Total Points Scores')
             plt.title(str(currentTeam))
             #filepath=os.path.join(str(currentTeam) + ".png")
-            filepath=("public/data/ScouterGraphs/" + str(currentTeam) + ".png")
+            filepath=('public/data/Teams/' + str(team) + '/' + str(team) + 'Graphs/' + str(currentTeam) + ".png")
             plt.savefig(filepath, dpi=300)
             plt.close()
 
@@ -93,7 +108,7 @@ def Main ():
             plt.ylabel('Auto Total')
             plt.title(str(currentTeam) + " Auto V. Tele")
             #filepath=os.path.join(str(currentTeam) + "avt.png")
-            filepath=("public/data/ScouterGraphs/" + str(currentTeam) + "avt.png")
+            filepath=('public/data/Teams/' + str(team) + '/' + str(team) + 'Graphs/' + str(currentTeam) + "avt.png")
             plt.savefig(filepath, dpi=300)
             plt.close()
 
