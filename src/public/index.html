@@ -30,7 +30,7 @@
         
         if (team != 'guest'){
             checkPassword = FindPasswordByTeam (team);
-            if (checkPassword != False) {
+            if (checkPassword != false) {
                 enteredpass = prompt ("please enter your team's password:")
                 while (enteredpass != checkPassword) {
                     prompt ("YIKES (wrong password, make sure you're using the right password for this event, it could have changed)");
