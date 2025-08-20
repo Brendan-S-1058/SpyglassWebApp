@@ -21,6 +21,9 @@ def Main ():
                 comma == True
             else:
                 passw += char
+    
+    print ('team: ' + team, file=sys.stderr)
+    print ('passw: ' + passw, file=sys.stderr)
 
     with open ("public/data/testData.txt", 'w') as file:
         file.write (team + '/' + passw + ',')
