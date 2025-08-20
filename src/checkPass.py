@@ -31,10 +31,8 @@ def Main ():
             drowssap = passwords[i]
     
     if teamPresent == True:
-        print ('drowssap: ' + str(drowssap), file=sys.stderr)
         print (json.dumps(drowssap))
     else:
-        print ('False: ' + str(teamPresent), file=sys.stderr)
         print (json.dumps(teamPresent))
 
 Main ()
