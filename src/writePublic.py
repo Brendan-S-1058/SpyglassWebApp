@@ -28,6 +28,9 @@ def Main(inputM, teamNum):
     with open ("public/data/Public.txt", 'r') as file:
         currentData = file.read()
         file.close ()
+    
+    with open ("public/data/Teams/" + teamNum + "/" + teamNum + "Public.txt", 'r') as file:
+        teamCurrent = file.read ()
     #processedInputData = makeStringList(inputS)
 
 
@@ -38,6 +41,16 @@ def Main(inputM, teamNum):
         if char == '/':
             compareSets.append(matchStringHold)
             matchStringHold = ''
+    
+    TeamCSets = []
+    matchStringHold = ''
+    for char in teamCurrent:
+        matchStringHold += char
+        if char == '/':
+            TeamCSets.append(matchStringHold)
+            matchStringHold = ''
+    
+
 
     '''compareSets = []
     holdS = ''
@@ -71,6 +84,8 @@ def Main(inputM, teamNum):
     for i in secondSetForComparision:
         if i not in compareSets:
             currentData += str(i)
+        if i not in TeamCSets:
+            teamCurrent += str(i)
 
 
     '''newDict = {}
@@ -101,13 +116,14 @@ def Main(inputM, teamNum):
         f.write(currentData)
         f.close ()
     
-    with open ("public/data/Teams/" + teamNum + "/" + teamNum + "Public.txt")
+    with open ("public/data/Teams/" + teamNum + "/" + teamNum + "Public.txt", 'w') as f:
+        f.write(teamCurrent)
+        f.close ()
 
 def Local (datain):
     start = True
     endStart = False
     dataout = ''
-    print ("WP PRINTS: input: " + str (datain), file=sys.stderr)
     for char in  datain:
         if char == ',' and start == True:
             start = False
@@ -123,7 +139,6 @@ def Local (datain):
         if char == '/':
             start = True
             endStart = False
-    print ("WP PRINTS: output:" + str (dataout), file=sys.stderr)
     
     #should remove leading mode value and all leading commas
 
