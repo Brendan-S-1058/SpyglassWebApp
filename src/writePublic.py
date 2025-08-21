@@ -31,6 +31,7 @@ def Main(inputM, teamNum):
     
     with open ("public/data/Teams/" + teamNum + "/" + teamNum + "Public.txt", 'r') as file:
         teamCurrent = file.read ()
+        file.close ()
     #processedInputData = makeStringList(inputS)
 
 
