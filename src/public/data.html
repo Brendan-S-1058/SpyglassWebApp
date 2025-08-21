@@ -100,12 +100,12 @@
       // add a save to permanent .txt file??
       alert("The grapher is slow - if you want your graphs to generate well, please wait for the confirmation. You will not break anything by leaving early except potentially this set of graphs (sometimes it still works though, so it's just gambling)");
       const rows = Array.from(tableBody.rows);
-      overallProcess(rows.map(row =>
+      overallProcess([localStorage.getItem('team'), rows.map(row =>
       Array.from(row.cells)
         .slice(0, 19)
         .map(cell => cell.textContent.trim())
         .join(",")+'/'
-      ))
+      )])
     })
     document.getElementById("SubmitPublic").addEventListener("click", () => {
       const rows = Array.from(tableBody.rows);
