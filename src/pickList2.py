@@ -5,12 +5,24 @@ def Main ():
     inputR = sys.stdin.read()
     inputI = json.loads(inputR)
 
+    comma = False
+    inputSo = ''
+    for char in inputI:
+        if char == ',':
+            if comma == False:
+                comma = True
+            else:
+                inputSo += char
+        else:
+            if comma == True:
+                inputSo += char
+
     finalDataDict = {}
 
-    if inputI == "1":
+    if inputSo == "1":
         congData = Public ()
     else:
-        congData = Local (inputI)
+        congData = Local (inputSo)
 
     avgData = Average(congData)
     
