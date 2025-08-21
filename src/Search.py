@@ -30,7 +30,7 @@ def Main ():
             rawData = f.read()
             f.close()
 
-        print ('len(rawData): ' + len(rawData), file=sys.stderr)
+        print ('len(rawData): ' + str(len(rawData)), file=sys.stderr)
 
         newDict = {}
         dictKeys = []
