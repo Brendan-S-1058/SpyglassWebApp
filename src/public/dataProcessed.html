@@ -178,7 +178,7 @@
 
       try {
         const g1 = document.createElement('img');
-        g1.src = "data/ScouterGraphs/" + searchTerm + ".png";
+        g1.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'Graphs' + '/' + searchTerm + ".png";
         g1.width = 600;
         g1.height = 400;
 
@@ -186,7 +186,7 @@
         space.innerHTML = '&nbsp;'; // optional: creates a visible space
 
         const g2 = document.createElement('img');
-        g2.src = "data/ScouterGraphs/" + searchTerm + "avt.png";
+        g2.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'Graphs' + '/' + searchTerm + "avt.png";
         g2.width = 600;
         g2.height = 400;
 
