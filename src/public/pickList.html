@@ -149,7 +149,7 @@
 
     try {
       const graph = document.createElement('img');
-      graph.src = "data/ScouterGraphs/AVT.png";
+      graph.src = "public/data/Teams/" + localStorage.getItem('team') + "/" + localStorage.getItem('team') + "Graphs/AVT.png";
       graph.width = 600;
       graph.height = 400;
 
@@ -185,7 +185,7 @@
     if (oldGraphs == 1){
       try {
         const graph = document.createElement('img');
-        graph.src = "data/ScouterGraphs/AVT.png";
+        graph.src = "public/data/Teams/" + localStorage.getItem('team') + "/" + localStorage.getItem('team') + "Graphs/AVT.png";
         graph.width = 600;
         graph.height = 400;
 
