@@ -22,6 +22,8 @@ def Main ():
                 team += char
             else:
                 inputSo += char
+    
+    print ('team: ' + team, file=sys.stderr)
 
     finalDataDict = {}
 
@@ -289,7 +291,7 @@ def Break (inputString, bigDict):
 
     bigDict[str(dataLists[0][1])] = [averagePointsScored, autoAverage, teleAverage]
 
-def Order (inputDict, team):
+def Order (inputDict, teamDir):
     outerHoldList = []
     values2 = []
     outputList = []
@@ -334,7 +336,7 @@ def Order (inputDict, team):
     for i in range (len(graphTeams)):
         plt.text(graphAutoTotals[i], graphTeleTotals[i], graphTeams[i])
     plt.title('Auto V. Tele')
-    filepath=("public/data/Teams/" + team + "/" + team + "Graphs/AVT.png")
+    filepath=("public/data/Teams/" + teamDir + "/" + teamDir + "Graphs/AVT.png")
     plt.savefig(filepath, dpi=300)
     plt.close()
 
