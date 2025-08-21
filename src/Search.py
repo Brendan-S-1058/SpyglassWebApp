@@ -38,12 +38,13 @@ def Main ():
         matchStringHold = ''
         commaCount = 0
         for char in rawData:
+            if char == ',':
+                commaCount += 1
             matchStringHold += char
             if commaCount < 2 and commaCount > 0:
                 if char != ',':
                     holdS += char
                 else:
-                    commaCount += 1
                     holdS += char
             elif char == '/':
                 dictKeys.append(holdS)
