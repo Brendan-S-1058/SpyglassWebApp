@@ -50,6 +50,8 @@ def Main ():
                 holdS = ''
                 commaCount = 0
                 newDict[holdS] = matchStringHold
+        
+        print ('newDict: ' + str(newDict), file=sys.stderr)
 
         congData = ''
         for i in dictKeys:
