@@ -47,9 +47,10 @@ def Main ():
                     holdS += char
             elif char == '/':
                 dictKeys.append(holdS)
-                holdS = ''
                 commaCount = 0
                 newDict[holdS] = matchStringHold
+                holdS = ''
+                matchStringHold = ''
         
         print ('newDict: ' + str(newDict), file=sys.stderr)
 
