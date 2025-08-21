@@ -30,7 +30,7 @@ def Main ():
             rawData = f.read()
             f.close()
 
-        print ('rawData: ' + rawData, file=sys.stderr)
+        print ('len(rawData): ' + len(rawData), file=sys.stderr)
 
         newDict = {}
         dictKeys = []
@@ -39,7 +39,7 @@ def Main ():
         commaCount = 0
         for char in rawData:
             matchStringHold += char
-            if commaCount < 2 & commaCount > 0:
+            if commaCount < 2 and commaCount > 0:
                 if char != ',':
                     holdS += char
                 else:
