@@ -70,9 +70,9 @@
 
   document.getElementById('sort').addEventListener("click", async () => {
     if (modeState == -1) {
-      send = [-1, JSON.parse(localStorage.getItem("qrCodes"))];
+      send = [localStorage.getItem('team'), -1, JSON.parse(localStorage.getItem("qrCodes"))];
     } else if (modeState == 1) {
-      send = [1];
+      send = [localStorage.getItem('team'), 1];
     }
 
     let data;
@@ -117,7 +117,7 @@
     if (oldGraphs == 1){
       try {
         const graph = document.createElement('img');
-        graph.src = "data/ScouterGraphs/AVT.png";
+        graph.src = "public/data/Teams/" + localStorage.getItem('team') + "/" + localStorage.getItem('team') + "Graphs/AVT.png";
         graph.width = 600;
         graph.height = 400;
 

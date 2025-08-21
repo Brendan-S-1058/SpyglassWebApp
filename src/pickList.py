@@ -8,12 +8,27 @@ def Main ():
     inputR = sys.stdin.read()
     inputI = json.loads(inputR)
 
+    comma = False
+    inputSo = ''
+    team = ''
+    for char in inputI:
+        if char == ',':
+            if comma == False:
+                comma = True
+            else:
+                inputSo += char
+        else:
+            if comma == False:
+                team += char
+            else:
+                inputSo += char
+
     finalDataDict = {}
 
-    if inputI == "1":
+    if inputSo == "1":
         congData = Public ()
     else:
-        congData = Local (inputI)
+        congData = Local (inputSo)
 
     avgData = Average(congData)
     #averages equal matches
@@ -25,7 +40,7 @@ def Main ():
     for i in range (len(sortedList)):
         Break(sortedList[i], finalDataDict)
 
-    finalList = Order (finalDataDict)
+    finalList = Order (finalDataDict, team)
 
     print (json.dumps(finalList))
     
@@ -274,7 +289,7 @@ def Break (inputString, bigDict):
 
     bigDict[str(dataLists[0][1])] = [averagePointsScored, autoAverage, teleAverage]
 
-def Order (inputDict):
+def Order (inputDict, team):
     outerHoldList = []
     values2 = []
     outputList = []
@@ -319,7 +334,7 @@ def Order (inputDict):
     for i in range (len(graphTeams)):
         plt.text(graphAutoTotals[i], graphTeleTotals[i], graphTeams[i])
     plt.title('Auto V. Tele')
-    filepath=("public/data/ScouterGraphs/AVT.png")
+    filepath=("public/data/Teams/" + team + "/" + team + "Graphs/AVT.png")
     plt.savefig(filepath, dpi=300)
     plt.close()
 
