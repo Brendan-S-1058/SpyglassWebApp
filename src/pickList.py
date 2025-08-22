@@ -329,6 +329,8 @@ def Order (inputDict, teamDir):
         for i2 in range(3):
             outputList[i][i2+1] = str(int(float(((outputList[i][i2+1])*100)//1))/100)
 
+    //TODO: fix dis shtuff
+
 
     plt.plot(graphAutoTotals, graphTeleTotals, marker='o', linestyle='None')
     plt.xlabel('Auto Average Points')
