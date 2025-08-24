@@ -329,15 +329,13 @@ def Order (inputDict, teamDir):
         for i2 in range(3):
             outputList[i][i2+1] = str(int(float(((outputList[i][i2+1])*100)//1))/100)
 
-    //TODO: fix dis shtuff
-
-
     plt.plot(graphAutoTotals, graphTeleTotals, marker='o', linestyle='None')
     plt.xlabel('Auto Average Points')
     plt.ylabel('Tele Average Points')
     for i in range (len(graphTeams)):
         plt.text(graphAutoTotals[i], graphTeleTotals[i], graphTeams[i])
     plt.title('Auto V. Tele')
+    print ('teamDir: ' + str(teamDir), file=sys.stderr)
     filepath=("public/data/Teams/" + teamDir + "/" + teamDir + "Graphs/AVT.png")
     plt.savefig(filepath, dpi=300)
     plt.close()
