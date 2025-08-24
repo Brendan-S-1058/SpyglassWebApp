@@ -337,6 +337,7 @@ def Order (inputDict, teamDir):
     plt.title('Auto V. Tele')
     print ('teamDir: ' + str(teamDir), file=sys.stderr)
     filepath=("public/data/Teams/" + teamDir + "/" + teamDir + "Graphs/AVT.png")
+    print (filepath)
     plt.savefig(filepath, dpi=300)
     plt.close()
 
