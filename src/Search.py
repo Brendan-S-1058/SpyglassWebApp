@@ -48,7 +48,7 @@ def Main ():
             with open("public/data/Public.txt","r") as f:
                 rawData = f.read()
                 f.close()
-        inputSo = team
+            inputSo = team
         else:
             with open("public/data/Teams/" + team + "/" + team + 'Public.txt', 'r') as f:
                 rawData = f.read()
