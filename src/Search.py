@@ -25,7 +25,7 @@ def Main ():
     commaCount = 0
     inputSo = ''
     team = ''
-    for char in inputI:
+    for char in inputS:
         if char == ',':
             commaCount += 1
             if comma == False:
