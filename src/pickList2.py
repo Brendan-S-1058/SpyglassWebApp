@@ -7,6 +7,7 @@ def Main ():
 
     comma = False
     inputSo = ''
+    team = ''
     for char in inputI:
         if char == ',':
             if comma == False:
@@ -16,6 +17,8 @@ def Main ():
         else:
             if comma == True:
                 inputSo += char
+            else:
+                team += char
 
     finalDataDict = {}
 

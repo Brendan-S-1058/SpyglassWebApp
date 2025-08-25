@@ -38,16 +38,21 @@
 </body>
 <script>
   let oldGraphs = 1;
-  let graphState = 1;
+  let graphState = 0;
   let modeState = 1;
   let send = null;
   document.getElementById('modePublic').addEventListener("click", () => {
-    modeState *= -1;
-    if (modeState == -1) {
+    modeState += 1;
+    if (modeState > 2) {
+      modeState = 0;
+    }
+    if (modeState == 0) {
       document.getElementById('modePublic').style.color = "#ff0000";
     } else if (modeState == 1) {
       document.getElementById('modePublic').style.color = "#00ff00";
-    } 
+    } else {
+      document.getElementById('modePublic').style.color = "#0000ff";
+    }
   });
 
   document.getElementById('oldGraphs').addEventListener("click", () => {
@@ -69,10 +74,12 @@
   });
 
   document.getElementById('sort').addEventListener("click", async () => {
-    if (modeState == -1) {
+    if (modeState == 0) {
       send = [localStorage.getItem('team'), -1, JSON.parse(localStorage.getItem("qrCodes"))];
     } else if (modeState == 1) {
       send = [localStorage.getItem('team'), 1];
+    } else {
+      send = [localStorage.getItem('team'), 2];
     }
 
     let data;
