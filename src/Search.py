@@ -22,12 +22,12 @@ def Main ():
     inputS = str(json.loads(inputR))
 
     comma = False
-    commaCount = 0
+    commaCount1 = 0
     inputSo = ''
     team = ''
     for char in inputS:
         if char == ',':
-            commaCount += 1
+            commaCount1 += 1
             if comma == False:
                 comma = True
             else:
@@ -43,8 +43,8 @@ def Main ():
     print ('inputS: ' + str(inputS), file=sys.stderr)
     print ('len(inputS): ' + str(len(inputS)), file=sys.stderr)
 
-    if commaCount < 5:
-        if commaCount < 1:
+    if commaCount1 < 5:
+        if commaCount1 < 1:
             with open("public/data/Public.txt","r") as f:
                 rawData = f.read()
                 f.close()
@@ -65,11 +65,8 @@ def Main ():
             if char == ',':
                 commaCount += 1
             matchStringHold += char
-            if commaCount < 2 and commaCount > 0:
-                if char != ',':
-                    holdS += char
-                else:
-                    holdS += char
+            if commaCount <= 2 and commaCount > 0:
+                holdS += char
             elif char == '/':
                 dictKeys.append(holdS)
                 commaCount = 0
