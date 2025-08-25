@@ -152,6 +152,7 @@
       newAutoAvgP.innerHTML = '';
       newTeleAvgP.innerHTML = '';
       if (public == 0) {
+        values.push (localStorage.getItem('team'));
         qrs.forEach(qr => {
           if (qr.includes(searchTerm)) {
             values.push(qr);
