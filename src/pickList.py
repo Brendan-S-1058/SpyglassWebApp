@@ -55,10 +55,12 @@ def Public ():
     
     return rawData
 
-def LocalPublic ():
+def LocalPublic (team):
     with open ("public/Teams/" + team + "/" + team + 'Public.txt', 'r') as file:
         rawData = file.read ()
         file.close ()
+    
+    return rawData
 
 def Local (datain):
     start = True

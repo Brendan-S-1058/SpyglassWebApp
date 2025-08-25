@@ -24,6 +24,8 @@ def Main ():
 
     if inputSo == "1":
         congData = Public ()
+    elif inputSo == "2":
+        congData = LocalPublic (team)
     else:
         congData = Local (inputSo)
 
@@ -44,6 +46,13 @@ def Public ():
     with open("public/data/Public.txt","r") as f:
         rawData = f.read()
         f.close()
+    
+    return rawData
+
+def LocalPublic (team):
+    with open ("public/Teams/" + team + "/" + team + 'Public.txt', 'r') as file:
+        rawData = file.read ()
+        file.close ()
     
     return rawData
 
