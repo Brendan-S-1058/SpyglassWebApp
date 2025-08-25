@@ -20,15 +20,39 @@ def Main ():
     #    inputS += inputL[i]
     inputR = sys.stdin.read()
     inputS = str(json.loads(inputR))
+
+    comma = False
+    commaCount = 0
+    inputSo = ''
+    team = ''
+    for char in inputI:
+        if char == ',':
+            commaCount += 1
+            if comma == False:
+                comma = True
+            else:
+                inputSo += char
+        else:
+            if comma == False:
+                team += char
+            else:
+                inputSo += char
+
     rawData = ''
 
     print ('inputS: ' + str(inputS), file=sys.stderr)
     print ('len(inputS): ' + str(len(inputS)), file=sys.stderr)
 
-    if len(inputS) < 15:
-        with open("public/data/Public.txt","r") as f:
-            rawData = f.read()
-            f.close()
+    if commaCount < 5:
+        if commaCount < 1:
+            with open("public/data/Public.txt","r") as f:
+                rawData = f.read()
+                f.close()
+        inputSo = team
+        else:
+            with open("public/data/Teams/" + team + "/" + team + 'Public.txt', 'r') as f:
+                rawData = f.read()
+                f.close()
 
         print ('len(rawData): ' + str(len(rawData)), file=sys.stderr)
 
@@ -57,7 +81,7 @@ def Main ():
 
         congData = ''
         for i in dictKeys:
-            if inputS in i:
+            if inputSo in i:
                 congData += newDict[i]
         
 
@@ -65,7 +89,7 @@ def Main ():
         
 
     else:
-        congData = inputS
+        congData = inputSo
 
     for char in congData:
         if char != "," and DOUBLE == True:

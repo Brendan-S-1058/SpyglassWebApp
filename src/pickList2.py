@@ -50,7 +50,7 @@ def Public ():
     return rawData
 
 def LocalPublic (team):
-    with open ("public/Teams/" + team + "/" + team + 'Public.txt', 'r') as file:
+    with open ("public/data/Teams/" + team + "/" + team + 'Public.txt', 'r') as file:
         rawData = file.read ()
         file.close ()
     

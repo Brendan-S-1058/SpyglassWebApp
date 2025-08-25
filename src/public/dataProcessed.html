@@ -105,7 +105,7 @@
     <div id="images"></div>
 </body>
 <script>
-    let public = 1;
+    let public = 0;
 
     const qrs = JSON.parse(localStorage.getItem("qrCodes"));
     const tableBody = document.getElementById("data-table-body");
@@ -122,12 +122,18 @@
     const newTeleAvgP = document.createElement('td');
 
     document.getElementById('Public').addEventListener("click", () => {
-      public *= -1;
-      if (public == -1){
+      public += 1;
+
+      if (public > 2) {
+        public = 0;
+      }
+      if (public == 0){
         document.getElementById('Public').style.color = "#ff0000";
       } else if (public == 1) {
         document.getElementById('Public').style.color = "#00ff00";
-      } 
+      } else {
+        document.getElementById('Public').style.color = "#0000ff";
+      }
     });
 
     document.getElementById("searchButton").addEventListener("click", async () => {
@@ -145,14 +151,17 @@
       newAutoTotAvg.innerHTML = '';
       newAutoAvgP.innerHTML = '';
       newTeleAvgP.innerHTML = '';
-      if (public == -1) {
+      if (public == 0) {
         qrs.forEach(qr => {
           if (qr.includes(searchTerm)) {
             values.push(qr);
           }
         })
-      } else {
+      } else if (public == 1){
         values.push(searchTerm);
+      } else {
+        values.push (localStorage.getItem('team'));
+        values.push (searchTerm)
       }
       console.log(values)
       let parsedData;
