@@ -65,7 +65,7 @@ def Main ():
             if char == ',':
                 commaCount += 1
             matchStringHold += char
-            if commaCount < 2 and commaCount > 0:
+            if commaCount < 2:
                 holdS += char
             elif char == '/':
                 dictKeys.append(holdS)
@@ -75,6 +75,7 @@ def Main ():
                 matchStringHold = ''
         
         print ('newDict: ' + str(newDict), file=sys.stderr)
+        print ('dictKeys: ' + str(dictKeys), file=sys.stderr)
 
         congData = ''
         for i in dictKeys:
