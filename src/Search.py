@@ -65,7 +65,7 @@ def Main ():
             if char == ',':
                 commaCount += 1
             matchStringHold += char
-            if commaCount <= 2 and commaCount > 0:
+            if commaCount < 2 and commaCount > 0:
                 holdS += char
             elif char == '/':
                 dictKeys.append(holdS)
