@@ -1,6 +1,7 @@
 import sys
 import json
 import os
+import time
 
 ADMIN_LOGIN = str(os.environ.get('ADMIN_USER'))
 ADMIN_PASSWORD = str(os.environ.get('ADMIN_PASSWORD'))
@@ -20,7 +21,7 @@ def Main (al, ap):
         worms = False
         while worms == False:
             print 
-            sleep (60)
+            time.sleep (60)
             print ("time", file=sys.stderr)
     else:
         print ('inputS: ' + inputS, file=sys.stderr)
