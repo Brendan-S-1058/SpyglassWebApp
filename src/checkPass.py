@@ -5,6 +5,10 @@ import os
 ADMIN_LOGIN = str(os.environ.get('ADMIN_LOGIN'))
 ADMIN_PASSWORD = str(os.environ.get('ADMIN_PASSWORD'))
 
+print ('al: ' + ADMIN_LOGIN, file=sys.stderr)
+print ('ap: ' + ADMIN_PASSWORD, file=sys.stderr)
+
+
 def Main (al, ap):
     inputR = sys.stdin.read()
     inputS = json.loads(inputR)
