@@ -37,6 +37,7 @@
     async function ThouShallPerchancePass(team) {
         if ((team.toLowerCase()) != 'guest'){
             checkPassword = await FindPasswordByTeam (team);
+
             if (checkPassword != false) {
                 enteredpass = prompt ("please enter your team's password:")
                 while (enteredpass != checkPassword) {
