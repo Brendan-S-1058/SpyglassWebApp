@@ -2,8 +2,10 @@ import sys
 import json
 import os
 
-ADMIN_LOGIN = str(os.environ.get('ADMIN_LOGIN'))
+ADMIN_LOGIN = str(os.environ.get('ADMIN_USER'))
 ADMIN_PASSWORD = str(os.environ.get('ADMIN_PASSWORD'))
+
+API_KEY = os.environ.get('TBA_API_KEY')
 
 print ('al: ' + ADMIN_LOGIN, file=sys.stderr)
 print ('ap: ' + ADMIN_PASSWORD, file=sys.stderr)
