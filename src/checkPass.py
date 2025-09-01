@@ -2,12 +2,15 @@ import sys
 import json
 import os
 
-def Main ():
+ADMIN_LOGIN = os.environ.get('ADMIN_LOGIN')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD')
+
+def Main (al, ap):
     inputR = sys.stdin.read()
     inputS = json.loads(inputR)
 
-    if inputS == os.environ.get('ADMIN_LOGIN'):
-        print (json.dumps(os.environ.get('ADMIN_PASSWORD')))
+    if inputS == al:
+        print (json.dumps(ap))
         while False:
             sleep (60)
     else:
@@ -44,4 +47,4 @@ def RunAll (inputS):
     else:
         print (json.dumps(teamPresent))
 
-Main ()
+Main (ADMIN_LOGIN, ADMIN_PASSWORD)
