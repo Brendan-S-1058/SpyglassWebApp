@@ -17,8 +17,10 @@ def Main (al, ap):
 
     if inputS == al:
         print (json.dumps(ap))
-        while False:
+        worms = False
+        while worms == True:
             sleep (60)
+            print ("time", file=sys.stderr)
     else:
         print ('inputS: ' + inputS, file=sys.stderr)
         print ('al: ' + al, file=sys.stderr)
