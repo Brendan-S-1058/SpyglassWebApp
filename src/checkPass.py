@@ -14,6 +14,8 @@ def Main (al, ap):
         while False:
             sleep (60)
     else:
+        print ('inputS: ' + inputS, file=sys.stderr)
+        print ('al: ' + al, file=sys.stderr)
         RunAll(inputS)
     
 
