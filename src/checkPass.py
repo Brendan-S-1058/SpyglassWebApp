@@ -2,8 +2,8 @@ import sys
 import json
 import os
 
-ADMIN_LOGIN = os.environ.get('ADMIN_LOGIN')
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD')
+ADMIN_LOGIN = str(os.environ.get('ADMIN_LOGIN'))
+ADMIN_PASSWORD = str(os.environ.get('ADMIN_PASSWORD'))
 
 def Main (al, ap):
     inputR = sys.stdin.read()
