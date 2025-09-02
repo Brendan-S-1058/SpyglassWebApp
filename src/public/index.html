@@ -39,12 +39,12 @@
             checkPassword = await FindPasswordByTeam (team);
             response = checkPassword.split(',');
 
-            if (checkPassword[0] != false) {
+            if (response[0] != false) {
                 enteredpass = prompt ("please enter your team's password:")
-                while (enteredpass != checkPassword[0]) {
+                while (enteredpass != response[0]) {
                     enteredpass = prompt ("YIKES (wrong password, make sure you're using the right password for this event, it could have changed)");
                 }
-                if (checkPassword[1] == 'yes') {
+                if (response[1] == 'yes') {
                   AllStall ()
                 }
                 localStorage.setItem("team", team);
