@@ -45,6 +45,6 @@ def RunAll (inputS):
     if teamPresent == True:
         print (json.dumps(drowssap + ',no'))
     else:
-        print (json.dumps(teamPresent + ',no'))
+        print (json.dumps(str(teamPresent) + ',no'))
 
 Main (ADMIN_LOGIN, ADMIN_PASSWORD)
