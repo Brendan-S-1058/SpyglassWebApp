@@ -1,31 +1,19 @@
 import sys
 import json
 import os
-import time
 
 ADMIN_LOGIN = str(os.environ.get('ADMIN_USER'))
 ADMIN_PASSWORD = str(os.environ.get('ADMIN_PASSWORD'))
 
 API_KEY = os.environ.get('TBA_API_KEY')
 
-print ('al: ' + ADMIN_LOGIN, file=sys.stderr)
-print ('ap: ' + ADMIN_PASSWORD, file=sys.stderr)
-
-
 def Main (al, ap):
     inputR = sys.stdin.read()
     inputS = json.loads(inputR)
 
     if inputS == al:
-        print (json.dumps(ap))
-        worms = False
-        while worms == False:
-            print 
-            time.sleep (60)
-            print ("time", file=sys.stderr)
+        print (json.dumps(ap + ',yes'))
     else:
-        print ('inputS: ' + inputS, file=sys.stderr)
-        print ('al: ' + al, file=sys.stderr)
         RunAll(inputS)
     
 
@@ -55,8 +43,8 @@ def RunAll (inputS):
             drowssap = passwords[i]
     
     if teamPresent == True:
-        print (json.dumps(drowssap))
+        print (json.dumps(drowssap + ',no'))
     else:
-        print (json.dumps(teamPresent))
+        print (json.dumps(teamPresent + ',no'))
 
 Main (ADMIN_LOGIN, ADMIN_PASSWORD)
