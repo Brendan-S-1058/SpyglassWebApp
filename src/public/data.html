@@ -79,7 +79,7 @@
     });
 
     document.getElementById('copyAll').addEventListener('click', async () => {
-      failSafeData = await AdminMakeAndPasswords ('read⌧');
+      failSafeData = await AdminMakeAndPasswords (['read⌧']);
       console.log('failSafeData: ' + failSafeData)
       alert ('data should be in console');
     });
@@ -88,7 +88,7 @@
       const rows = Array.from(tableBody.rows);
       let pastedLinesad = prompt("I hope I know what I'm doing -- ONLY IMPORT EXPORTED FAILSAFES")
       let sections = pastedLinesad.split('⇯');
-      useless = AdminMakeAndPasswords ('write⌧' + sections[0]);
+      useless = AdminMakeAndPasswords (['write⌧' + sections[0]]);
       let pastedArrayad = pastedLinesad[1].split('⸮');
       pastedArrayad.forEach(element => {
         let holdTeamsAndRest = element.split('ɀ̣')
