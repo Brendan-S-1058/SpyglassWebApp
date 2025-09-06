@@ -45,7 +45,7 @@ def Read ():
                 teamList.append(holdTeam)
             holdTeam = ''
 
-    print ('teamList: ' + teamList, file=sys.stderr)
+    print ('teamList: ' + str(teamList), file=sys.stderr)
     
     for team in holdTeam:
         with open ("public/data/Teams/" + str(team) + '/' + str(team) + 'Public.txt', 'r') as file:
