@@ -47,7 +47,7 @@ def Read ():
 
     print ('teamList: ' + str(teamList), file=sys.stderr)
     
-    for team in holdTeam:
+    for team in teamList:
         with open ("public/data/Teams/" + str(team) + '/' + str(team) + 'Public.txt', 'r') as file:
             teamData = file.read ()
             file.close ()
