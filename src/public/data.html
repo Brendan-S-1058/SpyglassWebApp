@@ -190,7 +190,7 @@ async function AdminMakeAndPasswords(toBeWritten) {
     const res = await fetch ("/failFix", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(dataArray),
+      body: JSON.stringify(toBeWritten),
     });
 
     console.log(res);
