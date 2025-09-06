@@ -14,7 +14,7 @@ def Main ():
             hold += char
         else:
             if char == '⌧':
-                escaped == True
+                escaped = True
             else:
                 purpose += char
     
