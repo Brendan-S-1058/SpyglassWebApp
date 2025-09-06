@@ -59,6 +59,7 @@
                 }
                 localStorage.setItem("team", team);
             } else {
+              localStorage.setItem('isAdmin', 'no')
                 newPass = prompt ("your team has not yet set a password for this event, you can set one, but you CAN NOT RESET IT, so share it with your team in some digital way AS SOON AS YOU MAKE IT");
                 while (newPass == "") {
                   newPass = prompt ("No, you should really set a password")
