@@ -64,6 +64,7 @@
                   newPass = prompt ("No, you should really set a password")
                 }
                 setPass (team, newPass);
+                localStorage.setItem("team", team);
             }
 
 
@@ -85,7 +86,6 @@
           }
         
         ThouShallPerchancePass (team);
-        console.log(localStorage)
       }
     });
 
