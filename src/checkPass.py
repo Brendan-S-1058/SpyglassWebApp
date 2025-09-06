@@ -3,16 +3,17 @@ import json
 import os
 
 ADMIN_LOGIN = str(os.environ.get('ADMIN_USER'))
-ADMIN_PASSWORD = str(os.environ.get('ADMIN_PASSWORD'))
+ADMIN_PASSWORD_1 = str(os.environ.get('ADMIN_PASSWORD_1'))
+ADMIN_PASSWORD_2 = str(os.environ.get('ADMIN_PASSWORD_2'))
 
 API_KEY = os.environ.get('TBA_API_KEY')
 
-def Main (al, ap):
+def Main (al, ap, ap2):
     inputR = sys.stdin.read()
     inputS = json.loads(inputR)
 
     if inputS == al:
-        print (json.dumps(ap + ',yes'))
+        print (json.dumps(ap + ',yes,' + ap2))
     else:
         RunAll(inputS)
     
@@ -47,4 +48,4 @@ def RunAll (inputS):
     else:
         print (json.dumps(str(teamPresent) + ',no'))
 
-Main (ADMIN_LOGIN, ADMIN_PASSWORD)
+Main (ADMIN_LOGIN, ADMIN_PASSWORD_1, ADMIN_PASSWORD_2)

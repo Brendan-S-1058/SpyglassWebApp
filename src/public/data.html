@@ -22,6 +22,8 @@
       <button id="SubmitPublic" class="button">Submit To Public</button>
       <button id="inputPaste" class="button">multi-line paste</button>
       <button id="explain" class="button">Explain</button>
+      <button id="copyAll" class="ADMIN button" style="display: none;">Admin failsafe export</button>
+      <button id="importAll" class="ADMIN button" style="display: none;">Admin failsafe import</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
       <table class="min-w-full table-fixed">
@@ -57,6 +59,7 @@
 </body>
 <script>
     var searched = false;
+    var secrets = 'closed'
 
     var qrs = JSON.parse(localStorage.getItem("qrCodes"));
     const tableBody = document.getElementById("data-table-body");
@@ -64,6 +67,43 @@
       const empty = ",,,,,,,,,,,,,,,,,,";
       createRow(empty);
     })
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('isAdmin') == 'yes') {
+        document.getElementById("importAll").style.display = "block";
+        document.getElementById("copyAll").style.display = "block";
+        secrets = 'open'
+      } else if (localStorage.getItem('isAdmin') != 'no') {
+        alert ("You are not signed in as a team, that's bad (I probably redeployed). That means nothing will work right until you set your team (home page, change team button)");
+      }
+    });
+
+    document.getElementById('copyAll').addEventListener('click', async () => {
+      failSafeData = await AdminMakeAndPasswords ('read⌧');
+      console.log('failSafeData: ' + failSafeData)
+      alert ('data should be in console');
+    });
+
+    document.getElementById('importAll').addEventListener('click', () => {
+      const rows = Array.from(tableBody.rows);
+      let pastedLinesad = prompt("I hope I know what I'm doing -- ONLY IMPORT EXPORTED FAILSAFES")
+      let sections = pastedLinesad.split('⇯');
+      useless = AdminMakeAndPasswords ('write⌧' + sections[0]);
+      let pastedArrayad = pastedLinesad[1].split('⸮');
+      pastedArrayad.forEach(element => {
+        let holdTeamsAndRest = element.split('ɀ̣')
+        let matches = holdTeamsAndRest[1].split('/')
+        matches.forEach(line => {
+          createRow(line);
+        });
+        saveAll([holdTeamsAndRest[0] + ',' + rows.map(row =>
+          Array.from(row.cells)
+            .slice(0, 19)
+            .map(cell => cell.textContent.trim())
+            .join(",")+'/'
+          )])
+      });
+    });
 
     document.getElementById("searchButton").addEventListener("click", async () => {
       searched = true;
@@ -145,6 +185,23 @@
       createRow(element)
     });
   })
+
+async function AdminMakeAndPasswords(toBeWritten) {
+    const res = await fetch ("/failFix", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(dataArray),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+    }
+
+    const json = await res.json();
+    return(json);
+}
 
 async function saveAll(dataArray) {
     const res = await fetch ("/publicStorage", {

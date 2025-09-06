@@ -56,6 +56,18 @@ th, tr, td {
     border-collapse: collapse;
     padding: 3px;
 }
+
+.ADMIN {
+    background-color: #000000;
+    border: none;
+    color: rgb(198, 84, 158);
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: "Crimson Text", serif;
+}
+
 .button {
     background-color: #000000;
     border: none;

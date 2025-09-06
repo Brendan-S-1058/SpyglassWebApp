@@ -40,12 +40,22 @@
             response = checkPassword.split(',');
 
             if (response[0] != 'False') {
-                enteredpass = prompt ("please enter your team's password:")
-                while (enteredpass != response[0]) {
-                    enteredpass = prompt ("YIKES (wrong password, make sure you're using the right password for this event, it could have changed)");
-                }
-                if (response[1] == 'yes') {
-                  AllStall ()
+                if (response[1] != 'yes') {
+                  enteredpass = prompt ("please enter your team's password:")
+                  while (enteredpass != response[0]) {
+                      enteredpass = prompt ("YIKES (wrong password, make sure you're using the right password for this event, it could have changed)");
+                  }
+                  localStorage.setItem('isAdmin', 'no')
+                } else {
+                  enteredpass = prompt ("please enter your team's password:")
+                  while (enteredpass != response[0] && enteredpass != response[2]) {
+                      enteredpass = prompt ("YIKES (wrong password, make sure you're using the right password for this event, it could have changed)");
+                  }
+                  if (enteredpass == response[0]){
+                    AllStall ()
+                  } else {
+                    localStorage.setItem('isAdmin', 'yes')
+                  }
                 }
                 localStorage.setItem("team", team);
             } else {
