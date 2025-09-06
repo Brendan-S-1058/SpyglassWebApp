@@ -18,6 +18,7 @@ def Main ():
             else:
                 purpose += char
     
+    print ('purpose: ' + purpose, file=sys.stderr)
     if purpose == 'write':
         Write (hold)
     else:
