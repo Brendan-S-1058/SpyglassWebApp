@@ -84,13 +84,13 @@
       alert ('data should be in console');
     });
 
-    document.getElementById('importAll').addEventListener('click', () => {
+    document.getElementById('importAll').addEventListener('click', async () => {
       const rows = Array.from(tableBody.rows);
       let pastedLinesad = prompt("I hope I know what I'm doing -- ONLY IMPORT EXPORTED FAILSAFES")
       console.log('pastedLinesad: ' + pastedLinesad);
       let sections = pastedLinesad.split('⇯');
       console.log('sections: ' + sections);
-      useless = AdminMakeAndPasswords (['write⌧' + sections[0]]);
+      useless = await AdminMakeAndPasswords (['write⌧' + sections[0]]);
       let pastedArrayad = sections[1].split('⸮');
       console.log('pastedArrayad: ' + pastedArrayad)
       pastedArrayad.forEach(element => {
