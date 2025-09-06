@@ -74,8 +74,10 @@ def Write (secrets):
             holdTeam = ''
     
     for team in teamList:
+        print ('team:' + team, file=sys.stderr)
         teamFileStructure = 'public/data/Teams/' + str(team) + '/' + str(team) + 'Graphs'
         os.makedirs (teamFileStructure)
+        print ('file structure: ' + teamFileStructure, file=sys.stderr)
         
         with open ("public/data/Teams/" + str(team) + '/' + str(team) + 'Public.txt', 'x') as file:
             file.close ()
