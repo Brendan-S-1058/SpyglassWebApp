@@ -31,7 +31,7 @@ def Read ():
         oldSecrets = file.read()
         file.close ()
     
-    FinalSave += oldSecrets + ⇯
+    FinalSave += oldSecrets + '⇯'
 
     holdTeam = ''
     teamList = []
