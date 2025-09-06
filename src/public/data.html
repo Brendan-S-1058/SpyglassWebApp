@@ -87,12 +87,18 @@
     document.getElementById('importAll').addEventListener('click', () => {
       const rows = Array.from(tableBody.rows);
       let pastedLinesad = prompt("I hope I know what I'm doing -- ONLY IMPORT EXPORTED FAILSAFES")
+      console.log('pastedLinesad: ' + pastedLinesad);
       let sections = pastedLinesad.split('⇯');
+      console.log('sections: ' + sections);
       useless = AdminMakeAndPasswords (['write⌧' + sections[0]]);
       let pastedArrayad = pastedLinesad[1].split('⸮');
+      console.log('pastedArrayad: ' + pastedArrayad)
       pastedArrayad.forEach(element => {
+        console.log('element: ' + element)
         let holdTeamsAndRest = element.split('ɀ̣')
+        console.log('holdTeamsAndRest: ' + holdTeamsAndRest)
         let matches = holdTeamsAndRest[1].split('/')
+        console.log('matches: ' + matches)
         matches.forEach(line => {
           createRow(line);
         });
