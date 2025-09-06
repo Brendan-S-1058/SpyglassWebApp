@@ -33,6 +33,8 @@ def Read ():
     
     FinalSave += oldSecrets + '⇯'
 
+    print ('FinalSave: ' + FinalSave, file=sys.stderr)
+
     holdTeam = ''
     teamList = []
     for char in oldSecrets:
@@ -42,6 +44,8 @@ def Read ():
             if char == '/':
                 teamList.append(holdTeam)
             holdTeam = ''
+
+    print ('teamList: ' + teamList, file=sys.stderr)
     
     for team in holdTeam:
         with open ("public/data/Teams/" + str(team) + '/' + str(team) + 'Public.txt', 'r') as file:
@@ -49,6 +53,7 @@ def Read ():
             file.close ()
         
         FinalSave += team + 'ɀ̣' + teamData + '⸮'
+        print ('FinalSave2: ' + FinalSave, file=sys.stderr)
     
     print (json.dumps(FinalSave))
 
