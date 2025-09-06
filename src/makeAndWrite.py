@@ -19,7 +19,9 @@ def Main ():
                 purpose += char
     
     print ('purpose: ' + purpose, file=sys.stderr)
+    print ('hold: ' + hold, file=sys.stderr)
     if purpose == 'write':
+        print ('WRITTEN')
         Write (hold)
     else:
         Read ()
