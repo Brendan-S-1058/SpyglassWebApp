@@ -94,6 +94,7 @@
       let pastedArrayad = sections[1].split('⸮');
       console.log('pastedArrayad: ' + pastedArrayad)
       pastedArrayad.forEach(element => {
+        tableBody.innerHTML = '';
         console.log('element: ' + element)
         let holdTeamsAndRest = element.split('ɀ̣')
         console.log('holdTeamsAndRest: ' + holdTeamsAndRest)
@@ -102,6 +103,7 @@
         matches.forEach(line => {
           createRow(line);
         });
+        console.log ('data Submitted:' + rows.map(row => Array.from(row.cells).slice(0, 19).map(cell => cell.textContent.trim()).join(",")+'/'))
         saveAll([holdTeamsAndRest[0] + ',' + rows.map(row =>
           Array.from(row.cells)
             .slice(0, 19)
