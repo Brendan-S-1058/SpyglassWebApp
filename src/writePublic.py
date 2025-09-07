@@ -19,8 +19,6 @@ for char in inputS:
         else:
             inputSo += char
 
-
-
 def Main(inputM, teamNum):
 
     #TODO: make it check for doubles

@@ -21,7 +21,7 @@ def Main ():
     print ('purpose: ' + purpose, file=sys.stderr)
     print ('hold: ' + hold, file=sys.stderr)
     if purpose == 'write':
-        print ('WRITTEN')
+        print ('WRITTEN', file=sys.stderr)
         Write (hold)
     else:
         Read ()
