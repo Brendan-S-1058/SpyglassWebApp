@@ -4,6 +4,8 @@ import json
 inputR = sys.stdin.read()
 inputS = str(json.loads(inputR)) + ','
 
+print ('inputS: ' + inputS, file=sys.stderr)
+
 comma = False
 inputSo = ''
 team = ''
@@ -18,6 +20,8 @@ for char in inputS:
             team += char
         else:
             inputSo += char
+
+print ('inputSo: ' + inputSo, file=sys.stderr)
 
 def Main(inputM, teamNum):
 
