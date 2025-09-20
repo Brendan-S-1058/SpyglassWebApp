@@ -184,6 +184,7 @@
             </div>
 
             <button type="submit">Submit</button>
+            <button type="save">Confirm</button>
         </form>
     </div>
 
@@ -194,6 +195,13 @@
     <div id="qrcode"></div>
 
     <script>
+        document.getElementById("save").addEventListener("click", ()=> { 
+            let storedQRs = JSON.parse(localStorage.getItem("qrCodes"));
+            if (!storedQRs.includes(qrData)) {
+                storedQRs.push(qrData);
+                localStorage.setItem("qrCodes", JSON.stringify(storedQRs));
+            }
+        })
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("myForm").addEventListener("submit", function (event) {
                 event.preventDefault(); // Prevent form submission
