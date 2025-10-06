@@ -43,8 +43,12 @@ def Main ():
 
     for i in range (len(sortedList)):
         Break(sortedList[i], finalDataDict)
+    
+    print (finalDataDict, file=sys.stderr)
 
     finalList = Order (finalDataDict, team)
+
+    print (finalList, file=sys.stderr)
 
     print (json.dumps(finalList))
     
@@ -293,14 +297,21 @@ def Break (inputString, bigDict):
     canAlgae = False
     canNet = False
     canProcess = False
-    if (int(float(match[7])) + int(float(match[13]))) > 0:
-        canProcess = True
-        canAlgae = True
     
-    if (int(float(match[8])) + int(float(match[14]))) > 0:
-        canNet = True
-        canAlgae = True
+    for match in dataLists:
+        if (int(float(match[7])) + int(float(match[13]))) > 0:
+            canProcess = True
+            canAlgae = True
     
+        if (int(float(match[8])) + int(float(match[14]))) > 0:
+            canNet = True
+            canAlgae = True
+
+        autoTotal += ((int(float(match[2]))*3)+(int(float(match[3]))*3)+(int(float(match[4]))*4)+(int(float(match[5]))*6)+(int(float(match[6]))*7)+(int(float(match[7]))*6)+(int(float(match[8]))*4))
+        teleTotal += ((int(float(match[9]))*2)+(int(float(match[10]))*3)+(int(float(match[11]))*4)+(int(float(match[12]))*5)+(int(float(match[13]))*6)+(int(float(match[14]))*4)+(int(float(match[15]))*2)+(int(float(match[16]))*6)+(int(float(match[17]))*12))
+    autoAverage = autoTotal/len(dataLists)
+    teleAverage = teleTotal/len(dataLists)
+
     if canNet == True:
         net = "Yes"
     else:
@@ -316,11 +327,6 @@ def Break (inputString, bigDict):
     else:
         process = "No"
 
-    for match in dataLists:
-        autoTotal += ((int(float(match[2]))*3)+(int(float(match[3]))*3)+(int(float(match[4]))*4)+(int(float(match[5]))*6)+(int(float(match[6]))*7)+(int(float(match[7]))*6)+(int(float(match[8]))*4))
-        teleTotal += ((int(float(match[9]))*2)+(int(float(match[10]))*3)+(int(float(match[11]))*4)+(int(float(match[12]))*5)+(int(float(match[13]))*6)+(int(float(match[14]))*4)+(int(float(match[15]))*2)+(int(float(match[16]))*6)+(int(float(match[17]))*12))
-    autoAverage = autoTotal/len(dataLists)
-    teleAverage = teleTotal/len(dataLists)
     totalPointsScored = autoTotal + teleTotal
     averagePointsScored = autoAverage + teleAverage
 
