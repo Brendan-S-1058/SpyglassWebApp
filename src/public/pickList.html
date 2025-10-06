@@ -118,10 +118,25 @@
             <td class="p-2 border">`+team+`</td>
             <td class="p-2 border">`+allAvg+`</td>
             <td class="p-2 border">`+autoAvg+`</td>
-            <td class="p-2 border">`+teleAvg+`</td>
-            <td class="p-2 border">`+canAlgae+`</td>
-            <td class="p-2 border">`+canProcess+`</td>
-            <td class="p-2 border">`+canNet+`</td>`
+            <td class="p-2 border">`+teleAvg+`</td>`
+
+        if (canAlgae == "Yes") {
+          newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Affirmative">`+canAlgae+`</td>`
+        } else {
+          newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Negative">`+canAlgae+`</td>`
+        }
+
+        if (canProcess == "Yes") {
+          newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Affirmative">`+canProcess+`</td>`
+        } else {
+          newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Negative">`+canProcess+`</td>`
+        }
+
+        if (canNet == "Yes") {
+          newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Affirmative">`+canNet+`</td>`
+        } else {
+          newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Negative">`+canNet+`</td>`
+        }
             table.appendChild(newRow);
             };
 
