@@ -284,15 +284,41 @@ def Break (inputString, bigDict):
     
     autoTotal = 0
     teleTotal = 0
+    canNet = False
+    canProcess = False
+    
     for match in dataLists:
+        if (int(float(match[7])) + int(float(match[13]))) > 0:
+            canProcess = True
+            canAlgae = True
+    
+        if (int(float(match[8])) + int(float(match[14]))) > 0:
+            canNet = True
+            canAlgae = True
+
         autoTotal += ((int(float(match[2]))*3)+(int(float(match[3]))*3)+(int(float(match[4]))*4)+(int(float(match[5]))*6)+(int(float(match[6]))*7)+(int(float(match[7]))*6)+(int(float(match[8]))*4))
         teleTotal += ((int(float(match[9]))*2)+(int(float(match[10]))*3)+(int(float(match[11]))*4)+(int(float(match[12]))*5)+(int(float(match[13]))*6)+(int(float(match[14]))*4)+(int(float(match[15]))*2)+(int(float(match[16]))*6)+(int(float(match[17]))*12))
     autoAverage = autoTotal/len(dataLists)
     teleAverage = teleTotal/len(dataLists)
+
+    if canNet == True:
+        net = "Yes"
+    else:
+        net = "No"
+
+    if canAlgae == True:
+        algae = "Yes"
+    else:
+        algae = "No"
+    
+    if canProcess == True:
+        process = "Yes"
+    else:
+        process = "No"
     totalPointsScored = autoTotal + teleTotal
     averagePointsScored = autoAverage + teleAverage
 
-    bigDict[str(dataLists[0][1])] = [averagePointsScored, autoAverage, teleAverage]
+    bigDict[str(dataLists[0][1])] = [averagePointsScored, autoAverage, teleAverage, algae, net, process]
 
 def Order (inputDict):
     outerHoldList = []
