@@ -100,12 +100,12 @@
   
   function createRow(csv){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-        if (fields.length !== 4) {
-          console.error("createRow: expected 4 comma‑separated values, got", fields.length);
+        if (fields.length !== 7) {
+          console.error("createRow: expected 7 comma‑separated values, got", fields.length);
           return;
         }
         const [
-          team, allAvg, autoAvg, teleAvg
+          team, allAvg, autoAvg, teleAvg, canAlgae, canProcess, canNet
         ] = fields;
 
         const table = document.getElementById("data-table-body");
@@ -115,7 +115,10 @@
             <td class="p-2 border">`+team+`</td>
             <td class="p-2 border">`+allAvg+`</td>
             <td class="p-2 border">`+autoAvg+`</td>
-            <td class="p-2 border">`+teleAvg+`</td>`
+            <td class="p-2 border">`+teleAvg+`</td>
+            <td class="p-2 border">`+canAlgae+`</td>
+            <td class="p-2 border">`+canProcess+`</td>
+            <td class="p-2 border">`+canNet+`</td>`
             table.appendChild(newRow);
             };
 
