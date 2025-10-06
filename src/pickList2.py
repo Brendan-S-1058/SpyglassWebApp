@@ -286,6 +286,7 @@ def Break (inputString, bigDict):
     teleTotal = 0
     canNet = False
     canProcess = False
+    canAlgae = False
     
     for match in dataLists:
         if (int(float(match[7])) + int(float(match[13]))) > 0:
