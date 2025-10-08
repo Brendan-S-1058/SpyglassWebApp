@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crow's Nest</title>
+  <link rel="icon" type="image/x-icon" href="favico/favicon.ico">
+  <link href="datastyle.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto p-4" id="table">
+    <div id="title">
+      <h1 class="text-3xl font-bold mb-4">Schedule Analysis</h1>
+    </div>
+    <div class="mb-4 flex justify-between items-center">
+      <button id="button" class="button">manual add</button>
+      <button id="newEvent" class="button">New Event</button>
+    </div>
+    <div class="overflow-auto border rounded-lg shadow bg-white">
+      <table class="min-w-full table-fixed">
+        <thead class="bg-gray-200 text-left">
+          <tr>
+            <th class="p-2 border">match #</th>
+          </tr>
+        </thead>
+        <tbody id="data-table-body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+<script>
+  document.getElementById("newEvent").addEventListener("click", async () => {
+    team = localStorage.getItem("team");
+    Ecode = prompt ("What is the tbs event code for the event? (For example, UVM 2025 was 2025vtbur)")
+    const matches = await teamMatches(team, Ecode)
+  });
+
+  async function teamMatches(team, Ecode) {
+    const res = await fetch ("/teamPullMatches", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify([team, Ecode]),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+      alert ("Event Code was INVALID (why would you do this??)");
+    }
+
+    const json = await res.json();
+    console.log(json);
+    return(json);
+    
+  }
+//document.addEventListener('DOMContentLoaded', async () => {
+  // const filteredArray = [];
+  //   const matches = await pyFullPred (Ecode);
+  //   matches.forEach(teams => {
+  //     conole.log ("Teams: " + teams);
+  //     if (localStorage.getItem("team") in teams) {
+  //       filteredArray.push(teams);
+  //     }
+  //   });
+  //   conole.log ("Filtered Array: " + filteredArray);    
+//})
+
+// async function pyFullPred(Ecode) {
+//     const res = await fetch ("/EventPred", {
+//       method: "POST",
+//       headers: {"Content-Type": "application/json"},
+//       body: JSON.stringify([Ecode]),
+//     });
+
+//     console.log(res);
+
+//     if (!res.ok){
+//       throw new Error("HTTP error " + res.status);
+//       alert ("Event Code was INVALID (why would you do this??)");
+//     }
+
+//     const json = await res.json();
+//     console.log(json);
+//     return(json);
+    
+//   }
+</script>
+</html>

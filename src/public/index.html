@@ -19,6 +19,7 @@
         <a href="dataProcessed.html">Processed Data</a>
         <a href="pickList.html">Pick List</a>
         <a href="MatchPred.html">Match Predictor</a>
+        <a href="schedule.html">Match Predictor</a>
         <button id="changeTeam" class="button">Change Team</button>
     </div>
 </body>
@@ -66,6 +67,8 @@
                 }
                 setPass (team, newPass);
                 localStorage.setItem("team", team);
+                Ecode = prompt ("What is the tbs event code for the event? (For example, UVM 2025 was 2025vtbur)")
+                const matches = await teamMatches(team, Ecode)
             }
 
 
@@ -136,6 +139,26 @@
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify([teamNumber, newPass]),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+      alert ("Event Code was INVALID (why would you do this??)");
+    }
+
+    const json = await res.json();
+    console.log(json);
+    return(json);
+    
+  }
+
+  async function teamMatches(team, Ecode) {
+    const res = await fetch ("/teamPullMatches", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify([team, Ecode]),
     });
 
     console.log(res);
