@@ -32,9 +32,90 @@
 <script>
   document.getElementById("newEvent").addEventListener("click", async () => {
     team = localStorage.getItem("team");
-    Ecode = prompt ("What is the tbs event code for the event? (For example, UVM 2025 was 2025vtbur)")
-    const matches = await teamMatches(team, Ecode)
+    Ecode = prompt ("What is the tbs event code for the event? (For example, UVM 2025 was 2025vtbur)");
+    const matches = await teamMatches(team, Ecode);
+    let count = 0;
+    allCount = 0;
+    matches.array.forEach(match => {
+      console.log (match);
+      match.push(localStorage.getItem('qrCodes'));
+      prediction(match, count);
+      count++;
+    });
+    while (count > allCount){
+      await sleep(1000);
+    }
+    console.log(allResults);
+
+    for (let i = 0; i < count; i++) {
+      build (allResults[i], i);
+    };    
   });
+
+function build (results, match) {
+  const tableBody = document.getElementById("data-table-body");
+  const middleMan = results;
+    const [
+      didBlueWin, 
+      blueScoreRange, redScoreRange,
+      blueWinPercent, redWinPercent
+    ] = middleMan;
+
+    if (didBlueWin == true){
+      message = "Blue Wins";
+      color = ' blueteam';
+      winPercents = blueWinPercent + '-' + redWinPercent;
+    } else {
+      message = "Red Wins";
+      color = ' redteam';
+      winPercents = redWinPercent + '-' + blueWinPercent;
+    }
+
+    if (match != 'noMatch') {
+      message += (' match ' + (match + 1));
+    }
+
+    const shellResults = document.createElement("tr");
+    shellResults.innerHTML = `
+        <td class="p-2 border`+color+`">`+message+`</td>
+        <td class="p-2 border`+color+`">Blue score range: `+blueScoreRange+`</td>
+        <td class="p-2 border`+color+`">Red score range: `+redScoreRange+`</td>
+        <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
+      `;
+      
+    tableBody.append(shellResults);
+  }
+
+  async function prediction(input, key) {
+    if (key == 'no key') {
+      results = await predict(input);
+      build (results, 'noMatch')
+    } else {
+      allResults[key] = await predict(input);
+    };
+
+  }
+
+  async function predict(dataArray) {
+    const res = await fetch ("/matchPredinput", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(dataArray),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+    }
+
+    allCount++;
+
+    const json = await res.json();
+    console.log(json);
+    return(json);
+    
+  }
 
   async function teamMatches(team, Ecode) {
     const res = await fetch ("/teamPullMatches", {
