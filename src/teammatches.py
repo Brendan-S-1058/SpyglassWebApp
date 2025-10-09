@@ -44,5 +44,19 @@ for match in matches_data:
 
 print ('matches: '+ str(matches), file=sys.stderr)
 
+for match in matches:
+    for team in match:
+        holdTeam = ''
+        for char in team:
+            if char in '1234567890':
+                holdTeam += char
+        match.append (int(holdTeam))
+        match.pop (0)
+    matches.append (match)
+    matches.pop (0)
 
-print (json.dumps())
+
+print ('matches: '+ str(matches), file=sys.stderr)
+
+
+print (json.dumps(matches))
