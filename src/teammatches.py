@@ -44,17 +44,18 @@ for match in matches_data:
 
 print ('matches: '+ str(matches), file=sys.stderr)
 
+newMatches = []
 for match in matches:
+    newMatch = []
     for team in match:
         holdTeam = ''
         for char in team:
             if char in '1234567890':
                 holdTeam += char
-        match.append (int(holdTeam))
-        match.pop (0)
-    matches.append (match)
-    matches.pop (0)
+        newMatch.append (int(holdTeam))
+    newMatches.append (match)
 
+matches = newMatches
 
 print ('matches: '+ str(matches), file=sys.stderr)
 
