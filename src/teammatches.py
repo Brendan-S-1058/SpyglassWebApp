@@ -31,6 +31,18 @@ matches_url = BASE_URL + '/team/' + TEAM_KEY + "/event/" + EVENT_KEY + '/matches
 matches_response = requests.get(matches_url, headers=headers)
 matches_data = matches_response.json()
 
-print ("matches_data: " + matches_data, file=sys.stderr)
+print ("matches_data: " + str(matches_data), file=sys.stderr)
+
+matches = []
+for match in matches_data:
+    one = []
+    for blueTeam in match['alliances']['blue']['team_keys']:
+        one.append(blueTeam)
+    for redTeam in match['alliances']['red']['team_keys']:
+        one.append (redTeam)
+    matches.append(one)
+
+print ('matches: '+ str(matches), file=sys.stderr)
+
 
 print (json.dumps())
