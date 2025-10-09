@@ -36,7 +36,7 @@
     const matches = await teamMatches(team, Ecode);
     let count = 0;
     allCount = 0;
-    matches.array.forEach(match => {
+    matches.forEach(match => {
       console.log (match);
       match.push(localStorage.getItem('qrCodes'));
       prediction(match, count);
