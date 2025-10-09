@@ -27,7 +27,7 @@ headers = {
     "X-TBA-Auth-Key": API_KEY
 }
 
-matches_url = BASE_URL + '/' + 'frc' + team/' + TEAM_KEY + "/event/" + EVENT_KEY + '/matches'
+matches_url = BASE_URL + '/team/frc" + TEAM_KEY + "/event/" + EVENT_KEY + "/matches"
 matches_response = requests.get(matches_url, headers=headers)
 matches_data = matches_response.json()
 
