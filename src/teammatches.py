@@ -54,11 +54,8 @@ for match in matches:
                 holdTeam += char
         print ('holdteam: ' + str(holdTeam), file=sys.stderr)
         newMatch.append (int(holdTeam))
-    newMatches.append (match)
+    newMatches.append (newMatch)
 
-matches = newMatches
-
-print ('matches: '+ str(matches), file=sys.stderr)
 print ('newmatches: '+ str(newMatches), file=sys.stderr)
 
 print (json.dumps(newMatches))
