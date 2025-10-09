@@ -52,12 +52,13 @@ for match in matches:
         for char in team:
             if char in '1234567890':
                 holdTeam += char
+        print ('holdteam: ' + str(holdTeam), file=sys.stderr)
         newMatch.append (int(holdTeam))
     newMatches.append (match)
 
 matches = newMatches
 
 print ('matches: '+ str(matches), file=sys.stderr)
+print ('newmatches: '+ str(newMatches), file=sys.stderr)
 
-
-print (json.dumps(matches))
+print (json.dumps(newMatches))
