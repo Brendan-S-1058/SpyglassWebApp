@@ -34,6 +34,7 @@
 </body>
 <script>
   var allResults = {}
+  const tableBody = document.getElementById("data-table-body");
   document.getElementById("newEvent").addEventListener("click", async () => {
     allResults = {}
     team = localStorage.getItem("team");
@@ -60,6 +61,7 @@
 function build (results, match) {
   const tableBody = document.getElementById("data-table-body");
   const middleMan = results;
+  console.log ("middleman: " + middleMan)
     const [
       didBlueWin, 
       blueScoreRange, redScoreRange,
