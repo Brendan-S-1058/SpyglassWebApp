@@ -58,6 +58,10 @@
     };    
   });
 
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
 function build (results, match) {
   const tableBody = document.getElementById("data-table-body");
   const middleMan = results;
