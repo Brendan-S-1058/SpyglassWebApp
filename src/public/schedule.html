@@ -34,9 +34,11 @@
 </body>
 <script>
   var allResults = {}
+  var alliances = {}
   const tableBody = document.getElementById("data-table-body");
   document.getElementById("newEvent").addEventListener("click", async () => {
     allResults = {}
+    alliances = {}
     team = localStorage.getItem("team");
     Ecode = prompt ("What is the tbs event code for the event? (For example, UVM 2025 was 2025vtbur)");
     const matches = await teamMatches(team, Ecode);
@@ -47,6 +49,11 @@
       match.push(localStorage.getItem('qrCodes'));
       prediction(match, count);
       count++;
+      if (team in [match[0], match[1], match[2]]) {
+        alliances[count] = "blue"
+      } else {
+        alliances[count] = "red"
+      };
     });
     while (count > allCount){
       await sleep(1000);
@@ -72,14 +79,26 @@ function build (results, match) {
       blueWinPercent, redWinPercent
     ] = middleMan;
 
-    if (didBlueWin == true){
-      message = "Blue Wins";
-      color = ' blueteam';
-      winPercents = blueWinPercent + '-' + redWinPercent;
+    if (alliances[match] == 'blue') {
+      if (didBlueWin == true){
+        message = "You Win";
+        color = ' green';
+        winPercents = blueWinPercent + '-' + redWinPercent;
+      } else {
+        message = "You Lose";
+        color = ' redteam';
+        winPercents = redWinPercent + '-' + blueWinPercent;
+      }
     } else {
-      message = "Red Wins";
-      color = ' redteam';
-      winPercents = redWinPercent + '-' + blueWinPercent;
+      if (didBlueWin != true){
+        message = "You Win";
+        color = ' green';
+        winPercents = blueWinPercent + '-' + redWinPercent;
+      } else {
+        message = "You Lose";
+        color = ' redteam';
+        winPercents = redWinPercent + '-' + blueWinPercent;
+      }
     }
 
     if (match != 'noMatch') {
