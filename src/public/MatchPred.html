@@ -153,7 +153,8 @@ function build (results, match) {
     const [
       didBlueWin, 
       blueScoreRange, redScoreRange,
-      blueWinPercent, redWinPercent
+      blueWinPercent, redWinPercent,
+      corRP, autoRP, bargeRP
     ] = middleMan;
 
     if (didBlueWin == true){
@@ -179,6 +180,14 @@ function build (results, match) {
       `;
       
     tableBody.append(shellResults);
+
+    shellResults.innerHTML = `
+        <td class="p-2 border`+color+`">Reef RP: `+corRP+`</td>
+        <td class="p-2 border`+color+`">Auto RP: `+autoRP+`</td>
+        <td class="p-2 border`+color+`">Barge RP: `+bargeRP+`</td>
+      `;
+      
+    tableBody.append(shellResults)
   }
 
   async function predict(dataArray) {

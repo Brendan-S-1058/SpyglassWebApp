@@ -89,10 +89,25 @@ def Main ():
     blueAverageMatchHalfProcessed = cap(blueAverageMatchUnprocessed)
     redAverageMatchHalfProcessed = cap(redAverageMatchUnprocessed)
 
+    if (blueAverageMatchHalfProcessed[5] + blueAverageMatchHalfProcessed[11]) > 5:
+        corRPper = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(21*2))
+    else:
+        corRPper = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(28*2))
+
+    if (blueAverageMatchHalfProcessed[0] > 2):
+        if (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]) >= 2:
+            autoRPper = blueAverageMatchHalfProcessed[0]/3
+        elif (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]) >= 1
+            autoRPper = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]))/2
+        else:
+            autoRPper = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4])/2)/2
+
+    bargeRPper = ((blueAverageMatchHalfProcessed[13]*2 + blueAverageMatchHalfProcessed[14]*6 + blueAverageMatchHalfProcessed[15]*12)/16)/1.25
+
     blueFinal = calc (blueAverageMatchHalfProcessed)
     redFinal = calc (redAverageMatchHalfProcessed)
 
-    result = analyze(blueFinal, redFinal, blueStart, redStart)
+    result = analyze(blueFinal, redFinal, blueStart, redStart, corRPper, autoRPper, bargeRPper)
 
     print (json.dumps(result))
 
@@ -261,7 +276,7 @@ def calc (match):
     
     return (score)
 
-def analyze (bscore, rscore, bstart, rstart):
+def analyze (bscore, rscore, bstart, rstart, crp, arp, brp):
     bstate = bscore-rscore
 
     mod = 0
@@ -277,8 +292,8 @@ def analyze (bscore, rscore, bstart, rstart):
         rp = (250-mod)/5
         bp = (250+mod)/5
         if bp>=100:
-            bp = 99.99
-            rp = 0.01
+            bp = 99.9
+            rp = 0.1
 
     else:
         bwin = False
@@ -292,8 +307,8 @@ def analyze (bscore, rscore, bstart, rstart):
         bp = (250-mod)/5
         rp = (250+mod)/5
         if rp>=100:
-            rp = 99.99
-            bp = 0.01
+            rp = 99.9
+            bp = 0.1
     
     if bscore>bstart:
         bscore = str(bstart-5) + '-' + str(bscore+5)
@@ -307,6 +322,6 @@ def analyze (bscore, rscore, bstart, rstart):
     
 
     
-    return [bwin, bscore, rscore, bp, rp]
+    return [bwin, bscore, rscore, bp, rp, crp, arp, brp]
 
 Main ()
