@@ -97,7 +97,7 @@ def Main ():
     if (blueAverageMatchHalfProcessed[0] > 2):
         if (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]) >= 2:
             autoRPper = blueAverageMatchHalfProcessed[0]/3
-        elif (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]) >= 1
+        elif (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]) >= 1:
             autoRPper = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]))/2
         else:
             autoRPper = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4])/2)/2
