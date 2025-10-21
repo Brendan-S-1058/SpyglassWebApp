@@ -101,6 +101,8 @@ def Main ():
             autoRPper = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]))/2
         else:
             autoRPper = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4])/2)/2
+    else:
+        autoRPper = (blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4])/6
 
     bargeRPper = ((blueAverageMatchHalfProcessed[13]*2 + blueAverageMatchHalfProcessed[14]*6 + blueAverageMatchHalfProcessed[15]*12)/16)/1.25
 
