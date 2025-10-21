@@ -116,14 +116,15 @@ function build (results, match) {
       
     tableBody.append(shellResults);
 
-    shellResults.innerHTML = `
+    const shellResults2 = document.createElement("tr");
+    shellResults2.innerHTML = `
         <td class="p-2 border`+color+`">Reef RP: `+corRP+`</td>
         <td class="p-2 border`+color+`">Auto RP: `+autoRP+`</td>
         <td class="p-2 border`+color+`">Barge RP: `+bargeRP+`</td>
         <td class="p-2 border`+color+`">Barge RP:</td>
     `;
     
-    tableBody.append(shellResults)
+    tableBody.append(shellResults2);
   }
 
   async function prediction(input, key) {
