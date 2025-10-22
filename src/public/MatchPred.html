@@ -65,7 +65,7 @@
 
     console.log (allTeams);
 
-    prediction (allTeams, 'no key');
+    prediction (allTeams, 'no key', 'na');
   });
   
   document.getElementById("predict").addEventListener('click', ()=>{
@@ -83,20 +83,37 @@
     localStorage.getItem("qrCodes")
     ];
 
-    prediction (allTeams, 'no key');
+    prediction (allTeams, 'no key', 'na');
   });
 
   async function FullPrediction(Ecode) {
     allResults = {}
 
-    const matches = await pyFullPred (Ecode);
+    const all = await pyFullPred (Ecode);
+
+    matchNames = []
+    matches = []
+
+    first = true
+    all.forEach((value) => {
+      if (value !== 'আ') {
+        if (first) {
+          matches.push(value);
+        } else {
+          matchNames.push(value);
+        }
+      } else {
+        first = false
+      }
+    });
+
     let count = 0;
     allCount = 0;
 
     matches.forEach((teams)=> {
       console.log (teams);
       teams.push(localStorage.getItem('qrCodes'));
-      prediction(teams, count);
+      prediction(teams, count, matchNames[count]);
       count++;
     });
     while (count > allCount){
@@ -105,7 +122,7 @@
     console.log(allResults);
 
     for (let i = 0; i < count; i++) {
-      build (allResults[i], i);
+      build (allResults[i]);
     };    
   }
 
@@ -138,18 +155,20 @@
     alert ("not written yet");
 });
 
-  async function prediction(input, key) {
+  async function prediction(input, key, name) {
     if (key == 'no key') {
       results = await predict(input);
-      build (results, 'noMatch')
+      build (['noMatch', results])
     } else {
-      allResults[key] = await predict(input);
+      allResults[key] = [name, await predict(input)];
     };
 
   }
-function build (results, match) {
+function build (results) {
+  match = results[0];
+  data = results[1];
   const tableBody = document.getElementById("data-table-body");
-  const middleMan = results;
+  const middleMan = data;
     const [
       didBlueWin, 
       blueScoreRange, redScoreRange,

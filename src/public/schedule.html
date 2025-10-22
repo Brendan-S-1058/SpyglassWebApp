@@ -41,13 +41,30 @@
     alliances = {}
     team = localStorage.getItem("team");
     Ecode = prompt ("What is the tbs event code for the event? (For example, UVM 2025 was 2025vtbur)");
-    const matches = await teamMatches(team, Ecode);
+    const all = await pyFullPred (Ecode);
+
+    matchNames = []
+    matches = []
+
+    first = true
+    all.forEach((value) => {
+      if (value !== 'আ') {
+        if (first) {
+          matches.push(value);
+        } else {
+          matchNames.push(value);
+        }
+      } else {
+        first = false
+      }
+    });
+
     let count = 0;
     allCount = 0;
     matches.forEach(match => {
       console.log (match);
       match.push(localStorage.getItem('qrCodes'));
-      prediction(match, count);
+      prediction(match, count, name);
       count++;
       if (team == match[0] || team == match[1] || team == match[2]) {
         alliances[count] = "blue"
@@ -61,7 +78,7 @@
     console.log(allResults);
 
     for (let i = 0; i < count; i++) {
-      build (allResults[i], i);
+      build (allResults[i]);
     };    
   });
 
@@ -69,9 +86,11 @@
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-function build (results, match) {
+function build (results) {
+  match = results[0];
+  data = results[1];
   const tableBody = document.getElementById("data-table-body");
-  const middleMan = results;
+  const middleMan = data;
   console.log ("middleman: " + middleMan)
     const [
       didBlueWin, 
@@ -125,12 +144,12 @@ function build (results, match) {
     tableBody.append(shellResults2);
   }
 
-  async function prediction(input, key) {
+  async function prediction(input, key, name) {
     if (key == 'no key') {
       results = await predict(input);
-      build (results, 'noMatch')
+      build (['noMatch', results])
     } else {
-      allResults[key] = await predict(input);
+      allResults[key] = [name, await predict(input)];
     };
 
   }
