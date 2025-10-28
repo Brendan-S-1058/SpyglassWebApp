@@ -139,4 +139,4 @@ del holdMatches
 del trueTeam
 del holdTrueTeams
 
-print (json.dumps(orderedMatchList, 'আ' ,matchNumbers))
+print (json.dumps(str(orderedMatchList) + 'আ' + str(matchNumbers)))
