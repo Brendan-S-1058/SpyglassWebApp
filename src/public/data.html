@@ -167,7 +167,11 @@
           qrs.push(row);
         })
       } else {
-        qrs = currentData;
+        if (confirm ("raw saving is dangerous, all qrs will be set to what IS CURRENTLY IN THE TABLE")) {
+          qrs = currentData;
+        } else {
+          alert ("aborted")
+        }
       }
 
       console.log ('qrs2: ' + qrs);
