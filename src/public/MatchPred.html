@@ -87,14 +87,16 @@
   });
 
   async function FullPrediction(Ecode) {
-    allResults = {}
+    allResults = {};
+    all = [];
 
-    const all = await pyFullPred (Ecode);
+    all = await pyFullPred (Ecode);
+    console.log('all: ' + all);
 
-    matchNames = []
-    matches = []
+    matchNames = [];
+    matches = [];
 
-    first = true
+    first = true;
     all.forEach((value) => {
       if (value !== 'আ') {
         if (first) {
