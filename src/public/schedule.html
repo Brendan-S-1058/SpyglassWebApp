@@ -47,17 +47,19 @@
     matches = []
 
     first = true
-    all.forEach((value) => {
-      if (value !== 'আ') {
-        if (first) {
-          matches.push(value);
-        } else {
-          matchNames.push(value);
-        }
-      } else {
-        first = false
-      }
-    });
+    matches = [all[0]]
+    matchNames = [all[2]]
+    // all.forEach((value) => {
+    //   if (value !== 'আ') {
+    //     if (first) {
+    //       matches.push(value);
+    //     } else {
+    //       matchNames.push(value);
+    //     }
+    //   } else {
+    //     first = false
+    //   }
+    // });
 
     let count = 0;
     allCount = 0;
