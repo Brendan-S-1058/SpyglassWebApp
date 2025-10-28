@@ -206,24 +206,24 @@ function build (results) {
   //   conole.log ("Filtered Array: " + filteredArray);    
 //})
 
-// async function pyFullPred(Ecode) {
-//     const res = await fetch ("/EventPred", {
-//       method: "POST",
-//       headers: {"Content-Type": "application/json"},
-//       body: JSON.stringify([Ecode]),
-//     });
+async function pyFullPred(Ecode) {
+    const res = await fetch ("/EventPred", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify([Ecode]),
+    });
 
-//     console.log(res);
+    console.log(res);
 
-//     if (!res.ok){
-//       throw new Error("HTTP error " + res.status);
-//       alert ("Event Code was INVALID (why would you do this??)");
-//     }
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+      alert ("Event Code was INVALID (why would you do this??)");
+    }
 
-//     const json = await res.json();
-//     console.log(json);
-//     return(json);
+    const json = await res.json();
+    console.log(json);
+    return(json);
     
-//   }
+  }
 </script>
 </html>
