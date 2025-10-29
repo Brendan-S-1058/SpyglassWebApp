@@ -41,46 +41,12 @@
     alliances = {}
     team = localStorage.getItem("team");
     Ecode = prompt ("What is the tbs event code for the event? (For example, UVM 2025 was 2025vtbur)");
-    const all = await pyFullPred (Ecode);
+    const all = await teamMatches(team, Ecode);
 
-    console.log('all: ' + all)
-
-    matchNames = []
-    matches = []
-
-    first = true
-    orderedTeams = [all[0]]
-    matchNames = [all[2]]
-
-    console.log("orderedTeams: " + orderedTeams);
-
-    let counta = 0;
-    holdMatch = [];
-    matches = [];
-    orderedTeams.forEach(team => {
-      counta += 1;
-      if (counta > 6) {
-        counta = 1;
-        matches.append(holdMatch);
-        holdMatch = [];
-      } else {
-        holdMatch.append(team);
-      }
-    })
-
-    console.log('matches: ' + matches);
-    console.log('matchnames: ' + matchNames);
-    // all.forEach((value) => {
-    //   if (value !== 'আ') {
-    //     if (first) {
-    //       matches.push(value);
-    //     } else {
-    //       matchNames.push(value);
-    //     }
-    //   } else {
-    //     first = false
-    //   }
-    // });
+    const matches = all[0];
+    const matchNames = all[1];
+    
+    console.log (matches);
 
     let count = 0;
     allCount = 0;
@@ -88,7 +54,7 @@
     matches.forEach(match => {
       console.log (match);
       match.push(localStorage.getItem('qrCodes'));
-      prediction(match, count, name);
+      prediction(match, count, matchNames[count]);
       count++;
       if (team == match[0] || team == match[1] || team == match[2]) {
         alliances[count] = "blue"
