@@ -49,11 +49,27 @@
     matches = []
 
     first = true
-    matches = [all[0]]
+    orderedTeams = [all[0]]
     matchNames = [all[2]]
 
-    console.log('matches: ' + matches)
-    console.log('matchnames: ' + matchNames)
+    print ("orderedTeams: " + orderedTeams);
+
+    count = 0;
+    holdMatch = [];
+    matches = [];
+    orderedTeams.forEach(team => {
+      count += 1;
+      if (count > 6) {
+        count = 1;
+        matches.append(holdMatch);
+        holdMatch = [];
+      } else {
+        holdMatch.append(team);
+      }
+    })
+
+    console.log('matches: ' + matches);
+    console.log('matchnames: ' + matchNames);
     // all.forEach((value) => {
     //   if (value !== 'আ') {
     //     if (first) {
@@ -68,6 +84,7 @@
 
     let count = 0;
     allCount = 0;
+
     matches.forEach(match => {
       console.log (match);
       match.push(localStorage.getItem('qrCodes'));
