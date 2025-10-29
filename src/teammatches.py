@@ -34,6 +34,7 @@ matches_data = matches_response.json()
 print ("matches_data: " + str(matches_data), file=sys.stderr)
 
 matchNumbers = []
+matchList = []
 
 for matchNum in matches_data:
     matchNumbers.append (matchNum['key'])
@@ -57,6 +58,9 @@ matchNumbers = holdList
 del holdList
 del hold
 del fullHold
+
+for matchKey in matches_data:
+    matchList.append (matchKey['alliances']['blue']['team_keys'] + matchKey['alliances']['red']['team_keys'])
 
 TeamsByMatch = {}
 for i in range (len(matchNumbers)):
