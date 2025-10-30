@@ -56,7 +56,7 @@
       match.push(localStorage.getItem('qrCodes'));
       prediction(match, count, matchNames[count]);
       count++;
-      if (team == match[0] || team == match[1] || team == match[2]) {
+      if (int(team) == match[0] || int(team) == match[1] || int(team) == match[2]) {
         alliances[count] = "blue"
       } else {
         alliances[count] = "red"

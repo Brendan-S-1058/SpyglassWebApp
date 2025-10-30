@@ -95,16 +95,30 @@ print ('newmatches: '+ str(newMatches), file=sys.stderr)
 
 
 holdKey = ''
+unsortedDict = {}
 holdKeyList1 = []
 holdKeyList2 = []
 holdKeyList3 = []
 for i in range(len(matchNumbers)):
+    unsortedHoldKeyList.append(matchNumbers[i])
     if 'f' not in matchNumbers[i]:
         holdKeyList1.append(matchNumbers[i])
     elif 's' in matchNumbers[i]:
         holdKeyList2.append(matchNumbers[i])
     else:
         holdKeyList3.append(matchNumbers[i])
+
+holdList = []
+for key in unsortedHoldKeyList:
+    hold = ''
+    for char in key:
+        if char in '1234567890':
+            hold += char
+    holdList.append(int(hold))
+processedUnsortedKeyList = holdList
+
+for i in range(len(processedUnsortedKeyList)):
+    unsortedDict[processedUnsortedKeyList[i]] = newMatches[i]
 
 holdList = []
 for key in holdKeyList1:
@@ -152,12 +166,16 @@ del holdKey
 
 matchNumbers = holdKeyList1 + holdKeyList2 + holdKeyList3
 
+initalOrderedMatchlist = []
+for key in matchNumbers:
+    initalOrderedMatchlist.append(unsortedDict[key])
+
 orderedMatchList = []
 for i in range (len(matchNumbers)):
     orderedMatchList.append(TeamsByMatch[matchNumbers[i]])
 
 holdMatches = []
-for match in orderedMatchList:
+for match in initalOrderedMatchlist:
     holdTrueTeams = []
     for team in match:
         trueTeam = ''
@@ -166,9 +184,9 @@ for match in orderedMatchList:
                 trueTeam += char
         holdTrueTeams.append(int(trueTeam))
     holdMatches.append(holdTrueTeams)
-orderedMatchList = holdMatches
+initalOrderedMatchlist = holdMatches
 del holdMatches
 del trueTeam
 del holdTrueTeams
 
-print (json.dumps([newMatches, matchNumbers]))
+print (json.dumps([initalOrderedMatchlist, matchNumbers]))
