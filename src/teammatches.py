@@ -188,7 +188,7 @@ orderedMatchList = []
 for i in range (len(matchNumbers)):
     orderedMatchList.append(TeamsByMatch[matchNumbers[i]])
 
-holdMatches = []
+'''holdMatches = []
 for match in initalOrderedMatchlist:
     holdTrueTeams = []
     for team in match:
@@ -201,7 +201,7 @@ for match in initalOrderedMatchlist:
 initalOrderedMatchlist = holdMatches
 del holdMatches
 del trueTeam
-del holdTrueTeams
+del holdTrueTeams'''
 
 print ('final initialOrderedMatchList: ' + str(initialOrderedMatchList), file=sys.stderr)
 
