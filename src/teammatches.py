@@ -179,7 +179,7 @@ cleaned = holdList
 
 initalOrderedMatchlist = []
 for key in cleaned:
-    print ('key: ' + key)
+    print ('key: ' + str(key), file=sys.stderr)
     initalOrderedMatchlist.append(unsortedDict[key])
 
 orderedMatchList = []
