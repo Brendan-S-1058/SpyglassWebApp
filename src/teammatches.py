@@ -168,8 +168,17 @@ del holdKey
 
 matchNumbers = holdKeyList1 + holdKeyList2 + holdKeyList3
 
-initalOrderedMatchlist = []
+holdList = []
 for key in matchNumbers:
+    hold = ''
+    for char in key:
+        if char in '1234567890':
+            hold += char
+    holdList.append(int(hold))
+cleaned = holdList
+
+initalOrderedMatchlist = []
+for key in cleaned:
     print ('key: ' + key)
     initalOrderedMatchlist.append(unsortedDict[key])
 
