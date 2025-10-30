@@ -182,7 +182,7 @@ for key in cleaned:
     print ('key: ' + str(key), file=sys.stderr)
     initalOrderedMatchlist.append(unsortedDict[key])
 
-print ('initialOrderedMatchList: ' + str(initialOrderedMatchList), file=sys.stderr)
+print ('initialOrderedMatchList: ' + str(initalOrderedMatchlist), file=sys.stderr)
 
 orderedMatchList = []
 for i in range (len(matchNumbers)):
