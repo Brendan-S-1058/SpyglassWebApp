@@ -182,6 +182,8 @@ for key in cleaned:
     print ('key: ' + str(key), file=sys.stderr)
     initalOrderedMatchlist.append(unsortedDict[key])
 
+print ('initialOrderedMatchList: ' + str(initialOrderedMatchList), file=sys.stderr)
+
 orderedMatchList = []
 for i in range (len(matchNumbers)):
     orderedMatchList.append(TeamsByMatch[matchNumbers[i]])
@@ -200,5 +202,7 @@ initalOrderedMatchlist = holdMatches
 del holdMatches
 del trueTeam
 del holdTrueTeams
+
+print ('final initialOrderedMatchList: ' + str(initialOrderedMatchList), file=sys.stderr)
 
 print (json.dumps([initalOrderedMatchlist, matchNumbers]))
