@@ -119,6 +119,7 @@ for key in unsortedHoldKeyList:
 processedUnsortedKeyList = holdList
 
 for i in range(len(processedUnsortedKeyList)):
+    print ('processedUnsortedKeyList[i]: ' + str(processedUnsortedKeyList[i]), file=sys.stderr)
     unsortedDict[processedUnsortedKeyList[i]] = newMatches[i]
 
 holdList = []
@@ -169,6 +170,7 @@ matchNumbers = holdKeyList1 + holdKeyList2 + holdKeyList3
 
 initalOrderedMatchlist = []
 for key in matchNumbers:
+    print ('key: ' + key)
     initalOrderedMatchlist.append(unsortedDict[key])
 
 orderedMatchList = []
