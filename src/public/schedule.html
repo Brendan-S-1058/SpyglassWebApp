@@ -66,7 +66,8 @@
       } else {
         alliances[matchNames[count]] = "red"
       };
-      console.log('alliances[count]: ' + alliances[matchNames[count]])
+      console.log('alliances[matchNames[count]]: ' + alliances[matchNames[count]])
+      console.log('alliances[qm4]: ' + alliances['qm4'])
     });
     while (count > allCount){
       await sleep(1000);
@@ -98,6 +99,7 @@ function build (results) {
     console.log('alliances: ' + alliances);
     console.log('match: ' + match);
     console.log('alliances[match]: ' + alliances[match]);
+    console.log('allinaces[qm4]: ' + allinaces['qm4'])
 
     if (alliances[match] == 'blue') {
       if (didBlueWin == true){
