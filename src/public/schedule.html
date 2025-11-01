@@ -61,9 +61,9 @@
       prediction(match, count, matchNames[count]);
       count++;
       if (team == match[0] || team == match[1] || team == match[2]) {
-        alliances[count] = "blue"
+        alliances[matchNames[count]] = "blue"
       } else {
-        alliances[count] = "red"
+        alliances[matchNames[count]] = "red"
       };
       console.log('alliances[count]: ' + alliances[count])
     });
@@ -93,6 +93,11 @@ function build (results) {
       blueWinPercent, redWinPercent,
       corRP, autoRP, bargeRP
     ] = middleMan;
+
+    console.log('alliances: ' + alliances);
+    console.log('match: ' + match);
+    console.log('alliances[match]: ' + alliances[match]);
+
 
     if (alliances[match] == 'blue') {
       if (didBlueWin == true){
