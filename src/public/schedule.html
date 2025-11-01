@@ -52,12 +52,12 @@
     allCount = 0;
 
     matches.forEach(match => {
-      console.log('team: ' + team);
+      /**console.log('team: ' + team);
       console.log ('match: ' + match);
       console.log ('match[0]: ' + match[0]);
       console.log ('match[0] == team: ' + (match[0] == team));
       console.log ('team == match[0] || team == match[1] || team == match[2]: ' + (team == match[0] || team == match[1] || team == match[2]));
-      console.log ('matchNames[count]: ' + matchNames[count])
+      console.log ('matchNames[count]: ' + matchNames[count])**/
       match.push(localStorage.getItem('qrCodes'));
       prediction(match, count, matchNames[count]);
       if (team == match[0] || team == match[1] || team == match[2]) {
@@ -65,8 +65,8 @@
       } else {
         alliances[matchNames[count]] = "red"
       };
-      console.log('alliances[matchNames[count]]: ' + alliances[matchNames[count]])
-      console.log('alliances[qm4]: ' + alliances['qm4'])
+      /**console.log('alliances[matchNames[count]]: ' + alliances[matchNames[count]])
+      console.log('alliances[qm4]: ' + alliances['qm4'])**/
       count++;
     });
     while (count > allCount){
@@ -96,10 +96,10 @@ function build (results) {
       corRP, autoRP, bargeRP
     ] = middleMan;
 
-    console.log('alliances: ' + alliances);
+    /**console.log('alliances: ' + alliances);
     console.log('match: ' + match);
     console.log('alliances[match]: ' + alliances[match]);
-    console.log('alliances[qm4]: ' + alliances['qm4'])
+    console.log('alliances[qm4]: ' + alliances['qm4'])**/
 
     if (alliances[match] == 'blue') {
       if (didBlueWin == true){
