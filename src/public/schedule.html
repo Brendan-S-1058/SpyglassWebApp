@@ -60,7 +60,6 @@
       console.log ('matchNames[count]: ' + matchNames[count])
       match.push(localStorage.getItem('qrCodes'));
       prediction(match, count, matchNames[count]);
-      count++;
       if (team == match[0] || team == match[1] || team == match[2]) {
         alliances[matchNames[count]] = "blue"
       } else {
@@ -68,6 +67,7 @@
       };
       console.log('alliances[matchNames[count]]: ' + alliances[matchNames[count]])
       console.log('alliances[qm4]: ' + alliances['qm4'])
+      count++;
     });
     while (count > allCount){
       await sleep(1000);
