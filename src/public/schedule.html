@@ -54,6 +54,7 @@
     matches.forEach(match => {
       console.log('team: ' + team);
       console.log ('match: ' + match);
+      console.log ('match[0]: ' + match[0]);
       match.push(localStorage.getItem('qrCodes'));
       prediction(match, count, matchNames[count]);
       count++;
