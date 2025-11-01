@@ -203,6 +203,4 @@ del holdMatches
 del trueTeam
 del holdTrueTeams'''
 
-print ('final initialOrderedMatchList: ' + str(initialOrderedMatchList), file=sys.stderr)
-
 print (json.dumps([initalOrderedMatchlist, matchNumbers]))
