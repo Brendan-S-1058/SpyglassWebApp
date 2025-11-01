@@ -89,22 +89,37 @@ def Main ():
     blueAverageMatchHalfProcessed = cap(blueAverageMatchUnprocessed)
     redAverageMatchHalfProcessed = cap(redAverageMatchUnprocessed)
 
-    if (blueAverageMatchHalfProcessed[5] + blueAverageMatchHalfProcessed[11]) > 5:
-        corRPper = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(21*2))
+    if (blueAverageMatchHalfProcessed[5] + blueAverageMatchHalfProcessed[11]) > 3:
+        corRPper = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(21*1.1))
     else:
-        corRPper = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(28*2))
+        corRPper = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(28*1.1))
+
+    if corPer >= 1:
+        corPer = 100
+    else:
+        corPer *= 100
 
     if (blueAverageMatchHalfProcessed[0] > 2):
         if (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]) >= 2:
             autoRPper = blueAverageMatchHalfProcessed[0]/3
         elif (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]) >= 1:
             autoRPper = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]))/2
-        else:
+        else:   
             autoRPper = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4])/2)/2
     else:
         autoRPper = (blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4])/6
 
+    if autoRPper >= 1:
+        autoRPper = 100
+    else:
+        autoRPper *= 100
+
     bargeRPper = ((blueAverageMatchHalfProcessed[13]*2 + blueAverageMatchHalfProcessed[14]*6 + blueAverageMatchHalfProcessed[15]*12)/16)/1.25
+
+    if bargeRPper >= 1:
+        bargeRPper = 100
+    else:
+        bargeRPper *= 100 
 
     blueFinal = calc (blueAverageMatchHalfProcessed)
     redFinal = calc (redAverageMatchHalfProcessed)
