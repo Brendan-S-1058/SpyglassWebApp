@@ -57,7 +57,7 @@
       console.log ('match[0]: ' + match[0]);
       console.log ('match[0] == team: ' + (match[0] == team));
       console.log ('team == match[0] || team == match[1] || team == match[2]: ' + (team == match[0] || team == match[1] || team == match[2]));
-      console.log ('matchNames[count]' + matchNames[count])
+      console.log ('matchNames[count]: ' + matchNames[count])
       match.push(localStorage.getItem('qrCodes'));
       prediction(match, count, matchNames[count]);
       count++;
@@ -66,7 +66,7 @@
       } else {
         alliances[matchNames[count]] = "red"
       };
-      console.log('alliances[count]: ' + alliances[count])
+      console.log('alliances[count]: ' + alliances[matchNames[count]])
     });
     while (count > allCount){
       await sleep(1000);
@@ -99,7 +99,6 @@ function build (results) {
     console.log('match: ' + match);
     console.log('alliances[match]: ' + alliances[match]);
 
-
     if (alliances[match] == 'blue') {
       if (didBlueWin == true){
         message = "You Win";
@@ -123,7 +122,7 @@ function build (results) {
     }
 
     if (match != 'noMatch') {
-      message += (' match ' + (match + 1));
+      message += (' match: ' + match);
     }
 
     const shellResults = document.createElement("tr");
