@@ -55,6 +55,7 @@
       console.log('team: ' + team);
       console.log ('match: ' + match);
       console.log ('match[0]: ' + match[0]);
+      console.log ('match[0] == team: ' + (match[0] == team))
       match.push(localStorage.getItem('qrCodes'));
       prediction(match, count, matchNames[count]);
       count++;
