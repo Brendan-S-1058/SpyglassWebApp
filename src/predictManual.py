@@ -330,6 +330,11 @@ def analyze (bscore, rscore, bstart, rstart, crp, arp, brp):
         if rp>=100:
             rp = 99.9
             bp = 0.1
+
+    bscore = (((bscore*1000)//1)/1000)
+    bstart = (((bstart*1000)//1)/1000)
+    rscore = (((rscore*1000)//1)/1000)
+    rstart = (((rstart*1000)//1)/1000)
     
     if bscore>bstart:
         bscore = str(bstart-5) + '-' + str(bscore+5)
@@ -341,6 +346,8 @@ def analyze (bscore, rscore, bstart, rstart, crp, arp, brp):
     else:
         rscore = str(rscore-5) + '-' + str(rstart+5)
     
+
+    rscore = (((rscore*1000)//1)/1000)
 
     
     return [bwin, bscore, rscore, bp, rp, crp, arp, brp]
