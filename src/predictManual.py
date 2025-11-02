@@ -346,10 +346,6 @@ def analyze (bscore, rscore, bstart, rstart, crp, arp, brp):
     else:
         rscore = str(rscore-5) + '-' + str(rstart+5)
     
-
-    rscore = (((rscore*1000)//1)/1000)
-
-    
     return [bwin, bscore, rscore, bp, rp, crp, arp, brp]
 
 Main ()
