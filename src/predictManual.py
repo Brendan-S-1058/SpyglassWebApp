@@ -94,10 +94,10 @@ def Main ():
     else:
         corRPper = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(28*1.1))
 
-    if corPper >= 1:
-        corPper = 100
+    if corRPper >= 1:
+        corRPper = 100
     else:
-        corPper *= 100
+        corRPper *= 100
         corRPper //= 1
 
     if (blueAverageMatchHalfProcessed[0] > 2):
