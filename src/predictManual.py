@@ -94,10 +94,11 @@ def Main ():
     else:
         corRPper = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(28*1.1))
 
-    if corPer >= 1:
-        corPer = 100
+    if corPper >= 1:
+        corPper = 100
     else:
-        corPer *= 100
+        corPper *= 100
+        corRPper //= 1
 
     if (blueAverageMatchHalfProcessed[0] > 2):
         if (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]) >= 2:
@@ -113,6 +114,7 @@ def Main ():
         autoRPper = 100
     else:
         autoRPper *= 100
+        autoRPper //= 1
 
     bargeRPper = ((blueAverageMatchHalfProcessed[13]*2 + blueAverageMatchHalfProcessed[14]*6 + blueAverageMatchHalfProcessed[15]*12)/16)/1.25
 
@@ -120,6 +122,8 @@ def Main ():
         bargeRPper = 100
     else:
         bargeRPper *= 100 
+        bargeRPper //= 1
+
 
     blueFinal = calc (blueAverageMatchHalfProcessed)
     redFinal = calc (redAverageMatchHalfProcessed)
