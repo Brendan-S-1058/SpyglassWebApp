@@ -24,6 +24,9 @@
             <th class="p-2 border">blue score</th>
             <th class="p-2 border">red score</th>
             <th class="p-2 border">confidence</th>
+            <th class="p-2 border">Auto RP</th>
+            <th class="p-2 border">Reef RP</th>
+            <th class="p-2 border">Barge RP</th>
           </tr>
         </thead>
         <tbody id="data-table-body">
@@ -133,17 +136,12 @@ function build (results) {
         <td class="p-2 border`+color+`">Blue score range: `+blueScoreRange+`</td>
         <td class="p-2 border`+color+`">Red score range: `+redScoreRange+`</td>
         <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
-      `;
+        <td class="p-2 border`+color+`">Auto RP: `+autoRP+`%</td>
+        <td class="p-2 border`+color+`">Reef RP: `+corRP+`%</td>
+        <td class="p-2 border`+color+`">Barge RP: `+bargeRP+`%</td>
+        `;
       
     tableBody.append(shellResults);
-
-    const shellResults2 = document.createElement("tr");
-    shellResults2.innerHTML = `
-        <td class="p-2 border`+color+`">Reef RP: `+corRP+`%</td>
-        <td class="p-2 border`+color+`">Auto RP: `+autoRP+`%</td>
-        <td class="p-2 border`+color+`">Barge RP: `+bargeRP+`%</td>`;
-    
-    tableBody.append(shellResults2);
   }
 
   async function prediction(input, key, name) {
