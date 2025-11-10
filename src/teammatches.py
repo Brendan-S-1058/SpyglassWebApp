@@ -66,8 +66,6 @@ TeamsByMatch = {}
 for i in range (len(matchNumbers)):
     TeamsByMatch[matchNumbers[i]] = matchList[i]
 
-
-
 matches = []
 for match in matches_data:
     one = []

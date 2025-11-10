@@ -62,17 +62,58 @@ TeamsByMatch = {}
 for i in range (len(matchNumbers)):
     TeamsByMatch[matchNumbers[i]] = matchList[i]
 
+matches = []
+for match in matches_data:
+    one = []
+    for blueTeam in match['alliances']['blue']['team_keys']:
+        one.append(blueTeam)
+    for redTeam in match['alliances']['red']['team_keys']:
+        one.append (redTeam)
+    matches.append(one)
+
+print ('matches: '+ str(matches), file=sys.stderr)
+
+newMatches = []
+for match in matches:
+    newMatch = []
+    for team in match:
+        holdTeam = ''
+        for char in team:
+            if char in '1234567890':
+                holdTeam += char
+        print ('holdteam: ' + str(holdTeam), file=sys.stderr)
+        newMatch.append (int(holdTeam))
+    newMatches.append (newMatch)
+
+print ('newmatches: '+ str(newMatches), file=sys.stderr)
+
 holdKey = ''
+unsortedDict = {}
+unsortedHoldKeyList = []
 holdKeyList1 = []
 holdKeyList2 = []
 holdKeyList3 = []
 for i in range(len(matchNumbers)):
+    unsortedHoldKeyList.append(matchNumbers[i])
     if 'f' not in matchNumbers[i]:
         holdKeyList1.append(matchNumbers[i])
     elif 's' in matchNumbers[i]:
         holdKeyList2.append(matchNumbers[i])
     else:
         holdKeyList3.append(matchNumbers[i])
+
+holdList = []
+for key in unsortedHoldKeyList:
+    hold = ''
+    for char in key:
+        if char in '1234567890':
+            hold += char
+    holdList.append(int(hold))
+processedUnsortedKeyList = holdList
+
+for i in range(len(processedUnsortedKeyList)):
+    print ('processedUnsortedKeyList[i]: ' + str(processedUnsortedKeyList[i]), file=sys.stderr)
+    unsortedDict[processedUnsortedKeyList[i]] = newMatches[i]
 
 holdList = []
 for key in holdKeyList1:
@@ -120,11 +161,27 @@ del holdKey
 
 matchNumbers = holdKeyList1 + holdKeyList2 + holdKeyList3
 
+holdList = []
+for key in matchNumbers:
+    hold = ''
+    for char in key:
+        if char in '1234567890':
+            hold += char
+    holdList.append(int(hold))
+cleaned = holdList
+
+initalOrderedMatchlist = []
+for key in cleaned:
+    print ('key: ' + str(key), file=sys.stderr)
+    initalOrderedMatchlist.append(unsortedDict[key])
+
+print ('initialOrderedMatchList: ' + str(initalOrderedMatchlist), file=sys.stderr)
+
 orderedMatchList = []
 for i in range (len(matchNumbers)):
     orderedMatchList.append(TeamsByMatch[matchNumbers[i]])
 
-holdMatches = []
+'''holdMatches = []
 for match in orderedMatchList:
     holdTrueTeams = []
     for team in match:
@@ -137,6 +194,6 @@ for match in orderedMatchList:
 orderedMatchList = holdMatches
 del holdMatches
 del trueTeam
-del holdTrueTeams
+del holdTrueTeams'''
 
 print (json.dumps([orderedMatchList, matchNumbers]))
