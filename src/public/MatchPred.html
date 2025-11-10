@@ -93,21 +93,8 @@
     all = await pyFullPred (Ecode);
     console.log('all: ' + all);
 
-    matchNames = [];
-    matches = [];
-
-    first = true;
-    all.forEach((value) => {
-      if (value !== 'আ') {
-        if (first) {
-          matches.push(value);
-        } else {
-          matchNames.push(value);
-        }
-      } else {
-        first = false
-      }
-    });
+    matchNames = all[0];
+    matches = all[1];
 
     let count = 0;
     allCount = 0;
@@ -201,15 +188,6 @@ function build (results) {
       `;
       
     tableBody.append(shellResults);
-
-    const shellResults2 = document.createElement("tr");
-    shellResults2.innerHTML = `
-        <td class="p-2 border`+color+`">Reef RP: `+corRP+`</td>
-        <td class="p-2 border`+color+`">Auto RP: `+autoRP+`</td>
-        <td class="p-2 border`+color+`">Barge RP: `+bargeRP+`</td>
-      `;
-      
-    tableBody.append(shellResults2)
   }
 
   async function predict(dataArray) {
