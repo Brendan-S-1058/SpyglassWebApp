@@ -181,7 +181,7 @@ orderedMatchList = []
 for i in range (len(matchNumbers)):
     orderedMatchList.append(TeamsByMatch[matchNumbers[i]])
 
-'''holdMatches = []
+holdMatches = []
 for match in orderedMatchList:
     holdTrueTeams = []
     for team in match:
@@ -194,6 +194,6 @@ for match in orderedMatchList:
 orderedMatchList = holdMatches
 del holdMatches
 del trueTeam
-del holdTrueTeams'''
+del holdTrueTeams
 
 print (json.dumps([orderedMatchList, matchNumbers]))
