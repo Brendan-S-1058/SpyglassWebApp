@@ -44,7 +44,7 @@
   let oldGraphs = 1;
   let graphState = 1;
   let modeState = 1;
-  let opr = -1
+  let oprState = -1
   let send = null;
   document.getElementById('modePublic').addEventListener("click", () => {
     modeState += 1;
@@ -61,8 +61,8 @@
   });
 
   document.getElementById('opr').addEventListener("click", () => {
-    opr *= -1
-    if (opr == 1) {
+    oprState *= -1
+    if (oprState == 1) {
       document.getElementById('opr').style.color = "00ff00";
     } else {
       document.getElementById('opr').style.color = "ff0000";
@@ -100,12 +100,12 @@
 
     if (graphState == -1) {
       data = await Graph(send);
-      if (opr == 1) {
+      if (oprState == 1) {
         data = await opr(send);
       }
-    } else if (graphState == 1 && opr != 1) {
+    } else if (graphState == 1 && oprState != 1) {
       data = await Sort(send);
-    } else if (opr == 1) {
+    } else if (oprState == 1) {
       data = await opr(send);
     }
 
