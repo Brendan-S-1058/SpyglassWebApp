@@ -1,0 +1,30 @@
+import sys
+import json
+import numpy as notpy
+
+#this is going to be great
+#MTMx = MTs
+
+#inputR = json.loads
+
+inputR = sys.stdin.read()
+inputS = str(json.loads(inputR))
+
+for i in inputS:
+    print (i, file=sys.stderr)
+
+'''count = 0
+holdList = []
+hold = ''
+for char in inputS:
+    if char != ",":
+        hold += char
+    else:
+        if count < 6:
+            holdList.append(hold)
+            count += 1
+            hold = ''
+        else:
+            hold += char
+holdList.append(hold)
+inputS = holdList'''

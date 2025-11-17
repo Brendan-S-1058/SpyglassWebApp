@@ -69,6 +69,7 @@
                 localStorage.setItem("team", team);
                 Ecode = prompt ("What is the tbs event code for the event? (For example, UVM 2025 was 2025vtbur)")
                 const matches = await teamMatches(team, Ecode)
+                localStorage.setItem('matchesByevent', matches)
             }
 
 
@@ -109,7 +110,6 @@
 
       if (!res.ok){
         throw new Error("HTTP error " + res.status);
-        alert ("Event Code was INVALID (why would you do this??)");
       }
 
       const json = await res.json();
@@ -126,7 +126,6 @@
 
     if (!res.ok){
       throw new Error("HTTP error " + res.status);
-      alert ("Event Code was INVALID (why would you do this??)");
     }
 
     const json = await res.json();
@@ -145,7 +144,6 @@
 
     if (!res.ok){
       throw new Error("HTTP error " + res.status);
-      alert ("Event Code was INVALID (why would you do this??)");
     }
 
     const json = await res.json();

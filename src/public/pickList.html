@@ -17,6 +17,7 @@
       <button id="graph?" class="On">SPEED</button>
       <button id="oldGraphs" class="On">Old Graphs</button>
       <button id="sort" class="button">Generate List</button>
+      <button id="opr" class="button">sort by OPR</button>
       <button id="explain" class="button">Explain</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
@@ -43,6 +44,7 @@
   let oldGraphs = 1;
   let graphState = 1;
   let modeState = 1;
+  let opr = -1
   let send = null;
   document.getElementById('modePublic').addEventListener("click", () => {
     modeState += 1;
@@ -57,6 +59,15 @@
       document.getElementById('modePublic').style.color = "#0000ff";
     }
   });
+
+  document.getElementById('opr').addEventListener("click", () => {
+    opr *= -1
+    if (opr == 1) {
+      document.getElementById('opr').style.color = "00ff00";
+    } else {
+      document.getElementById('opr').style.color = "ff0000";
+    }
+    });
 
   document.getElementById('oldGraphs').addEventListener("click", () => {
         oldGraphs *= -1;
@@ -89,8 +100,13 @@
 
     if (graphState == -1) {
       data = await Graph(send);
-    } else if (graphState == 1) {
-      data = await Sort(send)
+      if (opr == 1) {
+        data = await opr(send);
+      }
+    } else if (graphState == 1 && opr != 1) {
+      data = await Sort(send);
+    } else if (opr == 1) {
+      data = await opr(send);
     }
 
     const table = document.getElementById("data-table-body");
@@ -100,6 +116,42 @@
       createRow(line);
     });
   });
+
+  async function opr(input) {
+        const res = await fetch ("/oprsort", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(State),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+    }
+
+    const json = await res.json();
+
+    if (oldGraphs == 1){
+      try {
+        const graph = document.createElement('img');
+        graph.src = "data/Teams/" + localStorage.getItem('team') + "/" + localStorage.getItem('team') + "Graphs/AVT.png";
+        graph.width = 600;
+        graph.height = 400;
+
+        const division = document.getElementById("images");
+        division.innerHTML='';
+
+        division.appendChild(graph);
+
+      } catch (e) {
+        console.error("Yikes (The graph didn't work).");
+        console.error(e);
+        return;
+      }
+    }
+
+  }
   
   function createRow(csv){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
