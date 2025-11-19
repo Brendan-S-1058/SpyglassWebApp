@@ -94,6 +94,7 @@
     if (graphState == -1) {
       data = await Graph(send);
       if (document.getElementById('sortMeth').value == 'opr') {
+        console.log("OPRING - 1");
         data = opr(send);
       }
     } else if (graphState == 1) {
@@ -101,6 +102,7 @@
         data = await Sort(send);
       } else {
         data = opr(send);
+        console.log('OPRING - 2');
       }
     }
 
