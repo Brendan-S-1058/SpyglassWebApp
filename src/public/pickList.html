@@ -17,7 +17,10 @@
       <button id="graph?" class="On">SPEED</button>
       <button id="oldGraphs" class="On">Old Graphs</button>
       <button id="sort" class="button">Generate List</button>
-      <button id="opr" class="button">sort by OPR</button>
+      <select id="sortMeth" name="sortMeth">
+        <option value="opr">OPR</option>
+        <option value="aps">Avg points scored</option> 
+      </select>
       <button id="explain" class="button">Explain</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
@@ -44,7 +47,6 @@
   let oldGraphs = 1;
   let graphState = 1;
   let modeState = 1;
-  let oprState = -1
   let send = null;
   document.getElementById('modePublic').addEventListener("click", () => {
     modeState += 1;
@@ -59,15 +61,6 @@
       document.getElementById('modePublic').style.color = "#0000ff";
     }
   });
-
-  document.getElementById('opr').addEventListener("click", () => {
-    oprState *= -1;
-    if (oprState == 1) {
-      document.getElementById('opr').style.color = "00ff00";
-    } else {
-      document.getElementById('opr').style.color = "ff0000";
-    }
-    });
 
   document.getElementById('oldGraphs').addEventListener("click", () => {
         oldGraphs *= -1;
@@ -100,13 +93,15 @@
 
     if (graphState == -1) {
       data = await Graph(send);
-      if (oprState == 1) {
-        data = await opr(send);
+      if (document.getElementById('sortMeth').value == 'opr') {
+        data = opr(send);
       }
-    } else if (graphState == 1 && oprState != 1) {
-      data = await Sort(send);
-    } else if (oprState == 1) {
-      data = await opr(send);
+    } else if (graphState == 1) {
+      if (document.getElementById('sortMeth').value == 'aps') {
+        data = await Sort(send);
+      } else {
+        data = opr (send);
+      }
     }
 
     const table = document.getElementById("data-table-body");
