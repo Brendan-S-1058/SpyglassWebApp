@@ -11,7 +11,7 @@ inputR = sys.stdin.read()
 inputS = str(json.loads(inputR))
 
 for i in inputS:
-    print (i, file=sys.stderr)
+    print ('i: ' + str(i), file=sys.stderr)
 
 '''count = 0
 holdList = []
