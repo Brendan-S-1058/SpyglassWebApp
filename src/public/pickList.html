@@ -113,7 +113,7 @@
   });
 
   async function opr(input) {
-        const res = await fetch ("/oprsort", {
+      const res = await fetch ("/oprsort", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(State),
