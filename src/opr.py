@@ -14,6 +14,8 @@ print ('inputS: ' + str(inputS), file=sys.stderr)
 for i in inputS:
     print ('i: ' + str(i), file=sys.stderr)
 
+print (json.dumps(inputS))
+
 '''count = 0
 holdList = []
 hold = ''
