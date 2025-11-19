@@ -9,6 +9,7 @@ import numpy as notpy
 
 inputR = sys.stdin.read()
 inputS = str(json.loads(inputR))
+print ('inputS: ' + str(inputS), file=sys.stderr)
 
 for i in inputS:
     print ('i: ' + str(i), file=sys.stderr)
