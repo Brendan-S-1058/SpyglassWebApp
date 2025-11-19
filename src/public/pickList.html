@@ -95,13 +95,13 @@
       data = await Graph(send);
       if (document.getElementById('sortMeth').value == 'opr') {
         console.log("OPRING - 1");
-        data = opr(send);
+        data = await opr(send);
       }
     } else if (graphState == 1) {
       if (document.getElementById('sortMeth').value == 'aps') {
         data = await Sort(send);
       } else {
-        data = opr(send);
+        data = await opr(send);
         console.log('OPRING - 2');
       }
     }
