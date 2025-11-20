@@ -31,10 +31,11 @@ for match in holdList:
         if char == ',' and count != 1:
             holderList.append(hold)
             hold = ''
-        else:
+        elif char != ',':
             hold += char
         count += 1 
     holderList.append(hold)
+    hold = ''
     holdestList.append(holderList)
     holderList = []
 
