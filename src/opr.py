@@ -33,6 +33,7 @@ for match in holdList:
         else:
             hold += char
     holdestList.append(holderList)
+    holderList = []
 
 print ('holdestList1: ' + str(holdestList), file=sys.stderr)
 
