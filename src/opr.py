@@ -26,12 +26,15 @@ hold = ''
 holderList = []
 holdestList = []
 for match in holdList:
-    for char in match:
-        if char == ',':
+    count = 1
+    for char in match: 
+        if char == ',' and count != 1:
             holderList.append(hold)
             hold = ''
         else:
             hold += char
+        count += 1 
+    holderList.append(hold)
     holdestList.append(holderList)
     holderList = []
 
