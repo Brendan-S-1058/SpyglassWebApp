@@ -11,10 +11,32 @@ inputR = sys.stdin.read()
 inputS = str(json.loads(inputR))
 print ('inputS: ' + str(inputS), file=sys.stderr)
 
-for i in inputS:
-    print ('i: ' + str(i), file=sys.stderr)
+hold = ''
+holdList = []
+for char in inputS:
+    if char == '/':
+        holdList.append(hold)
+        hold = ''
+    else:
+        hold += char
 
-print (json.dumps(inputS))
+print ('holdList: ' + str(holdList), file=sys.stderr)
+
+hold = ''
+holderList = []
+holdestList = []
+for match in holdList:
+    for char in match:
+        if char == ',':
+            holderList.append(hold)
+            hold = ''
+        else:
+            hold += char
+    holdestList.append(holderList)
+
+print ('holdestList: ' + str(holdestList), file=sys.stderr)
+
+print (json.dumps(holdestList))
 
 '''count = 0
 holdList = []
