@@ -34,10 +34,12 @@ for match in holdList:
             hold += char
     holdestList.append(holderList)
 
+print ('holdestList1: ' + str(holdestList), file=sys.stderr)
+
 for match in holdestList:
     match.pop(len(match)-1)
 
-print ('holdestList: ' + str(holdestList), file=sys.stderr)
+print ('holdestList2: ' + str(holdestList), file=sys.stderr)
 
 for match in holdestList:
     for i in range(len(match)):
