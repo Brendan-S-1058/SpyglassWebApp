@@ -34,7 +34,17 @@ for match in holdList:
             hold += char
     holdestList.append(holderList)
 
+for match in holdestList:
+    match.pop(len(match)-1)
+
 print ('holdestList: ' + str(holdestList), file=sys.stderr)
+
+for match in holdestList:
+    for i in range(len(match)):
+        match[i] = int(match[i])
+
+sortedData = holdestList
+print ('sortedData: ' + str(sortedData), file=sys.stderr)
 
 print (json.dumps(holdestList))
 
