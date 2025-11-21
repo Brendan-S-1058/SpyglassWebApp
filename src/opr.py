@@ -75,14 +75,16 @@ for match in matchsInData:
                 alliancesByMatch[str(match) + 'score' + 'b'] = totalScore
             elif count < 3:
                 alliancesByMatch[str(match) + 'team' + 'b'].append(smatch[1])
-                alliancesByMatch[str(match) + 'score' + 'b'] = totalScore
+                alliancesByMatch[str(match) + 'score' + 'b'] += totalScore
             elif count == 3:
                 alliancesByMatch[str(match) + 'team' + 'r'] = [smatch[1]]
                 alliancesByMatch[str(match) + 'score' + 'r'] = totalScore
             elif count < 6:
                 alliancesByMatch[str(match) + 'team' + 'r'].append(smatch[1])
-                alliancesByMatch[str(match) + 'score' + 'r'] = totalScore
+                alliancesByMatch[str(match) + 'score' + 'r'] += totalScore
             count += 1
+
+print ('alliancesByMatch: ' + str(alliancesByMatch), file=sys.stderr)
 
 teamsMatrixPre = []
 scoresMatrixPre = []
