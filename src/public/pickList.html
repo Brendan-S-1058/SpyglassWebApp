@@ -110,7 +110,11 @@
     table.innerHTML = '';
     
     data.forEach(line => {
-      createRow(line);
+      if (document.getElementById('sortMeth').value == 'aps') {
+        createRow(line);
+      } else if (document.getElementById('sortMeth').value == 'opr') {
+        createRowOpr(line);
+      }
     });
   });
 
@@ -187,6 +191,26 @@
           newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Negative">`+canNet+`</td>`
         }
             table.appendChild(newRow);
+            };
+  
+  function createRowOpr(csv){
+        const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
+        if (fields.length !== 2) {
+          console.error("createRow: expected 7 comma‑separated values, got", fields.length);
+          return;
+        }
+        const [
+          team, opr
+        ] = fields;
+
+        const table = document.getElementById("data-table-body");
+        const newRow = document.createElement('tr');
+        newRow.contentEditable = "false";
+        newRow.innerHTML = `
+            <td class="p-2 border">`+team+`</td>
+            <td class="p-2 border">`+opr+`</td>`
+
+        table.appendChild(newRow);
             };
 
   async function Graph(State) {
