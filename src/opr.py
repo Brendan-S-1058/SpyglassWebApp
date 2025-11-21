@@ -119,12 +119,12 @@ print ('scoresMatrixPre: ' + str(scoresMatrixPre), file=sys.stderr)
 teamsMatrix = np.array(teamsMatrixPre)
 scoresMatrix = np.array(scoresMatrixPre)
 
-Mtrans = notpy.transpose(teamsMatrix)
+Mtrans = np.transpose(teamsMatrix)
 
-coes = notpy.matmul(Mtrans, teamsMatrix)
-ans = notpy.matmul(Mtrans, scoresMatrix)
+coes = np.matmul(Mtrans, teamsMatrix)
+ans = np.matmul(Mtrans, scoresMatrix)
 
-fins = notpy.linalg.solve(coes, ans)
+fins = np.linalg.solve(coes, ans)
 
 finalList = []
 for i in range (len(teamsInData)):
