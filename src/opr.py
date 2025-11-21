@@ -68,7 +68,7 @@ for match in matchsInData:
     count = 0
     for smatch in sortedData:
         if match == smatch[0]:
-            totalScore = ((int(float(match[2]))*3)+(int(float(match[3]))*3)+(int(float(match[4]))*4)+(int(float(match[5]))*6)+(int(float(match[6]))*7)+(int(float(match[7]))*6)+(int(float(match[8]))*4))+((int(float(match[9]))*2)+(int(float(match[10]))*3)+(int(float(match[11]))*4)+(int(float(match[12]))*5)+(int(float(match[13]))*6)+(int(float(match[14]))*4)+(int(float(match[15]))*2)+(int(float(match[16]))*6)+(int(float(match[17]))*12))
+            totalScore = (((match[2])*3)+((match[3])*3)+((match[4])*4)+((match[5])*6)+((match[6])*7)+((match[7])*6)+((match[8])*4)+((match[9])*2)+((match[10])*3)+((match[11])*4)+((match[12])*5)+((match[13])*6)+((match[14])*4)+((match[15])*2)+((match[16])*6)+((match[17])*12))
             #TODO: ADD REAL ALLIANCE SEPARATIONS WITH NEW INPUT PAGE
             if count == 0:
                 alliancesByMatch[str(match) + 'team' + 'b'] = [smatch[1]]
