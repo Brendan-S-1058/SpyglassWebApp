@@ -122,9 +122,17 @@ ans = np.matmul(Mtrans, scoresMatrix)
 
 fins = np.linalg.lstsq(coes, ans)
 
-finalList = []
+sortingDict = {}
+keyList = []
 for i in range (len(teamsInData)):
-    finalList.append(str(teamsInData[i]) + ',' + str(fins[0][i][0]))
+    sortingDict[fins[0][i][0]] = teamsInData[i]
+    keyList.append(fins[0][i][0])
+
+keyList.sort(reverse=True)
+
+finalList = []
+for i in range (len(keyList)):
+    finalList.append(str(sortingDict[keyList[i]]) + ',' + str(keyList[i])) 
     finalList.append('\n')
 
 print ('finalList: ' + str(finalList), file=sys.stderr)
