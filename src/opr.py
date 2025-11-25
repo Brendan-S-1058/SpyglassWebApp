@@ -6,9 +6,33 @@ import numpy as np
 #MTMx = MTs
 
 #inputR = json.loads
-
 inputR = sys.stdin.read()
-inputS = str(json.loads(inputR))
+inputI = json.loads(inputR)
+
+comma = False
+inputSo = ''
+team = ''
+for char in inputI:
+    if char == ',':
+        if comma == False:
+            comma = True
+        else:
+            inputSo += char
+    else:
+        if comma == False:
+            team += char
+        else:
+            inputSo += char
+
+print ('team: ' + team, file=sys.stderr)
+
+finalDataDict = {}
+
+if inputSo == "1":
+    inputS = Public ()
+elif inputSo == "2":
+    inputS = LocalPublic (team)
+
 print ('inputS: ' + str(inputS), file=sys.stderr)
 
 hold = ''
@@ -153,3 +177,17 @@ for char in inputS:
             hold += char
 holdList.append(hold)
 inputS = holdList'''
+
+def Public ():
+    with open("public/data/Public.txt","r") as f:
+        rawData = f.read()
+        f.close()
+    
+    return rawData
+
+def LocalPublic (team):
+    with open ("public/data/Teams/" + team + "/" + team + 'Public.txt', 'r') as file:
+        rawData = file.read ()
+        file.close ()
+    
+    return rawData
