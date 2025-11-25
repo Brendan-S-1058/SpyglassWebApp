@@ -34,6 +34,8 @@ def main():
         inputS = Public ()
     elif inputSo == "2":
         inputS = LocalPublic (team)
+    else:
+        inputS = inputSo
 
     print ('inputS: ' + str(inputS), file=sys.stderr)
 
