@@ -20,6 +20,8 @@
       <select id="sortMeth" name="sortMeth">
         <option value="opr">OPR</option>
         <option value="aps">Avg points scored</option> 
+        <option value="dpropr">DPR by OPR</option>
+        <option value="dpraps">DPR by APS</option>
       </select>
       <button id="explain" class="button">Explain</button>
     </div>
@@ -96,13 +98,25 @@
       if (document.getElementById('sortMeth').value == 'opr') {
         console.log("OPRING - 1");
         data = await opr(send);
+      } else if (document.getElementById('sortMeth').value == 'dpropr') {
+        console.log("DPRING - 1");
+        data = await dpro(send);
+      } else if (document.getElementById('sortMeth').value == 'dpraps') {
+        console.log("DPRING - 0");
+        data = await dpra(send);
       }
     } else if (graphState == 1) {
       if (document.getElementById('sortMeth').value == 'aps') {
         data = await Sort(send);
-      } else {
+      } else if (document.getElementById('sortMeth').value == 'opr'){
         data = await opr(send);
         console.log('OPRING - 2');
+      } else if (document.getElementById('sortMeth').value == 'dpropr') {
+        console.log("DPRING - 2");
+        data = await dpro(send);
+      } else if (document.getElementById('sortMeth').value == 'dpraps') {
+        console.log("DPRING - 3");
+        data = await dpra(send);
       }
     }
 
@@ -113,6 +127,8 @@
       if (document.getElementById('sortMeth').value == 'aps') {
         createRow(line);
       } else if (document.getElementById('sortMeth').value == 'opr') {
+        createRowOpr(line);
+      } else if (document.getElementById('sortMeth').value == 'dpropr' || document.getElementById('sortMeth').value == 'dpropr') {
         createRowOpr(line);
       }
     });
@@ -153,7 +169,106 @@
     }
     return (json);;
   }
+
+  async function dpro(input) {
+    let avgs = '';
+    allData = opr(input);
+    allData.forEach(line => {
+      separate = line.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
+      if (length(avgs)>0) {
+        avgs = avgs + '/' + separate[0] + ',' + separate[1];
+      } else {
+        avgs = separate[0] + ',' + separate[1]
+      }
+    });
+    console.log('avgs: ' + avgs);
+    send = input + '◌̓' + avgs;
+
+      const res = await fetch ("/dprsort", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(send),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+    }
+
+    const json = await res.json();
+
+    if (oldGraphs == 1){
+      try {
+        const graph = document.createElement('img');
+        graph.src = "data/Teams/" + localStorage.getItem('team') + "/" + localStorage.getItem('team') + "Graphs/AVT.png";
+        graph.width = 600;
+        graph.height = 400;
+
+        const division = document.getElementById("images");
+        division.innerHTML='';
+
+        division.appendChild(graph);
+
+      } catch (e) {
+        console.error("Yikes (The graph didn't work).");
+        console.error(e);
+        return;
+      }
+    }
+    return (json);;
+  }
   
+async function dpra(input) {
+    let avgs = '';
+    allData = sort(input);
+    allData.forEach(line => {
+      separate = line.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
+      if (length(avgs)>0) {
+        avgs = avgs + '/' + separate[0] + ',' + separate[1];
+      } else {
+        avgs = separate[0] + ',' + separate[1]
+      }
+    });
+    console.log('avgs: ' + avgs);
+
+    send = input + '◌̓' + avgs;
+
+      const res = await fetch ("/dprsort", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(send),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+    }
+
+    const json = await res.json();
+
+    if (oldGraphs == 1){
+      try {
+        const graph = document.createElement('img');
+        graph.src = "data/Teams/" + localStorage.getItem('team') + "/" + localStorage.getItem('team') + "Graphs/AVT.png";
+        graph.width = 600;
+        graph.height = 400;
+
+        const division = document.getElementById("images");
+        division.innerHTML='';
+
+        division.appendChild(graph);
+
+      } catch (e) {
+        console.error("Yikes (The graph didn't work).");
+        console.error(e);
+        return;
+      }
+    }
+    return (json);;
+  }
+
   function createRow(csv){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
         if (fields.length !== 7) {
