@@ -16,12 +16,12 @@ def main():
     section = 0
     for char in inputI:
         if char == '◌̓':
-            section += 1
-        else:
-            if section == 0:
-                inputSoso += char
-            elif section == 1:
-                inputSotwo += char
+            section = 1
+            print ('FLIPPED', file=sys.stderr)
+        elif section == 0:
+            inputSoso += char
+        elif section == 1:
+            inputSotwo += char
     
 
     print ('inputSoso: ' + str(inputSoso), file=sys.stderr)
