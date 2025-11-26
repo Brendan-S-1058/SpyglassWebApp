@@ -15,7 +15,7 @@ def main():
     inputSoso = ''
     section = 0
     for char in inputI:
-        if char == '◌̓':
+        if char == '₯':
             section = 1
             print ('FLIPPED', file=sys.stderr)
         elif section == 0:
