@@ -15,6 +15,7 @@ def main():
     inputSoso = ''
     section = 0
     for char in inputI:
+        print ('char: ' + str(char), file=sys.stderr)
         if char == '◌̓':
             section += 1
         elif section == 0:
@@ -22,6 +23,9 @@ def main():
         elif section == 1:
             inputSotwo += char
     
+
+    print ('inputSoso: ' + str(inputSoso), file=sys.stderr)
+    print ('inputSotwo: ' + str(inputSotwo), file=sys.stderr)
     inputI = inputSoso
     OprsByTeam = oprsort(inputSotwo)
 
