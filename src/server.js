@@ -100,7 +100,7 @@ app.post("/teamPullMatches", (req, res) => {
 app.post("/dprsort", (req, res) => {
     const input = String(req.body);
     const venvPath = path.join(__dirname, "venv/bin/python");
-    const individualProcess = spawn(venvPath, ["teammatches.py"]);
+    const individualProcess = spawn(venvPath, ["dpr.py"]);
 
     let output = "";
 
