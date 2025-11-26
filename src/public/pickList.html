@@ -167,26 +167,10 @@
         return;
       }
     }
-    return (json);;
+    return (json);
   }
 
-  async function dpro(input) {
-    let avgs = '';
-    allData = await opr(input);
-    allData.forEach(line => {
-      console.log('line: ' + line);
-      separate = line.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-      if (separate[0] != "") {
-        if (avgs.length>0) {
-          avgs = avgs + '/' + separate[0] + ',' + separate[1];
-        } else {
-          avgs = separate[0] + ',' + separate[1]
-        }
-      };
-    });
-    console.log('avgs: ' + avgs);
-    send = input + '◌̓' + avgs;
-
+  async function dprSort(send) {
     const res = await fetch ("/dprsort", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -219,7 +203,25 @@
         return;
       }
     }
-    return (json);;
+    return (json);
+  }
+
+  async function dpro(input) {
+    let avgs = '';
+    allData = await opr(input);
+    allData.forEach(line => {
+      console.log('line: ' + line);
+      separate = line.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
+      if (separate[0] != "") {
+        if (avgs.length>0) {
+          avgs = avgs + '/' + separate[0] + ',' + separate[1];
+        } else {
+          avgs = separate[0] + ',' + separate[1]
+        }
+      };
+    });
+    console.log('avgs: ' + avgs);
+    send = input + '◌̓' + avgs;
   }
   
 async function dpra(input) {
@@ -237,40 +239,8 @@ async function dpra(input) {
     console.log('avgs: ' + avgs);
 
     send = input + '◌̓' + avgs;
-
-      const res = await fetch ("/dprsort", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(send),
-    });
-
-    console.log(res);
-
-    if (!res.ok){
-      throw new Error("HTTP error " + res.status);
-    }
-
-    const json = await res.json();
-
-    if (oldGraphs == 1){
-      try {
-        const graph = document.createElement('img');
-        graph.src = "data/Teams/" + localStorage.getItem('team') + "/" + localStorage.getItem('team') + "Graphs/AVT.png";
-        graph.width = 600;
-        graph.height = 400;
-
-        const division = document.getElementById("images");
-        division.innerHTML='';
-
-        division.appendChild(graph);
-
-      } catch (e) {
-        console.error("Yikes (The graph didn't work).");
-        console.error(e);
-        return;
-      }
-    }
-    return (json);;
+    
+    return (await dprSort(send));
   }
 
   function createRow(csv){
