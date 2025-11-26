@@ -15,13 +15,13 @@ def main():
     inputSoso = ''
     section = 0
     for char in inputI:
-        print ('char: ' + str(char), file=sys.stderr)
         if char == '◌̓':
             section += 1
-        elif section == 0:
-            inputSoso += char
-        elif section == 1:
-            inputSotwo += char
+        else:
+            if section == 0:
+                inputSoso += char
+            elif section == 1:
+                inputSotwo += char
     
 
     print ('inputSoso: ' + str(inputSoso), file=sys.stderr)
