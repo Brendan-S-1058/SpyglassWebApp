@@ -226,6 +226,7 @@
     send = input + '◌̓' + avgs;
 
     console.log('send: ' + send);
+    console.log('JSON.stringify(send): ' + JSON.stringify(send));
 
     return (await dprSort(send));
   }
