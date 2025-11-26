@@ -225,7 +225,7 @@ async function dpra(input) {
     separate = allData.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
     allData.forEach(line => {
       separate = line.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-      if (length(avgs)>0) {
+      if (avgs.lenght>0) {
         avgs = avgs + '/' + separate[0] + ',' + separate[1];
       } else {
         avgs = separate[0] + ',' + separate[1];
