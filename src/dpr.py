@@ -232,6 +232,7 @@ def oprsort (string):
             holdScore += char
         elif state == 1:
             holdTeam += char
+    print ('finalDict: ' + str(finalDict), file=sys.stderr)
     return finalDict
 
 main()
