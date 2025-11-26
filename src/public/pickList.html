@@ -130,7 +130,7 @@
     table.innerHTML = '';
     
     data.forEach(line => {
-      if (document.getElementById('sortMeth').value == 'aps') {
+      if (document.getElementById('sortMeth').value == 'aps' || document.getElementById('sortMeth').value == 'dpraps') {
         createRow(line);
       } else if (document.getElementById('sortMeth').value == 'opr') {
         createRowOpr(line);
