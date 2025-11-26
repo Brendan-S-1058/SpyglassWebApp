@@ -174,12 +174,15 @@
     let avgs = '';
     allData = await opr(input);
     allData.forEach(line => {
+      console.log('line: ' + line);
       separate = line.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-      if (avgs.length>0) {
-        avgs = avgs + '/' + separate[0] + ',' + separate[1];
-      } else {
-        avgs = separate[0] + ',' + separate[1]
-      }
+      if (separate[0] != "") {
+        if (avgs.length>0) {
+          avgs = avgs + '/' + separate[0] + ',' + separate[1];
+        } else {
+          avgs = separate[0] + ',' + separate[1]
+        }
+      };
     });
     console.log('avgs: ' + avgs);
     send = input + '◌̓' + avgs;
