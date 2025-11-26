@@ -176,7 +176,7 @@ async function dprSort(input) {
       const res = await fetch ("/dprsort", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify('hello'),
+      body: JSON.stringify(['hello']),
     });
 
     console.log(res);
