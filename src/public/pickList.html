@@ -84,7 +84,11 @@
 
   document.getElementById('sort').addEventListener("click", async () => {
     if (modeState == 0) {
-      send = [localStorage.getItem('team'), JSON.parse(localStorage.getItem("qrCodes"))];
+      if (document.getElementById('sortMeth').value == 'aps') {
+        send = [localStorage.getItem('team'), -1, JSON.parse(localStorage.getItem("qrCodes"))];
+      } else {
+        send = [localStorage.getItem('team'), JSON.parse(localStorage.getItem("qrCodes"))];
+      }
     } else if (modeState == 1) {
       send = [localStorage.getItem('team'), 1];
     } else {
