@@ -225,13 +225,14 @@
     console.log('avgs: ' + avgs);
     send = input + '◌̓' + avgs;
 
+    console.log('send: ' + send);
+
     return (await dprSort(send));
   }
   
 async function dpra(input) {
     let avgs = '';
     allData = await Sort(input);
-    separate = allData.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
     allData.forEach(line => {
       separate = line.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
       if (separate[0] != "") {
