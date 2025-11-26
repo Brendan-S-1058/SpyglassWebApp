@@ -172,11 +172,11 @@
     return (json);
   }
 
-  async function dprSort(send) {
-    const res = await fetch ("/dprsort", {
+async function dprSort(input) {
+      const res = await fetch ("/dprsort", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(send),
+      body: JSON.stringify(input),
     });
 
     console.log(res);
