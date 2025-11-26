@@ -222,7 +222,7 @@ def oprsort (string):
     state = 1
     for char in string:
         if char == '/':
-            finalDict[holdTeam] = int(holdScore)
+            finalDict[holdTeam] = int(float(holdScore))
             holdTeam = ''
             holdScore = ''
             state *= -1
