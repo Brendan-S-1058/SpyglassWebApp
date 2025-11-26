@@ -172,7 +172,7 @@
 
   async function dpro(input) {
     let avgs = '';
-    allData = opr(input);
+    allData = await opr(input);
     allData.forEach(line => {
       separate = line.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
       if (length(avgs)>0) {
@@ -221,13 +221,14 @@
   
 async function dpra(input) {
     let avgs = '';
-    allData = sort(input);
+    allData = await sort(input);
+    separate = allData.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
     allData.forEach(line => {
       separate = line.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
       if (length(avgs)>0) {
         avgs = avgs + '/' + separate[0] + ',' + separate[1];
       } else {
-        avgs = separate[0] + ',' + separate[1]
+        avgs = separate[0] + ',' + separate[1];
       }
     });
     console.log('avgs: ' + avgs);
