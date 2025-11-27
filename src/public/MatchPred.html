@@ -124,6 +124,7 @@
       build (allResults[i], i, true);
     }; 
 
+    console.log('building all rankings');
     buildRankings ();
   }
 
@@ -131,10 +132,11 @@
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  function buildRankings () {
+  async function buildRankings () {
     const tableBody = document.getElementById("data-table-body");
 
     vals = Object.entries(rPsByTeam);
+    console.log(vals);
     rps = [];
     final = [];
 
@@ -154,6 +156,8 @@
         }
       }
     });
+    console.log(rps);
+    console.log(newRps);
 
     newRps.forEach((rp) => {
       for (let i = 0; i<vals.length; i++) {
