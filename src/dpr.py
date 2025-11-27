@@ -54,12 +54,17 @@ def main():
         inputS = LocalPublic (team)
     else:
         inputS = ''
+        hold = ''
         commed = False
         for char in inputSo:
             if commed == True:
                 inputS += char
             elif char == ',':
                 commed = True
+            else:
+                hold += char
+        if hold != '-1':
+            inputS = hold + ',' + inputS
 
     print ('inputS: ' + str(inputS), file=sys.stderr)
 
