@@ -100,7 +100,7 @@ def main():
     for match in holdestList:
         match.pop(len(match)-1)
 
-    if len(holdestList[0] > len(holdestList[1])):
+    if (len(holdestList[0]) > len(holdestList[1])):
         holdestList[0].pop(0)
 
     print ('holdestList2: ' + str(holdestList), file=sys.stderr)
