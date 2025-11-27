@@ -152,8 +152,10 @@
     rps.forEach((rp) => {
       if (count > 0) {
         if (rp != rps[count-1]) {
-          newRps.push(rp)
+          newRps.push(rp);
         }
+      } else {
+        newRps.push(rp);
       }
       count++;
     });
@@ -168,7 +170,10 @@
       }
     });
 
+    console.log(final);
+
     final.forEach((pair) => {
+      console.log('pair: ' + pair)
       const shellResults = document.createElement("tr");
       shellResults.innerHTML = `
         <td class="p-2 border redteam">`+pair[0]+pair[1]+`</td>
