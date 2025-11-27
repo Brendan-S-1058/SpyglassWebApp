@@ -48,6 +48,7 @@
 <script>
   var allResults = {};
   var allCount = 0;
+  var alliances = {};
   document.getElementById('fullEvent').addEventListener('click', () =>{
     const eventCode = prompt("please input the event id (UVM 2025 was 2025vtbur)").toLowerCase()
 
@@ -148,7 +149,8 @@
   async function prediction(input, key, name) {
     if (key == 'no key') {
       results = await predict(input);
-      build (['noMatch', results])
+      alliances[0] = input;
+      build (['noMatch', results], 0)
     } else {
       allResults[key] = [name, await predict(input)];
       alliances[key] = (input)
