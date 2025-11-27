@@ -53,7 +53,7 @@ def main():
     elif inputSo == "2":
         inputS = LocalPublic (team)
     else:
-        inputS = ''
+        '''inputS = ''
         hold = ''
         commed = False
         for char in inputSo:
@@ -64,7 +64,8 @@ def main():
             else:
                 hold += char
         if hold != '-1':
-            inputS = hold + ',' + inputS
+            inputS = hold + ',' + inputS'''
+        inputS = inputSo
 
     print ('inputS: ' + str(inputS), file=sys.stderr)
 
@@ -98,6 +99,9 @@ def main():
 
     for match in holdestList:
         match.pop(len(match)-1)
+
+    if len(holdestList[0] > len(holdestList[1])):
+        holdestList[0].pop(0)
 
     print ('holdestList2: ' + str(holdestList), file=sys.stderr)
 
