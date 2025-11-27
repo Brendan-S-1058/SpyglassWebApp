@@ -88,6 +88,7 @@
 
   async function FullPrediction(Ecode) {
     allResults = {};
+    alliances = {};
     all = [];
 
     all = await pyFullPred (Ecode);
@@ -111,7 +112,7 @@
     console.log(allResults);
 
     for (let i = 0; i < count; i++) {
-      build (allResults[i]);
+      build (allResults[i], i);
     };    
   }
 
@@ -150,12 +151,15 @@
       build (['noMatch', results])
     } else {
       allResults[key] = [name, await predict(input)];
+      alliances[key] = (input)
     };
 
   }
-function build (results) {
+function build (results, aKey) {
+  allianceMatch = alliances[aKey]
   match = results[0];
   data = results[1];
+  teams = allianceMatch.split(',');
   const tableBody = document.getElementById("data-table-body");
   const middleMan = data;
     const [
@@ -182,8 +186,8 @@ function build (results) {
     const shellResults = document.createElement("tr");
     shellResults.innerHTML = `
         <td class="p-2 border`+color+`">`+message+`</td>
-        <td class="p-2 border`+color+`">Blue score range: `+blueScoreRange+`</td>
-        <td class="p-2 border`+color+`">Red score range: `+redScoreRange+`</td>
+        <td class="p-2 border`+color+`">Blue score range: (`+teams[0]+teams[1]+teams[2]+') '+blueScoreRange+`</td>
+        <td class="p-2 border`+color+`">Red score range: (`+teams[3]+teams[4]+teams[5]+') '+redScoreRange+`</td>
         <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
       `;
       
