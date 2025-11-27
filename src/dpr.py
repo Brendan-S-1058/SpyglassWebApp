@@ -53,7 +53,13 @@ def main():
     elif inputSo == "2":
         inputS = LocalPublic (team)
     else:
-        inputS = inputSo
+        inputS = ''
+        commed = False
+        for char in inputSo:
+            if commed == True:
+                inputS += char
+            elif char == ',':
+                commed = True
 
     print ('inputS: ' + str(inputS), file=sys.stderr)
 
