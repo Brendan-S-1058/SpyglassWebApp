@@ -79,7 +79,7 @@
     console.log(allResults);
 
     for (let i = 0; i < count; i++) {
-      build (allResults[i]);
+      build (allResults[i], i);
     };
   });
 
@@ -87,7 +87,7 @@
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-function build (results) {
+function build (results, aKey) {
   match = results[0];
   data = results[1];
   const tableBody = document.getElementById("data-table-body");
@@ -97,7 +97,8 @@ function build (results) {
       didBlueWin, 
       blueScoreRange, redScoreRange,
       blueWinPercent, redWinPercent,
-      corRP, autoRP, bargeRP
+      corRPb, autoRPb, bargeRPb,
+      corRPr, autoRPr, bargeRPr
     ] = middleMan;
 
     /**console.log('alliances: ' + alliances);
@@ -106,6 +107,9 @@ function build (results) {
     console.log('alliances[qm4]: ' + alliances['qm4'])**/
 
     if (alliances[match] == 'blue') {
+      autoRP = autoRPb;
+      bargeRP = bargeRPb;
+      corRP = corRPb;
       if (didBlueWin == true){
         message = "You Win";
         color = ' green';
@@ -116,6 +120,9 @@ function build (results) {
         winPercents = redWinPercent + '-' + blueWinPercent;
       }
     } else {
+      autoRP = autoRPr;
+      bargeRP = bargeRPr;
+      corRP = corRPr;
       if (didBlueWin != true){
         message = "You Win";
         color = ' green';

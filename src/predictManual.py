@@ -90,45 +90,80 @@ def Main ():
     redAverageMatchHalfProcessed = cap(redAverageMatchUnprocessed)
 
     if (blueAverageMatchHalfProcessed[5] + blueAverageMatchHalfProcessed[11]) > 3:
-        corRPper = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(21*1.1))
+        corRPperb = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(21*1.1))
     else:
-        corRPper = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(28*1.1))
+        corRPperb = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(28*1.1))
 
-    if corRPper >= 1:
-        corRPper = 100
+    if corRPperb >= 1:
+        corRPperb = 100
     else:
-        corRPper *= 100
-        corRPper //= 1
+        corRPperb *= 100
+        corRPperb //= 1
 
     if (blueAverageMatchHalfProcessed[0] > 2):
         if (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]) >= 2:
-            autoRPper = blueAverageMatchHalfProcessed[0]/3
+            autoRPperb = blueAverageMatchHalfProcessed[0]/3
         elif (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]) >= 1:
-            autoRPper = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]))/2
+            autoRPperb = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]))/2
         else:   
-            autoRPper = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4])/2)/2
+            autoRPperb = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4])/2)/2
     else:
-        autoRPper = (blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4])/6
+        autoRPperb = (blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4])/6
 
-    if autoRPper >= 1:
-        autoRPper = 100
+    if autoRPperb >= 1:
+        autoRPperb = 100
     else:
-        autoRPper *= 100
-        autoRPper //= 1
+        autoRPperb *= 100
+        autoRPperb //= 1
 
-    bargeRPper = ((blueAverageMatchHalfProcessed[13]*2 + blueAverageMatchHalfProcessed[14]*6 + blueAverageMatchHalfProcessed[15]*12)/16)/1.25
+    bargeRPperb = ((blueAverageMatchHalfProcessed[13]*2 + blueAverageMatchHalfProcessed[14]*6 + blueAverageMatchHalfProcessed[15]*12)/16)/1.25
 
-    if bargeRPper >= 1:
-        bargeRPper = 100
+    if bargeRPperb >= 1:
+        bargeRPperb = 100
     else:
-        bargeRPper *= 100 
-        bargeRPper //= 1
+        bargeRPperb *= 100 
+        bargeRPperb //= 1
+
+    if (redAverageMatchHalfProcessed[5] + redAverageMatchHalfProcessed[11]) > 3:
+        corRPperr = ((redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4] + redAverageMatchHalfProcessed[7] + redAverageMatchHalfProcessed[8] + redAverageMatchHalfProcessed[9] + redAverageMatchHalfProcessed[10])/(21*1.1))
+    else:
+        corRPperr = ((redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4] + redAverageMatchHalfProcessed[7] + redAverageMatchHalfProcessed[8] + redAverageMatchHalfProcessed[9] + redAverageMatchHalfProcessed[10])/(28*1.1))
+
+    if corRPperr >= 1:
+        corRPperr = 100
+    else:
+        corRPperr *= 100
+        corRPperr //= 1
+
+    if (redAverageMatchHalfProcessed[0] > 2):
+        if (redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4]) >= 2:
+            autoRPperr = redAverageMatchHalfProcessed[0]/3
+        elif (redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4]) >= 1:
+            autoRPperr = ((redAverageMatchHalfProcessed[0]/3) + (redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4]))/2
+        else:   
+            autoRPperr = ((redAverageMatchHalfProcessed[0]/3) + (redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4])/2)/2
+    else:
+        autoRPperr = (redAverageMatchHalfProcessed[0]/3) + (redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4])/6
+
+    if autoRPperr >= 1:
+        autoRPperr = 100
+    else:
+        autoRPperr *= 100
+        autoRPperr //= 1
+
+    bargeRPperr = ((redAverageMatchHalfProcessed[13]*2 + redAverageMatchHalfProcessed[14]*6 + redAverageMatchHalfProcessed[15]*12)/16)/1.25
+
+    if bargeRPperr >= 1:
+        bargeRPperr = 100
+    else:
+        bargeRPperr *= 100 
+        bargeRPperr //= 1
 
 
     blueFinal = calc (blueAverageMatchHalfProcessed)
     redFinal = calc (redAverageMatchHalfProcessed)
 
-    result = analyze(blueFinal, redFinal, blueStart, redStart, corRPper, autoRPper, bargeRPper)
+    result = analyze(blueFinal, redFinal, blueStart, redStart, corRPperb, autoRPperb, bargeRPperb, corRPperr, autoRPperr, bargeRPperr)
 
     print (json.dumps(result))
 
@@ -297,7 +332,7 @@ def calc (match):
     
     return (score)
 
-def analyze (bscore, rscore, bstart, rstart, crp, arp, brp):
+def analyze (bscore, rscore, bstart, rstart, crpb, arpb, brpb, crpr, arpr, brpr):
     bstate = bscore-rscore
 
     mod = 0
@@ -346,6 +381,6 @@ def analyze (bscore, rscore, bstart, rstart, crp, arp, brp):
     else:
         rscore = str(rscore-5) + '-' + str(rstart+5)
     
-    return [bwin, bscore, rscore, bp, rp, crp, arp, brp]
+    return [bwin, bscore, rscore, bp, rp, crpb, arpb, brpb, crpr, arpr, brpr]
 
 Main ()
