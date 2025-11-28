@@ -12,7 +12,6 @@ def Main ():
     holdState = ''
     holdS = ''
     for char in inputS:
-        print ('char: ' + str(char), file=sys.stderr)
         if char == ',' and commaed == False:
             commaed = True
         elif commaed == False:
