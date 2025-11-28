@@ -232,20 +232,27 @@
 });
 
   async function prediction(input, key, name) {
-    if (modeState == 2) {
-      inputH = [modeState, localStorage.getItem('team')];
-      input = inputH.concat(input);
-    } else {
-      inputH = [modeState];
-      input = inputH.concat(input);
-    }
     if (key == 'no key') {
-      results = await predict(input);
       alliances[0] = input;
+      if (modeState == 2) {
+        inputH = [modeState, localStorage.getItem('team')];
+        input = inputH.concat(input);
+      } else {
+        inputH = [modeState];
+        input = inputH.concat(input);
+      }
+      results = await predict(input);
       build (['noMatch', results], 0, false)
     } else {
-      allResults[key] = [name, await predict(input)];
       alliances[key] = (input)
+      if (modeState == 2) {
+        inputH = [modeState, localStorage.getItem('team')];
+        input = inputH.concat(input);
+      } else {
+        inputH = [modeState];
+        input = inputH.concat(input);
+      }
+      allResults[key] = [name, await predict(input)];
     };
 
   }
