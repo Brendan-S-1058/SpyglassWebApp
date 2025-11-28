@@ -40,6 +40,9 @@
         </tbody>
         <tbody id="data-table-body">
         </tbody>
+
+        <tbody id="results-table">
+        </tbody>
       </table>
       <div id="images"></div>
     </div>
@@ -133,7 +136,7 @@
   }
 
   async function buildRankings () {
-    const tableBody = document.getElementById("data-table-body");
+    const tableBody = document.getElementById("results-table");
 
     vals = Object.entries(rPsByTeam);
     console.log(vals);
@@ -178,7 +181,8 @@
       console.log('pair: ' + pair)
       const shellResults = document.createElement("tr");
       shellResults.innerHTML = `
-        <td class="p-2 border redteam">`+pair[0]+pair[1]+`</td>
+        <td class="p-2 border redteam">team: `+pair[0]+`</td>
+        <td class="p-2 border redteam">predicted RPs: `+pair[1]/100+`</td>
       `;
       
       tableBody.append(shellResults);
