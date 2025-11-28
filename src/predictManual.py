@@ -18,10 +18,15 @@ def Main ():
         else:
             holdS += char
     
+    print ('holdState: ' + str(holdState), file=sys.stderr)
+    print ('holdS: ' + str(holdS), file=sys.stderr)
+    
     if holdState == '0':
         inputS = holdS
     elif holdState == '1':
         inputS = Public (holdS)
+    else:
+        inputS = LocalPublic (holdS)
 
     count = 0
     holdList = []
