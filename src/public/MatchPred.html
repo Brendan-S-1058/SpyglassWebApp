@@ -177,11 +177,13 @@
 
     console.log(final);
 
+    count = 0;
     final.forEach((pair) => {
+      count++
       console.log('pair: ' + pair)
       const shellResults = document.createElement("tr");
       shellResults.innerHTML = `
-        <td class="p-2 border redteam">team: `+pair[0]+`</td>
+        <td class="p-2 border redteam">`+count+`: `+pair[0]+`</td>
         <td class="p-2 border redteam">predicted RPs: `+pair[1]/100+`</td>
       `;
       
