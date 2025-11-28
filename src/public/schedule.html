@@ -145,8 +145,8 @@ function build (results, aKey) {
     const shellResults = document.createElement("tr");
     shellResults.innerHTML = `
         <td class="p-2 border`+color+`">`+message+`</td>
-        <td class="p-2 border`+color+`">Blue score range: (`+teams[0]+','+teams[1]+','+teams[2]+')'+blueScoreRange+`</td>
-        <td class="p-2 border`+color+`">Red score range: (`+teams[3]+','+teams[4]+','+teams[5]+')'+redScoreRange+`</td>
+        <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+')'+blueScoreRange+`</td>
+        <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+')'+redScoreRange+`</td>
         <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
         <td class="p-2 border`+color+`">Auto RP: `+autoRP+`%</td>
         <td class="p-2 border`+color+`">Reef RP: `+corRP+`%</td>
