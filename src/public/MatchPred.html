@@ -233,9 +233,13 @@
 
   async function prediction(input, key, name) {
     if (modeState == 2) {
-      input = modeState + ',' + localStorage.getItem('team') + input
+      inputH = [modeState, localStorage.getItem('team')];
+      inputH.concat(input);
+      input = inputH
     } else {
-      input = modeState + ',' + input 
+      inputH = [modeState];
+      inputH.concat(input);
+      input = inputH
     }
     if (key == 'no key') {
       results = await predict(input);
