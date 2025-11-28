@@ -13,6 +13,7 @@
       <h1 class="text-3xl font-bold mb-4">Schedule Analysis</h1>
     </div>
     <div class="mb-4 flex justify-between items-center">
+      <button id="modePublic" class="On">Pull From Public</button>
       <button id="button" class="button">manual add</button>
       <button id="newEvent" class="button">Reimport</button>
       <button id="newEvent" class="button">New Event</button>
@@ -40,6 +41,20 @@
   var allResults = {}
   var alliances = {}
   var teams = {}
+  let modeState = 1;
+  document.getElementById('modePublic').addEventListener("click", () => {
+    modeState += 1;
+    if (modeState > 2) {
+      modeState = 0;
+    }
+    if (modeState == 0) {
+      document.getElementById('modePublic').style.color = "#ff0000";
+    } else if (modeState == 1) {
+      document.getElementById('modePublic').style.color = "#00ff00";
+    } else {
+      document.getElementById('modePublic').style.color = "#0000ff";
+    }
+  });
   const tableBody = document.getElementById("data-table-body");
   document.getElementById("newEvent").addEventListener("click", async () => {
     allResults = {}
@@ -145,8 +160,8 @@ function build (results, aKey) {
     const shellResults = document.createElement("tr");
     shellResults.innerHTML = `
         <td class="p-2 border`+color+`">`+message+`</td>
-        <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+')'+blueScoreRange+`</td>
-        <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+')'+redScoreRange+`</td>
+        <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+'): '+blueScoreRange+`</td>
+        <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+'): '+redScoreRange+`</td>
         <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
         <td class="p-2 border`+color+`">Auto RP: `+autoRP+`%</td>
         <td class="p-2 border`+color+`">Reef RP: `+corRP+`%</td>
@@ -157,6 +172,11 @@ function build (results, aKey) {
   }
 
   async function prediction(input, key, name) {
+    if (modeState == 2) {
+      input = modeState + ',' + localStorage.getItem('team') + input
+    } else {
+      input = modeState + ',' + input 
+    }
     if (key == 'no key') {
       results = await predict(input);
       build (['noMatch', results])
