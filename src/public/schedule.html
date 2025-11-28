@@ -39,10 +39,12 @@
 <script>
   var allResults = {}
   var alliances = {}
+  var teams = {}
   const tableBody = document.getElementById("data-table-body");
   document.getElementById("newEvent").addEventListener("click", async () => {
     allResults = {}
     alliances = {}
+    teams = {}
     team = localStorage.getItem("team");
     Ecode = prompt ("What is the tbs event code for the event? (For example, UVM 2025 was 2025vtbur)");
     const all = await teamMatches(team, Ecode);
@@ -69,6 +71,7 @@
       } else {
         alliances[matchNames[count]] = "red"
       };
+      teams[count] = [match[0], match[1], match[2], match[3], match[4], match[5]]
       /**console.log('alliances[matchNames[count]]: ' + alliances[matchNames[count]])
       console.log('alliances[qm4]: ' + alliances['qm4'])**/
       count++;
@@ -90,6 +93,7 @@
 function build (results, aKey) {
   match = results[0];
   data = results[1];
+  relTeams = teams[i];
   const tableBody = document.getElementById("data-table-body");
   const middleMan = data;
   console.log ("middleman: " + middleMan)
@@ -141,8 +145,8 @@ function build (results, aKey) {
     const shellResults = document.createElement("tr");
     shellResults.innerHTML = `
         <td class="p-2 border`+color+`">`+message+`</td>
-        <td class="p-2 border`+color+`">Blue score range: `+blueScoreRange+`</td>
-        <td class="p-2 border`+color+`">Red score range: `+redScoreRange+`</td>
+        <td class="p-2 border`+color+`">Blue score range: (`+teams[0]+','+teams[1]+','+teams[2]+')'+blueScoreRange+`</td>
+        <td class="p-2 border`+color+`">Red score range: (`+teams[3]+','+teams[4]+','+teams[5]+')'+redScoreRange+`</td>
         <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
         <td class="p-2 border`+color+`">Auto RP: `+autoRP+`%</td>
         <td class="p-2 border`+color+`">Reef RP: `+corRP+`%</td>
