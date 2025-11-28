@@ -28,6 +28,8 @@ def Main ():
         inputS = Public (holdS)
     else:
         inputS = LocalPublic (holdS)
+    
+    print ('inputS: ' + str(inputS), file=sys.stderr)
 
     count = 0
     holdList = []
