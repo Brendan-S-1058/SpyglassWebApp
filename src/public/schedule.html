@@ -15,8 +15,9 @@
     <div class="mb-4 flex justify-between items-center">
       <button id="modePublic" class="On">Pull From Public</button>
       <button id="button" class="button">manual add</button>
-      <button id="newEvent" class="button">Reimport</button>
+      <button id="newEventAssumed" class="button">Reimport</button>
       <button id="newEvent" class="button">New Event</button>
+      <button id="explain" class="button">New Event</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
       <table class="min-w-full table-fixed">
@@ -56,12 +57,60 @@
     }
   });
   const tableBody = document.getElementById("data-table-body");
+
+  document.getElementById("newEventAssumed").addEventListener("click", async () => {
+    allResults = {}
+    alliances = {}
+    teams = {}
+    team = localStorage.getItem("team");
+    Ecode = localStorage.getItem('eventCode')
+    const all = await teamMatches(team, Ecode);
+
+    const matches = all[0];
+    const matchNames = all[1];
+    
+    console.log (matches);
+
+    let count = 0;
+    allCount = 0;
+
+    matches.forEach(match => {
+      /**console.log('team: ' + team);
+      console.log ('match: ' + match);
+      console.log ('match[0]: ' + match[0]);
+      console.log ('match[0] == team: ' + (match[0] == team));
+      console.log ('team == match[0] || team == match[1] || team == match[2]: ' + (team == match[0] || team == match[1] || team == match[2]));
+      console.log ('matchNames[count]: ' + matchNames[count])**/
+      match.push(localStorage.getItem('qrCodes'));
+      prediction(match, count, matchNames[count]);
+      if (team == match[0] || team == match[1] || team == match[2]) {
+        alliances[matchNames[count]] = "blue"
+      } else {
+        alliances[matchNames[count]] = "red"
+      };
+      teams[count] = [match[0], match[1], match[2], match[3], match[4], match[5]]
+      /**console.log('alliances[matchNames[count]]: ' + alliances[matchNames[count]])
+      console.log('alliances[qm4]: ' + alliances['qm4'])**/
+      count++;
+    });
+    while (count > allCount){
+      await sleep(1000);
+    }
+    console.log(allResults);
+
+    for (let i = 0; i < count; i++) {
+      build (allResults[i], i);
+    };
+  });
+
+
   document.getElementById("newEvent").addEventListener("click", async () => {
     allResults = {}
     alliances = {}
     teams = {}
     team = localStorage.getItem("team");
     Ecode = prompt ("What is the tbs event code for the event? (For example, UVM 2025 was 2025vtbur)");
+    localStorage.setItem('eventCode', Ecode);
     const all = await teamMatches(team, Ecode);
 
     const matches = all[0];
@@ -257,6 +306,10 @@ async function pyFullPred(Ecode) {
     const json = await res.json();
     console.log(json);
     return(json);
+
+    document.getElementById('explain').addEventListener('click', ()=>{
+      alert ("Pull From Public: a toggleable mode which dictates where the data is coming from - green means from the communal public file, blue means from your TEAM's personal data, not just your local, red means just the local data stored on this device.\n\nmanual add: nothing, I don't know why I put that there.\n\nReimport: runs the program to analyze the event from your team's perspective (predicts every match including playoffs that your team is going to be in as well as the ranking points you will score for that match).\n\nNew Event: allows you to change your locally stored event and predict the new one. If everything is breaking, you may have just never reset the event code so try doing that. If you don't know how to find it, it's in TBA links, like the 2025nhsal in https://www.thebluealliance.com/event/2025nhsal.")
+    });
     
   }
 </script>

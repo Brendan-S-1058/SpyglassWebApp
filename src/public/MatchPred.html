@@ -327,7 +327,7 @@ function build (results, aKey, fullPred) {
 
 
   document.getElementById('explain').addEventListener('click', ()=>{
-    alert ("not written yet");
+    alert ("Public data storage: defaults to green, which is a public import of data from the entire community using spyglass at the moment. Interacting once with the button changes its mode to team public, represented by blue, which pulls data from the public file for your team. Interacting twice will turn the button red, and this will make the page pull only locally stored data from your device.\n\nPredict Match: Predicts a match using the selected data set defined by the teams listed in the 2X3 array below.\n\nPaste Teams (csv): Same functionality as the Predict Match button, but allows the user to paste the teams in a standard csv format (blue1,blue2,blue3,red1,red2,red3)\n\nPredict Event: Using the data from the specified location, will predict the entire event given. This does use the bluealliance api, so it needs the event id, most easily found in bluealliance urls, for example the 2025nhsal in https://www.thebluealliance.com/event/2025nhsal. This prediction does every match it can with the data provided including playoffs, and also creates a prediction for the end of event rankings at the bottom. Obviouslt, accuracy increases with the data set, so this entire page should probably only be used later in the event.");
 });
 </script>
 </html>

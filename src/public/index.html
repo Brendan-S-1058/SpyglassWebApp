@@ -68,7 +68,7 @@
                 setPass (team, newPass);
                 localStorage.setItem("team", team);
                 Ecode = prompt ("What is the tbs event code for the event? (For example, UVM 2025 was 2025vtbur)")
-                const matches = await teamMatches(team, Ecode)
+                localStorage.setItem('eventCode', Ecode)
                 localStorage.setItem('matchesByevent', matches)
             }
 
