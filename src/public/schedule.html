@@ -14,7 +14,6 @@
     </div>
     <div class="mb-4 flex justify-between items-center">
       <button id="modePublic" class="On">Pull From Public</button>
-      <button id="button" class="button">manual add</button>
       <button id="newEventAssumed" class="button">Reimport</button>
       <button id="newEvent" class="button">New Event</button>
       <button id="explain" class="button">Explain</button>
@@ -306,11 +305,9 @@ async function pyFullPred(Ecode) {
     const json = await res.json();
     console.log(json);
     return(json);
-
-    document.getElementById('explain').addEventListener('click', ()=>{
-      alert ("Pull From Public: a toggleable mode which dictates where the data is coming from - green means from the communal public file, blue means from your TEAM's personal data, not just your local, red means just the local data stored on this device.\n\nmanual add: nothing, I don't know why I put that there.\n\nReimport: runs the program to analyze the event from your team's perspective (predicts every match including playoffs that your team is going to be in as well as the ranking points you will score for that match).\n\nNew Event: allows you to change your locally stored event and predict the new one. If everything is breaking, you may have just never reset the event code so try doing that. If you don't know how to find it, it's in TBA links, like the 2025nhsal in https://www.thebluealliance.com/event/2025nhsal.");
-    });
-    
   }
+  document.getElementById('explain').addEventListener('click', ()=>{
+    alert ("Pull From Public: a toggleable mode which dictates where the data is coming from - green means from the communal public file, blue means from your TEAM's personal data, not just your local, red means just the local data stored on this device.\n\nmanual add: nothing, I don't know why I put that there.\n\nReimport: runs the program to analyze the event from your team's perspective (predicts every match including playoffs that your team is going to be in as well as the ranking points you will score for that match).\n\nNew Event: allows you to change your locally stored event and predict the new one. If everything is breaking, you may have just never reset the event code so try doing that. If you don't know how to find it, it's in TBA links, like the 2025nhsal in https://www.thebluealliance.com/event/2025nhsal.");
+  });
 </script>
 </html>
