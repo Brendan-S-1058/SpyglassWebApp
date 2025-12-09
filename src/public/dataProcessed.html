@@ -20,10 +20,10 @@
       </div>
   </div>
   <div class="overflow-auto border rounded-lg shadow bg-white">
-    <table class="min-w-full table-fixed">
-      <thead class="bg-gray-200 text-left">
-        <tr>
-          <th class="p-2 border">team #</th>
+    <table class="min-w-full table-fixed borderCollapse">
+      <thead class="bg-gray-200 text-left borderCollapse">
+        <tr class = "borderCollapse">
+          <th class="p-2 border borderCollapse">team #</th>
           <th class="p-2 border">match #</th>
           <th class="p-2 border">auto move</th>
           <th class="p-2 border">auto L1</th>
@@ -352,7 +352,7 @@
   }
 
   document.getElementById('explain').addEventListener('click', ()=>{
-    alert ("Search: searches and processes the team's data which you input including graphs generated on the raw data page\n\nPull From Public: pulls input data from the communal public file rather than from your personal data when green (on), vice versa when red (off)")
+    alert ("Search: searches and processes the team which is entered in the search bar data including graphs generated on the raw data page\n\nPull From Public: pulls input data from the communal public file rather than from your personal data when green, your TEAM's publically stored data when blue, and your locally stored data when red")
   });
         
 </script>
