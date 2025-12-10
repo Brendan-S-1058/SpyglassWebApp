@@ -69,7 +69,11 @@
     }
   });
   document.getElementById('fullEvent').addEventListener('click', () =>{
-    const eventCode = prompt("please input the event id (UVM 2025 was 2025vtbur)").toLowerCase()
+    const eventCode = prompt("please input the event id (UVM 2025 was 2025vtbur)").toLowerCase();
+
+    const tableBody = document.getElementById("data-table-body");
+    
+    tableBody.innerHTML = ``;
 
     FullPrediction (eventCode)
   });
@@ -286,7 +290,7 @@ function build (results, aKey, fullPred) {
 
     const shellResults = document.createElement("tr");
     shellResults.innerHTML = `
-        <td class="p-2 border`+color+`">`+message+`</td>
+        <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_'+match+`" class="p-2 border`+color+`">`+message+`</a>
         <td class="p-2 border`+color+`">Blue score range: (`+teams[0]+','+teams[1]+','+teams[2]+'): '+blueScoreRange+`</td>
         <td class="p-2 border`+color+`">Red score range: (`+teams[3]+','+teams[4]+','+teams[5]+'): '+redScoreRange+`</td>
         <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
