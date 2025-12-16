@@ -207,7 +207,7 @@ function build (results, aKey) {
 
     const shellResults = document.createElement("tr");
     shellResults.innerHTML = `
-        <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_'+match+`" class="p-2 border`+color+`">`+message+`</a>
+        <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_'+match+`" target="_blank" class="p-2 border`+color+`">`+message+`</a>
         <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+'): '+blueScoreRange+`</td>
         <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+'): '+redScoreRange+`</td>
         <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
