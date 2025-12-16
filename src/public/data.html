@@ -214,6 +214,7 @@ async function saveAll(dataArray) {
     console.log(res);
 
     if (!res.ok){
+      alert('Something broke - you probably need to reset your team');
       throw new Error("HTTP error " + res.status);
     }
 
