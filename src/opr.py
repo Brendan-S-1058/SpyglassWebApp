@@ -10,7 +10,18 @@ def main():
     #inputR = json.loads
     inputR = sys.stdin.read()
     inputI = json.loads(inputR)
+    setting = 0
+    state = ''
+    dataH = ''
 
+    for char in inputI:
+        if char == '@':
+            setting = 1
+        elif setting == 0:
+            state += char
+        elif setting == 1:
+            dataH += char
+            
     comma = False
     inputSo = ''
     team = ''
@@ -27,8 +38,6 @@ def main():
                 inputSo += char
 
     print ('team: ' + team, file=sys.stderr)
-
-    finalDataDict = {}
 
     if inputSo == "1":
         inputS = Public ()
