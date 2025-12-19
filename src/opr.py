@@ -26,17 +26,17 @@ def main():
     
     print ('state: ' + state, file=sys.stderr)
             
-    comma = False
+    comma = -1
     inputSo = ''
     team = ''
     for char in inputI:
         if char == ',':
-            if comma == False:
-                comma = True
+            if comma < 1:
+                comma += 1
             else:
                 inputSo += char
         else:
-            if comma == False:
+            if comma < 1:
                 team += char
             else:
                 inputSo += char
