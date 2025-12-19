@@ -112,12 +112,13 @@ def main():
         for smatch in sortedData:
             if match == smatch[0]:
                 #TODO: ADD REAL ALLIANCE SEPARATIONS WITH NEW INPUT PAGE
+                trueo = trueOpr(smatch)
                 if count < 3:
                     alliancesByMatch[str(match) + 'team' + 'b'].append(smatch[1])
-                    alliancesByMatch[str(match) + 'score' + 'b'] += trueOpr(smatch)
+                    alliancesByMatch[str(match) + 'score' + 'b'] += trueo
                 elif count < 6:
                     alliancesByMatch[str(match) + 'team' + 'r'].append(smatch[1])
-                    alliancesByMatch[str(match) + 'score' + 'r'] += trueOpr(smatch)
+                    alliancesByMatch[str(match) + 'score' + 'r'] += trueo
                 count += 1
 
     print ('alliancesByMatch: ' + str(alliancesByMatch), file=sys.stderr)
