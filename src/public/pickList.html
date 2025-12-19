@@ -146,7 +146,7 @@
         data = await dpra(send);
       } else if (coprs.includes(document.getElementById('sortMeth').value)) {
         console.log ('COPRSSSSS WOOOOOOOOO')
-        data = await copr([getElementById('sortMeth').value + '@'].concat(send));
+        data = await copr([document.getElementById('sortMeth').value + '@'].concat(send));
       }
     }
 
