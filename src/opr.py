@@ -121,6 +121,8 @@ def main():
                     alliancesByMatch[str(match) + 'score' + 'r'] += trueo
                 count += 1
 
+    calcCopr(teamsInData, matchsInData, alliancesByMatch)
+
     print ('alliancesByMatch: ' + str(alliancesByMatch), file=sys.stderr)
 
 def trueOpr(smatch):
