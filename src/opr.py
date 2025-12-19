@@ -123,66 +123,66 @@ def main():
 
     print ('alliancesByMatch: ' + str(alliancesByMatch), file=sys.stderr)
 
-    def trueOpr(smatch):
-        return (((smatch[2])*3)+((smatch[3])*3)+((smatch[4])*4)+((smatch[5])*6)+((smatch[6])*7)+((smatch[7])*6)+((smatch[8])*4)+((smatch[9])*2)+((smatch[10])*3)+((smatch[11])*4)+((smatch[12])*5)+((smatch[13])*6)+((smatch[14])*4)+((smatch[15])*2)+((smatch[16])*6)+((smatch[17])*12))
+def trueOpr(smatch):
+    return (((smatch[2])*3)+((smatch[3])*3)+((smatch[4])*4)+((smatch[5])*6)+((smatch[6])*7)+((smatch[7])*6)+((smatch[8])*4)+((smatch[9])*2)+((smatch[10])*3)+((smatch[11])*4)+((smatch[12])*5)+((smatch[13])*6)+((smatch[14])*4)+((smatch[15])*2)+((smatch[16])*6)+((smatch[17])*12))
 
-    def calcCopr(teamsInData, matchsInData, alliancesByMatch):
-        teamsMatrixPre = []
-        scoresMatrixPre = []
-        for match in matchsInData:
-            holdListT = []
-            onAlliance = 0
-            for i in range(len(teamsInData)):
-                if teamsInData[i] in alliancesByMatch[str(match)+'team'+'b']:
-                    holdListT.append(1)
-                    onAlliance += 1
-                else:
-                    holdListT.append(0)
-            if onAlliance == 3:
-                teamsMatrixPre.append(holdListT)
-                scoresMatrixPre.append([alliancesByMatch[str(match)+'score'+'b']])
-            holdListT = []
-            onAlliance = 0
-            for i in range(len(teamsInData)):
-                if teamsInData[i] in alliancesByMatch[str(match)+'team'+'r']:
-                    holdListT.append(1)
-                    onAlliance += 1
-                else:
-                    holdListT.append(0)
-            if onAlliance == 3:
-                teamsMatrixPre.append(holdListT)
-                scoresMatrixPre.append([alliancesByMatch[str(match)+'score'+'r']])
+def calcCopr(teamsInData, matchsInData, alliancesByMatch):
+    teamsMatrixPre = []
+    scoresMatrixPre = []
+    for match in matchsInData:
+        holdListT = []
+        onAlliance = 0
+        for i in range(len(teamsInData)):
+            if teamsInData[i] in alliancesByMatch[str(match)+'team'+'b']:
+                holdListT.append(1)
+                onAlliance += 1
+            else:
+                holdListT.append(0)
+        if onAlliance == 3:
+            teamsMatrixPre.append(holdListT)
+            scoresMatrixPre.append([alliancesByMatch[str(match)+'score'+'b']])
+        holdListT = []
+        onAlliance = 0
+        for i in range(len(teamsInData)):
+            if teamsInData[i] in alliancesByMatch[str(match)+'team'+'r']:
+                holdListT.append(1)
+                onAlliance += 1
+            else:
+                holdListT.append(0)
+        if onAlliance == 3:
+            teamsMatrixPre.append(holdListT)
+            scoresMatrixPre.append([alliancesByMatch[str(match)+'score'+'r']])
 
-        print ('teamsMatrixPre: ' + str(teamsMatrixPre), file=sys.stderr)
-        print ('scoresMatrixPre: ' + str(scoresMatrixPre), file=sys.stderr)
+    print ('teamsMatrixPre: ' + str(teamsMatrixPre), file=sys.stderr)
+    print ('scoresMatrixPre: ' + str(scoresMatrixPre), file=sys.stderr)
 
 
-        teamsMatrix = np.array(teamsMatrixPre)
-        scoresMatrix = np.array(scoresMatrixPre)
+    teamsMatrix = np.array(teamsMatrixPre)
+    scoresMatrix = np.array(scoresMatrixPre)
 
-        Mtrans = np.transpose(teamsMatrix)
+    Mtrans = np.transpose(teamsMatrix)
 
-        coes = np.matmul(Mtrans, teamsMatrix)
-        ans = np.matmul(Mtrans, scoresMatrix)
+    coes = np.matmul(Mtrans, teamsMatrix)
+    ans = np.matmul(Mtrans, scoresMatrix)
 
-        fins = np.linalg.lstsq(coes, ans)
+    fins = np.linalg.lstsq(coes, ans)
 
-        sortingDict = {}
-        keyList = []
-        for i in range (len(teamsInData)):
-            sortingDict[fins[0][i][0]] = teamsInData[i]
-            keyList.append(fins[0][i][0])
+    sortingDict = {}
+    keyList = []
+    for i in range (len(teamsInData)):
+        sortingDict[fins[0][i][0]] = teamsInData[i]
+        keyList.append(fins[0][i][0])
 
-        keyList.sort(reverse=True)
+    keyList.sort(reverse=True)
 
-        finalList = []
-        for i in range (len(keyList)):
-            finalList.append(str(sortingDict[keyList[i]]) + ',' + str(keyList[i])) 
-            finalList.append('\n')
+    finalList = []
+    for i in range (len(keyList)):
+        finalList.append(str(sortingDict[keyList[i]]) + ',' + str(keyList[i])) 
+        finalList.append('\n')
 
-        print ('finalList: ' + str(finalList), file=sys.stderr)
+    print ('finalList: ' + str(finalList), file=sys.stderr)
 
-        print (json.dumps(finalList))
+    print (json.dumps(finalList))
     '''count = 0
     holdList = []
     hold = ''
