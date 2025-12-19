@@ -158,7 +158,7 @@
     data.forEach(line => {
       if (document.getElementById('sortMeth').value == 'aps') {
         createRow(line);
-      } else if (document.getElementById('sortMeth').value == 'opr') {
+      } else if (document.getElementById('sortMeth').value == 'opr' || coprs.includes(document.getElementById('sortMeth').value)) {
         createRowOpr(line);
       } else if (document.getElementById('sortMeth').value == 'dpropr' || document.getElementById('sortMeth').value == 'dpraps') {
         createRowOpr(line);
