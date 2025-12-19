@@ -22,6 +22,8 @@ def main():
         elif setting == 1:
             dataH += char
     
+    inputI = dataH
+    
     print ('state: ' + state, file=sys.stderr)
             
     comma = False
@@ -122,8 +124,6 @@ def main():
 
     def trueOpr(smatch):
         return (((smatch[2])*3)+((smatch[3])*3)+((smatch[4])*4)+((smatch[5])*6)+((smatch[6])*7)+((smatch[7])*6)+((smatch[8])*4)+((smatch[9])*2)+((smatch[10])*3)+((smatch[11])*4)+((smatch[12])*5)+((smatch[13])*6)+((smatch[14])*4)+((smatch[15])*2)+((smatch[16])*6)+((smatch[17])*12))
-
-
 
     def calcCopr(teamsInData, matchsInData, alliancesByMatch):
         teamsMatrixPre = []
