@@ -407,8 +407,8 @@ async function dpra(input) {
     console.log(res);
 
     if (!res.ok){
-      throw new Error("HTTP error " + res.status);
       alert ("You are not signed in as a team, that's bad (I probably redeployed). That means nothing will work right until you set your team (home page, change team button)");
+      throw new Error("HTTP error " + res.status);
     }
 
     const json = await res.json();
