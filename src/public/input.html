@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spyglass</title>
-    <link rel="icon" type="image/x-icon" href="favico/favicon.ico">
+    <title>Interactive Form</title>
     <script src="script.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
@@ -184,7 +184,8 @@
             </div>
 
             <button type="submit">Submit</button>
-            <button type="save">Confirm</button>
+            <button id="stack">Stack QRs</button>
+            <button id="res">Reset Form</button>
         </form>
     </div>
 
@@ -195,20 +196,13 @@
     <div id="qrcode"></div>
 
     <script>
-        document.getElementById("save").addEventListener("click", ()=> { 
-            let storedQRs = JSON.parse(localStorage.getItem("qrCodes"));
-            if (!storedQRs.includes(qrData)) {
-                storedQRs.push(qrData);
-                localStorage.setItem("qrCodes", JSON.stringify(storedQRs));
-            }
-        })
+        var hold = ''
         document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("myForm").addEventListener("submit", function (event) {
-                event.preventDefault(); // Prevent form submission
-                
+            document.getElementById("myForm").addEventListener("stack", () => {
+                event.preventDefault();
+
                 let formData = new FormData(this);
                 let resultArray = [];
-
                 formData.forEach((value, key) => {
                     if (value === "true") {
                         resultArray.push("1");
@@ -220,11 +214,37 @@
                 });
 
                 let finalResult = resultArray.join(",");
-                let finalResult2 = finalResult + "/"; 
+                let finalResult2 = finalResult + "/" + hold;
                 document.getElementById("result").textContent = finalResult2;
-                console.log(finalResult2);
+                hold = finalResult2;
+                console.log(hold);
+            });
+            document.getElementById("myForm").addEventListener("submit", function (event) {
+                event.preventDefault();
 
-                generateQRCode(finalResult2);
+                let finalResult2 = '';
+
+                let formData = new FormData(this);
+                let resultArray = [];
+                if (hold == '') {
+                    formData.forEach((value, key) => {
+                        if (value === "true") {
+                            resultArray.push("1");
+                        } else if (value === "false") {
+                            resultArray.push("0");
+                        } else {
+                            resultArray.push(value);
+                        }
+                    });
+
+                    let finalResult = resultArray.join(",");
+                    finalResult2 = finalResult + "/" + hold;  
+                } else {
+                    finalResult2 = hold;
+                }
+                document.getElementById("result").textContent = finalResult2;
+                console.log(hold);
+                generateQRCode(finalResult2)
             });
 
             function generateQRCode(text) {
@@ -238,8 +258,34 @@
                     width: 256,
                     height: 256
                 });
+                //text: "https://classroom.google.com/c/NTA1NjYyNTEyMTE5?cjc=mhalu52",
             }
         });
+
+        document.getElementById("res").addEventListener("click", ()=> {
+            hold = '';
+            });
+
+        document.getElementById("stack").addEventListener("click", ()=> {
+                let formData = new FormData(document.getElementById('myForm'));
+                let resultArray = [];
+
+                formData.forEach((value, key) => {
+                    if (value === "true") {
+                        resultArray.push("1");
+                    } else if (value === "false") {
+                        resultArray.push("0");
+                    } else {
+                        resultArray.push(value);
+                    }
+                });
+
+                let finalResult = resultArray.join(",");
+                let finalResult2 = finalResult + "/" + hold;  
+                document.getElementById("result").textContent = finalResult2;
+                hold = finalResult2;
+                console.log(hold);
+            });
     </script>    
 
 </body>
