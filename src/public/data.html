@@ -140,7 +140,7 @@
       overallProcess([localStorage.getItem('team'), rows.map(row =>
       Array.from(row.cells)
         .slice(0, 19)
-        .map(cell => cell.textContent.trim())
+        .map(cell => cell.textContent.trim().replaceAll(',', '-'))
         .join(",")+'/'
       )])
     })
@@ -149,7 +149,7 @@
       saveAll([localStorage.getItem("team") + ',' + rows.map(row =>
       Array.from(row.cells)
         .slice(0, 19)
-        .map(cell => cell.textContent.trim())
+        .map(cell => cell.textContent.trim().replaceAll(',', '-'))
         .join(",")+'/'
       )])
     })
@@ -158,7 +158,7 @@
       const currentData = rows.map(row =>
       Array.from(row.cells)
         .slice(0, 19)
-        .map(cell => cell.textContent.trim())
+        .map(cell => cell.textContent.trim().replaceAll(',', '-'))
         .join(",") + "/"
       );
 
