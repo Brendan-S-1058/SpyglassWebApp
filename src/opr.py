@@ -205,14 +205,14 @@ def calcCopr(teamsInData, matchsInData, alliancesByMatch):
     sortingDict = {}
     keyList = []
     for i in range (len(teamsInData)):
-        sortingDict[fins[0][i][0]+int(teamsInData[i])] = teamsInData[i]
-        keyList.append(fins[0][i][0]+int(teamsInData[i]))
+        sortingDict[fins[0][i][0]+int(teamsInData[i])/50000] = teamsInData[i]
+        keyList.append(fins[0][i][0]+int(teamsInData[i]/50000))
 
     keyList.sort(reverse=True)
 
     finalList = []
     for i in range (len(keyList)):
-        finalList.append(str(sortingDict[keyList[i]]) + ',' + str(keyList[i]-int(sortingDict[keyList[i]]))) 
+        finalList.append(str(sortingDict[keyList[i]]) + ',' + str(keyList[i]-int(sortingDict[keyList[i]])/50000)) 
         finalList.append('\n')
 
     print ('finalList: ' + str(finalList), file=sys.stderr)
