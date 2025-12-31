@@ -218,13 +218,13 @@ def Order (autolists, telelists, teamDir):
 
     for i in autolists:
         for i2 in telelists:
-            if i[1] == i2[1]:
-                labels.append([i[0], i2[0], i[1]])
-                xs.append(i[0])
-                ys.append(i2[0])
+            if i[0] == i2[0]:
+                labels.append([i[1], i2[1], i[0]])
+                xs.append(i[1])
+                ys.append(i2[1])
 
 
-    plt.plot([0,1,2,3,4,5,6,7,8,9,0,9,8,7,6,5,4,3,2,1], [0,1,2,3,4,5,6,7,8,9,0,9,8,7,6,5,4,3,2,1], marker='o', linestyle='None')
+    plt.plot(xs, ys, marker='o', linestyle='None')
     plt.xlabel('Auto Average Points')
     plt.ylabel('Tele Average Points')
     for i in labels:
