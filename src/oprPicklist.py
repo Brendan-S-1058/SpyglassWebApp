@@ -237,3 +237,4 @@ def Order (autolists, telelists, teamDir):
     plt.close()
 
 main ()
+print (json.dumps('res.ok = true'))
