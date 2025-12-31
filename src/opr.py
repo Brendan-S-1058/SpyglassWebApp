@@ -212,7 +212,7 @@ def calcCopr(teamsInData, matchsInData, alliancesByMatch):
 
     finalList = []
     for i in range (len(keyList)):
-        finalList.append(str(sortingDict[keyList[i]]) + ',' + str(keyList[i]-int(teamsInData[i]))) 
+        finalList.append(str(sortingDict[keyList[i]]) + ',' + str(keyList[i]-int(sortingDict[keyList[i]]))) 
         finalList.append('\n')
 
     print ('finalList: ' + str(finalList), file=sys.stderr)
