@@ -219,7 +219,7 @@ def Order (autolists, telelists, teamDir):
     for i in autolists:
         for i2 in telelists:
             if i[0] == i2[0]:
-                labels.append([int(float(i[1])), float(i2[1])*100//1/100, float(i[0])*100//1/100])
+                labels.append([int(i[1]), float(i2[1])*100//1/100, float(i[0])*100//1/100])
                 xs.append(float(i[1])*100//1/100)
                 ys.append(float(i2[1])*100//1/100)
 
