@@ -34,6 +34,7 @@
           <option value="acc">Auto Coral Count</option> 
           <option value="ams">Auto Mobility Score</option>
           <option value="taus">Total Auto Score</option>
+          <option value="tts">Total Teleop Score</option>
           <option value="tecc">Teleop Coral Count</option>
           <option value="tas">Total Algae Score</option> 
           <option value="tna">Total Net Alage</option>
@@ -63,7 +64,7 @@
   </div>
 </body>
 <script>
-  let coprs = ['l1c', 'l2c', 'l3c', 'l4c', 'tcc', 'tcs', 'tac', 'tgpc', 'acc', 'ams', 'taus', 'tecc', 'tas', 'tna', 'tpa']
+  let coprs = ['l1c', 'l2c', 'l3c', 'l4c', 'tcc', 'tcs', 'tac', 'tgpc', 'acc', 'ams', 'taus', 'tts', 'tecc', 'tas', 'tna', 'tpa']
   let oldGraphs = 1;
   let graphState = 1;
   let modeState = 1;
@@ -116,19 +117,23 @@
     let data;
 
     if (graphState == -1) {
-      data = await Graph(send);
       if (document.getElementById('sortMeth').value == 'aps') {
+        Graph(send);
         data = await Sort(send); 
       } else if (document.getElementById('sortMeth').value == 'opr') {
+        OprGraph([localStorage.getItem('team') + '@'].concat(send));
         console.log("OPRING - 1");
         data = await opr(send);
       } else if (document.getElementById('sortMeth').value == 'dpropr') {
+        OprGraph([localStorage.getItem('team') + '@'].concat(send));
         console.log("DPRING - 1");
         data = await dpro(send);
       } else if (document.getElementById('sortMeth').value == 'dpraps') {
+        Graph(send);
         console.log("DPRING - 0");
         data = await dpra(send);
       } else if (coprs.includes(document.getElementById('sortMeth').value)) {
+        OprGraph([localStorage.getItem('team') + '@'].concat(send));
         console.log ('COPRSSSSS WOOOOOOOOO')
         data = await copr([document.getElementById('sortMeth').value + '@'].concat(send));
       }
@@ -399,6 +404,62 @@ async function dpra(input) {
     }
 
     const res = await fetch ("/PLSort", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(State),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      alert ("You are not signed in as a team, that's bad (I probably redeployed). That means nothing will work right until you set your team (home page, change team button)");
+      throw new Error("HTTP error " + res.status);
+    }
+
+    const json = await res.json();
+
+    try {
+      const graph = document.createElement('img');
+      graph.src = "data/Teams/" + localStorage.getItem('team') + "/" + localStorage.getItem('team') + "Graphs/AVT.png";
+      graph.width = 600;
+      graph.height = 400;
+
+      const division = document.getElementById("images");
+      division.innerHTML='';
+
+      division.appendChild(graph);
+
+    } catch (e) {
+      console.error("Yikes (The graph didn't work).");
+      console.error(e);
+      return;
+    }
+
+    return (json);
+  }
+
+  async function OprGraph(State) {
+
+    if (oldGraphs == 1){
+      try {
+        const graph = document.createElement('img');
+        graph.src = "data/Teams/" + localStorage.getItem('team') + "/" + localStorage.getItem('team') + "Graphs/AVT.png";
+        graph.width = 600;
+        graph.height = 400;
+
+        const division = document.getElementById("images");
+        division.innerHTML='';
+
+        division.appendChild(graph);
+
+      } catch (e) {
+        console.error("Yikes (The graph didn't work).");
+        console.error(e);
+        return;
+      }
+    }
+
+    const res = await fetch ("/OPRgraph", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(State),

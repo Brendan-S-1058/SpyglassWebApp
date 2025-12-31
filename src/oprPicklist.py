@@ -1,10 +1,9 @@
 import sys
 import json
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
 import numpy as np
-
-#this is going to be great
-#MTMx = MTs
-
 
 def main(): 
     #inputR = json.loads
@@ -102,64 +101,43 @@ def main():
         if smatch[1] not in teamsInData:
             teamsInData.append(smatch[1])
 
-    alliancesByMatch = {}
+    aAlliancesByMatch = {}
+    tAlliancesByMatch = {}
     for match in matchsInData:
         count = 0
-        alliancesByMatch[str(match) + 'team' + 'b'] = []
-        alliancesByMatch[str(match) + 'team' + 'r'] = []
-        alliancesByMatch[str(match) + 'score' + 'b'] = 0
-        alliancesByMatch[str(match) + 'score' + 'r'] = 0
+        aAlliancesByMatch[str(match) + 'team' + 'b'] = []
+        aAlliancesByMatch[str(match) + 'team' + 'r'] = []
+        aAlliancesByMatch[str(match) + 'score' + 'b'] = 0
+        aAlliancesByMatch[str(match) + 'score' + 'r'] = 0
+        tAlliancesByMatch[str(match) + 'team' + 'b'] = []
+        tAlliancesByMatch[str(match) + 'team' + 'r'] = []
+        tAlliancesByMatch[str(match) + 'score' + 'b'] = 0
+        tAlliancesByMatch[str(match) + 'score' + 'r'] = 0
         for smatch in sortedData:
             if match == smatch[0]:
                 #TODO: ADD REAL ALLIANCE SEPARATIONS WITH NEW INPUT PAGE
-                trueo = trueOpr(smatch, state)
+                trueoa = ((smatch[2])*3)+((smatch[3])*3)+((smatch[4])*4)+((smatch[5])*6)+((smatch[6])*7)+((smatch[7])*6)+((smatch[8])*4)
+                trueot = ((smatch[9])*2)+((smatch[10])*3)+((smatch[11])*4)+((smatch[12])*5)+((smatch[13])*6)+((smatch[14])*4)+((smatch[15])*2)+((smatch[16])*6)+((smatch[17])*12)
                 if count < 3:
-                    alliancesByMatch[str(match) + 'team' + 'b'].append(smatch[1])
-                    alliancesByMatch[str(match) + 'score' + 'b'] += trueo
+                    aAlliancesByMatch[str(match) + 'team' + 'b'].append(smatch[1])
+                    aAlliancesByMatch[str(match) + 'score' + 'b'] += trueoa
                 elif count < 6:
-                    alliancesByMatch[str(match) + 'team' + 'r'].append(smatch[1])
-                    alliancesByMatch[str(match) + 'score' + 'r'] += trueo
+                    aAlliancesByMatch[str(match) + 'team' + 'r'].append(smatch[1])
+                    aAlliancesByMatch[str(match) + 'score' + 'r'] += trueoa
+                if count < 3:
+                    tAlliancesByMatch[str(match) + 'team' + 'b'].append(smatch[1])
+                    tAlliancesByMatch[str(match) + 'score' + 'b'] += trueot
+                elif count < 6:
+                    tAlliancesByMatch[str(match) + 'team' + 'r'].append(smatch[1])
+                    tAlliancesByMatch[str(match) + 'score' + 'r'] += trueot
                 count += 1
 
-    calcCopr(teamsInData, matchsInData, alliancesByMatch)
+    autoscores = calcCopr(teamsInData, matchsInData, aAlliancesByMatch)
+    telescores = calcCopr(teamsInData, matchsInData, tAlliancesByMatch)
 
-    print ('alliancesByMatch: ' + str(alliancesByMatch), file=sys.stderr)
+    Order(autoscores, telescores, state)
 
-def trueOpr(smatch, state):
-    if state == 'opr':
-        return (((smatch[2])*3)+((smatch[3])*3)+((smatch[4])*4)+((smatch[5])*6)+((smatch[6])*7)+((smatch[7])*6)+((smatch[8])*4)+((smatch[9])*2)+((smatch[10])*3)+((smatch[11])*4)+((smatch[12])*5)+((smatch[13])*6)+((smatch[14])*4)+((smatch[15])*2)+((smatch[16])*6)+((smatch[17])*12))
-    elif state == 'l1c':
-        return smatch[3]+smatch[9]
-    elif state == 'l2c':
-        return smatch[4]+smatch[10]
-    elif state == 'l3c':
-        return smatch[5]+smatch[11]
-    elif state == 'l4c':
-        return smatch[6]+smatch[12]
-    elif state == 'tcc':
-        return smatch[3]+smatch[4]+smatch[5]+smatch[6]+smatch[9]+smatch[10]+smatch[11]+smatch[12]
-    elif state == 'tcs':
-        return smatch[3]*3+smatch[4]*4+smatch[5]*6+smatch[6]*7+smatch[9]*2+smatch[10]*3+smatch[11]*4+smatch[12]*5
-    elif state == 'tac':
-        return smatch[7]+smatch[8]+smatch[13]+smatch[14]
-    elif state == 'tgpc':
-        return smatch[3]+smatch[4]+smatch[5]+smatch[6]+smatch[9]+smatch[10]+smatch[11]+smatch[12]+smatch[7]+smatch[8]+smatch[13]+smatch[14]
-    elif state == 'acc':
-        return smatch[3]+smatch[4]+smatch[5]+smatch[6]
-    elif state == 'ams':
-        return smatch[2]
-    elif state == 'taus':
-        return ((smatch[2])*3)+((smatch[3])*3)+((smatch[4])*4)+((smatch[5])*6)+((smatch[6])*7)+((smatch[7])*6)+((smatch[8])*4)
-    elif state == 'tts':
-        return ((smatch[9])*2)+((smatch[10])*3)+((smatch[11])*4)+((smatch[12])*5)+((smatch[13])*6)+((smatch[14])*4)+((smatch[15])*2)+((smatch[16])*6)+((smatch[17])*12)
-    elif state == 'tecc':
-        return smatch[9]+smatch[10]+smatch[11]+smatch[12]
-    elif state == 'tas':
-        return (smatch[7]*6+smatch[8]*4+smatch[13]*6+smatch[14]*4)
-    elif state == 'tna':
-        return smatch[8]+smatch[14]
-    elif state == 'tpa':
-        return smatch[7]+smatch[13]
+    print ('alliancesByMatch: ' + str(tAlliancesByMatch), file=sys.stderr)
 
 def calcCopr(teamsInData, matchsInData, alliancesByMatch):
     teamsMatrixPre = []
@@ -212,27 +190,10 @@ def calcCopr(teamsInData, matchsInData, alliancesByMatch):
 
     finalList = []
     for i in range (len(keyList)):
-        finalList.append(str(sortingDict[keyList[i]]) + ',' + str(keyList[i]-int(teamsInData[i]/1000000))) 
-        finalList.append('\n')
+        finalList.append([(sortingDict[keyList[i]]), str(keyList[i]-int(teamsInData[i]/1000000))])
 
     print ('finalList: ' + str(finalList), file=sys.stderr)
-
-    print (json.dumps(finalList))
-    '''count = 0
-    holdList = []
-    hold = ''
-    for char in inputS:
-        if char != ",":
-            hold += char
-        else:
-            if count < 6:
-                holdList.append(hold)
-                count += 1
-                hold = ''
-            else:
-                hold += char
-    holdList.append(hold)
-    inputS = holdList'''
+    return finalList
 
 def Public ():
     with open("public/data/Public.txt","r") as f:
@@ -248,4 +209,31 @@ def LocalPublic (team):
     
     return rawData
 
-main()
+
+def Order (autolists, telelists, teamDir):
+
+    labels = []
+    xs = []
+    ys = []
+
+    for i in autolists:
+        for i2 in telelists:
+            if i[1] == i2[1]:
+                labels.append([i[0], i2[0], i[1]])
+                xs.append(i[0])
+                ys.append(i2[0])
+
+
+    plt.plot(xs, ys, marker='o', linestyle='None')
+    plt.xlabel('Auto Average Points')
+    plt.ylabel('Tele Average Points')
+    for i in labels:
+        plt.text(i[0], i[1], i[2])
+    plt.title('Auto V. Tele')
+    print ('teamDir: ' + str(teamDir), file=sys.stderr)
+    filepath=("public/data/Teams/" + teamDir + "/" + teamDir + "Graphs/AVT.png")
+    print ('filepath: ' + str(filepath), file=sys.stderr)
+    plt.savefig(filepath, dpi=300)
+    plt.close()
+
+main ()
