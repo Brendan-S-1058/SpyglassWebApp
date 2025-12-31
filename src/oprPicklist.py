@@ -219,9 +219,9 @@ def Order (autolists, telelists, teamDir):
     for i in autolists:
         for i2 in telelists:
             if i[0] == i2[0]:
-                labels.append([int(i[1]), int(i2[1]), int(i[0])])
-                xs.append(int(i[1]))
-                ys.append(int(i2[1]))
+                labels.append([float(i[1]), float(i2[1])*100//1/100, float(i[0])*100//1/100])
+                xs.append(float(i[1])*100//1/100)
+                ys.append(float(i2[1])*100//1/100)
 
 
     plt.plot(xs, ys, marker='o', linestyle='None')
