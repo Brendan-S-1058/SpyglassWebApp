@@ -41,7 +41,7 @@
     let scanningWithoutFile = false;
     let hasScannedQR = false;
     
-    document.getElementById("filePickerBtn").addEventListener("click", async () => {
+    /*document.getElementById("filePickerBtn").addEventListener("click", async () => {
       try {
         [fileHandle] = await window.showOpenFilePicker({
           types: [{ description: 'Text Files', accept: { 'text/plain': ['.txt'] } }],
@@ -53,7 +53,7 @@
       } catch (err) {
         alert("File access denied or not supported.");
       }
-    });
+    });*/
     
     document.getElementById("runWithoutFileBtn").addEventListener("click", () => {
       scanningWithoutFile = true;
@@ -231,14 +231,14 @@
       });
     }
     
-    document.getElementById("runPY").addEventListener("click", () => {
+    /*document.getElementById("runPY").addEventListener("click", () => {
       let storedQRs = JSON.parse(localStorage.getItem("qrCodes")) || [];
       if (storedQRs.length === 0) {
         alert("No new QR codes to process.");
         return;
       }
       runPythonScript(storedQRs, 1);
-    });
+    });*/
     
     function stopVideoStream() {
       let video = document.getElementById("video");
@@ -255,15 +255,15 @@
       }
       document.getElementById("qrList").value = storedQRs.join("\n");
       document.getElementById("qrList").style.display = "block";
-      document.getElementById("copyBtn").style.display = "block";
+      //document.getElementById("copyBtn").style.display = "block";
     });
     
-    document.getElementById("copyBtn").addEventListener("click", () => {
+    /*document.getElementById("copyBtn").addEventListener("click", () => {
       let qrText = document.getElementById("qrList");
       qrText.select();
       navigator.clipboard.writeText(qrText.value);
       alert("QR Codes copied to clipboard!");
-    });
+    });*/
     
     document.getElementById("downloadBtn").addEventListener("click", () => {
       let storedQRs = JSON.parse(localStorage.getItem("qrCodes")) || [];
@@ -286,9 +286,6 @@
         alert("Stored QR codes cleared!");
       }
     });
-    document.getElementById("pass").addEventListener("click", () => {
-      
-    })
   </script>
 </body>
 </html>
