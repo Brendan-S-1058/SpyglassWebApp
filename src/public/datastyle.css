@@ -51,7 +51,7 @@ body {
     box-shadow: 0px -2px 15px red;
 }
 
-th, tr, td {
+table, th, tr, td {
     border: 1px solid red;
     border-collapse: collapse;
     padding: 3px;
