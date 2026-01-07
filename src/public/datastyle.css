@@ -96,14 +96,17 @@ button:hover {
     box-shadow: 0px 0px 10px red;
 }
 .On {
-  background-color: #000;
-  border: none;
-  color: rgb(0, 255, 0); 
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 14px;
-  font-family: "Crimson Text", serif;
+    background-color: #700000;
+    border: none;
+    border-radius: 5px;
+    color: #00ff00;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: "Crimson Text", serif;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .Affirmative {
