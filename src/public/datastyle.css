@@ -80,12 +80,15 @@ a{
   text-decoration: none;
   font-size: 14px;
   font-family: "Crimson Text", serif;
+  
 }
 
 table, th, tr, td {
     border: 1px solid red;
     border-collapse: collapse;
     padding: 3px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .tableCollapse {
@@ -115,6 +118,11 @@ table, th, tr, td {
     font-family: "Crimson Text", serif;
     cursor: pointer;
     transition: 0.3s;
+}
+
+a:hover {
+  background-color: darkred;
+  box-shadow: 0px 0px 10px red;
 }
 
 button:hover {
