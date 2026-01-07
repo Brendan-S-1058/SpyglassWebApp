@@ -78,14 +78,21 @@ table, th, tr, td {
 }
 
 .button {
-    background-color: #000000;
+    background-color: #ff0000;
     border: none;
-    color: rgb(255, 0, 0);
+    color: #ffffff;
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
     font-size: 14px;
     font-family: "Crimson Text", serif;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: darkred;
+    box-shadow: 0px 0px 10px red;
 }
 .On {
   background-color: #000;
