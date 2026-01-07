@@ -78,8 +78,9 @@ table, th, tr, td {
 }
 
 .button {
-    background-color: #ff0000;
+    background-color: #700000;
     border: none;
+    border-radius: 5px;
     color: #ffffff;
     padding: 5px 10px;
     text-align: center;
