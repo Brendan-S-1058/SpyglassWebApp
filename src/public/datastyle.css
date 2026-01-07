@@ -56,6 +56,20 @@ body {
   align-items: center;
 }
 
+a{
+  background-color: #700000;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: "Crimson Text", serif;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
 table, th, tr, td {
     border: 1px solid red;
     border-collapse: collapse;
