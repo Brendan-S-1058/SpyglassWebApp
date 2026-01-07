@@ -84,7 +84,7 @@ a{
 }
 
 table, th, tr, td {
-    border: 1px solid red;
+    border: 1px solid #d00000;
     border-collapse: collapse;
     padding: 3px;
     cursor: pointer;
