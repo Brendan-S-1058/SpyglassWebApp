@@ -35,7 +35,7 @@
   }
 
 body {
-    background: linear-gradient(135deg, #1a1a1a, #660000);
+    background: #1a1a1a;
     color: rgb(180, 0, 0);
     padding: 20px; 
     font-family: "Crimson Text", serif;
