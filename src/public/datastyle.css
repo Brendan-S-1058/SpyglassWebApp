@@ -56,8 +56,8 @@ body {
   align-items: center;
 }
 
-a{
-  background-color: #700000;
+.searchinput {
+  background-color: #200101;
   border: none;
   border-radius: 5px;
   color: #ffffff;
@@ -68,6 +68,18 @@ a{
   font-family: "Crimson Text", serif;
   cursor: pointer;
   transition: 0.3s;
+}
+
+a{
+  background-color: #200101;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: "Crimson Text", serif;
 }
 
 table, th, tr, td {
@@ -92,7 +104,7 @@ table, th, tr, td {
 }
 
 .button {
-    background-color: #700000;
+    background-color: #200101;
     border: none;
     border-radius: 5px;
     color: #ffffff;
