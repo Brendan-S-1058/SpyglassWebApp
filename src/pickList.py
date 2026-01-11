@@ -305,8 +305,8 @@ def Break (inputString, bigDict):
     afuel = 0
     
     for match in dataLists:
-        holdAClimb += match[4]
-        holdTClimb += match[7]
+        holdAClimb += int(match[4])
+        holdTClimb += int(match[7])
 
         if (int(float(match[9]))) > 0:
             canBump = 'Yes'
@@ -314,21 +314,21 @@ def Break (inputString, bigDict):
         if (int(float(match[10]))) > 0:
             canTrench = 'Yes'
         
-        shotsMade += match[3] + match[6]
-        shotsMissed += match[8]
+        shotsMade += int(match[3]) + int(match[6])
+        shotsMissed += int(match[8])
 
-        afuel += match[3]
+        afuel += int(match[3])
 
         autoTotal += ((int(match[3])*1)+(int(match[4])*15))
         teleTotal += ((int(match[6])*1)+(int(match[7])*10))
 
         if (autoTotal + teleTotal) > holdMax or holdMax == 0:
-            holdMax = match[3] + match[4]*15 + match[6] + match[7]*10
+            holdMax = int(match[3]) + int(match[4])*15 + int(match[6]) + int(match[7])*10
 
         if (autoTotal + teleTotal) > metaHoldMax or metaHoldMax == 0:
-            metaHoldMax = match[3] + match[4]*15 + match[6] + match[7]*10 + (10*(match[5]*(match[3] + match[6])/(match[3] + match[6] + match[8])*(2/3)//1/10))
+            metaHoldMax = int(match[3]) + int(match[4])*15 + int(match[6]) + int(match[7])*10 + (10*(int(match[5])*(int(match[3]) + int(match[6]))/(int(match[3]) + int(match[6]) + int(match[8]))*(2/3)//1/10))
         #should give feed as each fed is one point times accuracy *2/3 for self feeding
-        metateleTotal += (float(10*(match[5]*(match[3] + match[6])/(match[3] + match[6] + match[8])*(2/3)//1/10)))
+        metateleTotal += (float(10*(int(match[5])*(int(match[3]) + int(match[6]))/(int(match[3]) + int(match[6]) + int(match[8]))*(2/3)//1/10)))
     accuracy = shotsMade/(shotsMade + shotsMissed)
     autoAverage = autoTotal/len(dataLists)
     teleAverage = teleTotal/len(dataLists)
