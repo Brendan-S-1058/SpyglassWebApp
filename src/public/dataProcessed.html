@@ -65,7 +65,10 @@
           <th>Average score:</th>
         </tr>
         <tr id="Acc%">
-          <th>Accuracy:</th>
+          <th>True Accuracy:</th>
+        </tr>
+        <tr id="avgAcc%">
+          <th>Avg Accuracy:</th>
         </tr>
         <tr id="Aclimb%">
           <th>Auto Climb consistency:</th>
@@ -119,6 +122,7 @@
     const tableBody = document.getElementById("data-table-body");
     const newMax = document.createElement('td');
     const newMed = document.createElement('td');
+    const newAccT = document.createElement('td');
     const newAvg = document.createElement('td');
     const newAcc = document.createElement('td');
     const newaCC = document.createElement('td');
@@ -155,6 +159,7 @@
       tableBody.innerHTML = '';
       newMax.innerHTML = '';
       newMed.innerHTML = '';
+      newAccT.innerHTML = '';
       newAvg.innerHTML = '';
       newaCC.innerHTML = '';
       newAcc.innerHTML = '';
@@ -239,13 +244,14 @@
       console.error("OOOH SOMEBODY doesn't know how to count (it's me)");
     }
     const [
-    Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, tClimbavg, fuelAavg, autoavg, teleavg, fuelTavg, climbTavg, autoTavg, teleTavg, fuelAvg, climbAvg
+    Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, tClimbavg, fuelAavg, autoavg, teleavg, fuelTavg, climbTavg, autoTavg, teleTavg, fuelAvg, climbAvg, trueAcc
     ] = fields;
 
     const maxR = document.getElementById('maxS');
     const medR = document.getElementById('medS');
     const avgR = document.getElementById('avgS');
-    const accp = document.getElementById('Acc%');
+    const accpt = document.getElementById('Acc%');
+    const accp = document.getElementById('avgAcc%')
     const aClimbPR = document.getElementById('Aclimb%');
     const tClimbPR = document.getElementById('Tclimb%');
     const taClimbPR = document.getElementById('Taclimb%');
@@ -261,6 +267,7 @@
 
     newMax.innerHTML = Maxscore;
     newMed.innerHTML = Medianscore;
+    newAccT.innerHtml = trueAcc;
     newAvg.innerHTML = Averagescore;
     newaCC.innerHTML = aClimbconsistency;
     newAcc.innerHTML = acc;
@@ -280,7 +287,8 @@
     medR.appendChild(newMed);
     avgR.appendChild(newAvg);
     aClimbPR.appendChild(newaCC);
-    accp.appendChild(newAcc);
+    accp.appendChild(newAccT);
+    accpt.appendChild(newAcc);
     tClimbPR.appendChild(newtCC);
     taClimbPR.appendChild(newtaCC);
     climbPR.appendChild(newCper);
