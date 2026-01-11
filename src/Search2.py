@@ -105,7 +105,7 @@ def Main ():
     finArray+=(str(holdMax)) + ','
     finArray+=(str(holdMedI)) + ','
     finArray+=(str(holdTotal/len(dataLists))) + ','
-    finArray+=(str(10*holdAcc/len(dataLists))//1/10) + ','
+    finArray+=(str((10*holdAcc/len(dataLists))//1/10)) + ','
     finArray+=(str((holdAClimb/len(dataLists))*100)) + ','
     finArray+=(str((holdTClimb/len(dataLists))*100)) + ','
     finArray+=(str((holdTAClimb/len(dataLists)))) + ','
