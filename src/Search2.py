@@ -50,24 +50,30 @@ def Main ():
     holdMedL = []
     holdMedI = 0
     holdTotal = 0
-    holdAlgae = 0
-    holdCoral = 0
-    holdAuto = 0
-    holdTele = 0
-    holdLoc = 0 
+    holdAClimb = 0
+    holdTClimb = 0
+    holdTAClimb = 0
     holdClimb = 0
+    holdAfuel = 0
+    holdFuel = 0
+    holdAuto = 0
+    holdAcc = 0
+    holdTele = 0
     for i in range (len(dataLists)):
         holdMedL.append(int(dataLists[i][21]))
         if (int(dataLists[i][21]) > holdMax):
             holdMax = int(dataLists[i][21])
-        if dataLists[i][16] == '1' or dataLists[i][17] == '1':
-            holdClimb += 1
-        holdTotal += int(dataLists[i][21])
-        holdAlgae += int(dataLists[i][23])
-        holdCoral += int(dataLists[i][22])
-        holdAuto += int(dataLists[i][19])
-        holdTele += int(dataLists[i][20])
-        holdLoc += int(dataLists[i][24])
+        if dataLists[i][7] == '1' or dataLists[i][7] == '2' or dataLists[i][7] == '3':
+            holdTClimb += 1
+        holdTotal += int(dataLists[i][15])
+        holdFuel += int(dataLists[i][16])
+        holdAfuel += int(dataLists[i][3])
+        holdAuto += int(dataLists[i][13])
+        holdAcc += int(dataLists[i][20])
+        holdTele += int(dataLists[i][14])
+        holdAClimb += int(dataLists[i][4])
+        holdTAClimb += int(dataLists[i][7])
+        holdClimb += int(dataLists[i][17])
     holdMedL.sort()
     while len(holdMedL)>2:
         holdMedL.pop(0)
@@ -76,17 +82,20 @@ def Main ():
         holdMedI = (holdMedL[0]+holdMedL[1])/2
     else:
         holdMedI = holdMedL[0]
-    ##Maxscore, Medianscore, Averagescore, Climbconsistency, algaeavg, coralavg,locationavg, autoavg, teleavg, teleTavg, autoTavg
-    ##//Max score, median score, average score, climb, avg algae score, avg coral score, avg loc score, avg auto score, avg tele score, avg auto % total score, avg tele % total score
+    ##Maxscore, Medianscore, Averagescore, Accuracy, AutoClimbconsistency, teleClimbconsistency, teleclimbheight, autoavg, Afuel, teleavg, fuelper, climbper, autoTavg, teleTavg
+    ##//Max score, median score, average score, accuracy, auto climb consistency, tele climb consisteny, tele climb height, avg auto score, avg auto fuel, tele avg score, avg fuel percent score, avg climb percent score, avg auto percent score, avg tele percent score
     finArray+=(str(holdMax)) + ','
     finArray+=(str(holdMedI)) + ','
     finArray+=(str(holdTotal/len(dataLists))) + ','
-    finArray+=(str((holdClimb/len(dataLists))*100)) + ','
-    finArray+=(str((1000*holdLoc/holdTotal)//10)) + ','
-    finArray+=(str((1000*holdAlgae/holdTotal)//10)) + ','
-    finArray+=(str((1000*holdCoral/holdTotal)//10)) + ','
+    finArray+=(str(holdAcc/len(dataLists))) + ','
+    finArray+=(str((holdAClimb/len(dataLists))*100)) + ','
+    finArray+=(str((holdTClimb/len(dataLists))*100)) + ','
+    finArray+=(str((holdTAClimb/len(dataLists)))) + ','
     finArray+=(str((holdAuto/len(dataLists)))) + ','
+    finArray+=(str((holdAfuel/len(dataLists)))) + ','
     finArray+=(str((holdTele/len(dataLists)))) + ','
+    finArray+=(str((1000*holdFuel/holdTotal)//10)) + ','
+    finArray+=(str((1000*holdClimb/holdTotal)//10)) + ','
     finArray+=(str(((1000*holdAuto/holdTotal))//10)) + ','
     finArray+=(str(((1000*holdTele/holdTotal))//10))
 Main ()

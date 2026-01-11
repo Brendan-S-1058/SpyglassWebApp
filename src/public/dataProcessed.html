@@ -23,27 +23,27 @@
     <table class="min-w-full table-fixed borderCollapse">
       <thead class="bg-gray-200 text-left borderCollapse">
         <tr class = "borderCollapse">
-            <th class="p-2 border">match #</th>
-            <th class="p-2 border">team #</th>
-            <th class="p-2 border">alliance</th>
-            <th class="p-2 border">auto fuel</th>
-            <th class="p-2 border">auto climb</th>
-            <th class="p-2 border">feed</th>
-            <th class="p-2 border">tele fuel</th>
-            <th class="p-2 border">tele climb</th>
-            <th class="p-2 border">shots missed</th>
-            <th class="p-2 border">can bumb</th>
-            <th class="p-2 border">can trench</th>
-            <th class="p-2 border">defense</th>
-            <th class="p-2 border">auto total</td>
-            <th class="p-2 border">tele total</td>
-            <th class="p-2 border">total</td>
-            <th class="p-2 border">fuel total</td>
-            <th class="p-2 border">climb total</td>
-            <th class="p-2 border">fuel %</td>
-            <th class="p-2 border">climb %</td>
-            <th class="p-2 border">accuracy</th>
-            <th class="p-2 border">comments</th>
+            <th class="p-2 border">match #</th> //0
+            <th class="p-2 border">team #</th> //1
+            <th class="p-2 border">alliance</th> //2
+            <th class="p-2 border">auto fuel</th> //3
+            <th class="p-2 border">auto climb</th> //4
+            <th class="p-2 border">feed</th> //5
+            <th class="p-2 border">tele fuel</th> //6
+            <th class="p-2 border">tele climb</th> //7
+            <th class="p-2 border">shots missed</th> //8
+            <th class="p-2 border">can bumb</th> //9
+            <th class="p-2 border">can trench</th> //10
+            <th class="p-2 border">defense</th> //11
+            <th class="p-2 border">auto total</td> //13
+            <th class="p-2 border">tele total</td> //14
+            <th class="p-2 border">total</td> //15
+            <th class="p-2 border">fuel total</td> //16
+            <th class="p-2 border">climb total</td> //17
+            <th class="p-2 border">fuel %</td> //18
+            <th class="p-2 border">climb %</td> //19
+            <th class="p-2 border">accuracy</th> //20
+            <th class="p-2 border">comments</th> //12
         </tr>
       </thead>
       <tbody id="data-table-body">
@@ -71,7 +71,10 @@
           <th>Auto Climb consistency:</th>
         </tr>
         <tr id="Tclimb%">
-          <th>Auto Climb consistency:</th>
+          <th>Tele Climb consistency:</th>
+        </tr>
+        <tr id="Taclimb%">
+          <th>Tele Climb Avg Height:</th>
         </tr>
         <tr id="avgAuto">
           <th>Auto avg score:</th>
@@ -114,6 +117,7 @@
     const newAcc = document.createElement('td');
     const newaCC = document.createElement('td');
     const newtCC = document.createElement('td');
+    const newtaCC = document.createElement('td');
     const newFuel = document.createElement('td');
     const newAFuel = document.createElement('td');
     const newCper = document.createElement('td');
@@ -147,6 +151,7 @@
       newaCC.innerHTML = '';
       newAcc.innerHTML = '';
       newtCC.innerHTML = '';
+      newtaCC.innerHTML = '';
       newCper.innerHTML = '';
       newFuel.innerHTML = '';
       newAFuel.innerHTML = '';
@@ -220,12 +225,12 @@
 
   function createCol(csv){
     const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-    if (fields.length !== 11) {
+    if (fields.length !== 14) {
       console.error("OOOH SOMEBODY doesn't know how to count (it's me)");
       return;
     }
     const [
-    Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, fuelavg, climbavg, fuelAavg, autoavg, teleavg, autoTavg, teleTavg
+    Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, tClimbavg, fuelavg, climbavg, fuelAavg, autoavg, teleavg, autoTavg, teleTavg
     ] = fields;
 
     const maxR = document.getElementById('maxS');
@@ -234,6 +239,7 @@
     const accp = document.getElementById('Acc%');
     const aClimbPR = document.getElementById('Aclimb%');
     const tClimbPR = document.getElementById('Tclimb%');
+    const taClimbPR = document.getElementById('Taclimb%');
     const climbPR = document.getElementById('climb%');
     const fuelPR = document.getElementById('fuel%');
     const fuelAPR = document.getElementById('Afuel');
@@ -248,6 +254,7 @@
     newaCC.innerHTML = aClimbconsistency;
     newAcc.innerHTML = acc;
     newtCC.innerHTML = tClimbconsistency;
+    newtaCC.innerHTML = tClimbavg;
     newCper.innerHTML = climbavg;
     newFuel.innerHTML = fuelavg;
     newAFuel.innerHTML = fuelAavg;
@@ -262,6 +269,7 @@
     aClimbPR.appendChild(newaCC);
     accp.appendChild(newAcc);
     tClimbPR.appendChild(newtCC);
+    taClimbPR.appendChild(newtaCC);
     climbPR.appendChild(newCper);
     fuelPR.appendChild(newFuel);
     fuelAPR.appendChild(newAFuel);
