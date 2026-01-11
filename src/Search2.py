@@ -9,7 +9,7 @@ finArray = ""
 def Main ():
     inputR = sys.stdin.read()
     inputS = str(json.loads(inputR))
-    #inputS = '1,1058,1,2,1,2,4,1,1,4,4,4,4,1,1,0,0,1,No comment,63,78,141,106,20,15,75,14,11,100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool,23,96,119,64,40,15,54,34,13'
+    #inputS = 'matchnum, teamnum, alliance, afuel, aclimb, feed, telefuel, teleclimb, shotsmissed, canbumb, cantrench, defense, comments,,100,1058,1,0,0,0,2,1,0,0,1,3,7,3,4,0,0,1,Pretty cool,23,96,119,64,40,15,54,34,13'
     holdList = []
     hold = ""
     global finArray
@@ -37,11 +37,11 @@ def Main ():
         if char != "," and char != "\n" and char != "\"":
             hold += char 
             #print (hold)
-        if char == "," and commaCount != 28:
+        if char == "," and commaCount != 25:
             holdList.append(hold)
             hold = ""
             commaCount += 1
-        if commaCount == 28:
+        if commaCount == 25:
             dataLists.append(holdList)
             holdList = []
             commaCount = 0

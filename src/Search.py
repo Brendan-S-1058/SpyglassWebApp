@@ -142,29 +142,26 @@ def NewSheet (datain):
     if dpresent == True:
         
         #auto point total
-        dataList.append((int(dataList[2])*3)+(int(dataList[3])*3)+(int(dataList[4])*4)+(int(dataList[5])*6)+(int(dataList[6])*7)+(int(dataList[7])*6)+(int(dataList[8])*4))
+        dataList.append((int(dataList[3])*1)+(int(dataList[4])*15))
         #tele point total
-        dataList.append((int(dataList[9])*2)+(int(dataList[10])*3)+(int(dataList[11])*4)+(int(dataList[12])*5)+(int(dataList[13])*6)+(int(dataList[14])*4)+(int(dataList[15])*2)+(int(dataList[16])*6)+(int(dataList[17])*12))
+        dataList.append((int(dataList[6])*1)+(int(dataList[7])*10))
         #total points scored that match
-        dataList.append(dataList[19]+dataList[20])
+        dataList.append(dataList[13]+dataList[14])
         #score stations:
-        #coral total
-        dataList.append(int(dataList[3])*3+int(dataList[4])*4+int(dataList[5])*6+int(dataList[6])*7+int(dataList[9])*2+int(dataList[10])*3+int(dataList[11])*4+int(dataList[12])*5)
-        #algae total
-        dataList.append(int(dataList[7])*6+int(dataList[8])*4+int(dataList[13])*6+int(dataList[14])*4)
-        #location total 
-        dataList.append(int(dataList[2])*3+int(dataList[15])*2+int(dataList[16])*6+int(dataList[17])*12)
-            #coral%
-        if dataList [21]>0:
-            dataList.append(round(int(dataList[22])/int(dataList[21])*100))
+        #fuel total
+        dataList.append(int(dataList[6])*1+int(dataList[3])*1)
+        #climb total
+        dataList.append(int(dataList[4])*15+int(dataList[7])*10)
+        #fuel%
+        if dataList [15]>0:
+            dataList.append(round(int(dataList[16])/int(dataList[15])*100))
             #algae%
-            dataList.append(round(int(dataList[23])/int(dataList[21])*100))
-            #location%
-            dataList.append(round(int(dataList[24])/int(dataList[21])*100))
+            dataList.append(round(int(dataList[17])/int(dataList[15])*100))
         else:
             dataList.append(0)
             dataList.append(0)
-            dataList.append(0)
+        #accuracy
+        dataList.append(round(dataList[16]/(dataList[16]+dataList[8])))
 
     allData.append(dataList)
 

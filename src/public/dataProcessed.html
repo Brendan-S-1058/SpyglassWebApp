@@ -35,6 +35,14 @@
             <th class="p-2 border">can bumb</th>
             <th class="p-2 border">can trench</th>
             <th class="p-2 border">defense</th>
+            <th class="p-2 border">auto total</td>
+            <th class="p-2 border">tele total</td>
+            <th class="p-2 border">total</td>
+            <th class="p-2 border">fuel total</td>
+            <th class="p-2 border">climb total</td>
+            <th class="p-2 border">fuel %</td>
+            <th class="p-2 border">climb %</td>
+            <th class="p-2 border">accuracy</th>
             <th class="p-2 border">comments</th>
         </tr>
       </thead>
@@ -55,6 +63,9 @@
         </tr>
         <tr id="avgS">
           <th>Average score:</th>
+        </tr>
+        <tr id="Acc%">
+          <th>Accuracy:</th>
         </tr>
         <tr id="Aclimb%">
           <th>Auto Climb consistency:</th>
@@ -100,6 +111,7 @@
     const newMax = document.createElement('td');
     const newMed = document.createElement('td');
     const newAvg = document.createElement('td');
+    const newAcc = document.createElement('td');
     const newaCC = document.createElement('td');
     const newtCC = document.createElement('td');
     const newFuel = document.createElement('td');
@@ -133,6 +145,7 @@
       newMed.innerHTML = '';
       newAvg.innerHTML = '';
       newaCC.innerHTML = '';
+      newAcc.innerHTML = '';
       newtCC.innerHTML = '';
       newCper.innerHTML = '';
       newFuel.innerHTML = '';
@@ -212,12 +225,13 @@
       return;
     }
     const [
-    Maxscore, Medianscore, Averagescore, aClimbconsistency, tClimbconsistency, fuelavg, climbavg, fuelAavg, autoavg, teleavg, autoTavg, teleTavg
+    Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, fuelavg, climbavg, fuelAavg, autoavg, teleavg, autoTavg, teleTavg
     ] = fields;
 
     const maxR = document.getElementById('maxS');
     const medR = document.getElementById('medS');
     const avgR = document.getElementById('avgS');
+    const accp = document.getElementById('Acc%');
     const aClimbPR = document.getElementById('Aclimb%');
     const tClimbPR = document.getElementById('Tclimb%');
     const climbPR = document.getElementById('climb%');
@@ -232,6 +246,7 @@
     newMed.innerHTML = Medianscore;
     newAvg.innerHTML = Averagescore;
     newaCC.innerHTML = aClimbconsistency;
+    newAcc.innerHTML = acc;
     newtCC.innerHTML = tClimbconsistency;
     newCper.innerHTML = climbavg;
     newFuel.innerHTML = fuelavg;
@@ -245,6 +260,7 @@
     medR.appendChild(newMed);
     avgR.appendChild(newAvg);
     aClimbPR.appendChild(newaCC);
+    accp.appendChild(newAcc);
     tClimbPR.appendChild(newtCC);
     climbPR.appendChild(newCper);
     fuelPR.appendChild(newFuel);
@@ -258,33 +274,42 @@
 
     function createRow(csv){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-        if (fields.length !== 13) {
-          console.error("createRow: expected 13 comma‑separated values, got", fields.length);
+        if (fields.length !== 21) {
+          console.error("createRow: expected 21 comma‑separated values, got", fields.length);
           return;
         }
         const [
           match, team, alliance,
           autoFuel, autoClimb, feed, teleFuel, teleClimb, shotsMissed, canBump,
           canTrench, defense, comments,
+          autoTotal, teleTotal, total, fuelTotal, climbTotal, fuelper, climbper, acc
         ] = fields;
 
         const table = document.getElementById("data-table-body");
         const newRow = document.createElement('tr');
         newRow.contentEditable = "false";
         newRow.innerHTML = `
-            <td class="p-2 border">`+team+`</td>
-            <td class="p-2 border">`+match+`</td>
-            <td class="p-2 border">`+alliance+`</td>
-            <td class="p-2 border">`+autoFuel+`</td>
-            <td class="p-2 border">`+autoClimb+`</td>
-            <td class="p-2 border">`+feed+`</td>
-            <td class="p-2 border">`+teleFuel+`</td>
-            <td class="p-2 border">`+teleClimb+`</td>
-            <td class="p-2 border">`+shotsMissed+`</td>
-            <td class="p-2 border">`+canBump+`</td>
-            <td class="p-2 border">`+canTrench+`</td>
-            <td class="p-2 border">`+defense+`</td>
-            <td class="p-2 border">`+comments+`</td>`
+            <th class="p-2 border">`+match+`</th>
+            <th class="p-2 border">`+team+`</th>
+            <th class="p-2 border">`+alliance+`</th>
+            <th class="p-2 border">`+autoFuel+`</th>
+            <th class="p-2 border">`+autoClimb+`</th>
+            <th class="p-2 border">`+feed+`</th>
+            <th class="p-2 border">`+teleFuel+`</th>
+            <th class="p-2 border">`+teleClimb+`</th>
+            <th class="p-2 border">`+shotsMissed`</th>
+            <th class="p-2 border">`+canBump+`</th>
+            <th class="p-2 border">`+canTrench+`</th>
+            <th class="p-2 border">`+defense+`</th>
+            <th class="p-2 border">`+autoTotal+`</td>
+            <th class="p-2 border">`+teleTotal+`</td>
+            <th class="p-2 border">`+total+`</td>
+            <th class="p-2 border">`+fuelTotal+`</td>
+            <th class="p-2 border">`+climbTotal+`</td>
+            <th class="p-2 border">`+fuelper+`</td>
+            <th class="p-2 border">`+climbper+`</td>
+            <th class="p-2 border">`+acc+`</th>
+            <th class="p-2 border">`+comments+`</th>`
             table.appendChild(newRow);
           };
             // Initial row delete setup (for static row)
