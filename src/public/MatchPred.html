@@ -270,8 +270,8 @@ function build (results, aKey, fullPred) {
       didBlueWin, 
       blueScoreRange, redScoreRange,
       blueWinPercent, redWinPercent,
-      corRPb, autoRPb, bargeRPb,
-      corRPr, autoRPr, bargeRPr
+      travRPb, enerRPb, superRPb,
+      travRPr, enerRPr, superRPr
     ] = middleMan;
 
     if (didBlueWin == true){
@@ -337,12 +337,21 @@ function build (results, aKey, fullPred) {
     tableBody.append(shellResults);
 
     if (fullPred) {
-      rPsByTeam[teams[0]] += bargeRPb + autoRPb + corRPb;
-      rPsByTeam[teams[1]] += bargeRPb + autoRPb + corRPb;
-      rPsByTeam[teams[2]] += bargeRPb + autoRPb + corRPb;
-      rPsByTeam[teams[3]] += bargeRPr + autoRPr + corRPr;
-      rPsByTeam[teams[4]] += bargeRPr + autoRPr + corRPr;
-      rPsByTeam[teams[5]] += bargeRPr + autoRPr + corRPr;
+      if (didBlueWin){
+        rPsByTeam[teams[0]] += travRPb + enerRPb + superRPb + 3;
+        rPsByTeam[teams[1]] += travRPb + enerRPb + superRPb + 3;
+        rPsByTeam[teams[2]] += travRPb + enerRPb + superRPb + 3;
+        rPsByTeam[teams[3]] += travRPr + enerRPr + superRPr;
+        rPsByTeam[teams[4]] += travRPr + enerRPr + superRPr;
+        rPsByTeam[teams[5]] += travRPr + enerRPr + superRPr;
+      } else {
+        rPsByTeam[teams[0]] += travRPb + enerRPb + superRPb;
+        rPsByTeam[teams[1]] += travRPb + enerRPb + superRPb;
+        rPsByTeam[teams[2]] += travRPb + enerRPb + superRPb;
+        rPsByTeam[teams[3]] += travRPr + enerRPr + superRPr + 3;
+        rPsByTeam[teams[4]] += travRPr + enerRPr + superRPr + 3;
+        rPsByTeam[teams[5]] += travRPr + enerRPr + superRPr + 3;
+      }
     }
   }
 

@@ -81,8 +81,8 @@ def Main ():
             teleTotalXAxis2 = []
             for match in major[i]:
                 currentTeam = match[1]
-                autoTotal = ((int(match[2])*3)+(int(match[3])*3)+(int(match[4])*4)+(int(match[5])*6)+(int(match[6])*7)+(int(match[7])*6)+(int(match[8])*4))
-                teleTotal = ((int(match[9])*2)+(int(match[10])*3)+(int(match[11])*4)+(int(match[12])*5)+(int(match[13])*6)+(int(match[14])*4)+(int(match[15])*2)+(int(match[16])*6)+(int(match[17])*12))
+                autoTotal = ((int(match[3])*1)+(int(match[4])*15))
+                teleTotal = ((int(match[6])*1)+(int(match[7])*10))
                 autoTotalYAxis2.append(autoTotal)
                 teleTotalXAxis2.append(teleTotal)                
                 pointsTotalYAxis1.append(autoTotal + teleTotal)
