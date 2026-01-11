@@ -1,8 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
     const idsToReplace = [
-        "L1Auto", "L2Auto", "L3Auto", "L4Auto", "ProcesserAuto", "NetAuto", // Auto fields
-        "L1Tele", "L2Tele", "L3Tele", "L4Tele", "ProcesserTele", "NetTele"  // Tele fields
+        "AutoFuel", "Feed", "TeleFuel", "Missed"
     ];
 
     idsToReplace.forEach(id => {
