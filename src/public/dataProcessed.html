@@ -23,34 +23,19 @@
     <table class="min-w-full table-fixed borderCollapse">
       <thead class="bg-gray-200 text-left borderCollapse">
         <tr class = "borderCollapse">
-          <th class="p-2 border borderCollapse">team #</th>
-          <th class="p-2 border">match #</th>
-          <th class="p-2 border">auto move</th>
-          <th class="p-2 border">auto L1</th>
-          <th class="p-2 border">auto L2</th>
-          <th class="p-2 border">auto L3</th>
-          <th class="p-2 border">auto L4</th>
-          <th class="p-2 border">auto Processor</th>
-          <th class="p-2 border">auto Net</th>
-          <th class="p-2 border">tele L1</th>
-          <th class="p-2 border">tele L2</th>
-          <th class="p-2 border">tele L3</th>
-          <th class="p-2 border">tele L4</th>
-          <th class="p-2 border">tele processor</th>
-          <th class="p-2 border">tele net</th>
-          <th class="p-2 border">end park</th>
-          <th class="p-2 border">end shallow cage</th>
-          <th class="p-2 border w-32">end deep cage</th>
-          <th class="p-2 border">auto total</td>
-          <th class="p-2 border">tele total</td>
-          <th class="p-2 border">total</td>
-          <th class="p-2 border">coral total</td>
-          <th class="p-2 border">algae total</td>
-          <th class="p-2 border">location total</td>
-          <th class="p-2 border">coral %</td>
-          <th class="p-2 border">algae %</td>
-          <th class="p-2 border">location %</td>
-          <th class="p-2 border">comments</th>
+            <th class="p-2 border">match #</th>
+            <th class="p-2 border">team #</th>
+            <th class="p-2 border">alliance</th>
+            <th class="p-2 border">auto fuel</th>
+            <th class="p-2 border">auto climb</th>
+            <th class="p-2 border">feed</th>
+            <th class="p-2 border">tele fuel</th>
+            <th class="p-2 border">tele climb</th>
+            <th class="p-2 border">shots missed</th>
+            <th class="p-2 border">can bumb</th>
+            <th class="p-2 border">can trench</th>
+            <th class="p-2 border">defense</th>
+            <th class="p-2 border">comments</th>
         </tr>
       </thead>
       <tbody id="data-table-body">
@@ -71,23 +56,26 @@
         <tr id="avgS">
           <th>Average score:</th>
         </tr>
-        <tr id="Climb%">
-          <th>Climb consistency:</th>
+        <tr id="Aclimb%">
+          <th>Auto Climb consistency:</th>
+        </tr>
+        <tr id="Tclimb%">
+          <th>Auto Climb consistency:</th>
         </tr>
         <tr id="avgAuto">
           <th>Auto avg score:</th>
         </tr>
+        <tr id="Afuel">
+          <th>Auto avg Fuel</th>>
+        </tr>
         <tr id="avgTele">
           <th>Tele avg score:</th>
         </tr>
-        <tr id="loc%">
-          <th>location % avg:</th>
+        <tr id="fuel%">
+          <th>fuel % avg:</th>
         </tr>
-        <tr id="algae%">
-          <th>algae % avg:</th>
-        </tr>
-        <tr id="coral%">
-          <th>Coral % avg:</th>
+        <tr id="climb%">
+          <th>climb % avg:</th>
         </tr>
         <tr id="auto%">
           <th>auto % avg:</th>
@@ -112,10 +100,11 @@
     const newMax = document.createElement('td');
     const newMed = document.createElement('td');
     const newAvg = document.createElement('td');
-    const newCC = document.createElement('td');
-    const newLocAvg = document.createElement('td');
-    const newAlgAvg = document.createElement('td');
-    const newCorAvg = document.createElement('td');
+    const newaCC = document.createElement('td');
+    const newtCC = document.createElement('td');
+    const newFuel = document.createElement('td');
+    const newAFuel = document.createElement('td');
+    const newCper = document.createElement('td');
     const newTeleTotAvg = document.createElement('td');
     const newAutoTotAvg = document.createElement('td');
     const newAutoAvgP = document.createElement('td');
@@ -143,10 +132,11 @@
       newMax.innerHTML = '';
       newMed.innerHTML = '';
       newAvg.innerHTML = '';
-      newCC.innerHTML = '';
-      newLocAvg.innerHTML = '';
-      newAlgAvg.innerHTML = '';
-      newCorAvg.innerHTML = '';
+      newaCC.innerHTML = '';
+      newtCC.innerHTML = '';
+      newCper.innerHTML = '';
+      newFuel.innerHTML = '';
+      newAFuel.innerHTML = '';
       newTeleTotAvg.innerHTML = '';
       newAutoTotAvg.innerHTML = '';
       newAutoAvgP.innerHTML = '';
@@ -222,28 +212,30 @@
       return;
     }
     const [
-    Maxscore, Medianscore, Averagescore, Climbconsistency, locationavg, algaeavg, coralavg, autoavg, teleavg, autoTavg, teleTavg
+    Maxscore, Medianscore, Averagescore, aClimbconsistency, tClimbconsistency, fuelavg, climbavg, fuelAavg, autoavg, teleavg, autoTavg, teleTavg
     ] = fields;
 
     const maxR = document.getElementById('maxS');
     const medR = document.getElementById('medS');
     const avgR = document.getElementById('avgS');
-    const climbPR = document.getElementById('Climb%');
-    const locPR = document.getElementById('loc%');
-    const algPR = document.getElementById('algae%');
+    const aClimbPR = document.getElementById('Aclimb%');
+    const tClimbPR = document.getElementById('Tclimb%');
+    const climbPR = document.getElementById('climb%');
+    const fuelPR = document.getElementById('fuel%');
+    const fuelAPR = document.getElementById('Afuel');
     const autoR = document.getElementById('avgAuto');
     const teleR = document.getElementById('avgTele');
-    const corPR = document.getElementById('coral%');
     const autoPR = document.getElementById('auto%');
     const telePR = document.getElementById('tele%');
 
     newMax.innerHTML = Maxscore;
     newMed.innerHTML = Medianscore;
     newAvg.innerHTML = Averagescore;
-    newCC.innerHTML = Climbconsistency;
-    newLocAvg.innerHTML = locationavg;
-    newAlgAvg.innerHTML = algaeavg;
-    newCorAvg.innerHTML = coralavg;
+    newaCC.innerHTML = aClimbconsistency;
+    newtCC.innerHTML = tClimbconsistency;
+    newCper.innerHTML = climbavg;
+    newFuel.innerHTML = fuelavg;
+    newAFuel.innerHTML = fuelAavg;
     newTeleAvgP.innerHTML = teleavg;
     newAutoAvgP.innerHTML = autoavg;
     newAutoTotAvg.innerHTML = teleTavg;
@@ -252,10 +244,11 @@
     maxR.appendChild(newMax);
     medR.appendChild(newMed);
     avgR.appendChild(newAvg);
-    climbPR.appendChild(newCC);
-    locPR.appendChild(newLocAvg);
-    algPR.appendChild(newAlgAvg);
-    corPR.appendChild(newCorAvg);
+    aClimbPR.appendChild(newaCC);
+    tClimbPR.appendChild(newtCC);
+    climbPR.appendChild(newCper);
+    fuelPR.appendChild(newFuel);
+    fuelAPR.appendChild(newAFuel);
     telePR.appendChild(newTeleTotAvg);
     autoPR.appendChild(newAutoTotAvg);
     teleR.appendChild(newTeleAvgP);
