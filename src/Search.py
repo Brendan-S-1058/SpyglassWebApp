@@ -141,6 +141,8 @@ def NewSheet (datain):
 
     if dpresent == True:
         
+        print("dataList: " + str(dataList), file=sys.stderr)
+
         #auto point total
         dataList.append((int(dataList[3])*1)+(int(dataList[4])*15))
         #tele point total
