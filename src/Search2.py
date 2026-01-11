@@ -119,7 +119,7 @@ def Main ():
     finArray+=(str((1000*holdClimb/holdTotal)//1/10)) + ','
     finArray+=(str(((1000*holdAuto/holdTotal))//1/10)) + ','
     finArray+=(str(((1000*holdTele/holdTotal))//1/10)) + ','
-    finArray+=(str(holdClimb/len(dataLists))) + ','
+    finArray+=(str(holdFuel/len(dataLists))) + ','
     finArray+=(str(holdClimb/len(dataLists))) + ','
     if (holdMisses + holdFuel) > 0:
         finArray+=(str((1000*holdFuel/(holdFuel+holdMisses))//1/10))

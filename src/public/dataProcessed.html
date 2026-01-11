@@ -244,7 +244,8 @@
       console.error("OOOH SOMEBODY doesn't know how to count (it's me) " + fields.length);
     }
     const [
-    Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, tClimbavg, fuelAavg, autoavg, teleavg, fuelTavg, climbTavg, autoTavg, teleTavg, fuelAvg, climbAvg, trueAcc
+    Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, tClimbavg, fuelAavg, autoavg, teleavg, fuelTavg, 
+    climbTavg, autoTavg, teleTavg, fuelAvg, climbAvg, trueAcc
     ] = fields;
 
     console.log('fields: ' + fields);
@@ -270,7 +271,7 @@
     newMax.innerHTML = Maxscore;
     newMed.innerHTML = Medianscore;
     newAvg.innerHTML = Averagescore;
-    newAccT.innerHtml = trueAcc;
+    newAccT.innerHTML = trueAcc;
     newaCC.innerHTML = aClimbconsistency;
     newAcc.innerHTML = acc;
     newtCC.innerHTML = tClimbconsistency;
