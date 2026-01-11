@@ -37,11 +37,11 @@ def Main ():
         if char != "," and char != "\n" and char != "\"":
             hold += char 
             #print (hold)
-        if char == "," and commaCount != 25:
+        if char == "," and commaCount != 20:
             holdList.append(hold)
             hold = ""
             commaCount += 1
-        if commaCount == 25:
+        if commaCount == 20:
             dataLists.append(holdList)
             holdList = []
             commaCount = 0
@@ -60,9 +60,9 @@ def Main ():
     holdAcc = 0
     holdTele = 0
     for i in range (len(dataLists)):
-        holdMedL.append(int(dataLists[i][21]))
-        if (int(dataLists[i][21]) > holdMax):
-            holdMax = int(dataLists[i][21])
+        holdMedL.append(int(dataLists[i][15]))
+        if (int(dataLists[i][15]) > holdMax):
+            holdMax = int(dataLists[i][15])
         if dataLists[i][7] == '1' or dataLists[i][7] == '2' or dataLists[i][7] == '3':
             holdTClimb += 1
         holdTotal += int(dataLists[i][15])
