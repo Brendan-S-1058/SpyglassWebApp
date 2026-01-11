@@ -235,9 +235,8 @@
 
   function createCol(csv){
     const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-    if (fields.length !== 14) {
+    if (fields.length !== 16) {
       console.error("OOOH SOMEBODY doesn't know how to count (it's me)");
-      return;
     }
     const [
     Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, tClimbavg, fuelAavg, autoavg, teleavg, fuelTavg, climbTavg, autoTavg, teleTavg, fuelAvg, ClimbAvg
