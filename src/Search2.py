@@ -56,6 +56,7 @@ def Main ():
     holdTClimb = 0
     holdTAClimb = 0
     holdClimb = 0
+    holdMisses = 0
     holdAfuel = 0
     holdFuel = 0
     holdClimbScore = 0
@@ -74,6 +75,7 @@ def Main ():
         holdAuto += int(dataLists[i][13])
         holdAcc += float(dataLists[i][20])
         holdTele += int(dataLists[i][14])
+        holdMisses += int(dataLists[i][8])
         holdAClimb += int(dataLists[i][4])
         holdTAClimb += int(dataLists[i][7])
         holdClimb += int(dataLists[i][17])
@@ -119,7 +121,10 @@ def Main ():
     finArray+=(str(((1000*holdTele/holdTotal))//1/10)) + ','
     finArray+=(str(holdClimb/len(dataLists))) + ','
     finArray+=(str(holdClimb/len(dataLists))) + ','
-
+    if (holdMisses + holdFuel) > 0:
+        finArray+=(str((1000*holdFuel/(holdFuel+holdMisses))//1/10))
+    else:
+        finArray+=(str('0'))
 
     print ('str(holdMax): ' + str(holdMax), file=sys.stderr)
     print ('str(holdMedI): ' + str(holdMedI), file=sys.stderr)
