@@ -48,12 +48,17 @@
         <thead class="bg-gray-200 text-left">
           <tr>
             <th>Team</th>
+            <th>Meta Average Score</th>
             <th>Average Score</th>
-            <th>Average Auto Score</th>
-            <th>Average Teleop Score</th>
-            <th>Algae?</th>
-            <th>Net?</th>
-            <th>Processor?</th>
+            <th>Meta Max</th>
+            <th>Hold Max</th>
+            <th>Auto Avg</th>
+            <th>Tele Avg</th>
+            <th>Average Auto Climb</th>
+            <th>Average Tele Climb</th>
+            <th>Average Auto Fuel</th>
+            <th>Can Bump</th>
+            <th>Can Trench</th>
           </tr>
         </thead>
         <tbody id="data-table-body">
@@ -330,7 +335,7 @@ async function dpra(input) {
           return;
         }
         const [
-          team, allAvg, autoAvg, teleAvg, canAlgae, canProcess, canNet
+          team, metAvg, trueAvg, metMax, trueMax, autoAvg, teleAvg, Acc, avgAClimb, avgTClimb, avgAFuel, canBump, canTrench
         ] = fields;
 
         const table = document.getElementById("data-table-body");
@@ -338,27 +343,18 @@ async function dpra(input) {
         newRow.contentEditable = "false";
         newRow.innerHTML = `
             <td class="p-2 border">`+team+`</td>
-            <td class="p-2 border">`+allAvg+`</td>
+            <td class="p-2 border">`+metAvg+`</td>
+            <td class="p-2 border">`+trueAvg+`</td>
+            <td class="p-2 border">`+metMax+`</td>
+            <td class="p-2 border">`+trueMax+`</td>
             <td class="p-2 border">`+autoAvg+`</td>
-            <td class="p-2 border">`+teleAvg+`</td>`
-
-        if (canAlgae == "Yes") {
-          newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Affirmative">`+canAlgae+`</td>`
-        } else {
-          newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Negative">`+canAlgae+`</td>`
-        }
-
-        if (canProcess == "Yes") {
-          newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Affirmative">`+canProcess+`</td>`
-        } else {
-          newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Negative">`+canProcess+`</td>`
-        }
-
-        if (canNet == "Yes") {
-          newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Affirmative">`+canNet+`</td>`
-        } else {
-          newRow.innerHTML = newRow.innerHTML +  `<td class="p-2 border Negative">`+canNet+`</td>`
-        }
+            <td class="p-2 border">`+teleAvg+`</td>
+            <td class="p-2 border">`+Acc+`</td>
+            <td class="p-2 border">`+avgAClimb+`</td>
+            <td class="p-2 border">`+avgTClimb+`</td>
+            <td class="p-2 border">`+avgAFuel+`</td>
+            <td class="p-2 border">`+canBump+`</td>
+            <td class="p-2 border">`+canTrench+`</td>`
             table.appendChild(newRow);
             };
   
