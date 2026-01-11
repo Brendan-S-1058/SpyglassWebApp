@@ -118,7 +118,7 @@
     const newaCC = document.createElement('td');
     const newtCC = document.createElement('td');
     const newtaCC = document.createElement('td');
-    const newFuel = document.createElement('td');
+    const newFuelper = document.createElement('td');
     const newAFuel = document.createElement('td');
     const newCper = document.createElement('td');
     const newTeleTotAvg = document.createElement('td');
@@ -153,7 +153,7 @@
       newtCC.innerHTML = '';
       newtaCC.innerHTML = '';
       newCper.innerHTML = '';
-      newFuel.innerHTML = '';
+      newFuelper.innerHTML = '';
       newAFuel.innerHTML = '';
       newTeleTotAvg.innerHTML = '';
       newAutoTotAvg.innerHTML = '';
@@ -230,7 +230,7 @@
       return;
     }
     const [
-    Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, tClimbavg, fuelavg, climbavg, fuelAavg, autoavg, teleavg, autoTavg, teleTavg
+    Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, tClimbavg, fuelAavg, autoavg, teleavg, fuelTavg, climbTavg, autoTavg, teleTavg
     ] = fields;
 
     const maxR = document.getElementById('maxS');
@@ -255,8 +255,8 @@
     newAcc.innerHTML = acc;
     newtCC.innerHTML = tClimbconsistency;
     newtaCC.innerHTML = tClimbavg;
-    newCper.innerHTML = climbavg;
-    newFuel.innerHTML = fuelavg;
+    newCper.innerHTML = climbTavg;
+    newFuelper.innerHTML = fuelTavg;
     newAFuel.innerHTML = fuelAavg;
     newTeleAvgP.innerHTML = teleavg;
     newAutoAvgP.innerHTML = autoavg;
@@ -271,7 +271,7 @@
     tClimbPR.appendChild(newtCC);
     taClimbPR.appendChild(newtaCC);
     climbPR.appendChild(newCper);
-    fuelPR.appendChild(newFuel);
+    fuelPR.appendChild(newFuelper);
     fuelAPR.appendChild(newAFuel);
     telePR.appendChild(newTeleTotAvg);
     autoPR.appendChild(newAutoTotAvg);

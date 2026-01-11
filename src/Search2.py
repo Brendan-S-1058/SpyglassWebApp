@@ -38,10 +38,12 @@ def Main ():
             hold += char 
             #print (hold)
         if char == "," and commaCount != 21:
+            #commacount here should be the number of items in your list because there's a trailing comma after every line
             holdList.append(hold)
             hold = ""
             commaCount += 1
         if commaCount == 21:
+            #commacount here should be the number of items in your list because there's a trailing comma after every line
             dataLists.append(holdList)
             holdList = []
             commaCount = 0
@@ -103,17 +105,17 @@ def Main ():
     finArray+=(str(holdMax)) + ','
     finArray+=(str(holdMedI)) + ','
     finArray+=(str(holdTotal/len(dataLists))) + ','
-    finArray+=(str(holdAcc/len(dataLists))) + ','
+    finArray+=(str(1000*holdAcc/len(dataLists)//1/10)) + ','
     finArray+=(str((holdAClimb/len(dataLists))*100)) + ','
     finArray+=(str((holdTClimb/len(dataLists))*100)) + ','
     finArray+=(str((holdTAClimb/len(dataLists)))) + ','
-    finArray+=(str((holdAuto/len(dataLists)))) + ','
     finArray+=(str((holdAfuel/len(dataLists)))) + ','
+    finArray+=(str((holdAuto/len(dataLists)))) + ','
     finArray+=(str((holdTele/len(dataLists)))) + ','
-    finArray+=(str((1000*holdFuel/holdTotal)//10)) + ','
-    finArray+=(str((1000*holdClimb/holdTotal)//10)) + ','
-    finArray+=(str(((1000*holdAuto/holdTotal))//10)) + ','
-    finArray+=(str(((1000*holdTele/holdTotal))//10))
+    finArray+=(str((1000*holdFuel/holdTotal)//1/10)) + ','
+    finArray+=(str((1000*holdClimb/holdTotal)//1/10)) + ','
+    finArray+=(str(((1000*holdAuto/holdTotal))//1/10)) + ','
+    finArray+=(str(((1000*holdTele/holdTotal))//1/10))
 
     print ('str(holdMax): ' + str(holdMax), file=sys.stderr)
     print ('str(holdMedI): ' + str(holdMedI), file=sys.stderr)
