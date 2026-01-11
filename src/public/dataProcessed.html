@@ -23,27 +23,27 @@
     <table class="min-w-full table-fixed borderCollapse">
       <thead class="bg-gray-200 text-left borderCollapse">
         <tr class = "borderCollapse">
-            <th class="p-2 border">match #</th> //0
-            <th class="p-2 border">team #</th> //1
-            <th class="p-2 border">alliance</th> //2
-            <th class="p-2 border">auto fuel</th> //3
-            <th class="p-2 border">auto climb</th> //4
-            <th class="p-2 border">feed</th> //5
-            <th class="p-2 border">tele fuel</th> //6
-            <th class="p-2 border">tele climb</th> //7
-            <th class="p-2 border">shots missed</th> //8
-            <th class="p-2 border">can bumb</th> //9
-            <th class="p-2 border">can trench</th> //10
-            <th class="p-2 border">defense</th> //11
-            <th class="p-2 border">auto total</td> //13
-            <th class="p-2 border">tele total</td> //14
-            <th class="p-2 border">total</td> //15
-            <th class="p-2 border">fuel total</td> //16
-            <th class="p-2 border">climb total</td> //17
-            <th class="p-2 border">fuel %</td> //18
-            <th class="p-2 border">climb %</td> //19
-            <th class="p-2 border">accuracy</th> //20
-            <th class="p-2 border">comments</th> //12
+            <th class="p-2 border">match #</th>
+            <th class="p-2 border">team #</th>
+            <th class="p-2 border">alliance</th>
+            <th class="p-2 border">auto fuel</th>
+            <th class="p-2 border">auto climb</th>
+            <th class="p-2 border">feed</th>
+            <th class="p-2 border">tele fuel</th>
+            <th class="p-2 border">tele climb</th> 
+            <th class="p-2 border">shots missed</th>
+            <th class="p-2 border">can bumb</th>
+            <th class="p-2 border">can trench</th>
+            <th class="p-2 border">defense</th>
+            <th class="p-2 border">auto total</td>
+            <th class="p-2 border">tele total</td>
+            <th class="p-2 border">total</td>
+            <th class="p-2 border">fuel total</td>
+            <th class="p-2 border">climb total</td>
+            <th class="p-2 border">fuel %</td> 
+            <th class="p-2 border">climb %</td> 
+            <th class="p-2 border">accuracy</th>
+            <th class="p-2 border">comments</th>
         </tr>
       </thead>
       <tbody id="data-table-body">
@@ -80,10 +80,16 @@
           <th>Auto avg score:</th>
         </tr>
         <tr id="Afuel">
-          <th>Auto avg Fuel</th>>
+          <th>Auto avg Fuel:</th>
         </tr>
         <tr id="avgTele">
           <th>Tele avg score:</th>
+        </tr>
+        <tr id="avgFuel">
+          <th>fuel avg score:</th>
+        </tr>
+        <tr id="avgClimb">
+          <th>climb avg score:</th>
         </tr>
         <tr id="fuel%">
           <th>fuel % avg:</th>
@@ -125,6 +131,8 @@
     const newAutoTotAvg = document.createElement('td');
     const newAutoAvgP = document.createElement('td');
     const newTeleAvgP = document.createElement('td');
+    const newavgFuel= document.createElement('td');
+    const newavgClimb = document.createElement('td');
 
     document.getElementById('Public').addEventListener("click", () => {
       public += 1;
@@ -159,6 +167,8 @@
       newAutoTotAvg.innerHTML = '';
       newAutoAvgP.innerHTML = '';
       newTeleAvgP.innerHTML = '';
+      newavgFuel.innerHTML = '';
+      newavgClimb.innerHTML = '';
       if (public == 0) {
         values.push (localStorage.getItem('team'));
         qrs.forEach(qr => {
@@ -230,7 +240,7 @@
       return;
     }
     const [
-    Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, tClimbavg, fuelAavg, autoavg, teleavg, fuelTavg, climbTavg, autoTavg, teleTavg
+    Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, tClimbavg, fuelAavg, autoavg, teleavg, fuelTavg, climbTavg, autoTavg, teleTavg, fuelAvg, ClimbAvg
     ] = fields;
 
     const maxR = document.getElementById('maxS');
@@ -245,6 +255,8 @@
     const fuelAPR = document.getElementById('Afuel');
     const autoR = document.getElementById('avgAuto');
     const teleR = document.getElementById('avgTele');
+    const avgFuel = document.getElementById('avgFuel');
+    const avgClimb = document.getElementById('avgClimb');
     const autoPR = document.getElementById('auto%');
     const telePR = document.getElementById('tele%');
 
@@ -259,6 +271,8 @@
     newFuelper.innerHTML = fuelTavg;
     newAFuel.innerHTML = fuelAavg;
     newTeleAvgP.innerHTML = teleavg;
+    newavgFuel.innerHTML = fuelAvg;
+    newavgClimb.innerHTML = climbAvg;
     newAutoAvgP.innerHTML = autoavg;
     newAutoTotAvg.innerHTML = teleTavg;
     newTeleTotAvg.innerHTML = autoTavg;
@@ -275,6 +289,8 @@
     fuelAPR.appendChild(newAFuel);
     telePR.appendChild(newTeleTotAvg);
     autoPR.appendChild(newAutoTotAvg);
+    avgFuel.appendChild(newavgFuel);
+    avgClimb.appendChild(newavgClimb);
     teleR.appendChild(newTeleAvgP);
     autoR.appendChild(newAutoAvgP);
 
