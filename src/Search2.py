@@ -37,11 +37,11 @@ def Main ():
         if char != "," and char != "\n" and char != "\"":
             hold += char 
             #print (hold)
-        if char == "," and commaCount != 20:
+        if char == "," and commaCount != 21:
             holdList.append(hold)
             hold = ""
             commaCount += 1
-        if commaCount == 20:
+        if commaCount == 21:
             dataLists.append(holdList)
             holdList = []
             commaCount = 0
