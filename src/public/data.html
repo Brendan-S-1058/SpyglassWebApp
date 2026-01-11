@@ -57,7 +57,7 @@
     var qrs = JSON.parse(localStorage.getItem("qrCodes"));
     const tableBody = document.getElementById("data-table-body");
     document.getElementById("AddEmpty").addEventListener('click', () => {
-      const empty = ",,,,,,,,,,,,";
+      const empty = ",,,,,,,,,,,,,";
       createRow(empty);
     })
 
@@ -132,7 +132,7 @@
       const rows = Array.from(tableBody.rows);
       overallProcess([localStorage.getItem('team'), rows.map(row =>
       Array.from(row.cells)
-        .slice(0, 12)
+        .slice(0, 13)
         .map(cell => cell.textContent.trim().replaceAll(',', '-'))
         .join(",")+'/'
       )])
@@ -141,7 +141,7 @@
       const rows = Array.from(tableBody.rows);
       saveAll([localStorage.getItem("team") + ',' + rows.map(row =>
       Array.from(row.cells)
-        .slice(0, 12)
+        .slice(0, 13)
         .map(cell => cell.textContent.trim().replaceAll(',', '-'))
         .join(",")+'/'
       )])
@@ -150,7 +150,7 @@
       const rows = Array.from(tableBody.rows);
       const currentData = rows.map(row =>
       Array.from(row.cells)
-        .slice(0, 12)
+        .slice(0, 13)
         .map(cell => cell.textContent.trim().replaceAll(',', '-'))
         .join(",") + "/"
       );
@@ -240,9 +240,8 @@ async function overallProcess(dataArray) {
 
     function createRow(csv, qrs){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-        if (fields.length !== 12) {
-          console.error("createRow: expected 12 comma‑separated values, got", fields.length);
-          return;
+        if (fields.length !== 13) {
+          console.error("createRow: expected 13 comma‑separated values, got", fields.length);
         }
         const [
           match, team, alliance,
