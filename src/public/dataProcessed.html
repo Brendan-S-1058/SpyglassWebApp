@@ -258,19 +258,14 @@
 
     function createRow(csv){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-        if (fields.length !== 28) {
-          console.error("createRow: expected 28 comma‑separated values, got", fields.length);
+        if (fields.length !== 13) {
+          console.error("createRow: expected 13 comma‑separated values, got", fields.length);
           return;
         }
         const [
-          match, team,
-          autoMove, autoL1, autoL2, autoL3, autoL4, autoProc, autoNet,
-          teleL1, teleL2, teleL3, teleL4, teleProc, teleNet,
-          endPark, shallowCage, deepCage, 
-          comments,
-          autoTotal, teleTotal, Total, 
-          coralTotal, algaeTotal, locTotal, coralP, algaeP, locP,
-          
+          match, team, alliance,
+          autoFuel, autoClimb, feed, teleFuel, teleClimb, shotsMissed, canBump,
+          canTrench, defense, comments,
         ] = fields;
 
         const table = document.getElementById("data-table-body");
@@ -279,31 +274,16 @@
         newRow.innerHTML = `
             <td class="p-2 border">`+team+`</td>
             <td class="p-2 border">`+match+`</td>
-            <td class="p-2 border">`+autoMove+`</td>
-            <td class="p-2 border">`+autoL1+`</td>
-            <td class="p-2 border">`+autoL2+`</td>
-            <td class="p-2 border">`+autoL3+`</td>
-            <td class="p-2 border">`+autoL4+`</td>
-            <td class="p-2 border">`+autoProc+`</td>
-            <td class="p-2 border">`+autoNet+`</td>
-            <td class="p-2 border">`+teleL1+`</td>
-            <td class="p-2 border">`+teleL2+`</td>
-            <td class="p-2 border">`+teleL3+`</td>
-            <td class="p-2 border">`+teleL4+`</td>
-            <td class="p-2 border">`+teleProc+`</td>
-            <td class="p-2 border">`+teleNet+`</td>
-            <td class="p-2 border">`+endPark+`</td>
-            <td class="p-2 border">`+shallowCage+`</td>
-            <td class="p-2 border">`+deepCage+`</td>
-            <td class="p-2 border">`+autoTotal+`</td>
-            <td class="p-2 border">`+teleTotal+`</td>
-            <td class="p-2 border">`+Total+`</td>
-            <td class="p-2 border">`+coralTotal+`</td>
-            <td class="p-2 border">`+algaeTotal+`</td>
-            <td class="p-2 border">`+locTotal+`</td>
-            <td class="p-2 border">`+coralP+`%</td>
-            <td class="p-2 border">`+algaeP+`%</td>
-            <td class="p-2 border">`+locP+`%</td>
+            <td class="p-2 border">`+alliance+`</td>
+            <td class="p-2 border">`+autoFuel+`</td>
+            <td class="p-2 border">`+autoClimb+`</td>
+            <td class="p-2 border">`+feed+`</td>
+            <td class="p-2 border">`+teleFuel+`</td>
+            <td class="p-2 border">`+teleClimb+`</td>
+            <td class="p-2 border">`+shotsMissed+`</td>
+            <td class="p-2 border">`+canBump+`</td>
+            <td class="p-2 border">`+canTrench+`</td>
+            <td class="p-2 border">`+defense+`</td>
             <td class="p-2 border">`+comments+`</td>`
             table.appendChild(newRow);
           };
