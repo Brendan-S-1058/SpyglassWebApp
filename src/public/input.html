@@ -128,53 +128,77 @@
                 <input type="text" id="TeamNumber" name="TeamNumber">
             </div>
             <div class="form-group">
-                <label for="AutoMove">Auto Move</label>
-                <select id="AutoMove" name="AutoMove">
-                    <option value="false">Did Not Move</option>
-                    <option value="true">Moved</option>
+                <label for="Alliance">Alliance</label>
+                <select id="Alliance" name="Alliance">
+                    <option value=0>Blue</option>
+                    <option value=1>Red</option>
                 </select>
             </div>
 
             <h2>Auto Phase</h2>
             <div class="grid-container">
-                <div class="form-group"><label for="L1Auto">L1 Auto</label><input type="text" id="L1Auto"></div>
-                <div class="form-group"><label for="L2Auto">L2 Auto</label><input type="text" id="L2Auto"></div>
-                <div class="form-group"><label for="L3Auto">L3 Auto</label><input type="text" id="L3Auto"></div>
-                <div class="form-group"><label for="L4Auto">L4 Auto</label><input type="text" id="L4Auto"></div>
-                <div class="form-group"><label for="ProcesserAuto">Processor Auto</label><input type="text" id="ProcesserAuto"></div>
-                <div class="form-group"><label for="NetAuto">Net Auto</label><input type="text" id="NetAuto"></div>
+                <div class="form-group">
+                    <label for="Auto Fuel">Auto Fuel</label>
+                    <input type="text" id="Fuel">
+                </div>
+                <div class="form-group">
+                    <label for="AutoClimb">Auto Climb</label>
+                    <select id="AutoClimb" name="AutoClimb">
+                        <option value=0>Did not Climb</option>
+                        <option value=1>Climbed</option>
+                    </select>
+                </div>            
             </div>
 
             <h2>Tele Phase</h2>
             <div class="grid-container">
-                <div class="form-group"><label for="L1Tele">L1 Tele</label><input type="text" id="L1Tele"></div>
-                <div class="form-group"><label for="L2Tele">L2 Tele</label><input type="text" id="L2Tele"></div>
-                <div class="form-group"><label for="L3Tele">L3 Tele</label><input type="text" id="L3Tele"></div>
-                <div class="form-group"><label for="L4Tele">L4 Tele</label><input type="text" id="L4Tele"></div>
-                <div class="form-group"><label for="ProcesserTele">Processor Tele</label><input type="text" id="ProcesserTele"></div>
-                <div class="form-group"><label for="NetTele">Net Tele</label><input type="text" id="NetTele"></div>
+                <div class="form-group">
+                    <label for="Feed">Feed</label>
+                    <input type="text" id="Feed">
+                </div>
+                <div class="form-group">
+                    <label for="TeleFuel">Tele Fuel</label>
+                    <input type="text" id="TeleFuel">
+                </div>
+                <div class="form-group">
+                    <label for="Missed">Shots Missed</label>
+                    <input type="text" id="Missed">
+                </div>
+                <div class="form-group">
+                    <label for="TeleClimb">Tele Climb</label>
+                    <select id="TeleClimb" name="TeleClimb">
+                        <option value=0>Did not Climb</option>
+                        <option value=1>Climbed L1</option>
+                        <option value=2>Climbed L2</option>
+                        <option value=3>Climbed L3</option>
+                    </select>
+                </div> 
             </div>
 
-            <h2>Endgame</h2>
+            <h2>Capacities</h2>
             <div class="form-group">
-                <label for="ParkEnd">Park</label>
-                <select id="ParkEnd" name="ParkEnd">
-                    <option value="false">Not Parked</option>
-                    <option value="true">Parked</option> 
+                <label for="Bump">Bump</label>
+                <select id="Bump" name="Bump">
+                    <option value=0>Can Not Bump</option>
+                    <option value=1>Can Bump</option> 
                 </select>
             </div>
             <div class="form-group">
-                <label for="ShallowCageEnd">Shallow Cage</label>
-                <select id="ShallowCageEnd" name="ShallowCageEnd">
-                    <option value="false">Did Not Climb</option>
-                    <option value="true">Climbed</option>
+                <label for="Trench">Trench</label>
+                <select id="Trench" name="Trench">
+                    <option value=0>Can Not Trench</option>
+                    <option value=1>Can Trench</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="DeepCageEnd">Deep Cage</label>
-                <select id="DeepCageEnd" name="DeepCageEnd">
-                    <option value="false">Did Not Climb</option>
-                    <option value="true">Climbed</option>
+                <label for="Defense">Defense</label>
+                <select id="Defense" name="Defense">
+                    <option value=0>Did Not Defend</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
                 </select>
             </div>
 
