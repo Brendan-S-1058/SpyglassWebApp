@@ -124,7 +124,7 @@ def Main ():
     if (holdMisses + holdFuel) > 0:
         finArray+=(str((1000*holdFuel/(holdFuel+holdMisses))//1/10))
     else:
-        finArray+=(str('0'))
+        finArray+=(str(0))
 
     print ('str(holdMax): ' + str(holdMax), file=sys.stderr)
     print ('str(holdMedI): ' + str(holdMedI), file=sys.stderr)

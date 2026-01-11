@@ -247,6 +247,8 @@
     Maxscore, Medianscore, Averagescore, acc, aClimbconsistency, tClimbconsistency, tClimbavg, fuelAavg, autoavg, teleavg, fuelTavg, climbTavg, autoTavg, teleTavg, fuelAvg, climbAvg, trueAcc
     ] = fields;
 
+    console.log('fields: ' + fields);
+
     const maxR = document.getElementById('maxS');
     const medR = document.getElementById('medS');
     const avgR = document.getElementById('avgS');
@@ -267,8 +269,8 @@
 
     newMax.innerHTML = Maxscore;
     newMed.innerHTML = Medianscore;
-    newAccT.innerHtml = trueAcc;
     newAvg.innerHTML = Averagescore;
+    newAccT.innerHtml = trueAcc;
     newaCC.innerHTML = aClimbconsistency;
     newAcc.innerHTML = acc;
     newtCC.innerHTML = tClimbconsistency;
@@ -287,8 +289,8 @@
     medR.appendChild(newMed);
     avgR.appendChild(newAvg);
     aClimbPR.appendChild(newaCC);
-    accp.appendChild(newAccT);
-    accpt.appendChild(newAcc);
+    accpt.appendChild(newAccT);
+    accp.appendChild(newAcc);
     tClimbPR.appendChild(newtCC);
     taClimbPR.appendChild(newtaCC);
     climbPR.appendChild(newCper);
