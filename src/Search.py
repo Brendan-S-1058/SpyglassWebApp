@@ -164,7 +164,7 @@ def NewSheet (datain):
             dataList.append(0)
         #accuracy
         if (dataList[16]+int(dataList[8]) > 0):
-            dataList.append((dataList[16]/(dataList[16]+int(dataList[8]))))
+            dataList.append(round(1000*dataList[16]/(dataList[16]+int(dataList[8])))/10)
         else:
             dataList.append(0)
 

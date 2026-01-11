@@ -71,7 +71,7 @@ def Main ():
         holdFuel += int(dataLists[i][16])
         holdAfuel += int(dataLists[i][3])
         holdAuto += int(dataLists[i][13])
-        holdAcc += int(dataLists[i][20])
+        holdAcc += float(dataLists[i][20])
         holdTele += int(dataLists[i][14])
         holdAClimb += int(dataLists[i][4])
         holdTAClimb += int(dataLists[i][7])
