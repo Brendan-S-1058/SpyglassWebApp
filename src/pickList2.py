@@ -319,8 +319,13 @@ def Break (inputString, bigDict):
         if (autoTotal + teleTotal) > metaHoldMax or metaHoldMax == 0:
             metaHoldMax = int(match[3]) + int(match[4])*15 + int(match[6]) + int(match[7])*10 + (10*(int(match[5])*(int(match[3]) + int(match[6]))/(int(match[3]) + int(match[6]) + int(match[8]))*(2/3)//1/10))
         #should give feed as each fed is one point times accuracy *2/3 for self feeding
-        metateleTotal += (float(10*(int(match[5])*(int(match[3]) + int(match[6]))/(int(match[3]) + int(match[6]) + int(match[8]))*(2/3)//1/10)))
-    accuracy = shotsMade/(shotsMade + shotsMissed)
+        if (int(match[3]) + int(match[6]) + int(match[8]) > 0):
+            metateleTotal += (float(10*(int(match[5])*(int(match[3]) + int(match[6]))/(int(match[3]) + int(match[6]) + int(match[8]))*(2/3)//1/10)))
+   
+    if (shotsMade + shotsMissed) > 0:
+        accuracy = shotsMade/(shotsMade + shotsMissed)
+    else:
+        accuracy = 0
     autoAverage = autoTotal/len(dataLists)
     teleAverage = teleTotal/len(dataLists)
     metateleAverage = metateleTotal/len(dataLists)
