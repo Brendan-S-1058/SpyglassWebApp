@@ -298,6 +298,7 @@ def Break (inputString, bigDict):
     canTrench = 'No'
     holdMax = 0
     metaHoldMax = 0
+    metateleTotal = 0
     shotsMade = 0
     shotsMissed = 0
     holdAClimb = 0
