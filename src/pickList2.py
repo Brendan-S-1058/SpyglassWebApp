@@ -296,31 +296,31 @@ def Break (inputString, bigDict):
     afuel = 0
     
     for match in dataLists:
-        holdAClimb += int(match[4])
-        holdTClimb += int(match[7])
+        holdAClimb += float(match[4])
+        holdTClimb += float(match[7])
 
-        if (int(float(match[9]))) > 0:
+        if ((float(match[9]))) > 0:
             canBump = 'Yes'
     
-        if (int(float(match[10]))) > 0:
+        if ((float(match[10]))) > 0:
             canTrench = 'Yes'
         
-        shotsMade += int(match[3]) + int(match[6])
-        shotsMissed += int(match[8])
+        shotsMade += float(match[3]) + float(match[6])
+        shotsMissed += float(match[8])
 
-        afuel += int(match[3])
+        afuel += float(match[3])
 
-        autoTotal += ((int(match[3])*1)+(int(match[4])*15))
-        teleTotal += ((int(match[6])*1)+(int(match[7])*10))
+        autoTotal += ((float(match[3])*1)+(float(match[4])*15))
+        teleTotal += ((float(match[6])*1)+(float(match[7])*10))
 
         if (autoTotal + teleTotal) > holdMax or holdMax == 0:
-            holdMax = int(match[3]) + int(match[4])*15 + int(match[6]) + int(match[7])*10
+            holdMax = float(match[3]) + float(match[4])*15 + float(match[6]) + float(match[7])*10
 
-        if ((autoTotal + teleTotal) > metaHoldMax or metaHoldMax) and (int(match[3]) + int(match[6]) + int(match[8]) > 0):
-            metaHoldMax = int(match[3]) + int(match[4])*15 + int(match[6]) + int(match[7])*10 + (10*(int(match[5])*(int(match[3]) + int(match[6]))/(int(match[3]) + int(match[6]) + int(match[8]))*(2/3)//1/10))
+        if ((autoTotal + teleTotal) > metaHoldMax or metaHoldMax) and (float(match[3]) + float(match[6]) + float(match[8]) > 0):
+            metaHoldMax = float(match[3]) + float(match[4])*15 + float(match[6]) + float(match[7])*10 + (10*(float(match[5])*(float(match[3]) + float(match[6]))/(float(match[3]) + float(match[6]) + float(match[8]))*(2/3)//1/10))
         #should give feed as each fed is one point times accuracy *2/3 for self feeding
-        if (int(match[3]) + int(match[6]) + int(match[8]) > 0):
-            metateleTotal += (float(10*(int(match[5])*(int(match[3]) + int(match[6]))/(int(match[3]) + int(match[6]) + int(match[8]))*(2/3)//1/10)))
+        if (float(match[3]) + float(match[6]) + float(match[8]) > 0):
+            metateleTotal += (float(10*(float(match[5])*(float(match[3]) + float(match[6]))/(float(match[3]) + float(match[6]) + float(match[8]))*(2/3)//1/10)))
    
     if (shotsMade + shotsMissed) > 0:
         accuracy = shotsMade/(shotsMade + shotsMissed)
