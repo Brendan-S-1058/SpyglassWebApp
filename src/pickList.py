@@ -287,7 +287,7 @@ def Break (inputString, bigDict):
             dataLists.append(holdList)
             holdList = []
             commaCount = 0
-        if char == "," and commaCount != 28:
+        if char == "," and commaCount != 12:
             holdList.append(hold)
             hold = ""
             commaCount += 1

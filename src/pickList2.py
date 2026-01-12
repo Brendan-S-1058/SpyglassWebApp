@@ -277,49 +277,61 @@ def Break (inputString, bigDict):
             dataLists.append(holdList)
             holdList = []
             commaCount = 0
-        if char == "," and commaCount != 28:
+        if char == "," and commaCount != 12:
             holdList.append(hold)
             hold = ""
             commaCount += 1
     
     autoTotal = 0
     teleTotal = 0
-    canNet = False
-    canProcess = False
-    canAlgae = False
+    canBump = 'No'
+    canTrench = 'No'
+    holdMax = 0
+    metaHoldMax = 0
+    metateleTotal = 0
+    shotsMade = 0
+    shotsMissed = 0
+    holdAClimb = 0
+    holdTClimb = 0
+    afuel = 0
     
     for match in dataLists:
-        if (int(float(match[7])) + int(float(match[13]))) > 0:
-            canProcess = True
-            canAlgae = True
-    
-        if (int(float(match[8])) + int(float(match[14]))) > 0:
-            canNet = True
-            canAlgae = True
+        holdAClimb += int(match[4])
+        holdTClimb += int(match[7])
 
-        autoTotal += ((int(float(match[2]))*3)+(int(float(match[3]))*3)+(int(float(match[4]))*4)+(int(float(match[5]))*6)+(int(float(match[6]))*7)+(int(float(match[7]))*6)+(int(float(match[8]))*4))
-        teleTotal += ((int(float(match[9]))*2)+(int(float(match[10]))*3)+(int(float(match[11]))*4)+(int(float(match[12]))*5)+(int(float(match[13]))*6)+(int(float(match[14]))*4)+(int(float(match[15]))*2)+(int(float(match[16]))*6)+(int(float(match[17]))*12))
+        if (int(float(match[9]))) > 0:
+            canBump = 'Yes'
+    
+        if (int(float(match[10]))) > 0:
+            canTrench = 'Yes'
+        
+        shotsMade += int(match[3]) + int(match[6])
+        shotsMissed += int(match[8])
+
+        afuel += int(match[3])
+
+        autoTotal += ((int(match[3])*1)+(int(match[4])*15))
+        teleTotal += ((int(match[6])*1)+(int(match[7])*10))
+
+        if (autoTotal + teleTotal) > holdMax or holdMax == 0:
+            holdMax = int(match[3]) + int(match[4])*15 + int(match[6]) + int(match[7])*10
+
+        if (autoTotal + teleTotal) > metaHoldMax or metaHoldMax == 0:
+            metaHoldMax = int(match[3]) + int(match[4])*15 + int(match[6]) + int(match[7])*10 + (10*(int(match[5])*(int(match[3]) + int(match[6]))/(int(match[3]) + int(match[6]) + int(match[8]))*(2/3)//1/10))
+        #should give feed as each fed is one point times accuracy *2/3 for self feeding
+        metateleTotal += (float(10*(int(match[5])*(int(match[3]) + int(match[6]))/(int(match[3]) + int(match[6]) + int(match[8]))*(2/3)//1/10)))
+    accuracy = shotsMade/(shotsMade + shotsMissed)
     autoAverage = autoTotal/len(dataLists)
     teleAverage = teleTotal/len(dataLists)
+    metateleAverage = metateleTotal/len(dataLists)
+    averageautoclimb = holdAClimb/len(dataLists)
+    averageteleclimb = holdTClimb/len(dataLists)
+    avgautoFuel = afuel/len(dataLists)
 
-    if canNet == True:
-        net = "Yes"
-    else:
-        net = "No"
-
-    if canAlgae == True:
-        algae = "Yes"
-    else:
-        algae = "No"
-    
-    if canProcess == True:
-        process = "Yes"
-    else:
-        process = "No"
-    totalPointsScored = autoTotal + teleTotal
+    metaAveragePointsScored = autoAverage + teleAverage + metateleAverage
     averagePointsScored = autoAverage + teleAverage
 
-    bigDict[str(dataLists[0][1])] = [averagePointsScored, autoAverage, teleAverage, algae, net, process]
+    bigDict[str(dataLists[0][1])] = [metaAveragePointsScored, averagePointsScored, metaHoldMax, holdMax, autoAverage, teleAverage, accuracy, averageautoclimb, averageteleclimb, avgautoFuel, canBump, canTrench]
 
 def Order (inputDict):
     outerHoldList = []
