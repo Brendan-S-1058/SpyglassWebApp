@@ -554,64 +554,84 @@ async function dpra(input) {
     return (json);
   }
 
-
-  document.getElementById('Team').addEventListener('click', ()=> {
-
-  });
-
-  document.getElementById('metaAverageScore').addEventListener('click', ()=> {
+  function SortByIndex(Index) {
     table = document.getElementById('data-table-body');
     const teams = [];
     const rows = Array.from(table.rows);
+    const vals = [];
     console.log (rows);
     rows.forEach(row => {
       teams.push(row.innerText.split('\t'));
+      vals.push(row.innerText.split('\t')[Index]);
     });
-    console.log(teams[0][0]);
+    const next = 0;
+    const order = [];
+    vals.sort(b - a);
+    while (next < vals.length()-1){
+      teams.forEach(team => {
+        if (team[Index] == vals[next]) {
+          order.push(team);
+          next += 1;
+        }
+      });
+    };
+    console.log('order: ' + order);
+    order.forEach(team => {
+      createRow(team);
+    });
+  };
+
+
+  document.getElementById('Team').addEventListener('click', ()=> {
+    SortByIndex(0);
+  });
+
+  document.getElementById('metaAverageScore').addEventListener('click', ()=> {
+    SortByIndex(1);
   });
 
   document.getElementById('averageScore').addEventListener('click', ()=> {
-
+    SortByIndex(2);
   });
 
   document.getElementById('metaMax').addEventListener('click', ()=> {
-
+    SortByIndex(3);
   });
 
   document.getElementById('holdMax').addEventListener('click', ()=> {
-
+    SortByIndex(4);
   });
 
   document.getElementById('autoAvg').addEventListener('click', ()=> {
-
+    SortByIndex(5);
   });
 
   document.getElementById('teleAvg').addEventListener('click', ()=> {
-
+    SortByIndex(6);
   });
 
   document.getElementById('accuracy').addEventListener('click', ()=> {
-
+    SortByIndex(7);
   });
 
   document.getElementById('averageAutoClimb').addEventListener('click', ()=> {
-
+    SortByIndex(8);
   });
 
   document.getElementById('averageTeleClimb').addEventListener('click', ()=> {
-
+    SortByIndex(9);
   });
 
   document.getElementById('averageAutoFuel').addEventListener('click', ()=> {
-
+    SortByIndex(10);
   });
 
   document.getElementById('canBump').addEventListener('click', ()=> {
-
+    SortByIndex(11);
   });
 
   document.getElementById('canTrench').addEventListener('click', ()=> {
-
+    SortByIndex(12);
   });
 
   document.getElementById('explain').addEventListener('click', ()=>{
