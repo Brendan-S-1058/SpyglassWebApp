@@ -564,6 +564,10 @@ async function dpra(input) {
 
     const rows = Array.from(table.rows);
     console.log (rows);
+    rows.forEach(row => {
+      console.log('innerText: ' + row.innerText);
+      console.log('innerText.split(\'\\t\'): ' + row.innerText.split('\t'))
+    })
 
   });
 
