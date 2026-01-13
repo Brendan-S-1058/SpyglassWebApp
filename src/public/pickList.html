@@ -554,6 +554,63 @@ async function dpra(input) {
     return (json);
   }
 
+
+  document.getElementById('Team').addEventListener('click', ()=> {
+
+  });
+
+  document.getElementById('metaAverageScore').addEventListener('click', ()=> {
+    table = document.getElementById('data-table-body');
+
+    const rows = Array.from(table.rows);
+    console.log (rows);
+
+  });
+
+  document.getElementById('averageScore').addEventListener('click', ()=> {
+
+  });
+
+  document.getElementById('metaMax').addEventListener('click', ()=> {
+
+  });
+
+  document.getElementById('holdMax').addEventListener('click', ()=> {
+
+  });
+
+  document.getElementById('autoAvg').addEventListener('click', ()=> {
+
+  });
+
+  document.getElementById('teleAvg').addEventListener('click', ()=> {
+
+  });
+
+  document.getElementById('accuracy').addEventListener('click', ()=> {
+
+  });
+
+  document.getElementById('averageAutoClimb').addEventListener('click', ()=> {
+
+  });
+
+  document.getElementById('averageTeleClimb').addEventListener('click', ()=> {
+
+  });
+
+  document.getElementById('averageAutoFuel').addEventListener('click', ()=> {
+
+  });
+
+  document.getElementById('canBump').addEventListener('click', ()=> {
+
+  });
+
+  document.getElementById('canTrench').addEventListener('click', ()=> {
+
+  });
+
   document.getElementById('explain').addEventListener('click', ()=>{
     alert ("Pull From Public: a toggleable mode which dictates where the data is coming from - green means from the communal public file, blue means from your TEAM's personal data, not just your local, red means just the local data stored on this device.\n\nSPEED: Behaves very similarly to the aforementioned Pull From Public, except instead of changing where the data comes from, it makes the process faster if it is green (on) by not generating a graph, and slower if it is red (off) by taking the time to make a graph\n\nOld Graphs: Old Grpahs will, if enabled (green), import the most recent graph generated either before making a new one, or, if SPEED is enabled, just import the last graph. This can be dangerous because the graph could not represent recent data, especially if SPEED is enabled.\n\nGenerate List: generates a list of teams sorted by the selected method in the dropdown box using information from the selected data method.\n\nDropdown: the dropdown box allows you to pick the sorting method for the picklist, generally I'd suggest APS (average points scored) because that's what this site was made for, but OPR is pretty close (OPR is generated locally in case TBA is down for whatever reason, if you want OPR, I suggest going there, otherwise this will be very close), DPR by OPR is a defensive metric which measures the estimated negative impact on the opposing alliances final score using the same linear algebra as OPR and OPR as the method for predicting a given alliance's score, and lastly, DPR by APS is the same as by OPR except it uses APS to predict an alliance's score.")
 });
