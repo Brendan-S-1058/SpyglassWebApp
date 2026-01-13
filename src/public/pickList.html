@@ -561,14 +561,13 @@ async function dpra(input) {
 
   document.getElementById('metaAverageScore').addEventListener('click', ()=> {
     table = document.getElementById('data-table-body');
-
+    const teams = [];
     const rows = Array.from(table.rows);
     console.log (rows);
     rows.forEach(row => {
-      console.log('innerText: ' + row.innerText);
-      console.log('innerText.split(\'\\t\'): ' + row.innerText.split('\t'))
-    })
-
+      teams.push(row.innerText.split('\t'));
+    });
+    console.log(teams[0][0]);
   });
 
   document.getElementById('averageScore').addEventListener('click', ()=> {
