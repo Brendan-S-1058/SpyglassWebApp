@@ -591,6 +591,8 @@ async function dpra(input) {
       teams.push(row.innerText.split('\t'));
       vals.push(row.innerText.split('\t')[Index]);
     });
+    console.log('teams: ' + teams);
+    console.log('vals: ' + vals);
     const next = 0;
     const order = [];
     vals.sort();
