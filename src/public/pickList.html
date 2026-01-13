@@ -595,7 +595,7 @@ async function dpra(input) {
     const order = [];
     vals.sort();
     vals.reverse();
-    while (next < vals.length()-1){
+    while (next < vals.length-1){
       teams.forEach(team => {
         if (team[Index] == vals[next]) {
           order.push(team);
