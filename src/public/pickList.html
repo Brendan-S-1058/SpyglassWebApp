@@ -588,31 +588,20 @@ async function dpra(input) {
     console.log (rows);
     rows.forEach(row => {
       teams.push(row.innerText.split('\t'));
-      vals.push(row.innerText.split('\t')[Index]);
+      vals.push(int(row.innerText.split('\t')[Index]));
     });
-    console.log('teams: ' + teams);
-    console.log('vals: ' + vals);
     var next = 0;
     const order = [];
     vals.sort();
     vals.reverse();
     while (next < vals.length-1){
       teams.forEach(team => {
-        console.log('team: ' + team);
-        console.log('vals: ' + vals);
-        console.log('team[Index]: ' + team[Index]);
-        console.log('vals[next]: ' + vals[next]);
-        if (team[Index] == vals[next]) {
+        if (int(team[Index]) == vals[next]) {
           order.push(team);
           next += 1;
         }
       });
     };
-    alert('Order: ' + order);
-    console.log('order: ' + order);
-    /*order.forEach(team => {
-      createRowList(team);
-    });*/
     table.innerHTML = '';
     order.forEach(team => {
       createRow(team.join(','));
