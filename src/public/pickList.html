@@ -602,8 +602,11 @@ async function dpra(input) {
       });
     };
     console.log('order: ' + order);
-    order.forEach(team => {
+    /*order.forEach(team => {
       createRowList(team);
+    });*/
+    order.forEach(team => {
+      createRow(team.join(','));
     });
   };
 
