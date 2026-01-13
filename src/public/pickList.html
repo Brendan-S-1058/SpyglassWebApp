@@ -590,6 +590,7 @@ async function dpra(input) {
       teams.push(row.innerText.split('\t'));
       vals.push(parseInt(row.innerText.split('\t')[Index]));
     });
+    console.log(vals);
     var next = 0;
     const order = [];
     vals.sort();
