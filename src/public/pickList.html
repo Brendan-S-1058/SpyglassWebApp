@@ -588,7 +588,7 @@ async function dpra(input) {
     console.log (rows);
     rows.forEach(row => {
       teams.push(row.innerText.split('\t'));
-      vals.push(parseInt(row.innerText.split('\t')[Index]));
+      vals.push(parseFloat(row.innerText.split('\t')[Index]));
     });
     console.log(vals);
     var next = 0;
@@ -597,7 +597,7 @@ async function dpra(input) {
     vals.reverse();
     while (next < vals.length-1){
       teams.forEach(team => {
-        if (parseInt(team[Index]) == vals[next]) {
+        if (parseFloat(team[Index]) == vals[next]) {
           order.push(team);
           next += 1;
         }
