@@ -582,7 +582,6 @@ async function dpra(input) {
 
   function SortByIndex(Index) {
     table = document.getElementById('data-table-body');
-    table.innerHTML = '';
     const teams = [];
     const rows = Array.from(table.rows);
     const vals = [];
@@ -614,6 +613,7 @@ async function dpra(input) {
     /*order.forEach(team => {
       createRowList(team);
     });*/
+    table.innerHTML = '';
     order.forEach(team => {
       createRow(team.join(','));
     });
