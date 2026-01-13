@@ -336,7 +336,7 @@ def Break (inputString, bigDict):
     metaAveragePointsScored = autoAverage + teleAverage + metateleAverage
     averagePointsScored = autoAverage + teleAverage
 
-    bigDict[str(dataLists[0][1])] = [metaAveragePointsScored, averagePointsScored, metaHoldMax, holdMax, autoAverage, teleAverage, 1000*accuracy//1/10, averageautoclimb, averageteleclimb, avgautoFuel, canBump, canTrench]
+    bigDict[str(dataLists[0][1])] = [10*metaAveragePointsScored//1/10, 10*averagePointsScored//1/10, 10*metaHoldMax//1/10, 10*holdMax//1/10, 10*autoAverage//1/10, 10*teleAverage//1/10, 1000*accuracy//1/10, 10*averageautoclimb//1/10, 10*averageteleclimb//1/10, 10*avgautoFuel//1/10, 10*canBump//1/10, 10*canTrench//1/10]
 
 def Order (inputDict):
     outerHoldList = []
