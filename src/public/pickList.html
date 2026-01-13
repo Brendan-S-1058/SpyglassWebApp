@@ -593,7 +593,8 @@ async function dpra(input) {
     });
     const next = 0;
     const order = [];
-    vals.sort(b-a);
+    vals.sort();
+    vals.reverse();
     while (next < vals.length()-1){
       teams.forEach(team => {
         if (team[Index] == vals[next]) {
