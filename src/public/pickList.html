@@ -355,6 +355,32 @@ async function dpra(input) {
     return (await dprSort(send));
   }
 
+  function createRowList(Array){
+      const fields = Array;
+      const [
+        team, metAvg, trueAvg, metMax, trueMax, autoAvg, teleAvg, Acc, avgAClimb, avgTClimb, avgAFuel, canBump, canTrench
+      ] = fields;
+
+      const table = document.getElementById("data-table-body");
+      const newRow = document.createElement('tr');
+      newRow.contentEditable = "false";
+      newRow.innerHTML = `
+          <td class="p-2 border">`+team+`</td>
+          <td class="p-2 border">`+metAvg+`</td>
+          <td class="p-2 border">`+trueAvg+`</td>
+          <td class="p-2 border">`+metMax+`</td>
+          <td class="p-2 border">`+trueMax+`</td>
+          <td class="p-2 border">`+autoAvg+`</td>
+          <td class="p-2 border">`+teleAvg+`</td>
+          <td class="p-2 border">`+Acc+`</td>
+          <td class="p-2 border">`+avgAClimb+`</td>
+          <td class="p-2 border">`+avgTClimb+`</td>
+          <td class="p-2 border">`+avgAFuel+`</td>
+          <td class="p-2 border">`+canBump+`</td>
+          <td class="p-2 border">`+canTrench+`</td>`
+          table.appendChild(newRow);
+          };
+
   function createRow(csv){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
         if (fields.length !== 13) {
@@ -577,7 +603,7 @@ async function dpra(input) {
     };
     console.log('order: ' + order);
     order.forEach(team => {
-      createRow(team);
+      createRowList(team);
     });
   };
 
