@@ -582,6 +582,7 @@ async function dpra(input) {
 
   function SortByIndex(Index) {
     table = document.getElementById('data-table-body');
+    table.innerHTML = '';
     const teams = [];
     const rows = Array.from(table.rows);
     const vals = [];
