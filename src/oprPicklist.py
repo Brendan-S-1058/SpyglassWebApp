@@ -116,18 +116,18 @@ def main():
         for smatch in sortedData:
             if match == smatch[0]:
                 #TODO: ADD REAL ALLIANCE SEPARATIONS WITH NEW INPUT PAGE
-                trueoa = ((smatch[2])*3)+((smatch[3])*3)+((smatch[4])*4)+((smatch[5])*6)+((smatch[6])*7)+((smatch[7])*6)+((smatch[8])*4)
-                trueot = ((smatch[9])*2)+((smatch[10])*3)+((smatch[11])*4)+((smatch[12])*5)+((smatch[13])*6)+((smatch[14])*4)+((smatch[15])*2)+((smatch[16])*6)+((smatch[17])*12)
-                if count < 3:
+                trueoa = (smatch[3] + smatch[4]*15)
+                trueot = (smatch[6] + smatch[7]*10)
+                if smatch[2] == 1:
                     aAlliancesByMatch[str(match) + 'team' + 'b'].append(smatch[1])
                     aAlliancesByMatch[str(match) + 'score' + 'b'] += trueoa
-                elif count < 6:
+                elif smatch[2] == 0:
                     aAlliancesByMatch[str(match) + 'team' + 'r'].append(smatch[1])
                     aAlliancesByMatch[str(match) + 'score' + 'r'] += trueoa
-                if count < 3:
+                if smatch[2] == 1:
                     tAlliancesByMatch[str(match) + 'team' + 'b'].append(smatch[1])
                     tAlliancesByMatch[str(match) + 'score' + 'b'] += trueot
-                elif count < 6:
+                elif smatch[2] == 0:
                     tAlliancesByMatch[str(match) + 'team' + 'r'].append(smatch[1])
                     tAlliancesByMatch[str(match) + 'score' + 'r'] += trueot
                 count += 1
