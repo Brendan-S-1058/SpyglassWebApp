@@ -586,26 +586,33 @@ async function dpra(input) {
     const rows = Array.from(table.rows);
     const vals = [];
     console.log (rows);
-    rows.forEach(row => {
-      teams.push(row.innerText.split('\t'));
-      vals.push(Number(row.innerText.split('\t')[Index]));
-    });
-    console.log(vals);
-    console.log('5');
-    console.log(5);
-    console.log(['5', parseFloat('5'), 5]);
+    if (Index <= 10) {
+      rows.forEach(row => {
+        teams.push(row.innerText.split('\t'));
+        vals.push(Number(row.innerText.split('\t')[Index]));
+      });
+    } else {
+      rows.forEach(row => {
+        teams.push(row.innerText.split('\t'));
+        vals.push(row.innerText.split('\t')[Index]);
+      });
+    }
     var next = 0;
     const order = [];
-    test = [430.5, 416, 395, 371, 362, 349, 330, 325, 322, 319, 314, 312, 311, 306, 300, 293, 290, 285, 282, 275, 272, 240, 232, 229, 223, 221, 214, 212, 208, 206, 200, 186, 179, 179, 172, 166, 161, 155, 148, 145, 139, 134, 126, 124, 124, 119, 118, 113, 111, 103, 98]
-    test.sort().reverse();
-    console.log(test);
     vals.sort((c, d) => c-d);
     vals.reverse();
     while (next < vals.length-1){
       teams.forEach(team => {
-        if (Number(team[Index]) == vals[next]) {
-          order.push(team);
-          next += 1;
+        if (Index <= 10) {
+          if (Number(team[Index]) == vals[next]) {
+            order.push(team);
+            next += 1;
+          }
+        } else {
+          if (team[Index] == vals[next]) {
+            order.push(team);
+            next += 1;
+          }
         }
       });
     };
