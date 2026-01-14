@@ -616,7 +616,7 @@ async function dpra(input) {
         }
       });
       order.forEach(team => {
-        teams.filter(item => item !== team);
+        teams = teams.filter(item => item !== team);
       })
       console.log(teams);
     };
