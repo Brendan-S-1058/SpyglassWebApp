@@ -612,9 +612,12 @@ async function dpra(input) {
           if (team[Index] == vals[next]) {
             order.push(team);
             next += 1;
-          }
+          } 
         }
       });
+      order.forEach(team => {
+        teams.filter(item => item !== team);
+      })
     };
     table.innerHTML = '';
     order.forEach(team => {
