@@ -599,7 +599,7 @@ async function dpra(input) {
     test = [430.5, 416, 395, 371, 362, 349, 330, 325, 322, 319, 314, 312, 311, 306, 300, 293, 290, 285, 282, 275, 272, 240, 232, 229, 223, 221, 214, 212, 208, 206, 200, 186, 179, 179, 172, 166, 161, 155, 148, 145, 139, 134, 126, 124, 124, 119, 118, 113, 111, 103, 98]
     test.sort().reverse();
     console.log(test);
-    vals.sort();
+    vals.sort((c, d) => c-d);
     vals.reverse();
     while (next < vals.length-1){
       teams.forEach(team => {
