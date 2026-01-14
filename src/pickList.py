@@ -378,8 +378,8 @@ def Order (inputDict, teamDir):
     graphTeleTotals = []
     for i in outputList:
         graphTeams.append(i[0])
-        graphAutoTotals.append(i[6])
-        graphTeleTotals.append(i[7])
+        graphAutoTotals.append(i[5])
+        graphTeleTotals.append(i[6])
     
     for i in range (len(outputList)):
         outputList[i][0] = str(int(float(outputList[i][0])//1))
