@@ -132,14 +132,13 @@ def main():
         for smatch in sortedData:
             if match == smatch[0]:
                 totalScore = OprsByTeam[str(smatch[1])]
-                totalScore -= (((smatch[2])*3)+((smatch[3])*3)+((smatch[4])*4)+((smatch[5])*6)+((smatch[6])*7)+((smatch[7])*6)+((smatch[8])*4)+((smatch[9])*2)+((smatch[10])*3)+((smatch[11])*4)+((smatch[12])*5)+((smatch[13])*6)+((smatch[14])*4)+((smatch[15])*2)+((smatch[16])*6)+((smatch[17])*12))
-                #TODO: ADD REAL ALLIANCE SEPARATIONS WITH NEW INPUT PAGE
-                if count < 3:
+                totalScore -= smatch[3]+smatch[4]*15+smatch[6]+smatch[7]*10+(float(10*(float(smatch[5])*(float(smatch[3]) + float(smatch[6]))/(float(smatch[3]) + float(smatch[6]) + float(smatch[8]))*(2/3)//1/10)))
+                if smatch[2] == 1:
                     alliancesByMatch[str(match) + 'team' + 'b'].append(smatch[1])
-                    alliancesByMatch[str(match) + 'score' + 'r'] += totalScore
-                elif count < 6:
-                    alliancesByMatch[str(match) + 'team' + 'r'].append(smatch[1])
                     alliancesByMatch[str(match) + 'score' + 'b'] += totalScore
+                elif smatch[2] == 0:
+                    alliancesByMatch[str(match) + 'team' + 'r'].append(smatch[1])
+                    alliancesByMatch[str(match) + 'score' + 'r'] += totalScore
                 count += 1
 
     print ('alliancesByMatch: ' + str(alliancesByMatch), file=sys.stderr)
