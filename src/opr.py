@@ -131,36 +131,25 @@ def trueOpr(smatch, state):
         return smatch[3]+smatch[4]*15+smatch[6]+smatch[7]*10
     elif state == 'mopr':
         return smatch[3]+smatch[4]*15+smatch[6]+smatch[7]*10+(float(10*(float(smatch[5])*(float(smatch[3]) + float(smatch[6]))/(float(smatch[3]) + float(smatch[6]) + float(smatch[8]))*(2/3)//1/10)))
-    elif state == 'l2c':
-        return smatch[4]+smatch[10]
-    elif state == 'l3c':
-        return smatch[5]+smatch[11]
-    elif state == 'l4c':
-        return smatch[6]+smatch[12]
-    elif state == 'tcc':
-        return smatch[3]+smatch[4]+smatch[5]+smatch[6]+smatch[9]+smatch[10]+smatch[11]+smatch[12]
-    elif state == 'tcs':
-        return smatch[3]*3+smatch[4]*4+smatch[5]*6+smatch[6]*7+smatch[9]*2+smatch[10]*3+smatch[11]*4+smatch[12]*5
-    elif state == 'tac':
-        return smatch[7]+smatch[8]+smatch[13]+smatch[14]
-    elif state == 'tgpc':
-        return smatch[3]+smatch[4]+smatch[5]+smatch[6]+smatch[9]+smatch[10]+smatch[11]+smatch[12]+smatch[7]+smatch[8]+smatch[13]+smatch[14]
+    elif state == 'af':
+        return smatch[3]
+    elif state == 'tf':
+        return smatch[6]
+    elif state == 'fs':
+        return smatch[6]+smatch[3]
+    elif state == 'ft':
+        return smatch[5]
+    elif state == 'ac':
+        return smatch[4]
+    elif state == 'tc':
+        return smatch[7]
+    elif state == 'cs':
+        return smatch[4]*15+smatch[7]*10
     elif state == 'acc':
-        return smatch[3]+smatch[4]+smatch[5]+smatch[6]
-    elif state == 'ams':
-        return smatch[2]
-    elif state == 'taus':
-        return ((smatch[2])*3)+((smatch[3])*3)+((smatch[4])*4)+((smatch[5])*6)+((smatch[6])*7)+((smatch[7])*6)+((smatch[8])*4)
-    elif state == 'tts':
-        return ((smatch[9])*2)+((smatch[10])*3)+((smatch[11])*4)+((smatch[12])*5)+((smatch[13])*6)+((smatch[14])*4)+((smatch[15])*2)+((smatch[16])*6)+((smatch[17])*12)
-    elif state == 'tecc':
-        return smatch[9]+smatch[10]+smatch[11]+smatch[12]
-    elif state == 'tas':
-        return (smatch[7]*6+smatch[8]*4+smatch[13]*6+smatch[14]*4)
-    elif state == 'tna':
-        return smatch[8]+smatch[14]
-    elif state == 'tpa':
-        return smatch[7]+smatch[13]
+        if (float(smatch[3]) + float(smatch[6]) + float(smatch[8])) > 0:
+           return (float(smatch[3]) + float(smatch[6]))/(float(smatch[3]) + float(smatch[6]) + float(smatch[8]))
+        else:
+            return 0
 
 def calcCopr(teamsInData, matchsInData, alliancesByMatch):
     teamsMatrixPre = []

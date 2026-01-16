@@ -23,22 +23,15 @@
         <option value="dpropr">DPR by OPR</option>
         <option value="dpraps">DPR by APS</option>
         <outgroup label="Component OPR">
-          <option value="l1c">L1 coral</option> 
-          <option value="l2c">L2 coral</option>
-          <option value="l3c">L3 coral</option>
-          <option value="l4c">L4 coral</option>
-          <option value="tcc">Total Coral Count</option> 
-          <option value="tcs">Total Coral Score</option>
-          <option value="tac">Total Algae Count</option>
-          <option value="tgpc">Total Game Piece</option>
-          <option value="acc">Auto Coral Count</option> 
-          <option value="ams">Auto Mobility Score</option>
-          <option value="taus">Total Auto Score</option>
-          <option value="tts">Total Teleop Score</option>
-          <option value="tecc">Teleop Coral Count</option>
-          <option value="tas">Total Algae Score</option> 
-          <option value="tna">Total Net Alage</option>
-          <option value="tpa">Total Processor Alage</option>
+          <option value="mopr">Meta OPR</option> 
+          <option value="af">Auto Fuel</option>
+          <option value="tf">Tele Fuel</option>
+          <option value="fs">Fuel Score</option>
+          <option value="ft">Feed Total</option> 
+          <option value="ac">Auto Climb</option>
+          <option value="tc">Tele Climb</option>
+          <option value="cs">Climb Score</option>
+          <option value="acc">Accuracy</option> 
         </outgroup>
       </select>
       <button id="explain" class="button">Explain</button>
@@ -96,7 +89,7 @@
   </div>
 </body>
 <script>
-  let coprs = ['mopr', 'l2c', 'l3c', 'l4c', 'tcc', 'tcs', 'tac', 'tgpc', 'acc', 'ams', 'taus', 'tts', 'tecc', 'tas', 'tna', 'tpa']
+  let coprs = ['mopr', 'af', 'tf', 'fs', 'ft', 'ac', 'tc', 'cs', 'acc']
   let oldGraphs = 1;
   let graphState = 1;
   let modeState = 1;
