@@ -314,7 +314,7 @@ function build (results, aKey, fullPred) {
           <td class="p-2 border`+color+`">Red score range: (`+teams[3]+','+teams[4]+','+teams[5]+'): '+redScoreRange+`</td>
           <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
         `;
-    } else {
+    } else if (match.includes('f')){
       relMatchNum = ''
       instance = ''
       for (i = 0; i<match.length; i++) {
@@ -328,6 +328,13 @@ function build (results, aKey, fullPred) {
       }
       shellResults.innerHTML = `
           <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_f'+relMatchNum+'m'+instance+`" target="_blank" class="p-2 border`+color+`">`+message+`</a>
+          <td class="p-2 border`+color+`">Blue score range: (`+teams[0]+','+teams[1]+','+teams[2]+'): '+blueScoreRange+`</td>
+          <td class="p-2 border`+color+`">Red score range: (`+teams[3]+','+teams[4]+','+teams[5]+'): '+redScoreRange+`</td>
+          <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
+        `;
+    } else {
+      shellResults.innerHTML = `
+          <a href="https://www.statbotics.io/event/`+localStorage.getItem('eventCode')`" target="_blank" class="p-2 border`+color+`">`+message+`</a>
           <td class="p-2 border`+color+`">Blue score range: (`+teams[0]+','+teams[1]+','+teams[2]+'): '+blueScoreRange+`</td>
           <td class="p-2 border`+color+`">Red score range: (`+teams[3]+','+teams[4]+','+teams[5]+'): '+redScoreRange+`</td>
           <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
