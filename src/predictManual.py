@@ -80,7 +80,7 @@ def Main ():
 
     averageMatches = []
     for key in keyList:
-        teamHoldList = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        teamHoldList = [0,0,0,0,0,0,0,0,0,0,0,0]
         #divisor = 0
         countmatches = 0
         for match in relevantDict[key]:
@@ -92,7 +92,7 @@ def Main ():
             print (match, file=sys.stderr)
             for item in match:
                 count += 1
-                if count > 2:
+                if count > 3:
                     teamHoldList[count-1] += (int(item))
                     #teamHoldList[count-1] += (int(item)*recent)
         #print (teamHoldList)
@@ -103,9 +103,9 @@ def Main ():
         averageMatches.append (teamHoldList)
     blueAverageMatchUnprocessed = []
     redAverageMatchUnprocessed = []
-    for i in range (len(averageMatches[0])-2):
-        blueAverageMatchUnprocessed.append(averageMatches[0][i+2]+averageMatches[1][i+2]+averageMatches[2][i+2])
-        redAverageMatchUnprocessed.append(averageMatches[3][i+2]+averageMatches[4][i+2]+averageMatches[5][i+2])
+    for i in range (len(averageMatches[0])-3):
+        blueAverageMatchUnprocessed.append(averageMatches[0][i+3]+averageMatches[1][i+3]+averageMatches[2][i+3])
+        redAverageMatchUnprocessed.append(averageMatches[3][i+3]+averageMatches[4][i+3]+averageMatches[5][i+3])
     
     blueStart = calc(blueAverageMatchUnprocessed)
     redStart = calc(redAverageMatchUnprocessed)
@@ -113,81 +113,70 @@ def Main ():
     blueAverageMatchHalfProcessed = cap(blueAverageMatchUnprocessed)
     redAverageMatchHalfProcessed = cap(redAverageMatchUnprocessed)
 
-    if (blueAverageMatchHalfProcessed[5] + blueAverageMatchHalfProcessed[11]) > 3:
-        corRPperb = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(21*1.1))
+    if blueAverageMatchHalfProcessed[0] > redAverageMatchHalfProcessed[0]:
+        blueAverageMatchHalfProcessed[3] *= 1.3
+    elif redAverageMatchHalfProcessed[0] > blueAverageMatchHalfProcessed[0]:
+        redAverageMatchHalfProcessed[3] *= 1.3
+    
+    if blueAverageMatchHalfProcessed[8] > 3:
+        redAverageMatchHalfProcessed /= 1+blueAverageMatchHalfProcessed/10
+
+    if redAverageMatchHalfProcessed[8] > 3:
+        blueAverageMatchHalfProcessed /= 1+redAverageMatchHalfProcessed/10
+
+    chargedRPb = (blueAverageMatchHalfProcessed[0] + blueAverageMatchHalfProcessed[3])/100
+    chargedRPr = (redAverageMatchHalfProcessed[0] + redAverageMatchHalfProcessed[3])/100
+
+    superChargedRPb = (blueAverageMatchHalfProcessed[0] + blueAverageMatchHalfProcessed[3])/360
+    superChargedRPr = (redAverageMatchHalfProcessed[0] + redAverageMatchHalfProcessed[3])/360
+
+    traversalRPb = (blueAverageMatchHalfProcessed[1]*15+blueAverageMatchHalfProcessed[4]*10)/50
+    traversalRPr = (redAverageMatchHalfProcessed[1]*15+redAverageMatchHalfProcessed[4]*10)/50
+
+    if chargedRPb >= 1:
+        chargedRPb = 100
     else:
-        corRPperb = ((blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4] + blueAverageMatchHalfProcessed[7] + blueAverageMatchHalfProcessed[8] + blueAverageMatchHalfProcessed[9] + blueAverageMatchHalfProcessed[10])/(28*1.1))
+        chargedRPb *= 100
+        chargedRPb //= 1
 
-    if corRPperb >= 1:
-        corRPperb = 100
+    if superChargedRPb >= 1:
+        superChargedRPb = 100
     else:
-        corRPperb *= 100
-        corRPperb //= 1
+        superChargedRPb *= 100
+        superChargedRPb //= 1
 
-    if (blueAverageMatchHalfProcessed[0] > 2):
-        if (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]) >= 2:
-            autoRPperb = blueAverageMatchHalfProcessed[0]/3
-        elif (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]) >= 1:
-            autoRPperb = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4]))/2
-        else:   
-            autoRPperb = ((blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4])/2)/2
+    if traversalRPb >= 1:
+        traversalRPb = 100
     else:
-        autoRPperb = (blueAverageMatchHalfProcessed[0]/3) + (blueAverageMatchHalfProcessed[1] + blueAverageMatchHalfProcessed[2] + blueAverageMatchHalfProcessed[3] + blueAverageMatchHalfProcessed[4])/6
+        traversalRPb *= 100
+        traversalRPb //= 1
 
-    if autoRPperb >= 1:
-        autoRPperb = 100
+
+
+    if chargedRPr >= 1:
+        chargedRPr = 100
     else:
-        autoRPperb *= 100
-        autoRPperb //= 1
+        chargedRPr *= 100
+        chargedRPr //= 1
 
-    bargeRPperb = ((blueAverageMatchHalfProcessed[13]*2 + blueAverageMatchHalfProcessed[14]*6 + blueAverageMatchHalfProcessed[15]*12)/16)/1.25
-
-    if bargeRPperb >= 1:
-        bargeRPperb = 100
+    if superChargedRPr >= 1:
+        superChargedRPr = 100
     else:
-        bargeRPperb *= 100 
-        bargeRPperb //= 1
+        superChargedRPr *= 100
+        superChargedRPr //= 1
 
-    if (redAverageMatchHalfProcessed[5] + redAverageMatchHalfProcessed[11]) > 3:
-        corRPperr = ((redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4] + redAverageMatchHalfProcessed[7] + redAverageMatchHalfProcessed[8] + redAverageMatchHalfProcessed[9] + redAverageMatchHalfProcessed[10])/(21*1.1))
+    if traversalRPr >= 1:
+        traversalRPr = 100
     else:
-        corRPperr = ((redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4] + redAverageMatchHalfProcessed[7] + redAverageMatchHalfProcessed[8] + redAverageMatchHalfProcessed[9] + redAverageMatchHalfProcessed[10])/(28*1.1))
+        traversalRPr *= 100
+        traversalRPr //= 1
 
-    if corRPperr >= 1:
-        corRPperr = 100
-    else:
-        corRPperr *= 100
-        corRPperr //= 1
-
-    if (redAverageMatchHalfProcessed[0] > 2):
-        if (redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4]) >= 2:
-            autoRPperr = redAverageMatchHalfProcessed[0]/3
-        elif (redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4]) >= 1:
-            autoRPperr = ((redAverageMatchHalfProcessed[0]/3) + (redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4]))/2
-        else:   
-            autoRPperr = ((redAverageMatchHalfProcessed[0]/3) + (redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4])/2)/2
-    else:
-        autoRPperr = (redAverageMatchHalfProcessed[0]/3) + (redAverageMatchHalfProcessed[1] + redAverageMatchHalfProcessed[2] + redAverageMatchHalfProcessed[3] + redAverageMatchHalfProcessed[4])/6
-
-    if autoRPperr >= 1:
-        autoRPperr = 100
-    else:
-        autoRPperr *= 100
-        autoRPperr //= 1
-
-    bargeRPperr = ((redAverageMatchHalfProcessed[13]*2 + redAverageMatchHalfProcessed[14]*6 + redAverageMatchHalfProcessed[15]*12)/16)/1.25
-
-    if bargeRPperr >= 1:
-        bargeRPperr = 100
-    else:
-        bargeRPperr *= 100 
-        bargeRPperr //= 1
-
+    
 
     blueFinal = calc (blueAverageMatchHalfProcessed)
     redFinal = calc (redAverageMatchHalfProcessed)
 
-    result = analyze(blueFinal, redFinal, blueStart, redStart, corRPperb, autoRPperb, bargeRPperb, corRPperr, autoRPperr, bargeRPperr)
+    result = analyze(blueFinal, redFinal, blueStart, redStart, chargedRPb, superChargedRPb, traversalRPb, chargedRPr, superChargedRPr, traversalRPr)
 
     print (json.dumps(result))
 
@@ -249,111 +238,21 @@ def search (inputS):
     return ([sorted, teams])
 
 def cap (match):
+    
+    if match[3]+match[0]+match[5] > 0:
+        match[3] += match[2]*(match[3]+match[0])/(match[3]+match[0]+match[5])
 
-    #one can assume that the average match from which scouting data is pulled is not a particularly good composition, so one must give to good matches as one takes away from bad matches
-    x = (match[1] + match[2] + match[3] + match[4] + match[7] + match[8] + match[9] + match[10])
+    if match[1] > 2:
+        match[1] = 2
 
-    if x <= 0:
-        x = 0.00001
-
-    if (match[5] + match[6] + match[11] + match[12]/(x/4+(4/x)**(x/3)-1))>0.9 or (match[5] + match[6] + match[11] + match[12]) > 9:
-        match[7] += 0.8
-        match[8] += 0.8
-        match[9] += 0.8
-        match[10] += 0.8
-    
-    #print ('start: ' + str(calc(match)))
-    if match[1] > 5:
-        match[1] = 5 + (match[1]-5)*0.5
-    if match[2] > 5:
-        match[2] = 5 + (match[2]-5)*0.75 
-    if match[3] > 6:
-        match[3] = 6 + (match[3]-8)*0.75
-    if match[4] > 12:
-        match[4] = 12
-    if match[5] > 3:
-        match[5] = 3
-    if match[6] > 3:
-        match[6] = 3
-    if match[7] > 14:
-        match[7] = 14 + (match[7]-14)*0.5
-    if match[8] > 12:
-        match[8] = 12
-    if match[9] > 12:
-        match[9] = 12
-    if match[10] > 12:
-        match[10] = 12
-    if match[11] > 9:
-        match[11] = 9
-    if match[12] > 9:
-        match[12] = 9
-
-    coralavg = (match[1] + match[2] + match[3] + match[4] + match[7] + match[8] + match[9] + match[10])/4
-
-    if (match[1] + match[7]) > coralavg - 1.5 and (match[1] + match[7]) < 1.5 + coralavg:
-        if match[7] > 0.05:
-            match[7] += 0.25
-    
-    if (match[2] + match[8]) > coralavg - 1.5 and (match[2] + match[8]) < coralavg + 1.5:
-        if match[8] > 0.05:
-            match[8] += 0.3
-    
-    if (match[3] + match[9]) > coralavg - 1.5 and (match[3] + match[9]) < 1.5 + coralavg:
-        if match[7] > 0.05:
-            match[7] += 0.3
-    
-    if (match[4] + match[10]) > coralavg - 1.5 and (match[4] + match[10]) < coralavg + 1.5:
-        if match[10] > 0.05:
-            match[10] += 0.55
-    
-    increment = 0
-    bar = 6 
-    while match[5] + match[6] + match[11] + match[12] + increment < (match[1] + match[2] + match[3] + match[4] + match[7] + match[8] + match[9] + match[10])/6: 
-        if match[8] > bar:
-            match[8] -= 0.25
-            increment += 0.25
-        elif match[7] > bar - 1:
-            match[7] -= 0.25
-            increment += 0.2
-        elif match[9] > bar + 1:
-            match[9] -= 0.25
-            increment += 0.25
-        elif match[10] > bar:
-            match[10] -= 0.5
-            increment += 0.3
-        else:
-            bar -= 2
-        if match[11] > 0:
-            match[11] += 0.3
-        if match[12] > 0:
-            match[12] += 0.5
-    
-    if match[1] + match[7] > 12:
-        match[7] -= match[7] + match[1] - 12
-    if match[2] + match[8] > 12:
-        match[8] -= match[8] + match[2] - 12
-    if match[3] + match[9] > 12:
-        match[9] -= match[9] + match[3] - 12
-    if match[4] + match[10] > 12:
-        match[10] -= match[10] + match[4] - 12
-    
-    while match[5] + match[6] + match[11] + match[12] > 9:
-        match[11] -= 0.5
-        match[12] -= 0.5
-    
-    #print ('end: ' + str(calc(match)))
+    if match[7] > 0 and match[6] > 0:
+        match[3] *= 1.01
 
     return (match)
 
 def calc (match):
     score = 0
-    score += (match[0]*3)+(match[1])*3+(match[2])*4+(match[3])*6+(match[4])*7+(match[5])*2+(match[6])*4
-    score += (match[7])*2+(match[8])*3+(match[9])*4+(match[10])*5+(match[11])*2+(match[12])*4
-    if ((match[13])*2+(match[14])*6+(match[15])*12) > 36:
-        score += 36
-    else:
-        score += (match[13])*2+(match[14])*6+(match[15])*12
-    
+    score += (match[0])+(match[1])*15+(match[3])+(match[4])*10    
     return (score)
 
 def analyze (bscore, rscore, bstart, rstart, crpb, arpb, brpb, crpr, arpr, brpr):
