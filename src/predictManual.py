@@ -119,10 +119,10 @@ def Main ():
         redAverageMatchHalfProcessed[3] *= 1.3
     
     if blueAverageMatchHalfProcessed[8] > 3:
-        redAverageMatchHalfProcessed /= 1+blueAverageMatchHalfProcessed/10
+        redAverageMatchHalfProcessed[3] /= 1+blueAverageMatchHalfProcessed[8]/10
 
     if redAverageMatchHalfProcessed[8] > 3:
-        blueAverageMatchHalfProcessed /= 1+redAverageMatchHalfProcessed/10
+        blueAverageMatchHalfProcessed[3] /= 1+redAverageMatchHalfProcessed[8]/10
 
     chargedRPb = (blueAverageMatchHalfProcessed[0] + blueAverageMatchHalfProcessed[3])/100
     chargedRPr = (redAverageMatchHalfProcessed[0] + redAverageMatchHalfProcessed[3])/100
