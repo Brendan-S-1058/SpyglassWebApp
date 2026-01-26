@@ -103,7 +103,19 @@
       tableBody.innerHTML = '';
       qrs.forEach(qr => {
         console.log('qr: ' + qr);
-        if (qr.includes(searchTerm)) {
+        team = '';
+        hold = '';
+        commas = 0;
+        qr.forEach(char => {
+          if (commas == 1 && char != ',') {
+            hold += char;
+          } else if (commas > 1 && team == '') {
+            team = hold;
+          } else if (char == ',') {
+            commas += 1
+          }
+        })
+        if (team == searchTerm) {
           values.push(qr);
         } else {
           newQrs.push(qr);
