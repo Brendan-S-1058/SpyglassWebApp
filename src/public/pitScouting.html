@@ -113,7 +113,7 @@
       document.getAnimations('pict').hidden = true;
       let picture = document.createElement('img');
       canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-      let image_data_url = canvas.toDataURL('image/jpeg');
+      let image_data_url = canvas.toDataURL('image/png');
       picture.src = image_data_url;
       document.getElementById('images').appendChild(picture);
       console.log(picture.src);
