@@ -112,7 +112,7 @@
       console.log ('picture taken?')
       const capturedImage = captureFrame(video, canvas);
       document.getElementById('images').appendChild(capturedImage);
-      console.log(picture.src);
+      saveChanges(capturedImage);
     });
 
     function captureFrame(video, canvas) {
@@ -136,11 +136,11 @@
       document.getElementById('datadiv').hidden = false;
     }
 
-    async function saveChanges() {
+    async function saveChanges(capturedImage) {
         const res = await fetch ("/pitScoutFiles", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify([userTeam, team]),
+            body: JSON.stringify([capturedImage]),
         });
 
         console.log(res);

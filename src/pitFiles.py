@@ -6,4 +6,6 @@ def Main ():
     inputR = sys.stdin.read()
     inputS = json.loads(inputR)
 
+    print ('inputR: ' + str(inputR), file=sys.stderr)
+
 Main ()
