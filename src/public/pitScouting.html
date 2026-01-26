@@ -115,7 +115,7 @@
       canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
       let image_data_url = canvas.toDataURL('image/jpeg');
       picture.src = image_data_url;
-      docuemnt.getElementById('images').appendChild(picture);
+      document.getElementById('images').appendChild(picture);
       console.log(picture.src);
     });
 
