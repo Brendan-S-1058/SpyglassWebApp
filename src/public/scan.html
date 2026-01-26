@@ -26,7 +26,6 @@
     <button id="downloadBtn" class="button">Download as .txt</button>
     <button id="clearBtn" class="button">Clear Stored QR Codes</button>
     <button id="editStoredBtn" class="button">Edit Data</button>
-    <!-- Add the missing button below -->
     <button id="addNewQRBtn" class="button">Add New QR Code</button>
     <button id="saveChangesBtn" style="display: none;" class="button">Save Changes</button>
     
@@ -60,7 +59,6 @@
       startQRScanner();
     });
     
-    // --- Editing Stored QR Codes Section ---
     document.getElementById("editStoredBtn").addEventListener("click", () => {
       let storedQRs = JSON.parse(localStorage.getItem("qrCodes")) || [];
       if (storedQRs.length === 0) {
@@ -121,7 +119,6 @@
       localStorage.setItem("qrCodes", JSON.stringify(updatedQRs));
       alert("QR codes UPDATED!");
     });
-    // --- End Editing Section ---
     
     async function appendToFile(qrData) {
       if (!fileHandle || !qrData) {
