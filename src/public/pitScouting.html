@@ -108,7 +108,7 @@
         .catch((err) => alert("Camera access denied or not supported."));
     });
 
-    document.getElementById('pict').addEventListener('click', () => {
+    document.getElementById('pict').addEventListener('click', async () => {
       console.log ('picture taken?')
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       canvas.toBlob((blob) => {
