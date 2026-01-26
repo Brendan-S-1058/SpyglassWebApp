@@ -13,14 +13,140 @@
       <h1 class="text-3xl font-bold mb-4">Raw Data Dashboard</h1>
     </div>
     <div class="mb-4 flex justify-between items-center">
-      <input id="Search" type="text" placeholder="Search By Team #" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
+      <input id="Search" type="text" placeholder="Search Team Data By #" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
       <button id="searchButton" class="button">Search</button>
+      <button id="newTeam" class="button">New Team</button>
+      <button id="insertImage" class="button">Take Picture</button>
+      <butotn id="save" class="button">Save Data</butotn>
+      <button id="explain" class="button">Explain</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
+      <h2 id='teamDisplay'>Team: </h2>
+      <p>
 
+
+      </p>
+      <div id="datadiv" class="overflow-auto border rounded-lg shadow bg-white adjacent-graph" hidden=""></div>
+        <div class="overflow-auto border rounded-lg shadow bg-white">
+          <table class="min-w-full table-fixed" id="sideTable">
+            <thead>
+              <tr id="type">
+                <th>
+                  Best Alliance Role:
+                </th>
+              </tr>
+              <tr id="defense">
+                <th>
+                  Defense Possibility:
+                </th>
+              </tr>
+              <tr id="acc">
+                <th>
+                  Relative Accuracy Notes:
+                </th>
+              </tr>
+              <tr id="cc">
+                <th>
+                  Climb Abilities: 
+                </th>
+              </tr>
+              <tr id="ao">
+                <th>
+                  Auto Options:
+                </th>
+              </tr>
+              <tr id="maxRate">
+                <th>
+                  Theoretical Max Balls Per Second:
+                </th>
+              </tr>
+              <tr id="font">
+                <th>
+                  If this robot were a font, which would it be:
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div id="images" class="overflow-auto border rounded-lg shadow bg-white">
+          <video id="video" autoplay playsinline style="width: 100%; display: none;"></video>
+          <canvas id="canvas" style="display: none;"></canvas>
+          <button id="pict" class="button" hidden="">Take Picture</button>
+        </div>
+      </div>
     </div>
   </div>
 </body>
 <script>
+  var userTeam = localStorage.getItem('team')
+  var team = ''
+  const video = document.getElementById("video");
+  const canvas = document.getElementById("canvas");
+    document.getElementById('newTeam').addEventListener('click', () => {
+        let newTeam = prompt ('What is the new team number you are scouting?');
+        if (newTeam != null) {
+            createBlankInput(newTeam);
+            team = newTeam;
+            document.getElementById('teamDisplay').innerHTML = 'Team: ' + team;
+        } else {
+            alert ('aborted');
+        }
+    });
+
+    document.getElementById('insertImage').addEventListener('click', ()=> {
+      const ctx = canvas.getContext("2d");
+      document.getElementById('pict').hidden = false;
+      
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+        .then((stream) => {
+          video.srcObject = stream;
+          video.style.display = "block";
+              canvas.width = video.videoWidth;
+              canvas.height = video.videoHeight;
+              ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        })
+        .catch((err) => alert("Camera access denied or not supported."));
+    });
+
+    document.getElementById('pict').addEventListener('click', () => {
+      document.getAnimations('pict') = true;
+      let picture = document.createElement('img');
+      canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+      let image_data_url = canvas.toDataURL('image/jpeg');
+      picture.src = image_data_url;
+    });
+
+    document.getElementById('save').addEventListener('click', () => {
+      saveChanges();
+    });
+
+    function createBlankInput () {
+      document.getElementById('datadiv').hidden = false;
+    }
+
+    async function saveChanges() {
+        const res = await fetch ("/pitScoutFiles", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify([userTeam, team]),
+        });
+
+        console.log(res);
+
+        if (!res.ok){
+            throw new Error("HTTP error " + res.status);
+            alert ("Event Code was INVALID (why would you do this??)");
+        }
+
+        const json = await res.json();
+        console.log(json);
+        return(json);
+        
+    }
+
+    document.getElementById('explain').addEventListener('click', ()=> {
+      alert('Not written yet, I don\'t even know how this is going to work yet');
+    })
+
 </script>
 </html>

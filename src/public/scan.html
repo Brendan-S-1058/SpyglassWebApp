@@ -142,48 +142,7 @@
       }
     }
     
-    function startQRScanner() {
-      const video = document.getElementById("video");
-      const canvas = document.getElementById("canvas");
-      const ctx = canvas.getContext("2d");
-      
-      navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
-        .then((stream) => {
-          video.srcObject = stream;
-          video.style.display = "block";
-          
-          function scanQRCode() {
-            if (video.readyState === video.HAVE_ENOUGH_DATA) {
-              canvas.width = video.videoWidth;
-              canvas.height = video.videoHeight;
-              ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-              const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-              const code = jsQR(imageData.data, imageData.width, imageData.height);
-              
-              if (code) {
-                let qrData = code.data;
-                let storedQRs = JSON.parse(localStorage.getItem("qrCodes")) || [];
-                if (!storedQRs.includes(qrData)) {
-                  storedQRs.push(qrData);
-                  localStorage.setItem("qrCodes", JSON.stringify(storedQRs));
-                }
-                document.getElementById("qrDataDisplay").innerText = "QR Code: " + qrData;
-                document.getElementById("saveBtn").style.display = scanningWithoutFile ? "none" : "block";
-                document.getElementById("rescanBtn").style.display = "block";
-                stream.getTracks().forEach(track => track.stop());
-                if (!scanningWithoutFile) appendToFile(qrData);
-                hasScannedQR = true;
-              } else {
-                requestAnimationFrame(scanQRCode);
-              }
-            } else {
-              requestAnimationFrame(scanQRCode);
-            }
-          }
-          video.onloadedmetadata = () => requestAnimationFrame(scanQRCode);
-        })
-        .catch((err) => alert("Camera access denied or not supported."));
-    }
+     
     
     document.getElementById("saveBtn").addEventListener("click", () => {
       let lastQRData = document.getElementById("qrDataDisplay").innerText.replace("QR Code: ", "");
