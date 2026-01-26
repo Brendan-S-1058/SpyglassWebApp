@@ -120,9 +120,10 @@
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      
+       
       const img = document.createElement('img');
       img.src = canvas.toDataURL('image/png');
+      console.log('img.src: ' + img.src);
       return img;
     }
 
