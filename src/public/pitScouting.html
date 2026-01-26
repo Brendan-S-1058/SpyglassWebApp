@@ -140,7 +140,7 @@
         const res = await fetch ("/pitScoutFiles", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify([capturedImage]),
+            body: JSON.stringify([capturedImage.innerHTML]),
         });
 
         console.log(res);
