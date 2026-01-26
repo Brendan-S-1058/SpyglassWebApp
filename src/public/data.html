@@ -106,15 +106,16 @@
         team = '';
         hold = '';
         commas = 0;
-        qr.forEach(char => {
-          if (commas == 1 && char != ',') {
-            hold += char;
+        for (let i = 0; i < qr.length; i++) {
+          if (commas == 1 && qr[i] != ',') {
+            hold += qr[i];
           } else if (commas > 1 && team == '') {
             team = hold;
-          } else if (char == ',') {
+          } else if (qr[i] == ',') {
             commas += 1
           }
-        })
+        }
+        console.log ('team: ' + team);
         if (team == searchTerm) {
           values.push(qr);
         } else {
