@@ -12,4 +12,9 @@ def Main ():
     os.makedirs (teamFileStructureOne)
     os.makedirs (teamFileStructureTwo)
 
+    try:
+        with open ("public/data/Teams/" + str(inputS) + '/' + str(inputS) + 'Public.txt', 'x') as file:
+            file.close ()
+    except:
+        pass
 Main ()

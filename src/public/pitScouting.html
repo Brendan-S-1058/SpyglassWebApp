@@ -145,7 +145,7 @@
     }
 
     async function getTableData () {
-      rows = Array.from.getElementById('sideTable');
+      rows = Array.from(document.getElementById('sideTable'));
 
       return(rows.map(row =>
       Array.from(row.cells)
