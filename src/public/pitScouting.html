@@ -160,7 +160,7 @@
     });
 
     async function search () {
-      let newTeam = prompt ('What is the new team number you are scouting?');
+      let newTeam = document.getElementById('search').value;
         if (newTeam != null) {
             team = newTeam;
             document.getElementById('teamDisplay').innerHTML = 'Team: ' + team;
@@ -219,7 +219,7 @@
       rows = document.getElementById('sideTable').getElementsByTagName('tr');
       const labels = ['Guiding Questions', 'Best Alliance Role:', 'Max Hopper:', 'Bump or Trench', 'Defense Possibility:', 'Relative Accuracy Notes:', 'Climb Abilities:', 'Auto Options:', 'Theoretical Max Balls Per Secon:', 'If this robot were a font - which would it be:']
 
-      for (i=0; i<labels.length; i++) {
+      for (i=-1; i<labels.length; i++) {
           cell = rows[Math.floor(i/2)].getElementsByTagName('td')[0];
           cell.innerText = labels[i]
           cell = rows[Math.floor(i/2)].getElementsByTagName('td')[1];
