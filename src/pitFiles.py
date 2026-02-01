@@ -43,7 +43,7 @@ def Main ():
         file.write(image_bytes)
     
     try:
-        with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(scoutedTeam) + 'Picture.png', 'r') as file:
+        with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(team) + 'TeamsScouted.txt', 'r') as file:
             held = file.read()
     except: 
         held = ''
