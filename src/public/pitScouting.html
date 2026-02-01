@@ -178,11 +178,11 @@
       for (i=0; i<dataArray.length; i++) {
         if (label) {
           label = false;
-          cell = rows[Math.floor(i/2)].getElementsByTagName['td'][0];
+          cell = rows[Math.floor(i/2)].getElementsByTagName('td')[0];
           cell.innerText = dataArray[i]
         } else {
           label = true;
-          cell = rows[Math.floor(i/2)].getElementsByTagName['td'][1];
+          cell = rows[Math.floor(i/2)].getElementsByTagName('td')[1];
           cell.innerText = dataArray[i]
         }
       }
@@ -194,7 +194,7 @@
       string = ''
 
       for (i = 0; i < rows.length; i++) {
-        cells = rows[i].getElementsByTagName['td'];
+        cells = rows[i].getElementsByTagName('td');
         for (j = 0; j < cells.length; j++) {
           string += cells[j].innerText;
         }
