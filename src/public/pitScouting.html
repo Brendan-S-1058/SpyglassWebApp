@@ -13,7 +13,7 @@
       <h1 class="text-3xl font-bold mb-4">Raw Data Dashboard</h1>
     </div>
     <div class="mb-4 flex justify-between items-center">
-      <input id="Search" type="text" placeholder="Search Team Data By #" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
+      <input id="srgrearch" type="text" placeholder="Search Team Data By #" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
       <button id="searchButton" class="button">Search</button>
       <button id="newTeam" class="button">New Team</button>
       <button id="insertImage" class="button">Take Picture</button>
@@ -222,7 +222,7 @@
       rows[0].getElementsByTagName('th')[0].innerText = labels[0];
       rows[0].getElementsByTagName('th')[1].innerText = 'Responses';
 
-      for (i=1; i<labels.length; i++) {
+      for (i=0; i<labels.length; i++) {
           cell = rows[Math.floor(i/2)].getElementsByTagName('td')[0];
           cell.innerText = labels[i]
           cell = rows[Math.floor(i/2)].getElementsByTagName('td')[1];
