@@ -108,6 +108,11 @@
   const video = document.getElementById("video");
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
+
+    document.getElementById('searchButton').addEventListener('click', () => {
+      search();
+    })
+
     document.getElementById('newTeam').addEventListener('click', async () => {
         let newTeam = prompt ('What is the new team number you are scouting?');
         if (newTeam != null) {
@@ -153,6 +158,31 @@
       document.getElementById('images').appendChild(capturedImage);
       //saveChanges(capturedImage);
     });
+
+    async function search () {
+      let newTeam = prompt ('What is the new team number you are scouting?');
+        if (newTeam != null) {
+            team = newTeam;
+            document.getElementById('teamDisplay').innerHTML = 'Team: ' + team;
+            try {
+              past = await importData(newTeam);
+            } catch (error) {
+              alert ('Team data failed - please check your search value');
+            }
+            try {
+              past = createTable(past);
+            } catch (error) {
+              pass
+            }
+            try {
+              past = createImg(newTeam);
+            } catch (error) {
+              pass
+            }
+        } else {
+            alert ('aborted');
+        }
+    }
 
     function captureFrame(video, canvas) {
       const ctx = canvas.getContext('2d');
