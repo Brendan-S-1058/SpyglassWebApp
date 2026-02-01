@@ -58,10 +58,10 @@ def Main ():
             hold = ''
     
     if str(scoutedTeam) not in list:
-        with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(scoutedTeam) + 'Picture.png', 'a') as file:
+        with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(team) + 'TeamsScouted.txt', 'a') as file:
             file.write(str(scoutedTeam) + ',')
     
-    with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(scoutedTeam) + 'Picture.png', 'w') as file:
+    with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(scoutedTeam) + 'Data.txt', 'w') as file:
         file.write (scoutedData)
     
     print(json.dumps('yay, no errors'))
