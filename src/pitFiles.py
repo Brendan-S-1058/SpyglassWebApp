@@ -21,6 +21,8 @@ def Main ():
     list.pop(2)
     print ('List - LATE: ' + str(list), file=sys.stderr)
 
+    image_bytes = base64.b64decode(list[2])
+
     print ('image_bytes: ' + str(image_bytes), file=sys.stderr)
     print ('inputS: ' + str(inputS), file=sys.stderr)
 
