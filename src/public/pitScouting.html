@@ -219,8 +219,8 @@
       rows = document.getElementById('sideTable').getElementsByTagName('tr');
       const labels = ['Guiding Questions', 'Best Alliance Role:', 'Max Hopper:', 'Bump or Trench', 'Defense Possibility:', 'Relative Accuracy Notes:', 'Climb Abilities:', 'Auto Options:', 'Theoretical Max Balls Per Secon:', 'If this robot were a font - which would it be:']
 
-      rows[0].getElementsByTagName('th')[0] = labels[0];
-      rows[0].getElementsByTagName('th')[1] = 'Responses';
+      rows[0].getElementsByTagName('th')[0].innerText = labels[0];
+      rows[0].getElementsByTagName('th')[1].innerText = 'Responses';
 
       for (i=1; i<labels.length; i++) {
           cell = rows[Math.floor(i/2)].getElementsByTagName('td')[0];
