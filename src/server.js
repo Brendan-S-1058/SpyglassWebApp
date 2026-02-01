@@ -4,6 +4,7 @@ const { spawn } = require("child_process");
 const path = require("path");
 
 const app = express();
+
 app.use(express.json());
 app.use(cors()); // Enables CORS for frontend requests
 

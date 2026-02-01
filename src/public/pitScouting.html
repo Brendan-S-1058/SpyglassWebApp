@@ -112,7 +112,7 @@
       console.log ('picture taken?')
       const capturedImage = captureFrame(video, canvas);
       document.getElementById('images').appendChild(capturedImage);
-      saveChanges(capturedImage);
+      //saveChanges(capturedImage);
     });
 
     function captureFrame(video, canvas) {
@@ -123,6 +123,7 @@
        
       const img = document.createElement('img');
       img.src = canvas.toDataURL('image/png');
+      saveChanges(canvas.toDataURL('image/png'));
       console.log('img.src: ' + img.src);
       return img;
     }
@@ -155,6 +156,24 @@
         return(json);
         
     }
+
+    async function sendImageElement() {
+    const img = document.getElementById('myImage');
+    
+    const canvas2 = document.createElement('canvas');
+    canvas2.width = img.naturalWidth;
+    canvas2.height = img.naturalHeight;
+    canvas2.getContext('2d').drawImage(img, 0, 0);
+    
+    canvas2.toBlob(async (blob) => {
+        const file = new File([blob], 'image.png', { type: 'image/png' });
+        
+        const formData = new FormData();
+        formData.append('image', file);
+        
+        saveImage(formData);
+    }, 'image/png');
+}
 
     document.getElementById('explain').addEventListener('click', ()=> {
       alert('Not written yet, I don\'t even know how this is going to work yet');
