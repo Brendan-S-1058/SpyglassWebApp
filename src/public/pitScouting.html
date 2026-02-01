@@ -141,7 +141,7 @@
         const res = await fetch ("/pitScoutFiles", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify([capturedImage]),
+            body: JSON.stringify([team, userTeam, capturedImage]),
         });
 
         console.log(res);
