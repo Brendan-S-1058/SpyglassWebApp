@@ -33,8 +33,28 @@
           }
 
         ThouShallPerchancePass (team)
+        } else {
+          checkMakeDirs();
         }
       });
+
+    async function checkMakeDirs() {
+        const res = await fetch ("/makeTeamDirs", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify([localStorage.getItem('team')]),
+      });
+
+      console.log(res);
+
+      if (!res.ok){
+        throw new Error("HTTP error " + res.status);
+      }
+
+      const json = await res.json();
+      console.log(json);
+      return(json);
+    }
     
     async function ThouShallPerchancePass(team) {
         if ((team.toLowerCase()) != 'guest'){
