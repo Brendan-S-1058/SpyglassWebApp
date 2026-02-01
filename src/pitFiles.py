@@ -15,6 +15,8 @@ def Main ():
         else:
             list.append(hold)
             hold = ''
+    list.append(hold)
+    del hold
     
     print ('List - EARLY: ' + str(list), file=sys.stderr)
     #need to remove the prefix to the link, separated by a comma naturally, very conveinently
