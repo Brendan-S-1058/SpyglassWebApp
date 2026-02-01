@@ -13,9 +13,9 @@ def Main ():
         if char == ',':
             comma = True
         elif not comma:
-            team += char
-        else:
             inquireTeam += char
+        else:
+            team += char
     
     with open ('public/data/Teams/' + team + '/' + team + 'PitScouting/' + inquireTeam + 'Data.txt', 'r') as file:
         currentData = file.read()

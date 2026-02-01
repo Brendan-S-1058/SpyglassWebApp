@@ -85,7 +85,7 @@
               </tr>
               <tr id="font">
                 <td>
-                  If this robot were a font, which would it be:
+                  If this robot were a font - which would it be:
                 </td>
                 <td></td>
               </tr>
@@ -138,7 +138,6 @@
       console.log ('picture taken?')
       const capturedImage = captureFrame(video, canvas);
       document.getElementById('images').appendChild(capturedImage);
-      //saveChanges(capturedImage);
     });
 
     function captureFrame(video, canvas) {
@@ -149,7 +148,6 @@
        
       const img = document.createElement('img');
       img.src = canvas.toDataURL('image/png');
-      saveChanges(canvas.toDataURL('image/png'));
       console.log('img.src: ' + img.src);
 
       canvas.hidden = true;
