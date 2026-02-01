@@ -113,9 +113,21 @@
         if (newTeam != null) {
             team = newTeam;
             document.getElementById('teamDisplay').innerHTML = 'Team: ' + team;
-            past = await importData(newTeam);
-            createTable(past);
-            createImg(newTeam);
+            try {
+              past = await importData(newTeam);
+            } catch (error) {
+              pass
+            }
+            try {
+              past = createTable(past);;
+            } catch (error) {
+              pass
+            }
+            try {
+              past = createImg(newTeam);
+            } catch (error) {
+              pass
+            }
         } else {
             alert ('aborted');
         }
