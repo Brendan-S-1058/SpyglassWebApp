@@ -5,7 +5,7 @@ const path = require("path");
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({limit: '10mb'}));
 app.use(cors()); // Enables CORS for frontend requests
 
 const PORT = process.env.PORT || 10000; // Use Render's assigned port or default to 10000
