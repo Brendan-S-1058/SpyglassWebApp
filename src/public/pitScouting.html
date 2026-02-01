@@ -110,11 +110,11 @@
     document.getElementById('newTeam').addEventListener('click', () => {
         let newTeam = prompt ('What is the new team number you are scouting?');
         if (newTeam != null) {
+            team = newTeam;
+            document.getElementById('teamDisplay').innerHTML = 'Team: ' + team;
             past = importData(newTeam);
             createTable(past);
             createImg(newTeam);
-            team = newTeam;
-            document.getElementById('teamDisplay').innerHTML = 'Team: ' + team;
         } else {
             alert ('aborted');
         }
