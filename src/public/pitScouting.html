@@ -27,14 +27,18 @@
 
       </p>
       <div id="datadiv" class="overflow-auto border rounded-lg shadow bg-white adjacent-graph" hidden="hidden"></div>
-        <div class="overflow-auto border rounded-lg shadow bg-white">
+        <div class="overflow-auto border rounded-lg shadow bg-white" contenteditable>
           <table class="min-w-full table-fixed" id="sideTable">
             <thead>
               <tr id="type">
                 <th>
                   Best Alliance Role:
                 </th>
-                <td></td>
+                <td>
+                  <p>
+                                                   
+                  </p>
+                </td>
               </tr>
               <tr id="defense">
                 <th>
@@ -147,18 +151,20 @@
     async function getTableData () {
       rows = Array.from(document.getElementById('sideTable'));
 
-      return(rows.map(row =>
+      string = rows.map(row =>
       Array.from(row.cells)
         .slice(0, 1)
         .map(cell => cell.textContent.trim().replaceAll(',', ' -'))
-        .join("\n")));
+        .join("\n"));
+        console.log(string);
+        return(string);
     }
 
     async function saveChanges(capturedImage) {
         const res = await fetch ("/pitScoutFiles", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify([team, userTeam, capturedImage, getTableData()]),
+            body: JSON.stringify([team, userTeam, getTableData(), capturedImage]),
         });
 
         console.log(res);
