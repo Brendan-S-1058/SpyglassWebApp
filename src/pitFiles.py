@@ -16,13 +16,10 @@ def Main ():
             list.append(hold)
             hold = ''
     
+    print ('List - EARLY: ' + str(list), file=sys.stderr)
     #need to remove the prefix to the link, separated by a comma naturally, very conveinently
     list.pop(2)
-
-    image_bytes = base64.b64decode(inputS)
-
-
-
+    print ('List - LATE: ' + str(list), file=sys.stderr)
 
     print ('image_bytes: ' + str(image_bytes), file=sys.stderr)
     print ('inputS: ' + str(inputS), file=sys.stderr)
