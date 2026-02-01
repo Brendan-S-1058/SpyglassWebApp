@@ -108,12 +108,12 @@
   const video = document.getElementById("video");
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
-    document.getElementById('newTeam').addEventListener('click', () => {
+    document.getElementById('newTeam').addEventListener('click', async () => {
         let newTeam = prompt ('What is the new team number you are scouting?');
         if (newTeam != null) {
             team = newTeam;
             document.getElementById('teamDisplay').innerHTML = 'Team: ' + team;
-            past = importData(newTeam);
+            past = await importData(newTeam);
             createTable(past);
             createImg(newTeam);
         } else {
