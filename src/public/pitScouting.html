@@ -104,6 +104,7 @@
 <script>
   var userTeam = localStorage.getItem('team')
   var team = ''
+  var url = ''
   const video = document.getElementById("video");
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
@@ -138,6 +139,7 @@
       console.log ('picture taken?')
       const capturedImage = captureFrame(video, canvas);
       document.getElementById('images').appendChild(capturedImage);
+      //saveChanges(capturedImage);
     });
 
     function captureFrame(video, canvas) {
@@ -148,6 +150,7 @@
        
       const img = document.createElement('img');
       img.src = canvas.toDataURL('image/png');
+      url = (canvas.toDataURL('image/png'));
       console.log('img.src: ' + img.src);
 
       canvas.hidden = true;
@@ -225,7 +228,7 @@
         const res = await fetch ("/pitScoutFiles", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify([team, userTeam, getTableData(), capturedImage]),
+            body: JSON.stringify([team, userTeam, getTableData(), url]),
         });
 
         console.log(res);
