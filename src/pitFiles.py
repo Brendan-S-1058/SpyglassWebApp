@@ -61,7 +61,7 @@ def Main ():
         with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(scoutedTeam) + 'Picture.png', 'a') as file:
             file.write(str(scoutedTeam) + ',')
     
-    with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(scoutedTeam) + 'Picture.png', 'w') as f:
+    with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(scoutedTeam) + 'Picture.png', 'w') as file:
         file.write (scoutedData)
     
     print(json.dumps('yay, no errors'))
