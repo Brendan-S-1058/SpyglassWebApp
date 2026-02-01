@@ -34,36 +34,43 @@
                 <th>
                   Best Alliance Role:
                 </th>
+                <td></td>
               </tr>
               <tr id="defense">
                 <th>
                   Defense Possibility:
                 </th>
+                <td></td>
               </tr>
               <tr id="acc">
                 <th>
                   Relative Accuracy Notes:
                 </th>
+                <td></td>
               </tr>
               <tr id="cc">
                 <th>
                   Climb Abilities: 
                 </th>
+                <td></td>
               </tr>
               <tr id="ao">
                 <th>
                   Auto Options:
                 </th>
+                <td></td>
               </tr>
               <tr id="maxRate">
                 <th>
                   Theoretical Max Balls Per Second:
                 </th>
+                <td></td>
               </tr>
               <tr id="font">
                 <th>
                   If this robot were a font, which would it be:
                 </th>
+                <td></td>
               </tr>
             </thead>
           </table>
@@ -137,11 +144,21 @@
       document.getElementById('datadiv').hidden = false;
     }
 
+    async function getTableData () {
+      rows = Array.from.getElementById('sideTable');
+
+      return(rows.map(row =>
+      Array.from(row.cells)
+        .slice(0, 1)
+        .map(cell => cell.textContent.trim().replaceAll(',', ' -'))
+        .join("\n")));
+    }
+
     async function saveChanges(capturedImage) {
         const res = await fetch ("/pitScoutFiles", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify([team, userTeam, capturedImage]),
+            body: JSON.stringify([team, userTeam, capturedImage, getTableData()]),
         });
 
         console.log(res);
