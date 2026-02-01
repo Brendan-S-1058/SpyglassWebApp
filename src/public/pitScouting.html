@@ -174,7 +174,7 @@
     }
 
     async function createTable(data) {
-      dataArray = data.split(',');
+      dataArray = data.split('&');
       rows = document.getElementById('sideTable').getElementsByTagName('tr');
 
       label = true;
@@ -199,7 +199,7 @@
       for (i = 0; i < rows.length; i++) {
         cells = rows[i].getElementsByTagName('td');
         for (j = 0; j < cells.length; j++) {
-          string += cells[j].innerText + ',';
+          string += cells[j].innerText + '&';
         }
       }
 
