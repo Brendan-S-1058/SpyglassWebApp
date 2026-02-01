@@ -45,12 +45,12 @@
               </tr>
               <tr id="hopper">
                 <td>
-                  Max Hopper
+                  Max Hopper: 
                 </td>
                 <td></td>
               </tr>
               <tr>
-                <td>Bump or Trench?</td>
+                <td>Bump or Trench:</td>
                 <td></td>
               </tr>
               <tr id="defense">
@@ -120,18 +120,18 @@
             document.getElementById('teamDisplay').innerHTML = 'Team: ' + team;
             try {
               past = await importData(newTeam);
+              try {
+                past = createTable(past);;
+              } catch (error) {
+                pass
+              }
+              try {
+                past = createImg(newTeam);
+              } catch (error) {
+                pass
+              }
             } catch (error) {
-              pass
-            }
-            try {
-              past = createTable(past);;
-            } catch (error) {
-              pass
-            }
-            try {
-              past = createImg(newTeam);
-            } catch (error) {
-              pass
+              createEmptyTable ();
             }
         } else {
             alert ('aborted');
@@ -213,6 +213,22 @@
       console.log(img.src);
 
       document.getElementById('images').appendChild(img);
+    }
+
+    async function createEmptyTable() {
+      rows = document.getElementById('sideTable').getElementsByTagName('tr');
+      const labels = ['Guiding Questions', 'Best Alliance Role:', 'Max Hopper:', 'Bump or Trench', 'Defense Possibility:', 'Relative Accuracy Notes:', 'Climb Abilities:', 'Auto Options:', 'Theoretical Max Balls Per Secon:', 'If this robot were a font - which would it be:']
+
+      for (i=0; i<labels.length; i++) {
+          cell = rows[Math.floor(i/2)].getElementsByTagName('td')[0];
+          cell.innerText = labels[i]
+          cell = rows[Math.floor(i/2)].getElementsByTagName('td')[1];
+          if (i == 0) {
+            cell.innerText = 'Responses '
+          } else {
+            cell.innerText = '';
+          }
+      }
     }
 
     async function createTable(data) {
