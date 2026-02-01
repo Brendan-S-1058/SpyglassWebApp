@@ -33,7 +33,11 @@ def Main ():
     print ('image_bytes: ' + str(image_bytes), file=sys.stderr)
     print ('inputS: ' + str(inputS), file=sys.stderr)
 
-
+    try:
+        with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(scoutedTeam) + 'Picture.png', 'x') as file:
+            file.close()
+    except:
+        pass
 
     with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(scoutedTeam) + 'Picture.png', 'wb') as file:
         file.write(image_bytes)
