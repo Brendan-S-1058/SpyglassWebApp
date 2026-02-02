@@ -102,12 +102,34 @@
   </div>
 </body>
 <script>
+  const linkVars = new URLSearchParams(window.location.search);
+  const linkTeam = linkVars.get('team');
   var userTeam = localStorage.getItem('team')
   var team = ''
   var url = ''
   const video = document.getElementById("video");
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (linkTeam != null) {
+        try {
+          past = await importData(newTeam);
+          try {
+            past = createTable(past);
+          } catch (error) {
+            pass
+          }
+          try {
+            past = createImg(newTeam);
+          } catch (error) {
+            pass
+          }
+        } catch (error) {
+        alert('No pit scouting on that team :(')
+      }
+    }
+    });
 
     document.getElementById('searchButton').addEventListener('click', () => {
       search();
@@ -121,7 +143,7 @@
             try {
               past = await importData(newTeam);
               try {
-                past = createTable(past);;
+                past = createTable(past);
               } catch (error) {
                 pass
               }
