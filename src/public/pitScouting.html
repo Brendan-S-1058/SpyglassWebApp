@@ -114,14 +114,14 @@
     document.addEventListener('DOMContentLoaded', async () => {
       if (linkTeam != null) {
         try {
-          past = await importData(newTeam);
+          past = await importData(linkTeam);
           try {
             past = createTable(past);
           } catch (error) {
             pass
           }
           try {
-            past = createImg(newTeam);
+            past = createImg(linkTeam);
           } catch (error) {
             pass
           }
