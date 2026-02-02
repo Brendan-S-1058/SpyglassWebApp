@@ -216,18 +216,67 @@
     }
 
     async function createEmptyTable() {
-      rows = document.getElementById('sideTable').getElementsByTagName('tr');
-      const labels = ['Guiding Questions', 'Best Alliance Role:', 'Max Hopper:', 'Bump or Trench', 'Defense Possibility:', 'Relative Accuracy Notes:', 'Climb Abilities:', 'Auto Options:', 'Theoretical Max Balls Per Secon:', 'If this robot were a font - which would it be:']
-
-      rows[0].getElementsByTagName('th')[0].innerText = labels[0];
-      rows[0].getElementsByTagName('th')[1].innerText = 'Responses';
-
-      for (i=0; i<labels.length; i++) {
-          cell = rows[Math.floor(i/2)].getElementsByTagName('td')[0];
-          cell.innerText = labels[i]
-          cell = rows[Math.floor(i/2)].getElementsByTagName('td')[1];
-          cell.innerText = '';
-      }
+      document.getElementById('sideTable').innerHTML = `<thead>
+              <tr>
+              <th>Guiding Questions</th>
+              <th>Responses</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr id="type">
+                <td>
+                  Best Alliance Role:
+                </td>
+                <td>
+                </td>
+              </tr>
+              <tr id="hopper">
+                <td>
+                  Max Hopper: 
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Bump or Trench:</td>
+                <td></td>
+              </tr>
+              <tr id="defense">
+                <td>
+                  Defense Possibility:
+                </td>
+                <td></td>
+              </tr>
+              <tr id="acc">
+                <td>
+                  Relative Accuracy Notes:
+                </td>
+                <td></td>
+              </tr>
+              <tr id="cc">
+                <td>
+                  Climb Abilities: 
+                </td>
+                <td></td>
+              </tr>
+              <tr id="ao">
+                <td>
+                  Auto Options:
+                </td>
+                <td></td>
+              </tr>
+              <tr id="maxRate">
+                <td>
+                  Theoretical Max Balls Per Second:
+                </td>
+                <td></td>
+              </tr>
+              <tr id="font">
+                <td>
+                  If this robot were a font - which would it be:
+                </td>
+                <td></td>
+              </tr>
+              </tbody>`
     }
 
     async function createTable(data) {
