@@ -112,7 +112,9 @@
   const ctx = canvas.getContext("2d");
 
     document.addEventListener('DOMContentLoaded', async () => {
-      if (linkTeam != null) {
+      console.log('linkTeam: ' + linkteam);
+      conosle.log('null == "null": ' + (null == 'null'));
+      if (linkTeam != 'null') {
         try {
           past = await importData(linkTeam);
           try {
