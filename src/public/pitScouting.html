@@ -115,6 +115,7 @@
       console.log('linkTeam: ' + linkTeam);
       console.log('null == "null": ' + (null == 'null'));
       if (linkTeam != 'null') {
+        document.getElementById('teamDisplay').innerHTML = 'Team: ' + linkTeam;
         try {
           past = await importData(linkTeam);
           try {
