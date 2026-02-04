@@ -310,9 +310,9 @@
 
       string = ''
 
-      for (i = 1; i < rows.length-1; i++) {
+      for (i = 0; i < rows.length; i++) {
         cells = rows[i].getElementsByTagName('td');
-        for (j = 0; j < cells.length; j++) {
+        for (j = 1; j < cells.length-1; j++) {
           string += cells[j].innerText.replace(',', ' -') + '&';
         }
       }
