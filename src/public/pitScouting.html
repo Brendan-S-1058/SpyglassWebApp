@@ -10,7 +10,7 @@
 <body class="bg-gray-100 text-gray-800">
   <div class="container mx-auto p-4" id="table">
     <div id="title">
-      <h1 class="text-3xl font-bold mb-4">Raw Data Dashboard</h1>
+      <h1 class="text-3xl font-bold mb-4">Pit Scouting</h1>
     </div>
     <div class="mb-4 flex justify-between items-center">
       <input id="search" type="text" placeholder="Search Team Data By #" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"></input>
@@ -27,7 +27,7 @@
 
       </p>
       <div id="datadiv" class="overflow-auto border rounded-lg shadow bg-white adjacent-graph" hidden="hidden"></div>
-        <div class="overflow-auto border rounded-lg shadow bg-white" contenteditable>
+        <div class="overflow-auto border rounded-lg shadow bg-white tableCollapse">
           <table class="min-w-full table-fixed" id="sideTable">
             <thead>
               <tr>
@@ -40,56 +40,66 @@
                 <td>
                   Best Alliance Role:
                 </td>
-                <td>
+                <td contenteditable>
                 </td>
               </tr>
               <tr id="hopper">
                 <td>
                   Max Hopper: 
                 </td>
-                <td></td>
+                <td contenteditable></td>
               </tr>
               <tr>
                 <td>Bump or Trench:</td>
-                <td></td>
+                <td contenteditable></td>
               </tr>
               <tr id="defense">
                 <td>
                   Defense Possibility:
                 </td>
-                <td></td>
+                <td contenteditable></td>
               </tr>
               <tr id="acc">
                 <td>
                   Relative Accuracy Notes:
                 </td>
-                <td></td>
+                <td contenteditable></td>
               </tr>
               <tr id="cc">
                 <td>
                   Climb Abilities: 
                 </td>
-                <td></td>
+                <td contenteditable></td>
               </tr>
               <tr id="ao">
                 <td>
                   Auto Options:
                 </td>
-                <td></td>
+                <td contenteditable></td>
               </tr>
               <tr id="maxRate">
                 <td>
                   Theoretical Max Balls Per Second:
                 </td>
-                <td></td>
+                <td contenteditable></td>
               </tr>
               <tr id="font">
                 <td>
                   If this robot were a font - which would it be:
                 </td>
-                <td></td>
+                <td contenteditable></td>
               </tr>
               </tbody>
+          </table>
+          <table class="min-w-full table-fixed">
+            <thead>
+              <th>
+                General/Interesting notes
+              </th>
+            </thead>
+            <tbody>
+              <td id="general"></td>
+            </tbody>
           </table>
         </div>
         <div id="images" class="overflow-auto border rounded-lg shadow bg-white">
@@ -108,7 +118,7 @@
   var team = ''
   var url = ''
   const video = document.getElementById("video");
-  const emptyFill = ['','','','','','','','',''];
+  const emptyFill = ['','','','','','','','','',''];
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
 
@@ -253,56 +263,57 @@
         <td>
           Best Alliance Role:
         </td>
-        <td>`+dataArray[0]+`
+        <td contenteditable>`+dataArray[0]+`
         </td>
       </tr>
       <tr id="hopper">
         <td>
           Max Hopper: 
         </td>
-        <td>`+dataArray[1]+`</td>
+        <td contenteditable>`+dataArray[1]+`</td>
       </tr>
       <tr>
         <td>Bump or Trench:</td>
-        <td>`+dataArray[2]+`</td>
+        <td contenteditable>`+dataArray[2]+`</td>
       </tr>
       <tr id="defense">
         <td>
           Defense Possibility:
         </td>
-        <td>`+dataArray[3]+`</td>
+        <td contenteditable>`+dataArray[3]+`</td>
       </tr>
       <tr id="acc">
         <td>
           Relative Accuracy Notes:
         </td>
-        <td>`+dataArray[4]+`</td>
+        <td contenteditable>`+dataArray[4]+`</td>
       </tr>
       <tr id="cc">
         <td>
           Climb Abilities: 
         </td>
-        <td>`+dataArray[5]+`</td>
+        <td contenteditable>`+dataArray[5]+`</td>
       </tr>
       <tr id="ao">
         <td>
           Auto Options:
         </td>
-        <td>`+dataArray[6]+`</td>
+        <td contenteditable>`+dataArray[6]+`</td>
       </tr>
       <tr id="maxRate">
         <td>
           Theoretical Max Balls Per Second:
         </td>
-        <td>`+dataArray[7]+`</td>
+        <td contenteditable>`+dataArray[7]+`</td>
       </tr>
       <tr id="font">
         <td>
           If this robot were a font - which would it be:
         </td>
-        <td>`+dataArray[8]+`</td>
+        <td contenteditable>`+dataArray[8]+`</td>
       </tr>
       </tbody>`
+      document.getElementById('general').innerTex = dataArray[9];
     }
 
     async function getTableData () {
@@ -316,6 +327,7 @@
           string += cells[j].innerText.replace(',', ' -') + '&';
         }
       }
+      string += document.getElementById('general').innerText.replace(',', '- ') + '&';
 
       console.log(string);
       return (string);

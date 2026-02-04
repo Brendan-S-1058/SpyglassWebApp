@@ -98,6 +98,11 @@ table, th, tr, td {
   border-collapse: collapse;
 }
 
+.generalDataTable {
+  min-width: 350;
+  min-height: 200;
+}
+
 .ADMIN {
     background-color: #000000;
     border: none;
