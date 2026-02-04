@@ -98,9 +98,13 @@ table, th, tr, td {
   border-collapse: collapse;
 }
 
+.sidePitCol {
+  
+}
+
 .generalDataTable {
-  width: 600px;
-  min-height: 300px;
+  width: 550px;
+  min-height: 250px;
   table-layout: fixed;
 }
 

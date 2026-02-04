@@ -23,7 +23,10 @@ def Main ():
     list.pop(3)
     print ('List - LATE: ' + str(list), file=sys.stderr)
 
-    image_bytes = base64.b64decode(list[3])
+    if list[3] != 'null':
+        image_bytes = base64.b64decode(list[3])
+    else:
+        image_bytes = 'null'
     team = list[1]
     scoutedTeam = list[0]
     scoutedData = list[2]
@@ -39,8 +42,9 @@ def Main ():
     except:
         pass
 
-    with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(scoutedTeam) + 'Picture.png', 'wb') as file:
-        file.write(image_bytes)
+    if image_bytes != 'null':
+        with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(scoutedTeam) + 'Picture.png', 'wb') as file:
+            file.write(image_bytes)
     
     try:
         with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(team) + 'TeamsScouted.txt', 'r') as file:
