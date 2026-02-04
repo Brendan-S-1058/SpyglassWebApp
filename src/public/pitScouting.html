@@ -31,8 +31,8 @@
           <table class="min-w-full table-fixed" id="sideTable">
             <thead>
               <tr>
-              <td>Guiding Questions</td>
-              <td>Responses</td>
+              <th>Guiding Questions</th>
+              <th>Responses</th>
               </tr>
               </thead>
               <tbody>
@@ -108,6 +108,7 @@
   var team = ''
   var url = ''
   const video = document.getElementById("video");
+  const emptyFill = [0,0,0,0,0,0,0,0,0];
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
 
@@ -119,12 +120,12 @@
         try {
           past = await importData(linkTeam);
           try {
-            past = createTable(past);
+            fillTable(past.split('&'));
           } catch (error) {
             pass
           }
           try {
-            past = createImg(linkTeam);
+            createImg(linkTeam);
           } catch (error) {
             pass
           }
@@ -146,17 +147,17 @@
             try {
               past = await importData(newTeam);
               try {
-                past = createTable(past);
+                fillTable(past.split('&'));
               } catch (error) {
                 pass
               }
               try {
-                past = createImg(newTeam);
+                createImg(newTeam);
               } catch (error) {
                 pass
               }
             } catch (error) {
-              createEmptyTable ();
+              fillTable (emptyFill);
             }
         } else {
             alert ('aborted');
@@ -195,12 +196,12 @@
               alert ('Team data failed - please check your search value');
             }
             try {
-              past = createTable(past);
+              fillTable(past.split('&'));
             } catch (error) {
               pass
             }
             try {
-              past = createImg(newTeam);
+              createImg(newTeam);
             } catch (error) {
               pass
             }
@@ -240,86 +241,68 @@
       document.getElementById('images').appendChild(img);
     }
 
-    async function createEmptyTable() {
-      document.getElementById('sideTable').innerHTML = `<thead>
-              <tr>
-              <th>Guiding Questions</th>
-              <th>Responses</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr id="type">
-                <td>
-                  Best Alliance Role:
-                </td>
-                <td>
-                </td>
-              </tr>
-              <tr id="hopper">
-                <td>
-                  Max Hopper: 
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Bump or Trench:</td>
-                <td></td>
-              </tr>
-              <tr id="defense">
-                <td>
-                  Defense Possibility:
-                </td>
-                <td></td>
-              </tr>
-              <tr id="acc">
-                <td>
-                  Relative Accuracy Notes:
-                </td>
-                <td></td>
-              </tr>
-              <tr id="cc">
-                <td>
-                  Climb Abilities: 
-                </td>
-                <td></td>
-              </tr>
-              <tr id="ao">
-                <td>
-                  Auto Options:
-                </td>
-                <td></td>
-              </tr>
-              <tr id="maxRate">
-                <td>
-                  Theoretical Max Balls Per Second:
-                </td>
-                <td></td>
-              </tr>
-              <tr id="font">
-                <td>
-                  If this robot were a font - which would it be:
-                </td>
-                <td></td>
-              </tr>
-              </tbody>`
-    }
-
-    async function createTable(data) {
-      dataArray = data.split('&');
-      rows = document.getElementById('sideTable').getElementsByTagName('tr');
-
-      label = true;
-      for (i=0; i<dataArray.length; i++) {
-        if (label) {
-          label = false;
-          cell = rows[Math.floor(i/2)].getElementsByTagName('td')[0];
-          cell.innerText = dataArray[i]
-        } else {
-          label = true;
-          cell = rows[Math.floor(i/2)].getElementsByTagName('td')[1];
-          cell.innerText = dataArray[i]
-        }
-      }
+    function fillTable (dataArray) {
+    document.getElementById('sideTable').innerHTML = `<thead>
+      <tr>
+      <th>Guiding Questions</th>
+      <th>Responses</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr id="type">
+        <td>
+          Best Alliance Role:
+        </td>
+        <td>`+dataArray[0]+`
+        </td>
+      </tr>
+      <tr id="hopper">
+        <td>
+          Max Hopper: 
+        </td>
+        <td>`+dataArray[1]+`</td>
+      </tr>
+      <tr>
+        <td>Bump or Trench:</td>
+        <td>`+dataArray[2]+`</td>
+      </tr>
+      <tr id="defense">
+        <td>
+          Defense Possibility:
+        </td>
+        <td>`+dataArray[3]+`</td>
+      </tr>
+      <tr id="acc">
+        <td>
+          Relative Accuracy Notes:
+        </td>
+        <td>`+dataArray[4]+`</td>
+      </tr>
+      <tr id="cc">
+        <td>
+          Climb Abilities: 
+        </td>
+        <td>`+dataArray[5]+`</td>
+      </tr>
+      <tr id="ao">
+        <td>
+          Auto Options:
+        </td>
+        <td>`+dataArray[6]+`</td>
+      </tr>
+      <tr id="maxRate">
+        <td>
+          Theoretical Max Balls Per Second:
+        </td>
+        <td>`+dataArray[7]+`</td>
+      </tr>
+      <tr id="font">
+        <td>
+          If this robot were a font - which would it be:
+        </td>
+        <td>`+dataArray[8]+`</td>
+      </tr>
+      </tbody>`
     }
 
     async function getTableData () {
