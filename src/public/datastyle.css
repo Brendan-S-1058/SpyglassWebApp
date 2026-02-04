@@ -53,10 +53,10 @@ body {
     border-radius: 15px;
 }
 
-#adjacent-graph {
+.adjacent-graph {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 100px;
 }
 
 .searchinput {
