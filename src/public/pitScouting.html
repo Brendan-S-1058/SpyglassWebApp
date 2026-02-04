@@ -133,7 +133,7 @@
         try {
           past = await importData(linkTeam);
           try {
-            fillTable(past.split('&'));
+            fillTable(past.split('𝄋'));
           } catch (error) {
             pass
           }
@@ -160,7 +160,7 @@
             try {
               past = await importData(newTeam);
               try {
-                fillTable(past.split('&'));
+                fillTable(past.split('𝄋'));
               } catch (error) {
                 pass
               }
@@ -211,7 +211,7 @@
               alert ('Team data failed - please check your search value');
             }
             try {
-              fillTable(past.split('&'));
+              fillTable(past.split('𝄋'));
             } catch (error) {
               pass
             }
@@ -330,11 +330,11 @@
       for (i = 0; i < rows.length; i++) {
         cells = rows[i].getElementsByTagName('td');
         for (j = 1; j < cells.length; j++) {
-          string += cells[j].innerText.replace(',', ' -') + '&';
+          string += cells[j].innerText.replace(',', ' -') + '𝄋';
         }
       }
 
-      string += document.getElementById('general').innerText.replace(',', ' -') + '&';
+      string += document.getElementById('general').innerText.replace(',', ' -') + '𝄋';
 
       console.log(string);
       return (string);
