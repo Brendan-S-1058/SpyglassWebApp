@@ -26,7 +26,7 @@
 
 
       </p>
-      <div id="adjacent-graph" class="overflow-auto border rounded-lg shadow bg-white adjacent-graph" hidden="hidden"></div>
+      <div id="datadiv" class="overflow-auto border rounded-lg shadow bg-white adjacent-graph" hidden="hidden"></div>
         <div class="overflow-auto border rounded-lg shadow bg-white tableCollapse">
           <table class="min-w-full table-fixed" id="sideTable">
             <thead>
@@ -91,14 +91,14 @@
               </tr>
               </tbody>
           </table>
-          <table class="min-w-full table-fixed">
+          <table>
             <thead>
               <th>
                 General/Interesting notes
               </th>
             </thead>
             <tbody>
-              <td id="general"></td>
+              <td id="general" class="generalDataTable" contenteditable></td>
             </tbody>
           </table>
         </div>
@@ -118,7 +118,7 @@
   var team = ''
   var url = ''
   const video = document.getElementById("video");
-  const emptyFill = ['','','','','','','','','',''];
+  const emptyFill = ['','','','','','','','',''];
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
 
@@ -313,7 +313,6 @@
         <td contenteditable>`+dataArray[8]+`</td>
       </tr>
       </tbody>`
-      document.getElementById('general').innerTex = dataArray[9];
     }
 
     async function getTableData () {
@@ -327,7 +326,6 @@
           string += cells[j].innerText.replace(',', ' -') + '&';
         }
       }
-      string += document.getElementById('general').innerText.replace(',', '- ') + '&';
 
       console.log(string);
       return (string);
