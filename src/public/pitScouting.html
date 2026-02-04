@@ -40,54 +40,54 @@
                 <td>
                   Best Alliance Role:
                 </td>
-                <td contenteditable class="sidePitCol">
+                <td contenteditable>
                 </td>
               </tr>
               <tr id="hopper">
                 <td>
                   Max Hopper: 
                 </td>
-                <td contenteditable class="sidePitCol"></td>
+                <td contenteditable></td>
               </tr>
               <tr>
                 <td>Bump or Trench:</td>
-                <td contenteditable class="sidePitCol"></td>
+                <td contenteditable></td>
               </tr>
               <tr id="defense">
                 <td>
                   Defense Possibility:
                 </td>
-                <td contenteditable class="sidePitCol"></td>
+                <td contenteditable></td>
               </tr>
               <tr id="acc">
                 <td>
                   Relative Accuracy Notes:
                 </td>
-                <td contenteditable class="sidePitCol"></td>
+                <td contenteditable></td>
               </tr>
               <tr id="cc">
                 <td>
                   Climb Abilities: 
                 </td>
-                <td contenteditable class="sidePitCol"></td>
+                <td contenteditable></td>
               </tr>
               <tr id="ao">
                 <td>
                   Auto Options:
                 </td>
-                <td contenteditable class="sidePitCol"></td>
+                <td contenteditable></td>
               </tr>
               <tr id="maxRate">
                 <td>
                   Theoretical Max Balls Per Second:
                 </td>
-                <td contenteditable class="sidePitCol"></td>
+                <td contenteditable></td>
               </tr>
               <tr id="font">
                 <td>
                   If this robot were a font - which would it be:
                 </td>
-                <td contenteditable class="sidePitCol"></td>
+                <td contenteditable></td>
               </tr>
               </tbody>
           </table>
@@ -104,7 +104,8 @@
           </table>
           </div>
         </div>
-        <div id="images" class="overflow-auto border rounded-lg shadow bg-white">
+        <div id="images" class="overflow-auto border rounded-lg shadow bg-white"></div>
+        <div id="videos" class="overflow-auto border rounded-lg shadow bg-white">
           <video id="video" autoplay playsinline style="width: 100%; display: none;"></video>
           <canvas id="canvas" style="display: none;"></canvas>
           <button id="pict" class="button" hidden="hidden">Take Picture</button>
@@ -193,7 +194,7 @@
     document.getElementById('pict').addEventListener('click', async () => {
       console.log ('picture taken?')
       const capturedImage = captureFrame(video, canvas);
-      video.hidden = true;
+      document.getElementById('videos').hidden = true;
       document.getElementById('pict').hidden = true;
       document.getElementById('images').appendChild(capturedImage);
       //saveChanges(capturedImage);
@@ -267,54 +268,54 @@
         <td>
           Best Alliance Role:
         </td>
-        <td contenteditable class="sidePitCol">`+dataArray[0]+`
+        <td contenteditable >`+dataArray[0]+`
         </td>
       </tr>
       <tr id="hopper">
         <td>
           Max Hopper: 
         </td>
-        <td contenteditable class="sidePitCol">`+dataArray[1]+`</td>
+        <td contenteditable >`+dataArray[1]+`</td>
       </tr>
       <tr>
         <td>Bump or Trench:</td>
-        <td contenteditable class="sidePitCol">`+dataArray[2]+`</td>
+        <td contenteditable >`+dataArray[2]+`</td>
       </tr>
       <tr id="defense">
         <td>
           Defense Possibility:
         </td>
-        <td contenteditable class="sidePitCol">`+dataArray[3]+`</td>
+        <td contenteditable >`+dataArray[3]+`</td>
       </tr>
       <tr id="acc">
         <td>
           Relative Accuracy Notes:
         </td>
-        <td contenteditable class="sidePitCol">`+dataArray[4]+`</td>
+        <td contenteditable >`+dataArray[4]+`</td>
       </tr>
       <tr id="cc">
         <td>
           Climb Abilities: 
         </td>
-        <td contenteditable class="sidePitCol">`+dataArray[5]+`</td>
+        <td contenteditable >`+dataArray[5]+`</td>
       </tr>
       <tr id="ao">
         <td>
           Auto Options:
         </td>
-        <td contenteditable class="sidePitCol">`+dataArray[6]+`</td>
+        <td contenteditable >`+dataArray[6]+`</td>
       </tr>
       <tr id="maxRate">
         <td>
           Theoretical Max Balls Per Second:
         </td>
-        <td contenteditable class="sidePitCol">`+dataArray[7]+`</td>
+        <td contenteditable >`+dataArray[7]+`</td>
       </tr>
       <tr id="font">
         <td>
           If this robot were a font - which would it be:
         </td>
-        <td contenteditable class="sidePitCol">`+dataArray[8]+`</td>
+        <td contenteditable >`+dataArray[8]+`</td>
       </tr>
       </tbody>`
 

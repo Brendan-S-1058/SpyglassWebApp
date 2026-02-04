@@ -98,11 +98,6 @@ table, th, tr, td {
   border-collapse: collapse;
 }
 
-.sidePitCol {
-  table-layout: fixed;
-  width: 50px;
-}
-
 .generalDataTable {
   width: 550px;
   min-height: 250px;
