@@ -312,7 +312,7 @@
 
       for (i = 0; i < rows.length; i++) {
         cells = rows[i].getElementsByTagName('td');
-        string += cells[1].innerText.replace(',', ' -') + '&';
+        string += cells[0].innerText.replace(',', ' -') + '&';
       }
 
       console.log(string);
