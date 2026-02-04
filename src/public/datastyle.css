@@ -99,8 +99,8 @@ table, th, tr, td {
 }
 
 .generalDataTable {
-  min-width: 350px;
-  min-height: 200px;
+  min-width: 600px;
+  min-height: 300px;
 }
 
 .ADMIN {
