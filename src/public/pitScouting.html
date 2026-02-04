@@ -193,6 +193,8 @@
     document.getElementById('pict').addEventListener('click', async () => {
       console.log ('picture taken?')
       const capturedImage = captureFrame(video, canvas);
+      video.hidden = true;
+      document.getElementById('pict').hidden = true;
       document.getElementById('images').appendChild(capturedImage);
       //saveChanges(capturedImage);
     });
