@@ -99,7 +99,8 @@ table, th, tr, td {
 }
 
 .sidePitCol {
-  
+  table-layout: fixed;
+  width: 100px;
 }
 
 .generalDataTable {
