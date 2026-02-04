@@ -55,7 +55,7 @@ body {
 
 .adjacent-graph {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 100px;
 }
 
@@ -99,8 +99,8 @@ table, th, tr, td {
 }
 
 .generalDataTable {
-  min-width: 350;
-  min-height: 200;
+  min-width: 350px;
+  min-height: 200px;
 }
 
 .ADMIN {
