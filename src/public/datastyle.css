@@ -99,7 +99,7 @@ table, th, tr, td {
 }
 
 .generalDataTable {
-  min-width: 600px;
+  width: 600px;
   min-height: 300px;
 }
 
