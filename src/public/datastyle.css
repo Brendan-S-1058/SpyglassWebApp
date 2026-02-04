@@ -101,6 +101,7 @@ table, th, tr, td {
 .generalDataTable {
   width: 600px;
   min-height: 300px;
+  table-layout: fixed;
 }
 
 .ADMIN {
