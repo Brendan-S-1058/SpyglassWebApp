@@ -115,7 +115,7 @@
   const linkVars = new URLSearchParams(window.location.search);
   const linkTeam = linkVars.get('team');
   var userTeam = localStorage.getItem('team')
-  var team = ''
+  var team = linkTeam;
   var url = ''
   const video = document.getElementById("video");
   const emptyFill = ['','','','','','','','',''];
