@@ -13,24 +13,20 @@
       <h1 class="text-3xl font-bold mb-4">Full Match Breakdown</h1>
     </div>
     <div class="mb-4 flex justify-between items-center adjacent-graph">
-        <table>
+        <table id="blueTable">
           <thead>
             <th>
               Blue Alliance
             </th>
           </thead>
-          <tbody id="BlueTableBody">
-          </tbody>
         </table>
       <img src="data/cow.png" alt="cow" width="300" height="200">
-        <table>
+        <table id="redTable">
           <thead>
             <th>
               Red Alliance
             </th>
           </thead>
-          <tbody id="RedTableBody">
-          </tbody>
         </table>
     </div>
   </div>
@@ -63,36 +59,68 @@ document.addEventListener("DOMContentLoaded", async () => {
   const blueTableBody = document.getElementById("BlueTableBody");
   const redTableBody = document.getElementById("RedTableBody");
 
-  const shellBlue = document.createElement("tr");
-  const shellRed = document.createElement("tr");
+  const shellBlue = document.createElement("tbody");
+  const shellRed = document.createElement("tbody");
 
   shellBlue.innerHTML = `
-    <td class="p-2 border">Team `+bt1+`</td>
-    <td class="p-2 border">Team `+bt2+`</td>
-    <td class="p-2 border">Team `+bt3+`</td>
+    <tr>
+    <td class="p-2 border">Teams:\n`+bt1+`\n`+bt2+`\n`+bt3+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Win %: `+blueWinPercent+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Score Range: `+blueScoreRange+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Climb RP: `+travRPb+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Energized RP: `+enerRPb+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Supercharged RP: `+superRPb+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Fuel Total: `+fuelBT+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Feed Total: `+feedBT+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Climb Total: `+climbBT+`</td>
+    </tr>
   `;
   blueTableBody.appendChild(shellBlue);
 
   shellRed.innerHTML = `
-    <td class="p-2 border">Team `+rt1+`</td>
-    <td class="p-2 border">Team `+rt2+`</td>
-    <td class="p-2 border">Team `+rt3+`</td>
+    <tr>
+    <td class="p-2 border">Teams:\n`+rt1+`\n`+rt2+`\n`+rt3+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Win %: `+redWinPercent+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Score Range: `+redScoreRange+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Climb RP: `+travRPr+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Energized RP: `+enerRPr+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Supercharged RP: `+superRPr+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Fuel Total: `+fuelRT+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Feed Total: `+feedRT+`</td>
+    </tr>
+    <tr>
     <td class="p-2 border">Climb Total: `+climbRT+`</td>
+    </tr>
   `;
   redTableBody.appendChild(shellRed);
 
