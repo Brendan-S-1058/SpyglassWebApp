@@ -29,6 +29,7 @@
             <th class="p-2 border">Auto RP</th>
             <th class="p-2 border">Reef RP</th>
             <th class="p-2 border">Barge RP</th>
+            <th class="p-2 border">Statbotics Link</th>
           </tr>
         </thead>
         <tbody id="data-table-body">
@@ -206,15 +207,63 @@ function build (results, aKey) {
     }
 
     const shellResults = document.createElement("tr");
-    shellResults.innerHTML = `
-        <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_'+match+`" target="_blank" class="p-2 border`+color+`">`+message+`</a>
-        <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+'): '+blueScoreRange+`</td>
-        <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+'): '+redScoreRange+`</td>
-        <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
-        <td class="p-2 border`+color+`">Auto RP: `+autoRP+`%</td>
-        <td class="p-2 border`+color+`">Reef RP: `+corRP+`%</td>
-        <td class="p-2 border`+color+`">Barge RP: `+bargeRP+`%</td>
+        if (match.includes('q')){
+      shellResults.innerHTML = `
+          <a href="fullMatchBreakdown.html" target="_blank" class="p-2 border`+color+`">`+message+`</a>
+          <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+'): '+blueScoreRange+`</td>
+          <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+'): '+redScoreRange+`</td>
+          <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
+          <td class="p-2 border`+color+`">Auto RP: `+autoRP+`%</td>
+          <td class="p-2 border`+color+`">Reef RP: `+corRP+`%</td>
+          <td class="p-2 border`+color+`">Barge RP: `+bargeRP+`%</td>
+          <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_'+match+`" target="_blank" class="p-2 border`+color+`">`+message+`</a>
         `;
+    } else if (match.includes('s')){
+      relMatchNum = ''
+      instance = ''
+      for (i = 0; i<match.length; i++) {
+        if (i < match.length-1) {
+          if ('1234567890'.includes(match[i])){
+            relMatchNum += match[i]
+          }
+        } else {
+          instance = match[i]
+        }
+      }
+      shellResults.innerHTML = `
+          <a href="fullMatchBreakdown.html" target="_blank" class="p-2 border`+color+`">`+message+`</a>
+          <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+'): '+blueScoreRange+`</td>
+          <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+'): '+redScoreRange+`</td>
+          <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
+          <td class="p-2 border`+color+`">Auto RP: `+autoRP+`%</td>
+          <td class="p-2 border`+color+`">Reef RP: `+corRP+`%</td>
+          <td class="p-2 border`+color+`">Barge RP: `+bargeRP+`%</td>
+          <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_sf'+relMatchNum+'m'+instance+`" target="_blank" class="p-2 border`+color+`">`+message+`</a>
+        `;
+    } else {
+      relMatchNum = ''
+      instance = ''
+      for (i = 0; i<match.length; i++) {
+        if (i < match.length-1) {
+          if ('1234567890'.includes(match[i])){
+            relMatchNum += match[i]
+          }
+        } else {
+          instance = match[i]
+        }
+      }
+      shellResults.innerHTML = `
+          <a href="fullMatchBreakdown.html" target="_blank" class="p-2 border`+color+`">`+message+`</a>
+          <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+'): '+blueScoreRange+`</td>
+          <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+'): '+redScoreRange+`</td>
+          <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
+          <td class="p-2 border`+color+`">Auto RP: `+autoRP+`%</td>
+          <td class="p-2 border`+color+`">Reef RP: `+corRP+`%</td>
+          <td class="p-2 border`+color+`">Barge RP: `+bargeRP+`%</td>
+          <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_f'+relMatchNum+'m'+instance+`" target="_blank" class="p-2 border`+color+`">`+message+`</a>
+
+        `;
+    }
       
     tableBody.append(shellResults);
   }
