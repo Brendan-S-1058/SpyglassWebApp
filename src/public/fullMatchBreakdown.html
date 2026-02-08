@@ -29,13 +29,44 @@
               Red Alliance
             </th>
           </thead>
-          <tbody id="BlueTableBody">
+          <tbody id="RedTableBody">
           </tbody>
         </table>
     </div>
   </div>
 </body>
 <script>
+
+var bt1 =  linkVars.get('bt1');
+var bt2 =  linkVars.get('bt2');
+var bt3 =  linkVars.get('bt3');
+var rt1 =  linkVars.get('rt1');
+var rt2 =  linkVars.get('rt2');
+var rt3 =  linkVars.get('rt3');
+
+document.addEventListener("DOMContentLoaded", async () => {
+  matchData = await fullPredictSingleMatch();
+  });
+
+async function fullPredictSingleMatch() {
+  const res = await fetch ("/fullOneMatchPred", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify([bt1, bt2, bt3, rt1, rt2, rt3]),
+  });
+
+  console.log(res);
+
+  if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+      alert ("Event Code was INVALID (why would you do this??)");
+  }
+
+  const json = await res.json();
+  console.log(json);
+  return(json);
+}
+
 
 </script>
 </html>

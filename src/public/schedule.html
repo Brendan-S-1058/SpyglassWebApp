@@ -209,7 +209,7 @@ function build (results, aKey) {
     const shellResults = document.createElement("tr");
         if (match.includes('q')){
       shellResults.innerHTML = `
-          <a href="fullMatchBreakdown.html" class="p-2 border`+color+`">`+message+`</a>
+          <a href="fullMatchBreakdown.html?bt1=`+relTeams[0]+`&bt2=`+relTeams[1]+`&bt3=`+relTeams[2]+`&rt1=`+relTeams[3]+`&rt2=`+relTeams[4]+`&rt3=`+relTeams[5]+`" class="p-2 border`+color+`">`+message+`</a>
           <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+'): '+blueScoreRange+`</td>
           <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+'): '+redScoreRange+`</td>
           <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
@@ -231,7 +231,7 @@ function build (results, aKey) {
         }
       }
       shellResults.innerHTML = `
-          <a href="fullMatchBreakdown.html" class="p-2 border`+color+`">`+message+`</a>
+          <a href="fullMatchBreakdown.html?bt1=`+relTeams[0]+`&bt2=`+relTeams[1]+`&bt3=`+relTeams[2]+`&rt1=`+relTeams[3]+`&rt2=`+relTeams[4]+`&rt3=`+relTeams[5]+`" class="p-2 border`+color+`">`+message+`</a>
           <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+'): '+blueScoreRange+`</td>
           <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+'): '+redScoreRange+`</td>
           <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
@@ -253,7 +253,7 @@ function build (results, aKey) {
         }
       }
       shellResults.innerHTML = `
-          <a href="fullMatchBreakdown.html" class="p-2 border`+color+`">`+message+`</a>
+          <a href="fullMatchBreakdown.html?bt1=`+relTeams[0]+`&bt2=`+relTeams[1]+`&bt3=`+relTeams[2]+`&rt1=`+relTeams[3]+`&rt2=`+relTeams[4]+`&rt3=`+relTeams[5]+`" class="p-2 border`+color+`">`+message+`</a>
           <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+'): '+blueScoreRange+`</td>
           <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+'): '+redScoreRange+`</td>
           <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
