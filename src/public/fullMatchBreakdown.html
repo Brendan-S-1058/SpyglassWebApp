@@ -20,7 +20,7 @@
             </th>
           </thead>
         </table>
-      <img src="data/cow.png" alt="cow" width="300" height="200">
+      <img src="data/cow.png" alt="cow" width="500" height="350">
         <table id="redTable">
           <thead>
             <th>
@@ -53,7 +53,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     travRPr, enerRPr, superRPr,
     fuelBT, fuelRT,
     climbBT, climbRT,
-    feedBT, feedRT
+    feedBT, feedRT,
+    blueAutoMin, blueAutoMax, blueAutoAvg,
+    redAutoMin, redAutoMax, redAutoAvg
   ] = matchData;
 
   const blueTable = document.getElementById("blueTable");
@@ -90,6 +92,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     <tr>
     <td class="p-2 border">Climb Total: `+climbBT+`</td>
     </tr>
+    <tr>
+    <td class="p-2 border">Auto Min-Max: `+blueAutoMin+`-`+blueAutoMax+`</td>
+    </tr>
+    <tr>
+    <td class="p-2 border">Auto Avg: `+blueAutoAvg+`</td>
+    </tr>
   `;
   blueTable.appendChild(shellBlue);
 
@@ -120,6 +128,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     </tr>
     <tr>
     <td class="p-2 border">Climb Total: `+climbRT+`</td>
+    </tr>
+    <tr>
+    <td class="p-2 border">Auto Min-Max: `+redAutoMin+`-`+redAutoMax+`</td>
+    </tr>
+    <tr>
+    <td class="p-2 border">Auto Avg: `+redAutoAvg+`</td>
     </tr>
   `;
   redTable.appendChild(shellRed);

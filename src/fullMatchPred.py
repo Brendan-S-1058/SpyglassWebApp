@@ -79,10 +79,15 @@ def Main ():
         relevantDict[str(key)+"matches"] = match_numbers
 
     averageMatches = []
+
+    autoMinMax = {}
+
     for key in keyList:
         teamHoldList = [0,0,0,0,0,0,0,0,0,0,0,0]
         #divisor = 0
         countmatches = 0
+        minimumAuto = 0
+        maximumAuto = 0
         for match in relevantDict[key]:
             count = 0
             countmatches += 1
@@ -92,6 +97,10 @@ def Main ():
             print (match, file=sys.stderr)
             for item in match:
                 count += 1
+                if count == 4:
+                    minimumAuto = min(minimumAuto, int(item))
+                if count == 4:
+                    maximumAuto = max(maximumAuto, int(item))
                 if count > 3:
                     teamHoldList[count-1] += (int(item))
                     #teamHoldList[count-1] += (int(item)*recent)
@@ -101,6 +110,42 @@ def Main ():
             #teamHoldList[i] /= divisor
         #print (teamHoldList)
         averageMatches.append (teamHoldList)
+
+        autoMinMax[key] = [minimumAuto, maximumAuto]
+
+    countb = 0
+    countr = 0
+    blueAlter = 0
+    redAlter = 0
+    blueMax = 0
+    blueMin = 0
+    redMax = 0
+    redMin = 0
+    for i in range(len(keyList)):
+        if i < 3:
+            blueMin += autoMinMax[keyList[i]][0]
+            blueMax += autoMinMax[keyList[i]][1]
+            if autoMinMax[keyList[i]][1] < 32 and autoMinMax[keyList[i]][1] > 8:
+                countb += 1
+        else:
+            redMin += autoMinMax[keyList[i]][0]
+            if autoMinMax[keyList[i]][1] < 32 and autoMinMax[keyList[i]][1] > 8:
+                countr += 1
+
+    if countb > 1:
+        blueAlter -= 5
+        if countb > 2:
+            blueAlter -= 15
+        
+    blueMin += blueAlter
+    
+    if countr > 1:
+        redAlter -= 5
+        if countr > 2:
+            redAlter -= 15
+
+    redMin += redAlter
+
     blueAverageMatchUnprocessed = []
     redAverageMatchUnprocessed = []
     for i in range (len(averageMatches[0])-3):
@@ -112,6 +157,9 @@ def Main ():
 
     blueAverageMatchHalfProcessed = cap(blueAverageMatchUnprocessed)
     redAverageMatchHalfProcessed = cap(redAverageMatchUnprocessed)
+
+    blueAvg = blueAverageMatchHalfProcessed[0]
+    redAvg = redAverageMatchHalfProcessed[0]
 
     if blueAverageMatchHalfProcessed[0] > redAverageMatchHalfProcessed[0]:
         blueAverageMatchHalfProcessed[3] *= 1.3
@@ -171,12 +219,19 @@ def Main ():
         traversalRPr *= 100
         traversalRPr //= 1
 
-    
+    blueFuel = blueAverageMatchHalfProcessed[0]+blueAverageMatchHalfProcessed[3]
+    redFuel = redAverageMatchHalfProcessed[0]+redAverageMatchHalfProcessed[3]
+
+    blueClimb = blueAverageMatchHalfProcessed[1]*15+blueAverageMatchHalfProcessed[4]*10
+    redClimb = redAverageMatchHalfProcessed[1]*15+redAverageMatchHalfProcessed[4]*10
+
+    blueFeed = blueAverageMatchHalfProcessed[2]
+    redFeed = redAverageMatchHalfProcessed[2]
 
     blueFinal = calc (blueAverageMatchHalfProcessed)
     redFinal = calc (redAverageMatchHalfProcessed)
 
-    result = analyze(blueFinal, redFinal, blueStart, redStart, chargedRPb, superChargedRPb, traversalRPb, chargedRPr, superChargedRPr, traversalRPr)
+    result = analyze(blueFinal, redFinal, blueStart, redStart, chargedRPb, superChargedRPb, traversalRPb, chargedRPr, superChargedRPr, traversalRPr, blueFuel, redFuel, blueClimb, redClimb, blueFeed, redFeed, blueMin, blueMax, blueAvg, redMin, redMax, redAvg)
 
     print (json.dumps(result))
 
@@ -255,7 +310,7 @@ def calc (match):
     score += (match[0])+(match[1])*15+(match[3])+(match[4])*10    
     return (score)
 
-def analyze (bscore, rscore, bstart, rstart, crpb, arpb, brpb, crpr, arpr, brpr):
+def analyze (bscore, rscore, bstart, rstart, crpb, arpb, brpb, crpr, arpr, brpr, bf, rf, bc, rc, bfe, rfe, bmax, bmin, bavg, rmax, rmin, ravg):
     bstate = bscore-rscore
 
     mod = 0
@@ -304,7 +359,7 @@ def analyze (bscore, rscore, bstart, rstart, crpb, arpb, brpb, crpr, arpr, brpr)
     else:
         rscore = str(rscore-5) + '-' + str(rstart+5)
     
-    return [bwin, bscore, rscore, bp, rp, crpb, arpb, brpb, crpr, arpr, brpr, 1, 1, 1, 1, 1, 1]
+    return [bwin, bscore, rscore, bp, rp, crpb, arpb, brpb, crpr, arpr, brpr, bf, rf, bc, rc, bfe, rfe, bmax, bmin, bavg, rmax, rmin, ravg]
 
 def Public (inputS):
     count = 0
