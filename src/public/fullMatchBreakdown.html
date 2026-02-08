@@ -102,7 +102,7 @@ async function fullPredictSingleMatch() {
   const res = await fetch ("/fullOneMatchPred", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify([1, localStorage.getItem("team"), bt1, bt2, bt3, rt1, rt2, rt3]),
+      body: JSON.stringify([1, bt1, bt2, bt3, rt1, rt2, rt3]),
   });
 
   console.log(res);
