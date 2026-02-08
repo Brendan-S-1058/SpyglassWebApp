@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     feedBT, feedRT
   ] = matchData;
 
-  const blueTableBody = document.getElementById("BlueTableBody");
-  const redTableBody = document.getElementById("RedTableBody");
+  const blueTable = document.getElementById("blueTable");
+  const redTable = document.getElementById("redTable");
 
   const shellBlue = document.createElement("tbody");
   const shellRed = document.createElement("tbody");
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     <td class="p-2 border">Climb Total: `+climbBT+`</td>
     </tr>
   `;
-  blueTableBody.appendChild(shellBlue);
+  blueTable.appendChild(shellBlue);
 
   shellRed.innerHTML = `
     <tr>
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     <td class="p-2 border">Climb Total: `+climbRT+`</td>
     </tr>
   `;
-  redTableBody.appendChild(shellRed);
+  redTable.appendChild(shellRed);
 
   });
 
