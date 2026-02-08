@@ -46,6 +46,54 @@ var rt3 =  linkVars.get('rt3');
 
 document.addEventListener("DOMContentLoaded", async () => {
   matchData = await fullPredictSingleMatch();
+  
+  const [
+    didBlueWin, 
+    blueScoreRange, redScoreRange,
+    blueWinPercent, redWinPercent,
+    travRPb, enerRPb, superRPb,
+    travRPr, enerRPr, superRPr,
+    fuelBT, fuelRT,
+    climbBT, climbRT,
+    feedBT, feedRT
+  ] = matchData;
+
+  const blueTableBody = document.getElementById("BlueTableBody");
+  const redTableBody = document.getElementById("RedTableBody");
+
+  const shellBlue = document.createElement("tr");
+  const shellRed = document.createElement("tr");
+
+  shellBlue.innerHTML = `
+    <td class="p-2 border">Team `+bt1+`</td>
+    <td class="p-2 border">Team `+bt2+`</td>
+    <td class="p-2 border">Team `+bt3+`</td>
+    <td class="p-2 border">Win %: `+blueWinPercent+`</td>
+    <td class="p-2 border">Score Range: `+blueScoreRange+`</td>
+    <td class="p-2 border">Climb RP: `+travRPb+`</td>
+    <td class="p-2 border">Energized RP: `+enerRPb+`</td>
+    <td class="p-2 border">Supercharged RP: `+superRPb+`</td>
+    <td class="p-2 border">Fuel Total: `+fuelBT+`</td>
+    <td class="p-2 border">Feed Total: `+feedBT+`</td>
+    <td class="p-2 border">Climb Total: `+climbBT+`</td>
+  `;
+  blueTableBody.appendChild(shellBlue);
+
+  shellRed.innerHTML = `
+    <td class="p-2 border">Team `+rt1+`</td>
+    <td class="p-2 border">Team `+rt2+`</td>
+    <td class="p-2 border">Team `+rt3+`</td>
+    <td class="p-2 border">Win %: `+redWinPercent+`</td>
+    <td class="p-2 border">Score Range: `+redScoreRange+`</td>
+    <td class="p-2 border">Climb RP: `+travRPr+`</td>
+    <td class="p-2 border">Energized RP: `+enerRPr+`</td>
+    <td class="p-2 border">Supercharged RP: `+superRPr+`</td>
+    <td class="p-2 border">Fuel Total: `+fuelRT+`</td>
+    <td class="p-2 border">Feed Total: `+feedRT+`</td>
+    <td class="p-2 border">Climb Total: `+climbRT+`</td>
+  `;
+  redTableBody.appendChild(shellRed);
+
   });
 
 async function fullPredictSingleMatch() {
