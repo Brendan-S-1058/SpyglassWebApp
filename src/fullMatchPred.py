@@ -99,7 +99,6 @@ def Main ():
                 count += 1
                 if count == 4:
                     minimumAuto = min(minimumAuto, int(item))
-                if count == 4:
                     maximumAuto = max(maximumAuto, int(item))
                 if count > 3:
                     teamHoldList[count-1] += (int(item))
@@ -129,6 +128,7 @@ def Main ():
                 countb += 1
         else:
             redMin += autoMinMax[keyList[i]][0]
+            redMax += autoMinMax[keyList[i]][1]
             if autoMinMax[keyList[i]][1] < 32 and autoMinMax[keyList[i]][1] > 8:
                 countr += 1
 
