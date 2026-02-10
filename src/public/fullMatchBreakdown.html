@@ -29,7 +29,8 @@
           </thead>
         </table>
     </div>
-  </div>
+    <div id="pictures" class="mb-4 flex justify-between items-center adjacent-graph">
+    </div>
 </body>
 <script>
 
@@ -64,6 +65,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const shellBlue = document.createElement("tbody");
   const shellRed = document.createElement("tbody");
+
+  const pictures = document.getElementById("pictures");
+  const b1Pic = document.createElement("img");
+  const b2Pic = document.createElement("img");
+  const b3Pic = document.createElement("img");
+  const r1Pic = document.createElement("img");
+  const r2Pic = document.createElement("img");
+  const r3Pic = document.createElement("img");
 
   shellBlue.innerHTML = `
     <tr>
@@ -139,6 +148,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   `;
   redTable.appendChild(shellRed);
 
+  b1Pic.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting/' + bt1 + "picture.png";
+  b2Pic.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting/' + bt2 + "picture.png";
+  b3Pic.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting/' + bt3 + "picture.png";
+  r1Pic.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting/' + rt1 + "picture.png";
+  r2Pic.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting/' + rt2 + "picture.png";
+  r3Pic.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting/' + rt3 + "picture.png";
+
+  pictures.appendChild(b1Pic);
+  pictures.appendChild(b2Pic);
+  pictures.appendChild(b3Pic);
+  pictures.appendChild(r1Pic);
+  pictures.appendChild(r2Pic);
+  pictures.appendChild(r3Pic);
   });
 
 async function fullPredictSingleMatch() {
