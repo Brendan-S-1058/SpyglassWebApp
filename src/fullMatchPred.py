@@ -86,7 +86,7 @@ def Main ():
         teamHoldList = [0,0,0,0,0,0,0,0,0,0,0,0]
         #divisor = 0
         countmatches = 0
-        minimumAuto = 0
+        minimumAuto = 1000
         maximumAuto = 0
         for match in relevantDict[key]:
             count = 0
@@ -138,6 +138,7 @@ def Main ():
             blueAlter -= 15
         
     blueMin += blueAlter
+    bluemax += blueAlter//3
     
     if countr > 1:
         redAlter -= 5
@@ -145,6 +146,7 @@ def Main ():
             redAlter -= 15
 
     redMin += redAlter
+    redMax += redAlter//3
 
     blueAverageMatchUnprocessed = []
     redAverageMatchUnprocessed = []

@@ -41,6 +41,7 @@ var bt3 =  linkVars.get('bt3');
 var rt1 =  linkVars.get('rt1');
 var rt2 =  linkVars.get('rt2');
 var rt3 =  linkVars.get('rt3');
+var mode = linkVars.get('mode');
 
 document.addEventListener("DOMContentLoaded", async () => {
   matchData = await fullPredictSingleMatch();
@@ -141,6 +142,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
 async function fullPredictSingleMatch() {
+
+  if (mode == 2) {
+    send = [2, localStorage.getItem('team'), bt1, bt2, bt3, rt1, rt2, rt3, localStorage.getItem('qrCodes')];
+  } else {
+    send = [mode, bt1, bt2, bt3, rt1, rt2, rt3, localStorage.getItem('qrCodes')];
+  }
+
   const res = await fetch ("/fullOneMatchPred", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
