@@ -138,7 +138,7 @@ def Main ():
             blueAlter -= 15
         
     blueMin += blueAlter
-    bluemax += blueAlter//3
+    blueMax += blueAlter//3
     
     if countr > 1:
         redAlter -= 5
