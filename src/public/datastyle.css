@@ -59,6 +59,12 @@ body {
   gap: 100px;
 }
 
+.adjacent-small-graph {
+  display: flex;
+  align-items: flex-start;
+  gap: 45px;
+}
+
 .searchinput {
   background-color: #200101;
   border: none;
