@@ -333,7 +333,7 @@ def LocalPublic (inputS):
             count += 1
         if count < 1:
             team += char
-        elif count < 7:
+        elif count < 7 and (char != ',' or count > 2):
             holdS += char
     
     inputS = holdS
