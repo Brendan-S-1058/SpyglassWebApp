@@ -285,7 +285,6 @@ function build (results, aKey) {
   }
 
   async function predict(dataArray) {
-    alert('dataArray: ' + dataArray);
     console.log('dataArray: ' + dataArray);
     const res = await fetch ("/matchPredinput", {
       method: "POST",
