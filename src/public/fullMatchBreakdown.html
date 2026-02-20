@@ -180,6 +180,8 @@ async function fullPredictSingleMatch() {
 
   if (mode == 2) {
     send = [2, localStorage.getItem('team'), bt1, bt2, bt3, rt1, rt2, rt3, localStorage.getItem('qrCodes')];
+  } else if (mode == 1){
+    send = [1, bt1, bt2, bt3, rt1, rt2, rt3];
   } else {
     send = [mode, bt1, bt2, bt3, rt1, rt2, rt3, localStorage.getItem('qrCodes')];
   }
@@ -187,7 +189,7 @@ async function fullPredictSingleMatch() {
   const res = await fetch ("/fullOneMatchPred", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify([1, bt1, bt2, bt3, rt1, rt2, rt3]),
+      body: JSON.stringify(send),
   });
 
   console.log(res);
