@@ -390,9 +390,9 @@ def LocalPublic (inputS):
             count += 1
         if count < 1:
             team += char
-        if count < 7:
+        elif count < 7 and (char != ',' or count > 1):
             holdS += char
-    
+                
     inputS = holdS
 
     with open ("public/data/Teams/" + team + "/" + team + 'Public.txt', 'r') as file:
