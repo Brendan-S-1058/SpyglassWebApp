@@ -87,7 +87,6 @@
                       storedQRs.push(newqrdata[i]);
                     }
                   }
-                  storedQRs.push(qrData);
                   localStorage.setItem("qrCodes", JSON.stringify(storedQRs));
                 }
                 document.getElementById("qrDataDisplay").innerText = "QR Code: " + qrData;
