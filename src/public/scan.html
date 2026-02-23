@@ -79,8 +79,14 @@
               
               if (code) {
                 let qrData = code.data;
+                newqrdata = qrData.split('/'); 
                 let storedQRs = JSON.parse(localStorage.getItem("qrCodes")) || [];
                 if (!storedQRs.includes(qrData)) {
+                  for (let i = 0; i < newqrdata.length; i++) {
+                    if (!storedQRs.includes(newqrdata[i])) {
+                      storedQRs.push(newqrdata[i]);
+                    }
+                  }
                   storedQRs.push(qrData);
                   localStorage.setItem("qrCodes", JSON.stringify(storedQRs));
                 }
