@@ -118,11 +118,13 @@ def Main ():
     elif redAverageMatchHalfProcessed[0] > blueAverageMatchHalfProcessed[0]:
         redAverageMatchHalfProcessed[3] *= 1.3
     
-    if blueAverageMatchHalfProcessed[8] > 3:
-        redAverageMatchHalfProcessed[3] /= 1+blueAverageMatchHalfProcessed[8]/10
+    if blueAverageMatchHalfProcessed[8] > redAverageMatchHalfProcessed[8]:
+        redAverageMatchHalfProcessed[3] *= 1-blueAverageMatchHalfProcessed[8]/10
+        blueAverageMatchHalfProcessed[3] *= 1+redAverageMatchHalfProcessed[8]/50
 
-    if redAverageMatchHalfProcessed[8] > 3:
-        blueAverageMatchHalfProcessed[3] /= 1+redAverageMatchHalfProcessed[8]/10
+    elif redAverageMatchHalfProcessed[8] > blueAverageMatchHalfProcessed[8]:
+        blueAverageMatchHalfProcessed[3] *= 1-redAverageMatchHalfProcessed[8]/10
+        redAverageMatchHalfProcessed[3] *= 1+blueAverageMatchHalfProcessed[8]/50
 
     chargedRPb = (blueAverageMatchHalfProcessed[0] + blueAverageMatchHalfProcessed[3])/100
     chargedRPr = (redAverageMatchHalfProcessed[0] + redAverageMatchHalfProcessed[3])/100
@@ -240,13 +242,13 @@ def search (inputS):
 def cap (match):
     
     if match[3]+match[0]+match[5] > 0:
-        match[3] += match[2]*(match[3]+match[0])/(match[3]+match[0]+match[5])
+        match[3] += ((match[2]-20)*(match[3]+match[0])/(match[3]+match[0]+match[5]))
 
     if match[1] > 2:
         match[1] = 2
 
     if match[7] > 0 and match[6] > 0:
-        match[3] *= 1.01
+        match[3] *= 1.1
 
     return (match)
 
