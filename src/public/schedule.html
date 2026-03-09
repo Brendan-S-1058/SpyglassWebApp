@@ -165,8 +165,8 @@ function build (results, aKey) {
       didBlueWin, 
       blueScoreRange, redScoreRange,
       blueWinPercent, redWinPercent,
-      corRPb, autoRPb, bargeRPb,
-      corRPr, autoRPr, bargeRPr
+      chRPb, suchRPb, travRPb,
+      chRPr, suchRPr, travRPr
     ] = middleMan;
 
     /**console.log('alliances: ' + alliances);
@@ -175,9 +175,9 @@ function build (results, aKey) {
     console.log('alliances[qm4]: ' + alliances['qm4'])**/
 
     if (alliances[match] == 'blue') {
-      autoRP = autoRPb;
-      bargeRP = bargeRPb;
-      corRP = corRPb;
+      chRP = chRPb;
+      suchRP = suchRPb;
+      travRP = travRPb;
       if (didBlueWin == true){
         message = "You Win";
         color = ' green';
@@ -188,9 +188,9 @@ function build (results, aKey) {
         winPercents = redWinPercent + '-' + blueWinPercent;
       }
     } else {
-      autoRP = autoRPr;
-      bargeRP = bargeRPr;
-      corRP = corRPr;
+      chRP = chRPr;
+      suchRP = suchRPr;
+      travRP = travRPr;
       if (didBlueWin != true){
         message = "You Win";
         color = ' green';
@@ -213,9 +213,9 @@ function build (results, aKey) {
           <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+'): '+blueScoreRange+`</td>
           <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+'): '+redScoreRange+`</td>
           <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
-          <td class="p-2 border`+color+`">Auto RP: `+autoRP+`%</td>
-          <td class="p-2 border`+color+`">Reef RP: `+corRP+`%</td>
-          <td class="p-2 border`+color+`">Barge RP: `+bargeRP+`%</td>
+          <td class="p-2 border`+color+`">Charged RP: `+chRP+`%</td>
+          <td class="p-2 border`+color+`">Supercharged RP: `+suchRP+`%</td>
+          <td class="p-2 border`+color+`">Traversal RP: `+travRP+`%</td>
           <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_'+match+`" target="_blank" class="p-2 border`+color+`">`+message+`</a>
         `;
     } else if (match.includes('s')){
@@ -235,9 +235,9 @@ function build (results, aKey) {
           <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+'): '+blueScoreRange+`</td>
           <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+'): '+redScoreRange+`</td>
           <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
-          <td class="p-2 border`+color+`">Auto RP: `+autoRP+`%</td>
-          <td class="p-2 border`+color+`">Reef RP: `+corRP+`%</td>
-          <td class="p-2 border`+color+`">Barge RP: `+bargeRP+`%</td>
+          <td class="p-2 border`+color+`">Charged RP: `+chRP+`%</td>
+          <td class="p-2 border`+color+`">Supercharged RP: `+suchRP+`%</td>
+          <td class="p-2 border`+color+`">Traversal RP: `+travRP+`%</td>
           <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_sf'+relMatchNum+'m'+instance+`" target="_blank" class="p-2 border`+color+`">`+message+`</a>
         `;
     } else {
@@ -257,9 +257,9 @@ function build (results, aKey) {
           <td class="p-2 border`+color+`">Blue score range: (`+relTeams[0]+','+relTeams[1]+','+relTeams[2]+'): '+blueScoreRange+`</td>
           <td class="p-2 border`+color+`">Red score range: (`+relTeams[3]+','+relTeams[4]+','+relTeams[5]+'): '+redScoreRange+`</td>
           <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
-          <td class="p-2 border`+color+`">Auto RP: `+autoRP+`%</td>
-          <td class="p-2 border`+color+`">Reef RP: `+corRP+`%</td>
-          <td class="p-2 border`+color+`">Barge RP: `+bargeRP+`%</td>
+          <td class="p-2 border`+color+`">Charged RP: `+chRP+`%</td>
+          <td class="p-2 border`+color+`">Supercharged RP: `+suchRP+`%</td>
+          <td class="p-2 border`+color+`">Traversal RP: `+travRP+`%</td>
           <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_f'+relMatchNum+'m'+instance+`" target="_blank" class="p-2 border`+color+`">`+message+`</a>
         `;
     }
