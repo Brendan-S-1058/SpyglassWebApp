@@ -132,7 +132,7 @@ def main():
         for smatch in sortedData:
             if match == smatch[0]:
                 totalScore = OprsByTeam[str(smatch[1])]
-                totalScore -= smatch[3]+smatch[4]*15+smatch[6]+smatch[7]*10+(float(10*(float(smatch[5])*(float(smatch[3]) + float(smatch[6]))/(float(smatch[3]) + float(smatch[6]) + float(smatch[8]))*(2/3)//1/10)))
+                totalScore -= smatch[3]+smatch[4]*15+smatch[6]+smatch[7]*10+(float(10*(float(smatch[5]-20)*(float(smatch[3]) + float(smatch[6]))/(float(smatch[3]) + float(smatch[6]) + float(smatch[8]))*(2/3)//1/10)))
                 if smatch[2] == 1:
                     alliancesByMatch[str(match) + 'team' + 'b'].append(smatch[1])
                     alliancesByMatch[str(match) + 'score' + 'b'] += totalScore

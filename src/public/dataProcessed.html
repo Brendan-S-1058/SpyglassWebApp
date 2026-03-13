@@ -322,6 +322,7 @@
         const table = document.getElementById("data-table-body");
         const newRow = document.createElement('tr');
         newRow.contentEditable = "false";
+        if (public == 2) {
         newRow.innerHTML = `
             <th class="p-2 border">`+match+`</th>
             <th class="p-2 border">`+team+`</th>
@@ -343,7 +344,29 @@
             <th class="p-2 border">`+fuelper+`</td>
             <th class="p-2 border">`+climbper+`</td>
             <th class="p-2 border">`+acc+`</th>
-            <th class="p-2 border">`+comments+`</th>`
+            <th class="p-2 border">public - no comments</th>`
+        } else {        newRow.innerHTML = `
+            <th class="p-2 border">`+match+`</th>
+            <th class="p-2 border">`+team+`</th>
+            <th class="p-2 border">`+alliance+`</th>
+            <th class="p-2 border">`+autoFuel+`</th>
+            <th class="p-2 border">`+autoClimb+`</th>
+            <th class="p-2 border">`+feed+`</th>
+            <th class="p-2 border">`+teleFuel+`</th>
+            <th class="p-2 border">`+teleClimb+`</th>
+            <th class="p-2 border">`+shotsMissed+`</th>
+            <th class="p-2 border">`+canBump+`</th>
+            <th class="p-2 border">`+canTrench+`</th>
+            <th class="p-2 border">`+defense+`</th>
+            <th class="p-2 border">`+autoTotal+`</td>
+            <th class="p-2 border">`+teleTotal+`</td>
+            <th class="p-2 border">`+total+`</td>
+            <th class="p-2 border">`+fuelTotal+`</td>
+            <th class="p-2 border">`+climbTotal+`</td>
+            <th class="p-2 border">`+fuelper+`</td>
+            <th class="p-2 border">`+climbper+`</td>
+            <th class="p-2 border">`+acc+`</th>
+            <th class="p-2 border">`+comments+`</th>`}
             table.appendChild(newRow);
           };
             // Initial row delete setup (for static row)
