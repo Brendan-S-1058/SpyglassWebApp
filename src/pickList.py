@@ -330,7 +330,7 @@ def Break (inputString, bigDict):
             metaHoldMax = float(match[3]) + float(match[4])*15 + float(match[6]) + float(match[7])*10 + (10*(float(match[5])*(float(match[3]) + float(match[6]))/(float(match[3]) + float(match[6]) + float(match[8]))*(2/3)//1/10))
         #should give feed as each fed is one point times accuracy *2/3 for self feeding
         if (float(match[3]) + float(match[6]) + float(match[8]) > 0):
-            metateleTotal += (float(10*(float(match[5]-20)*(float(match[3]) + float(match[6]))/(float(match[3]) + float(match[6]) + float(match[8]))*(2/3)//1/10)))
+            metateleTotal += (float(10*((float(match[5])-20)*(float(match[3]) + float(match[6]))/(float(match[3]) + float(match[6]) + float(match[8]))*(2/3)//1/10)))
    
     if (shotsMade + shotsMissed) > 0:
         accuracy = shotsMade/(shotsMade + shotsMissed)
