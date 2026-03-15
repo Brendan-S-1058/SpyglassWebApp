@@ -324,8 +324,6 @@ def Break (inputString, bigDict):
         teleTotal += ((float(match[6])*1)+(float(match[7])*10))
 
         if (((float(match[3])*1)+(float(match[4])*15)) + ((float(match[6])*1)+(float(match[7])*10))) > holdMax or holdMax == 0:
-            print ("holdMax: " + str(holdMax), file=sys.stderr)
-            print ("((float(match[3])*1)+(float(match[4])*15)) + ((float(match[6])*1)+(float(match[7])*10)): " + str(((float(match[3])*1)+(float(match[4])*15)) + ((float(match[6])*1)+(float(match[7])*10)), file=sys.stderr)
             holdMax = ((float(match[3])*1)+(float(match[4])*15)) + ((float(match[6])*1)+(float(match[7])*10))
 
         if ((((float(match[3])*1)+(float(match[4])*15)) + ((float(match[6])*1)+(float(match[7])*10))) > metaHoldMax) and (float(match[3]) + float(match[6]) + float(match[8]) > 0):

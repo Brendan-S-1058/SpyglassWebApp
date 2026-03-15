@@ -313,10 +313,10 @@ def Break (inputString, bigDict):
         autoTotal += ((float(match[3])*1)+(float(match[4])*15))
         teleTotal += ((float(match[6])*1)+(float(match[7])*10))
 
-        if (autoTotal + teleTotal) > holdMax:
-            holdMax = autoTotal + teleTotal
+        if (((float(match[3])*1)+(float(match[4])*15)) + ((float(match[6])*1)+(float(match[7])*10))) > holdMax or holdMax == 0:
+            holdMax = ((float(match[3])*1)+(float(match[4])*15)) + ((float(match[6])*1)+(float(match[7])*10))
 
-        if ((autoTotal + teleTotal) > metaHoldMax) and (float(match[3]) + float(match[6]) + float(match[8]) > 0):
+        if ((((float(match[3])*1)+(float(match[4])*15)) + ((float(match[6])*1)+(float(match[7])*10))) > metaHoldMax) and (float(match[3]) + float(match[6]) + float(match[8]) > 0):
             metaHoldMax = float(match[3]) + float(match[4])*15 + float(match[6]) + float(match[7])*10 + (10*(float(match[5])*(float(match[3]) + float(match[6]))/(float(match[3]) + float(match[6]) + float(match[8]))*(2/3)//1/10))
         #should give feed as each fed is one point times accuracy *2/3 for self feeding
         if (float(match[3]) + float(match[6]) + float(match[8]) > 0):
