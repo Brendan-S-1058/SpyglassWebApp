@@ -258,7 +258,7 @@ def calc (match):
     return (score)
 
 def analyze (bscore, rscore, bstart, rstart, crpb, arpb, brpb, crpr, arpr, brpr):
-    bstate = (bscore+bstart)/2-(rscore+rstart)/2
+    bstate = bscore-rscore
 
     mod = 0
     if bstate > 0:
