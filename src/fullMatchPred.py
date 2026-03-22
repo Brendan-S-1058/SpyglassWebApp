@@ -164,9 +164,9 @@ def Main ():
     redAvg = redAverageMatchHalfProcessed[0]
 
     if blueAverageMatchHalfProcessed[0] > redAverageMatchHalfProcessed[0]:
-        blueAverageMatchHalfProcessed[3] *= 1.2
+        blueAverageMatchHalfProcessed[3] *= 1.3
     elif redAverageMatchHalfProcessed[0] > blueAverageMatchHalfProcessed[0]:
-        redAverageMatchHalfProcessed[3] *= 1.2
+        redAverageMatchHalfProcessed[3] *= 1.3
     
     if blueAverageMatchHalfProcessed[8] > redAverageMatchHalfProcessed[8]:
         redAverageMatchHalfProcessed[3] *= 1-blueAverageMatchHalfProcessed[8]/10
