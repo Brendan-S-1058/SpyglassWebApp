@@ -114,9 +114,9 @@ def Main ():
     redAverageMatchHalfProcessed = cap(redAverageMatchUnprocessed)
 
     if blueAverageMatchHalfProcessed[0] > redAverageMatchHalfProcessed[0]:
-        blueAverageMatchHalfProcessed[3] *= 1.3
+        blueAverageMatchHalfProcessed[3] *= 1.2
     elif redAverageMatchHalfProcessed[0] > blueAverageMatchHalfProcessed[0]:
-        redAverageMatchHalfProcessed[3] *= 1.3
+        redAverageMatchHalfProcessed[3] *= 1.2
     
     if blueAverageMatchHalfProcessed[8] > redAverageMatchHalfProcessed[8]:
         redAverageMatchHalfProcessed[3] *= 1-blueAverageMatchHalfProcessed[8]/10
