@@ -80,7 +80,7 @@ def Main ():
 
     averageMatches = []
     for key in keyList:
-        teamHoldList = [0,0,0,0,0,0,0,0,0,0,0,0]
+        teamHoldList = [0,0,0,0,0,0,0,0,0,0,0,0,0]
         #divisor = 0
         countmatches = 0
         for match in relevantDict[key]:
