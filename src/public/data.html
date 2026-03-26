@@ -260,7 +260,7 @@ async function overallProcess(dataArray) {
         const [
           match, team, alliance,
           autoFuel, autoClimb, feed, teleFuel, teleClimb, shotsMissed, canBump,
-          canTrench, defense, comments,
+          canTrench, defense, reliability, comments,
         ] = fields;
 
         const table = document.getElementById("data-table-body");
@@ -279,6 +279,7 @@ async function overallProcess(dataArray) {
             <td class="p-2 border">`+canBump+`</td>
             <td class="p-2 border">`+canTrench+`</td>
             <td class="p-2 border">`+defense+`</td>
+            <td class="p-2 border">`+reliability+`</td>
             <td class="p-2 border">`+comments+`</td>
             <td class="p-2 border">
               <button class="button text-red-500 hover:underline ml-2 delete-btn" id="Delete">Delete</button>
