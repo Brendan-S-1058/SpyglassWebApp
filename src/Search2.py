@@ -37,16 +37,18 @@ def Main ():
         if char != "," and char != "\n" and char != "\"":
             hold += char 
             #print (hold)
-        if char == "," and commaCount != 21:
+        if char == "," and commaCount != 22:
             #commacount here should be the number of items in your list because there's a trailing comma after every line
             holdList.append(hold)
             hold = ""
             commaCount += 1
-        if commaCount == 21:
+        if commaCount == 22:
             #commacount here should be the number of items in your list because there's a trailing comma after every line
             dataLists.append(holdList)
             holdList = []
             commaCount = 0
+
+    print ("DataLists: " + str(dataLists), file=sys.stderr)
 
     holdMax = 0
     holdMedL = []

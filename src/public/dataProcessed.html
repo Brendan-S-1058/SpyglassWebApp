@@ -35,6 +35,7 @@
             <th class="p-2 border">can bumb</th>
             <th class="p-2 border">can trench</th>
             <th class="p-2 border">defense</th>
+            <th class="p-2 border">reliability</th>
             <th class="p-2 border">auto total</td>
             <th class="p-2 border">tele total</td>
             <th class="p-2 border">total</td>
@@ -308,14 +309,14 @@
 
     function createRow(csv){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-        if (fields.length !== 21) {
-          console.error("createRow: expected 21 comma‑separated values, got", fields.length);
+        if (fields.length !== 22) {
+          console.error("createRow: expected 22 comma‑separated values, got", fields.length);
           return;
         }
         const [
           match, team, alliance,
           autoFuel, autoClimb, feed, teleFuel, teleClimb, shotsMissed, canBump,
-          canTrench, defense, comments,
+          canTrench, defense, reliability, comments,
           autoTotal, teleTotal, total, fuelTotal, climbTotal, fuelper, climbper, acc
         ] = fields;
 
@@ -336,6 +337,7 @@
             <th class="p-2 border">`+canBump+`</th>
             <th class="p-2 border">`+canTrench+`</th>
             <th class="p-2 border">`+defense+`</th>
+            <th class="p-2 border">`+reliability+`</th>
             <th class="p-2 border">`+autoTotal+`</td>
             <th class="p-2 border">`+teleTotal+`</td>
             <th class="p-2 border">`+total+`</td>
@@ -358,6 +360,7 @@
             <th class="p-2 border">`+canBump+`</th>
             <th class="p-2 border">`+canTrench+`</th>
             <th class="p-2 border">`+defense+`</th>
+            <th class="p-2 border">`+reliability+`</th>
             <th class="p-2 border">`+autoTotal+`</td>
             <th class="p-2 border">`+teleTotal+`</td>
             <th class="p-2 border">`+total+`</td>
