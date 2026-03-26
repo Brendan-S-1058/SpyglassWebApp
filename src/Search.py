@@ -148,23 +148,23 @@ def NewSheet (datain):
         #tele point total
         dataList.append((int(dataList[6])*1)+(int(dataList[7])*10))
         #total points scored that match
-        dataList.append(dataList[13]+dataList[14])
+        dataList.append(dataList[14]+dataList[15])
         #score stations:
         #fuel total
         dataList.append(int(dataList[6])*1+int(dataList[3])*1)
         #climb total
         dataList.append(int(dataList[4])*15+int(dataList[7])*10)
         #fuel%
-        if dataList [15]>0:
-            dataList.append(round(int(dataList[16])/int(dataList[15])*100))
+        if dataList [16]>0:
+            dataList.append(round(int(dataList[16])/int(dataList[16])*100))
             #algae%
-            dataList.append(round(int(dataList[17])/int(dataList[15])*100))
+            dataList.append(round(int(dataList[17])/int(dataList[16])*100))
         else:
             dataList.append(0)
             dataList.append(0)
         #accuracy
-        if (dataList[16]+int(dataList[8]) > 0):
-            dataList.append(round(1000*dataList[16]/(dataList[16]+int(dataList[8])))/10)
+        if (dataList[17]+int(dataList[8]) > 0):
+            dataList.append(round(1000*dataList[17]/(dataList[17]+int(dataList[8])))/10)
         else:
             dataList.append(0)
 

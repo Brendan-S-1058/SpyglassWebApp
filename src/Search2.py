@@ -66,21 +66,21 @@ def Main ():
     holdAcc = 0
     holdTele = 0
     for i in range (len(dataLists)):
-        holdMedL.append(int(dataLists[i][15]))
-        if (int(dataLists[i][15]) > holdMax):
-            holdMax = int(dataLists[i][15])
+        holdMedL.append(int(dataLists[i][16]))
+        if (int(dataLists[i][16]) > holdMax):
+            holdMax = int(dataLists[i][16])
         if dataLists[i][7] == '1' or dataLists[i][7] == '2' or dataLists[i][7] == '3':
             holdTClimb += 1
-        holdTotal += int(dataLists[i][15])
-        holdFuel += int(dataLists[i][16])
+        holdTotal += int(dataLists[i][16])
+        holdFuel += int(dataLists[i][17])
         holdAfuel += int(dataLists[i][3])
-        holdAuto += int(dataLists[i][13])
-        holdAcc += float(dataLists[i][20])
-        holdTele += int(dataLists[i][14])
+        holdAuto += int(dataLists[i][14])
+        holdAcc += float(dataLists[i][21])
+        holdTele += int(dataLists[i][15])
         holdMisses += int(dataLists[i][8])
         holdAClimb += int(dataLists[i][4])
         holdTAClimb += int(dataLists[i][7])
-        holdClimb += int(dataLists[i][17])
+        holdClimb += int(dataLists[i][18])
     holdMedL.sort()
     while len(holdMedL)>2:
         holdMedL.pop(0)
