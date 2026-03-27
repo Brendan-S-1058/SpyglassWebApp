@@ -297,6 +297,7 @@ def Break (inputString, bigDict):
     perbroken = 0
     afuel = 0
     defenseTotal = 0
+    defenseCount = 0
     
     for match in dataLists:
         holdAClimb += float(match[4])
@@ -317,6 +318,8 @@ def Break (inputString, bigDict):
         teleTotal += ((float(match[6])*1)+(float(match[7])*10))
 
         fedTotal += float(match[5])
+        if float(match[11]) > 0:
+            defenseCount += 1
         defenseTotal += float(match[11])
         perbroken += float(match[12])
 
@@ -336,7 +339,8 @@ def Break (inputString, bigDict):
     autoAverage = autoTotal/len(dataLists)
     teleAverage = teleTotal/len(dataLists)
     fedAverage = fedTotal/len(dataLists)
-    defense = defenseTotal/len(dataLists)
+    if defenseCount > 0:
+        defense = defenseTotal/defenseCount
     perTB = perbroken/len(dataLists)
     metateleAverage = metateleTotal/len(dataLists)
     averageautoclimb = holdAClimb/len(dataLists)
