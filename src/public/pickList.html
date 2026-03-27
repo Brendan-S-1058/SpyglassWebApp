@@ -593,7 +593,7 @@ async function dpra(input) {
     var teams = [];
     const rows = Array.from(table.rows);
     const vals = [];
-    if (Index != 13 || Index != 12) {
+    if (Index != 13 && Index != 12) {
       rows.forEach(row => {
         teams.push(row.innerText.split('\t'));
         vals.push(Number(row.innerText.split('\t')[Index]));
@@ -606,7 +606,7 @@ async function dpra(input) {
     }
     var next = 0;
     const order = [];
-    if (Index != 13 || Index != 12) {
+    if (Index != 13 && Index != 12) {
       vals.sort((c, d) => c-d);
     } else {
       vals.sort();
