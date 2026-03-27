@@ -298,6 +298,7 @@ def Break (inputString, bigDict):
     afuel = 0
     defenseTotal = 0
     defenseCount = 0
+    defense = 0
     
     for match in dataLists:
         holdAClimb += float(match[4])
