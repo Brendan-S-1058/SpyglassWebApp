@@ -589,6 +589,7 @@ async function dpra(input) {
   }
 
   function SortByIndex(Index) {
+    console.log("index: " + Index);
     table = document.getElementById('data-table-body');
     var teams = [];
     const rows = Array.from(table.rows);
@@ -670,6 +671,7 @@ async function dpra(input) {
   });
 
   document.getElementById('teleFed').addEventListener('click', ()=> {
+    console.log("fed avg button clicked");
     SortByIndex(7);
   });
 
