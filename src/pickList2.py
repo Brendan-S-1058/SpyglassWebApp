@@ -277,13 +277,14 @@ def Break (inputString, bigDict):
             dataLists.append(holdList)
             holdList = []
             commaCount = 0
-        if char == "," and commaCount != 13:
+        if char == "," and commaCount != 16:
             holdList.append(hold)
             hold = ""
             commaCount += 1
     
     autoTotal = 0
     teleTotal = 0
+    fedTotal = 0
     canBump = 'No'
     canTrench = 'No'
     holdMax = 0
@@ -293,7 +294,9 @@ def Break (inputString, bigDict):
     shotsMissed = 0
     holdAClimb = 0
     holdTClimb = 0
+    perbroken = 0
     afuel = 0
+    defenseTotal = 0
     
     for match in dataLists:
         holdAClimb += float(match[4])
@@ -313,6 +316,10 @@ def Break (inputString, bigDict):
         autoTotal += ((float(match[3])*1)+(float(match[4])*15))
         teleTotal += ((float(match[6])*1)+(float(match[7])*10))
 
+        fedTotal += float(match[5])
+        defenseTotal += float(match[11])
+        perbroken += float(match[12])
+
         if (((float(match[3])*1)+(float(match[4])*15)) + ((float(match[6])*1)+(float(match[7])*10))) > holdMax or holdMax == 0:
             holdMax = ((float(match[3])*1)+(float(match[4])*15)) + ((float(match[6])*1)+(float(match[7])*10))
 
@@ -328,6 +335,9 @@ def Break (inputString, bigDict):
         accuracy = 0
     autoAverage = autoTotal/len(dataLists)
     teleAverage = teleTotal/len(dataLists)
+    fedAverage = fedTotal/len(dataLists)
+    defense = defenseTotal/len(dataLists)
+    perTB = perbroken/len(dataLists)
     metateleAverage = metateleTotal/len(dataLists)
     averageautoclimb = holdAClimb/len(dataLists)
     averageteleclimb = holdTClimb/len(dataLists)
@@ -336,7 +346,7 @@ def Break (inputString, bigDict):
     metaAveragePointsScored = autoAverage + teleAverage + metateleAverage
     averagePointsScored = autoAverage + teleAverage
 
-    bigDict[str(dataLists[0][1])] = [10*metaAveragePointsScored//1/10, 10*averagePointsScored//1/10, 10*metaHoldMax//1/10, 10*holdMax//1/10, 10*autoAverage//1/10, 10*teleAverage//1/10, 1000*accuracy//1/10, 10*averageautoclimb//1/10, 10*averageteleclimb//1/10, 10*avgautoFuel//1/10, canBump, canTrench]
+    bigDict[str(dataLists[0][1])] = [10*metaAveragePointsScored//1/10, 10*averagePointsScored//1/10, 10*metaHoldMax//1/10, 10*holdMax//1/10, 10*autoAverage//1/10, 10*teleAverage//1/10, 10*fedAverage//1/10, 1000*accuracy//1/10, 10*averageautoclimb//1/10, 10*averageteleclimb//1/10, 10*avgautoFuel//1/10, canBump, canTrench, 10*perTB//1/10, 10*defense//1/10]
 
 def Order (inputDict):
     outerHoldList = []
