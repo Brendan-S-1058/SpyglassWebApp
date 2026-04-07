@@ -394,7 +394,7 @@ async function dpra(input) {
 
   function createRow(csv){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
-        if (fields.length !== 17) {
+        if (fields.length !== 16 && fields.length !== 17) {
           console.error("createRow: expected 17 comma‑separated values, got", fields.length);
           return;
         }
