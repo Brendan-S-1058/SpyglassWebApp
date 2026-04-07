@@ -88,6 +88,9 @@
             <th>
               <button id="def" class="button">Defense</button>
             </th>
+            <th>
+              <button id="delete" class="button">Delete</button>
+            </th>
           </tr>
         </thead>
         <tbody id="data-table-body">
@@ -382,7 +385,10 @@ async function dpra(input) {
           <td class="p-2 border">`+canBump+`</td>
           <td class="p-2 border">`+canTrench+`</td>
           <td class="p-2 border">`+brokenAvg+`</td>
-          <td class="p-2 border">`+def+`</td>`
+          <td class="p-2 border">`+def+`</td>
+          <td class="p-2 border">
+              <button class="button" onclick="deleteRow(this)">Delete</button>
+            </td>`
           table.appendChild(newRow);
           };
 
@@ -415,7 +421,10 @@ async function dpra(input) {
             <td class="p-2 border">`+canBump+`</td>
             <td class="p-2 border">`+canTrench+`</td>
             <td class="p-2 border">`+brokenAvg+`</td>
-            <td class="p-2 border">`+def+`</td>`
+            <td class="p-2 border">`+def+`</td>
+            <td class="p-2 border">
+              <button class="button" onclick="deleteRow(this)">Delete</button>
+            </td>`
             table.appendChild(newRow);
             };
   
