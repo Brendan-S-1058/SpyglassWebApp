@@ -423,13 +423,10 @@ async function dpra(input) {
             <td class="p-2 border">`+brokenAvg+`</td>
             <td class="p-2 border">`+def+`</td>
             <td class="p-2 border">
-              <button class="button" onclick="deleteRow(this)">Delete</button>
+              <button class="button" onclick="this.parentNode.parentNode.remove()">Delete</button>
             </td>`
             table.appendChild(newRow);
             };
-  function deleteRow(button) {
-    button.parentNode.parentNode;
-  }
   
   function createRowOpr(csv){
         const fields = csv.split(",").map(s => s.trim().replace(/[\["\/]/g, ""));
