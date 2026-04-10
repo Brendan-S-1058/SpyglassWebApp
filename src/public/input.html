@@ -249,7 +249,7 @@
                     }
                 });
 
-                let finalResult = resultArray.join("≲").replaceAll(',','-').replaceAll('≲', ',');
+                let finalResult = resultArray.join("≲").replaceAll(',','-').replaceAll('\'', '-').replaceAll('≲', ',');
                 let finalResult2 = finalResult + "/" + hold;
                 document.getElementById("result").textContent = finalResult2;
                 hold = finalResult2;
@@ -273,7 +273,7 @@
                         }
                     });
 
-                    let finalResult = resultArray.join("≲").replaceAll(',','-').replaceAll('≲', ',');
+                    let finalResult = resultArray.join("≲").replaceAll(',','-').replaceAll('\'', '-').replaceAll('≲', ',');
                     finalResult2 = finalResult + "/" + hold;  
                 } else {
                     finalResult2 = hold;
