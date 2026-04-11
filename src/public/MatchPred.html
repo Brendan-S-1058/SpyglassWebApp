@@ -295,7 +295,7 @@ function build (results, aKey, fullPred) {
           <td class="p-2 border`+color+`">Blue score range: (`+teams[0]+','+teams[1]+','+teams[2]+'): '+blueScoreRange+`</td>
           <td class="p-2 border`+color+`">Red score range: (`+teams[3]+','+teams[4]+','+teams[5]+'): '+redScoreRange+`</td>
           <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
-          <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_'+match+`" target="_blank" class="p-2 border`+color+`">`+message+`</a>
+          <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_'+match+`" target="_blank" class="p-2 border`+color+`">Statbotics</a>
         `;
     } else if (match.includes('s')){
       relMatchNum = ''
@@ -314,7 +314,7 @@ function build (results, aKey, fullPred) {
           <td class="p-2 border`+color+`">Blue score range: (`+teams[0]+','+teams[1]+','+teams[2]+'): '+blueScoreRange+`</td>
           <td class="p-2 border`+color+`">Red score range: (`+teams[3]+','+teams[4]+','+teams[5]+'): '+redScoreRange+`</td>
           <td class="p-2 border`+color+`">Win Odds: `+winPercents+`</td>
-          <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_sf'+relMatchNum+'m'+instance+`" target="_blank" class="p-2 border`+color+`">`+message+`</a>
+          <a href="https://www.statbotics.io/match/`+localStorage.getItem('eventCode')+'_sf'+relMatchNum+'m'+instance+`" target="_blank" class="p-2 border`+color+`">Statbotics</a>
         `;
     } else if (match.includes('f')){
       relMatchNum = ''
