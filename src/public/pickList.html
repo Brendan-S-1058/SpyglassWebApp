@@ -19,6 +19,7 @@
       <button id="sort" class="button">Generate List</button>
       <select id="sortMeth" name="sortMeth">
         <option value="aps">Avg points scored</option> 
+        <option value="magic"></option>
         <option value="opr">OPR</option>
         <option value="dpropr">DPR by OPR</option>
         <option value="dpraps">DPR by APS</option>
@@ -173,6 +174,9 @@
         OprGraph([localStorage.getItem('team') + '@'].concat(send));
         console.log ('COPRSSSSS WOOOOOOOOO')
         data = await copr([document.getElementById('sortMeth').value + '@'].concat(send));
+      } else if (document.getElementById('sortMeth').value == 'magic') {
+        Graph(send);
+        data = await magic(send);
       }
     } else if (graphState == 1) {
       if (document.getElementById('sortMeth').value == 'aps') {
@@ -555,6 +559,43 @@ async function dpra(input) {
       console.error("Yikes (The graph didn't work).");
       console.error(e);
       return;
+    }
+
+    return (json);
+  }
+
+  async function magic(data){
+    const res = await fetch ("/qualPL", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(State),
+    });
+
+    console.log(res);
+
+    if (!res.ok){
+      throw new Error("HTTP error " + res.status);
+    }
+
+    const json = await res.json();
+
+    if (oldGraphs == 1){
+      try {
+        const graph = document.createElement('img');
+        graph.src = "data/Teams/" + localStorage.getItem('team') + "/" + localStorage.getItem('team') + "Graphs/AVT.png";
+        graph.width = 600;
+        graph.height = 400;
+
+        const division = document.getElementById("images");
+        division.innerHTML='';
+
+        division.appendChild(graph);
+
+      } catch (e) {
+        console.error("Yikes (The graph didn't work).");
+        console.error(e);
+        return;
+      }
     }
 
     return (json);

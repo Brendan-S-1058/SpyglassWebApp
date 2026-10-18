@@ -29,6 +29,13 @@ def Main ():
         count += 1
     except:
         pass
+    
+    try:
+        with open ("public/data/Teams/" + str(inputS) + '/' + str(inputS) + 'comps.txt', 'x') as file:
+            file.close ()
+        count += 1
+    except:
+        pass
 
     print (json.dumps('number of dirs made: ' + str(count)))
 
