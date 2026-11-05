@@ -79,14 +79,14 @@
   }
 
   document.getElementById('team1').addEventListener('click', async ()=> {
-    if (confirm("are you sure you want to pick " + str(team1) + '?')) {
+    if (confirm("are you sure you want to pick " + (team1) + '?')) {
     await send(team1, team2);
     createComparision();
     }
   })
 
   document.getElementById('team2').addEventListener('click', async ()=> {
-    if (confirm("are you sure you want to pick " + str(team2) + '?')) {
+    if (confirm("are you sure you want to pick " + (team2) + '?')) {
     await send(team2, team1);
     createComparision();
     }
