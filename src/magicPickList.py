@@ -22,6 +22,9 @@ def Main():
                 team += char
 
     #team = '2'
+    order = getOrder(team)
+
+    print('order: ' + str(order), file=sys.stderr)
     #order = '2910,6324,1058,238,1678,3467,'
 
     with open ("public/data/Teams/" + team + "/" + team + "comps.txt", 'r') as file:
@@ -82,25 +85,37 @@ def Main():
             Results[comp[1]].append(margin)
 
 
-    Links = {}
+    links = []
 
     for i in range(len(initialOrder)):
         teamNum = initialOrder[i]
         if len(Results[teamNum]) > 0:
-            Results[teamNum] = sum(Results[teamNum])/len(Results[teamNum]) + len(Results[teamNum])-i + teamNum/10000000
+            Results[teamNum] = sum(Results[teamNum])/len(Results[teamNum]) + len(Results[teamNum])-i
         else:
             Results[teamNum] = len(Results[teamNum])-i
 
-        Links[Results[teamNum]] = teamNum
+        links.append([Results[teamNum], teamNum])
 
-    links = sorted(Links.keys(), reverse=True)
+    finalOrder = sorted(links, key=lambda link: link[0])
 
-    finalOrder = []
-    for key in links:
-        finalOrder.append(Links[key])
+    print ('finalOrder: ' + str(finalOrder), file=sys.stderr)
+
+    print (json.dumps(finalOrder))
 
     #print (Links)
 
     #print(finalOrder)
+
+def getOrder(team):
+
+    with open ("public/data/Teams/" + team + "/" + team + "baselineOrder.txt", 'r') as file:
+        rawOrder = file.read()
+        file.close ()
+
+    #TODO: cry
+    print ('rawOrder: ' + rawOrder, file=sys.stderr)
+
+    return rawOrder
+
 
 Main ()

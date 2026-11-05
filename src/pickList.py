@@ -8,6 +8,11 @@ def Main ():
     inputR = sys.stdin.read()
     inputI = json.loads(inputR)
 
+    justWrite = False
+    if inputI[0] + inputI[1] == 'jw':
+        justWrite = True
+        inputI = inputI[2:]
+
     comma = False
     inputSo = ''
     team = ''
@@ -46,7 +51,7 @@ def Main ():
     
     print (finalDataDict, file=sys.stderr)
 
-    finalList = Order (finalDataDict, team)
+    finalList = Order (finalDataDict, team, justWrite)
 
     print (finalList, file=sys.stderr)
 
@@ -363,7 +368,7 @@ def Break (inputString, bigDict):
 
     bigDict[str(dataLists[0][1])] = [10*metaAveragePointsScored//1/10, 10*averagePointsScored//1/10, 10*metaHoldMax//1/10, 10*holdMax//1/10, 10*autoAverage//1/10, 10*teleAverage//1/10, 10*fedAverage//1/10, 1000*accuracy//1/10, 10*averageautoclimb//1/10, 10*averageteleclimb//1/10, 10*avgautoFuel//1/10, canBump, canTrench, 10*perTB//1/10, 10*defense//1/10]
 
-def Order (inputDict, teamDir):
+def Order (inputDict, teamDir, justWrite):
     outerHoldList = []
     values2 = []
     outputList = []
@@ -387,36 +392,44 @@ def Order (inputDict, teamDir):
                     outerHoldList.pop(i)
                     values2.pop(0)
                     pops += 1
+    if (justWrite == False):
+        graphTeams = []
+        graphAutoTotals = []
+        graphTeleTotals = []
+        for i in outputList:
+            graphTeams.append(i[0])
+            graphAutoTotals.append(i[5])
+            graphTeleTotals.append(i[6])
 
-    graphTeams = []
-    graphAutoTotals = []
-    graphTeleTotals = []
-    for i in outputList:
-        graphTeams.append(i[0])
-        graphAutoTotals.append(i[5])
-        graphTeleTotals.append(i[6])
-    
-    for i in range (len(outputList)):
-        outputList[i][0] = str(int(float(outputList[i][0])//1))
-        for i2 in range(3):
-            outputList[i][i2+1] = str(int(float(((outputList[i][i2+1])*100)//1))/100)
+        for i in range (len(outputList)):
+            outputList[i][0] = str(int(float(outputList[i][0])//1))
+            for i2 in range(3):
+                outputList[i][i2+1] = str(int(float(((outputList[i][i2+1])*100)//1))/100)
 
-    plt.plot(graphAutoTotals, graphTeleTotals, marker='o', linestyle='None')
-    plt.xlabel('Auto Average Points')
-    plt.ylabel('Tele Average Points')
-    for i in range (len(graphTeams)):
-        plt.text(graphAutoTotals[i], graphTeleTotals[i], graphTeams[i])
-    plt.title('Auto V. Tele')
-    print ('teamDir: ' + str(teamDir), file=sys.stderr)
-    filepath=("public/data/Teams/" + teamDir + "/" + teamDir + "Graphs/AVT.png")
-    print ('filepath: ' + str(filepath), file=sys.stderr)
-    plt.savefig(filepath, dpi=300)
-    plt.close()
+        plt.plot(graphAutoTotals, graphTeleTotals, marker='o', linestyle='None')
+        plt.xlabel('Auto Average Points')
+        plt.ylabel('Tele Average Points')
+        for i in range (len(graphTeams)):
+            plt.text(graphAutoTotals[i], graphTeleTotals[i], graphTeams[i])
+        plt.title('Auto V. Tele')
+        print ('teamDir: ' + str(teamDir), file=sys.stderr)
+        filepath=("public/data/Teams/" + teamDir + "/" + teamDir + "Graphs/AVT.png")
+        print ('filepath: ' + str(filepath), file=sys.stderr)
+        plt.savefig(filepath, dpi=300)
+        plt.close()
 
     for i in range (len(outputList)):
         outputList.append(outputList[0])
         outputList.append('\n')
         outputList.pop(0)
+
+    toWrite = ''
+    for i in range (len(outputList)):
+        toWrite += outputList[i]
+
+    with open ("public/data/Teams/" + teamDir + "/" + teamDir + "baselineOrder.txt", 'w') as file:
+        file.write(toWrite)
+        file.close ()
     
     finalOutputList = []
     for i in range (len(outputList)):

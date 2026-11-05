@@ -624,6 +624,66 @@ app.post("/overall", (req, res) => {
     
 });
 
+app.post("/getScoutedTeams", (req, res) => {
+    const input = String(req.body);
+    const venvPath = path.join(__dirname, "venv/bin/python");
+    const individualProcess = spawn(venvPath, ["scoutedTeamList.py"]);
+
+    let output = "";
+
+    individualProcess.stdin.write(JSON.stringify(input));
+    individualProcess.stdin.end();
+
+    individualProcess.stdout.on("data", (data) => {
+        output += data.toString();
+    });
+
+    individualProcess.on("close", (code) => {
+        try {
+            const jsonResponse = JSON.parse(output);
+            res.json(jsonResponse);
+        } catch (error) {
+            res.status(500).json({ error: "Invalid response from Python script" });
+        }
+    });
+
+    // Handle errors
+    individualProcess.stderr.on("data", (data) => {
+        console.error(`Error: ${data}`);
+    });
+    
+});
+
+app.post("/getScoutedTeams", (req, res) => {
+    const input = String(req.body);
+    const venvPath = path.join(__dirname, "venv/bin/python");
+    const individualProcess = spawn(venvPath, ["storeCompRes.py"]);
+
+    let output = "";
+
+    individualProcess.stdin.write(JSON.stringify(input));
+    individualProcess.stdin.end();
+
+    individualProcess.stdout.on("data", (data) => {
+        output += data.toString();
+    });
+
+    individualProcess.on("close", (code) => {
+        try {
+            const jsonResponse = JSON.parse(output);
+            res.json(jsonResponse);
+        } catch (error) {
+            res.status(500).json({ error: "Invalid response from Python script" });
+        }
+    });
+
+    // Handle errors
+    individualProcess.stderr.on("data", (data) => {
+        console.error(`Error: ${data}`);
+    });
+    
+});
+
 app.post("/qualPL", (req, res) => {
     const input = String(req.body);
     const venvPath = path.join(__dirname, "venv/bin/python");
