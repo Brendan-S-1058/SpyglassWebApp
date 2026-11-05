@@ -654,7 +654,7 @@ app.post("/getScoutedTeams", (req, res) => {
     
 });
 
-app.post("/getScoutedTeams", (req, res) => {
+app.post("/logCompResults", (req, res) => {
     const input = String(req.body);
     const venvPath = path.join(__dirname, "venv/bin/python");
     const individualProcess = spawn(venvPath, ["storeCompRes.py"]);

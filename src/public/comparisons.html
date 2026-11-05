@@ -33,7 +33,7 @@
   let team2;
   
   document.addEventListener("DOMContentLoaded", async () => {
-    rawTeamsString = await getScoutedTeams();
+    rawTeamsString = await getScoutedTeams() + ',';
     teamsList = rawTeamsString.split(',')
     console.log (teamsList);
   });
@@ -55,7 +55,7 @@
 
   function createComparision(team1, team2) {
     const p1 = document.createElement('img');
-    p1.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting' + '/' + str(team1) + "picture.png";
+    p1.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting' + '/' + (team1) + "picture.png";
     p1.width = 600;
     p1.height = 400;
 
@@ -63,7 +63,7 @@
     space.innerHTML = '&nbsp;'; // optional: creates a visible space
 
     const p2 = document.createElement('img');
-    p2.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting' + '/' + str(team2) + "picture.png";
+    p2.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting' + '/' + (team2) + "picture.png";
     p2.width = 600;
     p2.height = 400;
 
