@@ -2,25 +2,96 @@ const express = require("express");
 const cors = require("cors");
 const { spawn } = require("child_process");
 const path = require("path");
+const zlib = require("zlib");
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
 
 const TARGET_SIM = 'https://rebuilt.frsim.com';
+const TARGET_WS = 'https://reefscape-ws.frsim.com';
 
-const simProxyOptions = {
-  target: TARGET_SIM,
+// 1. Proxy for the FRSim Accounts & Multiplayer Backend
+app.use('/ws-proxy', createProxyMiddleware({
+  target: TARGET_WS,
   changeOrigin: true,
   ws: true,
+  pathRewrite: {
+    '^/ws-proxy': '',
+  },
   on: {
+    proxyReq: (proxyReq) => {
+      // Spoof Origin/Referer so FRSim's backend accepts the connection
+      proxyReq.setHeader('Origin', TARGET_SIM);
+      proxyReq.setHeader('Referer', `${TARGET_SIM}/`);
+    },
     proxyRes: (proxyRes) => {
       delete proxyRes.headers['x-frame-options'];
       delete proxyRes.headers['content-security-policy'];
     },
   },
+}));
+
+// 2. Proxy for the FRSim Frontend + Rewriting the hardcoded backend URL inside JS files
+const simProxyOptions = {
+  target: TARGET_SIM,
+  changeOrigin: true,
+  ws: true,
+  selfHandleResponse: true, // Lets us swap out the hardcoded reefscape-ws URL in JS bundles
+  on: {
+    proxyRes: (proxyRes, req, res) => {
+      delete proxyRes.headers['x-frame-options'];
+      delete proxyRes.headers['content-security-policy'];
+      delete proxyRes.headers['content-length'];
+
+      const contentType = proxyRes.headers['content-type'] || '';
+      const encoding = proxyRes.headers['content-encoding'];
+      const isRewriteable = contentType.includes('javascript') || contentType.includes('text/html');
+
+      // Pass images, fonts, wasm, and binary files straight through untouched
+      if (!isRewriteable) {
+        res.writeHead(proxyRes.statusCode, proxyRes.headers);
+        proxyRes.pipe(res);
+        return;
+      }
+
+      // Buffer and decompress JS/HTML to replace the hardcoded backend URL
+      const chunks = [];
+      proxyRes.on('data', (chunk) => chunks.push(chunk));
+      proxyRes.on('end', () => {
+        let buffer = Buffer.concat(chunks);
+
+        const decompress = (buf, cb) => {
+          if (encoding === 'gzip') zlib.gunzip(buf, cb);
+          else if (encoding === 'br') zlib.brotliDecompress(buf, cb);
+          else if (encoding === 'deflate') zlib.inflate(buf, cb);
+          else cb(null, buf);
+        };
+
+        decompress(buffer, (err, decoded) => {
+          if (err) {
+            res.writeHead(proxyRes.statusCode, proxyRes.headers);
+            res.end(buffer);
+            return;
+          }
+
+          delete proxyRes.headers['content-encoding'];
+          let body = decoded.toString('utf8');
+
+          // Point all account & multiplayer calls to your own /ws-proxy route
+          const myOrigin = `https://${req.headers.host}/ws-proxy`;
+          const myWsOrigin = `wss://${req.headers.host}/ws-proxy`;
+          body = body
+            .replaceAll('https://reefscape-ws.frsim.com', myOrigin)
+            .replaceAll('wss://reefscape-ws.frsim.com', myWsOrigin);
+
+          res.writeHead(proxyRes.statusCode, proxyRes.headers);
+          res.end(body);
+        });
+      });
+    },
+  },
 };
 
-// 1. Forward Next.js bundles, static files, and simulator assets directly
 const simAssetPrefixes = [
   '/_next',
   '/assets',
@@ -37,7 +108,6 @@ app.use(createProxyMiddleware({
   pathFilter: (pathname) => simAssetPrefixes.some((prefix) => pathname.startsWith(prefix)),
 }));
 
-// 2. Main entry route for the Rebuilt simulator
 app.use('/proxy', createProxyMiddleware({
   ...simProxyOptions,
   pathRewrite: {
