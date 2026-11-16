@@ -20,19 +20,21 @@ const simProxyOptions = {
   },
 };
 
-// 1. Forward Next.js bundles, static files, and simulator assets directly (preserving their full path!)
+// 1. Forward Next.js bundles, static files, and simulator assets directly
+const simAssetPrefixes = [
+  '/_next',
+  '/assets',
+  '/models',
+  '/textures',
+  '/wasm',
+  '/manifest.webmanifest',
+  '/favicon.ico',
+  '/socket.io',
+];
+
 app.use(createProxyMiddleware({
   ...simProxyOptions,
-  pathFilter: [
-    '/_next/**',
-    '/assets/**',
-    '/models/**',
-    '/textures/**',
-    '/wasm/**',
-    '/manifest.webmanifest',
-    '/favicon.ico',
-    '/socket.io/**',
-  ],
+  pathFilter: (pathname) => simAssetPrefixes.some((prefix) => pathname.startsWith(prefix)),
 }));
 
 // 2. Main entry route for the Rebuilt simulator
