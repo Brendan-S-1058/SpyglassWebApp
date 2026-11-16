@@ -4,4 +4,4 @@ matplotlib
 google-api-python-client
 statbotics
 gspread
-fastapi
+http-proxy-middleware

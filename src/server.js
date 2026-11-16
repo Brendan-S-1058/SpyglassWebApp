@@ -2,8 +2,23 @@ const express = require("express");
 const cors = require("cors");
 const { spawn } = require("child_process");
 const path = require("path");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
+
+app.use('/proxy', createProxyMiddleware({
+  target: 'https://frsim.com', // <-- Replace with the actual URL you want to embed
+  changeOrigin: true,
+  pathRewrite: {
+    '^/proxy': '', // Removes "/proxy" before sending the request to the target site
+  },
+  onProxyRes: (proxyRes, req, res) => {
+    // Strip headers that block the webpage from loading inside your app
+    delete proxyRes.headers['x-frame-options'];
+    delete proxyRes.headers['content-security-policy'];
+  }
+}));
+
 
 app.use(express.json({limit: '10mb'}));
 app.use(cors()); // Enables CORS for frontend requests

@@ -13,30 +13,7 @@
       <h1 class="text-3xl font-bold mb-4">frsim :)</h1>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
+      <iframe src="/proxy" style="width: 100%; height: 800px; border: none;"></iframe>
     </div>
 <div id="external-page-host"></div>
 </body>
-<script>
-  async function loadExternalPage() {
-    const response = await fetch('/proxy/');
-    const htmlText = await response.text();
-
-    const host = document.getElementById('external-page-host');
-    // Shadow DOM prevents the external page's CSS from breaking your main app
-    const shadow = host.attachShadow({ mode: 'open' });
-    shadow.innerHTML = htmlText;
-
-    // Manually execute <script> tags (browsers ignore scripts inserted via innerHTML)
-    shadow.querySelectorAll('script').forEach(oldScript => {
-      const newScript = document.createElement('script');
-      if (oldScript.src) {
-        newScript.src = oldScript.src;
-      } else {
-        newScript.textContent = oldScript.textContent;
-      }
-      shadow.appendChild(newScript);
-    });
-  }
-
-  loadExternalPage();
-</script>
