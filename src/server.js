@@ -11,7 +11,7 @@ const TARGET_SIM = 'https://rebuilt.frsim.com';
 const simProxyOptions = {
   target: TARGET_SIM,
   changeOrigin: true,
-  ws: true, 
+  ws: true,
   on: {
     proxyRes: (proxyRes) => {
       delete proxyRes.headers['x-frame-options'];
@@ -20,8 +20,22 @@ const simProxyOptions = {
   },
 };
 
-app.use(['/assets', '/api', '/socket.io'], createProxyMiddleware(simProxyOptions));
+// 1. Forward Next.js bundles, static files, and simulator assets directly (preserving their full path!)
+app.use(createProxyMiddleware({
+  ...simProxyOptions,
+  pathFilter: [
+    '/_next/**',
+    '/assets/**',
+    '/models/**',
+    '/textures/**',
+    '/wasm/**',
+    '/manifest.webmanifest',
+    '/favicon.ico',
+    '/socket.io/**',
+  ],
+}));
 
+// 2. Main entry route for the Rebuilt simulator
 app.use('/proxy', createProxyMiddleware({
   ...simProxyOptions,
   pathRewrite: {
