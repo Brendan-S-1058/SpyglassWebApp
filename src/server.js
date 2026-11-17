@@ -11,21 +11,29 @@ const TARGET_SIM = 'https://rebuilt.frsim.com';
 const TARGET_WS = 'https://reefscape-ws.frsim.com';
 
 // 1. WebSocket & Backend Proxy (fixes the 403 handshake error)
-const wsProxy = createProxyMiddleware({
-  target: TARGET_WS,
+// Dynamic proxy for ANY *.frsim.com backend or regional multiplayer room server
+const dynamicFrsimProxy = createProxyMiddleware({
+  target: 'https://reefscape-ws.frsim.com', // Default fallback target
   changeOrigin: true,
   ws: true,
   xfwd: false,
-  pathRewrite: (path) => path.replace(/^\/ws-proxy/, ''),
+  // Dynamically route /frsim-host/<subdomain>/... to https://<subdomain>.frsim.com/...
+  router: (req) => {
+    const match = req.url.match(/^\/frsim-host\/([a-zA-Z0-9-]+)(\/.*)?$/);
+    if (match) {
+      return `https://${match[1]}.frsim.com`;
+    }
+    return 'https://reefscape-ws.frsim.com';
+  },
+  pathRewrite: (path) => path.replace(/^\/frsim-host\/[a-zA-Z0-9-]+/, ''),
   on: {
     proxyReq: (proxyReq) => {
       proxyReq.setHeader('Origin', TARGET_SIM);
       proxyReq.setHeader('Referer', `${TARGET_SIM}/`);
     },
     proxyReqWs: (proxyReq) => {
-      if (proxyReq.path.startsWith('/ws-proxy')) {
-        proxyReq.path = proxyReq.path.replace(/^\/ws-proxy/, '') || '/';
-      }
+      // Strip the /frsim-host/<subdomain> prefix on raw WebSocket upgrades
+      proxyReq.path = proxyReq.path.replace(/^\/frsim-host\/[a-zA-Z0-9-]+/, '') || '/';
       proxyReq.setHeader('Origin', TARGET_SIM);
       proxyReq.removeHeader('x-forwarded-for');
       proxyReq.removeHeader('x-forwarded-host');
@@ -38,7 +46,7 @@ const wsProxy = createProxyMiddleware({
   },
 });
 
-app.use('/ws-proxy', wsProxy);
+app.use('/frsim-host', dynamicFrsimProxy);
 
 // 2. Frontend Proxy & URL Rewriter
 const simProxyOptions = {
@@ -84,11 +92,15 @@ const simProxyOptions = {
           delete proxyRes.headers['content-encoding'];
           let body = decoded.toString('utf8');
 
-          const myOrigin = `https://${req.headers.host}/ws-proxy`;
-          const myWsOrigin = `wss://${req.headers.host}/ws-proxy`;
-          body = body
-            .replaceAll('https://reefscape-ws.frsim.com', myOrigin)
-            .replaceAll('wss://reefscape-ws.frsim.com', myWsOrigin);
+          // Rewrite ANY https://<sub >.frsim.com or wss://<sub >.frsim.com to route through /frsim-host/<sub >
+          body = body.replace(
+            /(https?|wss?):\/\/([a-zA-Z0-9-]+)\.frsim\.com/g,
+            (fullMatch, protocol, subdomain) => {
+              if (subdomain === 'rebuilt') return fullMatch;
+              const mappedProto = protocol.startsWith('ws') ? 'wss' : 'https';
+              return `${mappedProto}://${req.headers.host}/frsim-host/${subdomain}`;
+            }
+          );
 
           res.writeHead(proxyRes.statusCode, proxyRes.headers);
           res.end(body);
@@ -131,7 +143,7 @@ const server = app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-server.on('upgrade', wsProxy.upgrade);
+server.on('upgrade', dynamicFrsimProxy.upgrade);
 
 
 const { execSync } = require("child_process");
