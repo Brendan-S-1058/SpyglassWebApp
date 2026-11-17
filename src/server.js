@@ -30,11 +30,14 @@ const dynamicFrsimProxy = createProxyMiddleware({
     proxyReq: (proxyReq) => {
       proxyReq.setHeader('Origin', TARGET_SIM);
       proxyReq.setHeader('Referer', `${TARGET_SIM}/`);
+      proxyReq.setHeader('Host', new URL(TARGET_WS).host);
     },
     proxyReqWs: (proxyReq) => {
-      // Strip the /frsim-host/<subdomain> prefix on raw WebSocket upgrades
+      if (proxyReq.path.startsWith('/ws-proxy')) {
       proxyReq.path = proxyReq.path.replace(/^\/frsim-host\/[a-zA-Z0-9-]+/, '') || '/';
+      }
       proxyReq.setHeader('Origin', TARGET_SIM);
+      proxyReq.setHeader('Host', new URL(TARGET_WS).host);
       proxyReq.removeHeader('x-forwarded-for');
       proxyReq.removeHeader('x-forwarded-host');
       proxyReq.removeHeader('x-forwarded-proto');
