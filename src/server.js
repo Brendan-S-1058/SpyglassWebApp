@@ -10,33 +10,42 @@ const app = express();
 const TARGET_SIM = 'https://rebuilt.frsim.com';
 const TARGET_WS = 'https://reefscape-ws.frsim.com';
 
-// 1. Proxy for the FRSim Accounts & Multiplayer Backend
-app.use('/ws-proxy', createProxyMiddleware({
+// 1. WebSocket & Backend Proxy (fixes the 403 handshake error)
+const wsProxy = createProxyMiddleware({
   target: TARGET_WS,
   changeOrigin: true,
   ws: true,
-  pathRewrite: {
-    '^/ws-proxy': '',
-  },
+  xfwd: false,
+  pathRewrite: (path) => path.replace(/^\/ws-proxy/, ''),
   on: {
     proxyReq: (proxyReq) => {
-      // Spoof Origin/Referer so FRSim's backend accepts the connection
       proxyReq.setHeader('Origin', TARGET_SIM);
       proxyReq.setHeader('Referer', `${TARGET_SIM}/`);
+    },
+    proxyReqWs: (proxyReq) => {
+      if (proxyReq.path.startsWith('/ws-proxy')) {
+        proxyReq.path = proxyReq.path.replace(/^\/ws-proxy/, '') || '/';
+      }
+      proxyReq.setHeader('Origin', TARGET_SIM);
+      proxyReq.removeHeader('x-forwarded-for');
+      proxyReq.removeHeader('x-forwarded-host');
+      proxyReq.removeHeader('x-forwarded-proto');
     },
     proxyRes: (proxyRes) => {
       delete proxyRes.headers['x-frame-options'];
       delete proxyRes.headers['content-security-policy'];
     },
   },
-}));
+});
 
-// 2. Proxy for the FRSim Frontend + Rewriting the hardcoded backend URL inside JS files
+app.use('/ws-proxy', wsProxy);
+
+// 2. Frontend Proxy & URL Rewriter
 const simProxyOptions = {
   target: TARGET_SIM,
   changeOrigin: true,
   ws: true,
-  selfHandleResponse: true, // Lets us swap out the hardcoded reefscape-ws URL in JS bundles
+  selfHandleResponse: true,
   on: {
     proxyRes: (proxyRes, req, res) => {
       delete proxyRes.headers['x-frame-options'];
@@ -47,14 +56,12 @@ const simProxyOptions = {
       const encoding = proxyRes.headers['content-encoding'];
       const isRewriteable = contentType.includes('javascript') || contentType.includes('text/html');
 
-      // Pass images, fonts, wasm, and binary files straight through untouched
       if (!isRewriteable) {
         res.writeHead(proxyRes.statusCode, proxyRes.headers);
         proxyRes.pipe(res);
         return;
       }
 
-      // Buffer and decompress JS/HTML to replace the hardcoded backend URL
       const chunks = [];
       proxyRes.on('data', (chunk) => chunks.push(chunk));
       proxyRes.on('end', () => {
@@ -77,7 +84,6 @@ const simProxyOptions = {
           delete proxyRes.headers['content-encoding'];
           let body = decoded.toString('utf8');
 
-          // Point all account & multiplayer calls to your own /ws-proxy route
           const myOrigin = `https://${req.headers.host}/ws-proxy`;
           const myWsOrigin = `wss://${req.headers.host}/ws-proxy`;
           body = body
@@ -95,6 +101,7 @@ const simProxyOptions = {
 const simAssetPrefixes = [
   '/_next',
   '/assets',
+  '/brand',
   '/models',
   '/textures',
   '/wasm',
@@ -120,9 +127,11 @@ app.use(cors()); // Enables CORS for frontend requests
 
 const PORT = process.env.PORT || 10000; // Use Render's assigned port or default to 10000
 
-app.listen(PORT, "0.0.0.0", () => {
+const server = app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+server.on('upgrade', wsProxy.upgrade);
 
 
 const { execSync } = require("child_process");
