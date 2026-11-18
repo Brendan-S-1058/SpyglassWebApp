@@ -62,6 +62,7 @@ def Main ():
             hold = ''
     
     if str(scoutedTeam) not in list:
+        print ('scoutedTeam: ' + scoutedTeam, file = sys.stderr)
         with open ('public/data/Teams/' + str(team) + '/' + str(team) + 'PitScouting/' + str(team) + 'TeamsScouted.txt', 'a') as file:
             file.write(str(scoutedTeam) + ',')
     
