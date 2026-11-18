@@ -17,7 +17,7 @@
       <button id="explain" class="button">Explain</button>
     </div>
     <div class="overflow-auto border rounded-lg shadow bg-white">
-        <div id="sickFlicks" class="adjacent-graph">
+        <div id="sickFlicks" class="adjacent-graph overflow-auto border rounded-lg shadow bg-white">
         </div>
     </div>
     <div>
@@ -59,24 +59,20 @@
     p1.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting' + '/' + (team1) + "Picture.png";
     p1.width = 600;
     p1.height = 400;
-        function createImg(targetTeam) {
-      const img = document.createElement('img');
-
-      console.log(img.src);
-
-      document.getElementById('images').appendChild(img);
-    }
 
     const space = document.createElement('p');
     space.innerHTML = '&nbsp;'; // optional: creates a visible space
 
     const p2 = document.createElement('img');
-    p2.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting' + '/' + (team2) + "Picture.png";
+    p2.src = "data/Teams/" + localStorage.getItem('team') + '/' + localStorage.getItem('team') + 'PitScouting' + '/' + (team2) + "Picture.png";    
     p2.width = 600;
     p2.height = 400;
 
-    const division = document.getElementById("sickFlicks");
+    division = document.getElementById("sickFlicks");
     division.innerHTML='';
+
+    console.log(p1.src)
+    console.log(p2.src)
 
     division.appendChild(p1);
     division.appendChild(space);
