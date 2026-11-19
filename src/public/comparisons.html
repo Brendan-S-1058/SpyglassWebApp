@@ -48,9 +48,11 @@
     copy = teamsList;
     team1index = Math.floor(Math.random()*copy.length);
     team1 = copy[team1index];
+    console.log('team1: ' + team1)
     copy.splice(team1index, 1);
     team2index = Math.floor(Math.random()*copy.length);
     team2 = copy[team2index];
+    console.log('team2: ' + team2)
     createComparision(team1, team2)
   }
 
@@ -84,6 +86,9 @@
 
   document.getElementById('team1').addEventListener('click', async ()=> {
     if (confirm("are you sure you want to pick " + (team1) + '?')) {
+            console.log('team1: ' + team1)
+      console.log('team2: ' + team2)
+
     await send(team1, team2);
     createComparision();
     }
@@ -91,6 +96,8 @@
 
   document.getElementById('team2').addEventListener('click', async ()=> {
     if (confirm("are you sure you want to pick " + (team2) + '?')) {
+      console.log('team1: ' + team1)
+      console.log('team2: ' + team2)
     await send(team2, team1);
     createComparision();
     }
