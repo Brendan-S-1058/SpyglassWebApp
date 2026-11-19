@@ -45,7 +45,7 @@
   });
 
   function runComparisons() {
-    copy = teamsList;
+    copy = [...teamsList];
     team1index = Math.floor(Math.random()*copy.length);
     team1 = copy[team1index];
     console.log('team1: ' + team1)
