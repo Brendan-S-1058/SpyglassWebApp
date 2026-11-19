@@ -5,6 +5,8 @@ def Main ():
     inputR = sys.stdin.read()
     inputS = json.loads(inputR)
 
+    print ('teamsraw: ' + str(inputS), file=sys.stderr)
+
     teams = []
     heldTeam = ''
     for char in inputS:

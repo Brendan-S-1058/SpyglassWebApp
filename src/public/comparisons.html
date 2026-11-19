@@ -111,7 +111,7 @@
     const res = await fetch ("/logCompResults", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify([localStorage.getItem('team'), winner, loser]),
+      body: JSON.stringify([localStorage.getItem('team'), winner, loser, ',']),
     });
 
     console.log(res);
