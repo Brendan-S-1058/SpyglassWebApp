@@ -16,7 +16,6 @@ def Main ():
             inquireTeam += char
         else:
             team += char
-    
     with open ('public/data/Teams/' + team + '/' + team + 'PitScouting/' + inquireTeam + 'Data.txt', 'r') as file:
         currentData = file.read()
 

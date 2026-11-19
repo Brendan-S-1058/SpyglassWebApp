@@ -23,6 +23,6 @@ def Main ():
         file.close ()
 
     print ('hey it didn\'t crash?', file=sys.stderr)
-    json.dumps("hey it didn't crash :)")
+    json.dumps("hey it didn't crash")
 
 Main()
