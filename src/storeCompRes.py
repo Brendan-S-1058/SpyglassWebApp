@@ -14,6 +14,8 @@ def Main ():
         else:
             heldTeam += char
 
+    print ('teams: ' + str(teams), file=sys.stderr)
+
     with open ('public/data/Teams/' + str(teams[0]) + '/' + str(teams[0]) + 'comps.txt', 'a') as file:
         file.write(str(teams[1]) + ',' + str(teams[2]) + ',0/')
         file.close ()

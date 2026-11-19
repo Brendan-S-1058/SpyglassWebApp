@@ -36,7 +36,7 @@
     rawTeamsString = await getScoutedTeams() + ',';
     console.log('rawTeamsString: ' + rawTeamsString)
     teamsList = rawTeamsString.split(',')
-    teamsList.filter(item => item !== '')
+    teamsList = teamsList.filter(item => item !== '')
     console.log (teamsList);
   });
 
