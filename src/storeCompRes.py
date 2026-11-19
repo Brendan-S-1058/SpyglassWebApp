@@ -22,7 +22,6 @@ def Main ():
         file.write(str(teams[1]) + ',' + str(teams[2]) + ',0/')
         file.close ()
 
-    print ('hey it didn\'t crash?', file=sys.stderr)
-    json.dumps("hey it didn't crash")
+    print (json.dumps("hey it didn't crash (:"))
 
 Main()
